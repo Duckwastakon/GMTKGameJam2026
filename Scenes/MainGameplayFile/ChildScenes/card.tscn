@@ -1,6 +1,26 @@
 [gd_scene format=3 uid="uid://lvll7lvyidny"]
 
 [ext_resource type="Script" uid="uid://ds6qy6ewjoc1m" path="res://Scenes/MainGameplayFile/Scripts/card.gd" id="1_my24f"]
+[ext_resource type="ArrayMesh" uid="uid://dgx7rufmqry17" path="res://Models_Art/models/cards/obj/card_clubs_ace.obj" id="2_k8gks"]
+[ext_resource type="Shader" uid="uid://dr1inrh66cgjd" path="res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader" id="3_tbv47"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k8gks"]
+render_priority = 0
+shader = ExtResource("3_tbv47")
+shader_parameter/outlineColor = Color(0, 0, 0, 1)
+shader_parameter/outlineWidth = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbv47"]
+next_pass = SubResource("ShaderMaterial_k8gks")
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
 
 [node name="Node3D" type="Node3D" unique_id=959598807]
 script = ExtResource("1_my24f")
+
+[node name="CardClubs_Ace" type="MeshInstance3D" parent="." unique_id=527453018]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+visible = false
+material_overlay = SubResource("StandardMaterial3D_tbv47")
+mesh = ExtResource("2_k8gks")

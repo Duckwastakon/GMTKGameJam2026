@@ -101,7 +101,7 @@ func opponentTurn():
 	var sumPlayer = countSum(playersCards)
 	var sumOpponent = countSum(opponentsCards)
 	print("started")
-	if(sumPlayer < 22):
+	if(sumPlayer < 21):
 		while(sumPlayer>sumOpponent and sumOpponent < 22):
 			drawCard(opponentsCards, opponentCardContainer)
 			await get_tree().create_timer(1).timeout
@@ -112,9 +112,21 @@ func opponentTurn():
 
 func countSum(arr):
 	var num = 0
+	var Ace = 0
 	
 	for n in arr:
-		num+=n
+		if n==11:
+			Ace += 1
+		else:
+			num+=n
+	
+	while Ace>0:
+		if num+11>21:
+			num+=1
+		else:
+			num+=11
+		
+		Ace-=1
 	
 	return num
 
