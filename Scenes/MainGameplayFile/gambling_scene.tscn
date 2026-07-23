@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://cy35agtwsoljq" path="res://Scenes/MainGameplayFile/Scripts/gamblingController.gd" id="1_psac4"]
 [ext_resource type="PackedScene" uid="uid://cv17w53p4yr46" path="res://Scenes/MainGameplayFile/ChildScenes/cardContainer.tscn" id="2_11xmx"]
 [ext_resource type="PackedScene" uid="uid://b1vnmsbbh5h26" path="res://Scenes/MainGameplayFile/ChildScenes/used_pile.tscn" id="4_no7qd"]
+[ext_resource type="Script" uid="uid://s74ujv7gtx6v" path="res://Scenes/MainGameplayFile/displayBetAmount.gd" id="5_hyvjx"]
+[ext_resource type="Script" uid="uid://c60pf0v2ybv6d" path="res://Scenes/MainGameplayFile/addBet.gd" id="5_qql45"]
+[ext_resource type="Script" uid="uid://dvgtey3883pjn" path="res://Scenes/MainGameplayFile/playButton.gd" id="6_fj2yj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij4dc"]
 albedo_color = Color(0.43070272, 0.29251617, 0.16413334, 1)
@@ -11,10 +14,63 @@ albedo_color = Color(0.43070272, 0.29251617, 0.16413334, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_c8pox"]
 material = SubResource("StandardMaterial3D_ij4dc")
 
-[node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("playerCardContainer", "aiCardContainer", "usedPile")]
+[sub_resource type="BoxMesh" id="BoxMesh_no7qd"]
+size = Vector3(0.6, 0.3, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qql45"]
+albedo_color = Color(0.14333999, 0.14333999, 0.14333999, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hyvjx"]
+material = SubResource("StandardMaterial3D_qql45")
+size = Vector3(0.6, 0.1, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_no7qd"]
+albedo_color = Color(1.540184e-06, 0.6811058, 0.2354146, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qql45"]
+material = SubResource("StandardMaterial3D_no7qd")
+size = Vector3(0.6, 0.1, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_no7qd"]
+size = Vector3(0.6, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qql45"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyvjx"]
+albedo_color = Color(0.9999998, 0.08584627, 0.14359021, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fj2yj"]
+material = SubResource("StandardMaterial3D_hyvjx")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pimvi"]
+albedo_color = Color(0, 0.6159227, 0.23193544, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ejs6f"]
+material = SubResource("StandardMaterial3D_pimvi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
+size = Vector3(0.1, 0.025, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejs6f"]
+albedo_color = Color(0, 0.69803923, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rq8od"]
+material = SubResource("StandardMaterial3D_ejs6f")
+size = Vector3(0.1, 0.025, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj2yj"]
+albedo_color = Color(0.8853635, 0.24868074, 0.13935652, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pimvi"]
+material = SubResource("StandardMaterial3D_fj2yj")
+size = Vector3(0.1, 0.025, 0.1)
+
+[node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("playerCardContainer", "opponentCardContainer", "usedPile")]
 script = ExtResource("1_psac4")
 playerCardContainer = NodePath("playerContainer")
-aiCardContainer = NodePath("aiContainer")
+opponentCardContainer = NodePath("opponentContainer")
 usedPile = NodePath("usedPile")
 
 [node name="table" type="MeshInstance3D" parent="." unique_id=572897691]
@@ -33,8 +89,183 @@ spot_range = 4.547605
 [node name="playerContainer" parent="." unique_id=341785402 instance=ExtResource("2_11xmx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.35)
 
-[node name="aiContainer" parent="." unique_id=1921513372 instance=ExtResource("2_11xmx")]
+[node name="opponentContainer" parent="." unique_id=1921513372 instance=ExtResource("2_11xmx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.35)
 
 [node name="usedPile" parent="." unique_id=1032281384 instance=ExtResource("4_no7qd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.55, 0)
+
+[node name="cashTimer" type="Timer" parent="." unique_id=813787386]
+wait_time = 10.0
+autostart = true
+
+[node name="betConsole" type="MeshInstance3D" parent="." unique_id=904665786]
+transform = Transform3D(0.9470143, 0, 0.32119155, 0, 1, 0, -0.32119155, 0, 0.9470143, -0.5988265, 0.6512754, 0.24791902)
+mesh = SubResource("BoxMesh_no7qd")
+
+[node name="betAmount" type="MeshInstance3D" parent="betConsole" unique_id=909305931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.05)
+mesh = SubResource("BoxMesh_hyvjx")
+script = ExtResource("5_hyvjx")
+
+[node name="Label3D" type="Label3D" parent="betConsole/betAmount" unique_id=777446511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+pixel_size = 0.0025
+text = "$0"
+
+[node name="playButton" type="StaticBody3D" parent="betConsole" unique_id=684891190]
+script = ExtResource("6_fj2yj")
+
+[node name="playButton" type="MeshInstance3D" parent="betConsole/playButton" unique_id=1107768901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, -0.100000024, 0.049999982)
+mesh = SubResource("BoxMesh_qql45")
+
+[node name="Label3D" type="Label3D" parent="betConsole/playButton/playButton" unique_id=2126533146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03)
+pixel_size = 0.0025
+text = "Play"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/playButton" unique_id=126649355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.05)
+shape = SubResource("BoxShape3D_no7qd")
+
+[node name="min100" type="StaticBody3D" parent="betConsole" unique_id=2115775190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+script = ExtResource("5_qql45")
+cashPercent = -100
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/min100" unique_id=1934342922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+shape = SubResource("BoxShape3D_qql45")
+
+[node name="min100" type="MeshInstance3D" parent="betConsole/min100" unique_id=1788581344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0.00999999)
+mesh = SubResource("BoxMesh_fj2yj")
+
+[node name="Label3D" type="Label3D" parent="betConsole/min100/min100" unique_id=655967591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051)
+pixel_size = 0.001
+text = "-100%"
+
+[node name="min25" type="StaticBody3D" parent="betConsole" unique_id=341289005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0)
+script = ExtResource("5_qql45")
+cashPercent = -25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/min25" unique_id=210317198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+shape = SubResource("BoxShape3D_qql45")
+
+[node name="min25" type="MeshInstance3D" parent="betConsole/min25" unique_id=1641559258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0.010000005)
+mesh = SubResource("BoxMesh_fj2yj")
+
+[node name="Label3D" type="Label3D" parent="betConsole/min25/min25" unique_id=130266308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051)
+pixel_size = 0.001
+text = "-25%"
+
+[node name="min5" type="StaticBody3D" parent="betConsole" unique_id=432820722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
+script = ExtResource("5_qql45")
+cashPercent = -5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/min5" unique_id=1219003248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+shape = SubResource("BoxShape3D_qql45")
+
+[node name="min5" type="MeshInstance3D" parent="betConsole/min5" unique_id=1817703663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0.00999999)
+mesh = SubResource("BoxMesh_fj2yj")
+
+[node name="Label3D" type="Label3D" parent="betConsole/min5/min5" unique_id=1432190004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051)
+pixel_size = 0.001
+text = "-5%"
+
+[node name="plus5" type="StaticBody3D" parent="betConsole" unique_id=1110796375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
+script = ExtResource("5_qql45")
+cashPercent = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/plus5" unique_id=1996940079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+shape = SubResource("BoxShape3D_qql45")
+
+[node name="plus5" type="MeshInstance3D" parent="betConsole/plus5" unique_id=1116158429]
+transform = Transform3D(0.10000001, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, 0, 0, 0.00999999)
+mesh = SubResource("BoxMesh_ejs6f")
+
+[node name="Label3D" type="Label3D" parent="betConsole/plus5/plus5" unique_id=1803819166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
+pixel_size = 0.01
+text = "+5%"
+
+[node name="plus25" type="StaticBody3D" parent="betConsole" unique_id=254525926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
+script = ExtResource("5_qql45")
+cashPercent = 25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/plus25" unique_id=673890479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+shape = SubResource("BoxShape3D_qql45")
+
+[node name="plus25" type="MeshInstance3D" parent="betConsole/plus25" unique_id=1829267423]
+transform = Transform3D(0.10000002, 0, -1.8626451e-09, 0, 0.1, 0, 1.8626451e-09, 0, 0.10000002, 0, 0, 0.00999999)
+mesh = SubResource("BoxMesh_ejs6f")
+
+[node name="Label3D" type="Label3D" parent="betConsole/plus25/plus25" unique_id=1621387337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
+pixel_size = 0.01
+text = "+25%"
+
+[node name="plus100" type="StaticBody3D" parent="betConsole" unique_id=690725729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+script = ExtResource("5_qql45")
+cashPercent = 100
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/plus100" unique_id=1621089528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+shape = SubResource("BoxShape3D_qql45")
+
+[node name="plus100" type="MeshInstance3D" parent="betConsole/plus100" unique_id=515183200]
+transform = Transform3D(0.10000001, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, 0, 0, 0.009999998)
+mesh = SubResource("BoxMesh_ejs6f")
+
+[node name="Label3D" type="Label3D" parent="betConsole/plus100/plus100" unique_id=308652980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
+pixel_size = 0.01
+text = "+100%"
+
+[node name="hitButton" type="StaticBody3D" parent="." unique_id=23821579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 0.42)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitButton" unique_id=502994031]
+shape = SubResource("BoxShape3D_fj2yj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="hitButton" unique_id=191370775]
+mesh = SubResource("BoxMesh_rq8od")
+
+[node name="Label3D" type="Label3D" parent="hitButton" unique_id=806837590]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.014999986, 0)
+pixel_size = 0.001
+text = "Hit"
+
+[node name="standButton" type="StaticBody3D" parent="." unique_id=1950560195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.5, 0.42)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="standButton" unique_id=1143909997]
+shape = SubResource("BoxShape3D_fj2yj")
+
+[node name="Label3D" type="Label3D" parent="standButton" unique_id=1270108345]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.014999986, 0)
+pixel_size = 0.001
+text = "Stand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="standButton" unique_id=993215342]
+mesh = SubResource("BoxMesh_pimvi")
+
+[connection signal="timeout" from="cashTimer" to="." method="_on_cash_timer_timeout"]
+[connection signal="input_event" from="betConsole/playButton" to="betConsole/playButton" method="_on_input_event"]
+[connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]
+[connection signal="input_event" from="standButton" to="." method="_on_stand_button_input_event"]

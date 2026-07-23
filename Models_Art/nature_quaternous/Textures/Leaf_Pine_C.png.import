@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cb64mpky787qe"
-path.s3tc="res://.godot/imported/Leaf_Pine_C.png-e8b637121a50b30e9deccff4e757c670.s3tc.ctex"
+path.s3tc="res://.godot/imported/Leaf_Pine_C.png-40be850b6eb14db0d1ec7ece672da43b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Models_Art/nature_quaternous/textures/Leaf_Pine_C.png"
-dest_files=["res://.godot/imported/Leaf_Pine_C.png-e8b637121a50b30e9deccff4e757c670.s3tc.ctex"]
+source_file="res://Models_Art/nature_quaternous/Textures/Leaf_Pine_C.png"
+dest_files=["res://.godot/imported/Leaf_Pine_C.png-40be850b6eb14db0d1ec7ece672da43b.s3tc.ctex"]
 
 [params]
 

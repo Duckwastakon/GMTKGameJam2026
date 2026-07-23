@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdpxo55mwke3"
-path.s3tc="res://.godot/imported/Flowers.png-115813564e2f29fcaf61e707f8eefdc6.s3tc.ctex"
+path.s3tc="res://.godot/imported/Flowers.png-fa32eefc2ffcdec42204dda3717ad287.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Models_Art/nature_quaternous/textures/Flowers.png"
-dest_files=["res://.godot/imported/Flowers.png-115813564e2f29fcaf61e707f8eefdc6.s3tc.ctex"]
+source_file="res://Models_Art/nature_quaternous/Textures/Flowers.png"
+dest_files=["res://.godot/imported/Flowers.png-fa32eefc2ffcdec42204dda3717ad287.s3tc.ctex"]
 
 [params]
 
