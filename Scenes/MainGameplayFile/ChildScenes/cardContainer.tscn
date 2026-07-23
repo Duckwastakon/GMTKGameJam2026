@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cv17w53p4yr46"]
+
+[ext_resource type="Script" uid="uid://cmr1n7v4imqa6" path="res://Scenes/MainGameplayFile/Scripts/card_container.gd" id="1_2xa7w"]
+
+[node name="CardContainer" type="Node3D" unique_id=341785402]
+script = ExtResource("1_2xa7w")

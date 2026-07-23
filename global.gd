@@ -1,3 +1,15 @@
 extends Node
 
-var cash: int
+signal cashUpdated
+
+var cash: int = 0
+var items: Array[String]
+const maxItems: int = 3
+
+func addCash(amount: int):
+	cash += amount
+	
+	cashUpdated.emit(amount)
+
+func compareCash(amount: int) -> bool:
+	return (cash>amount)

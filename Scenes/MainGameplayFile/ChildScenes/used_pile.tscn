@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b1vnmsbbh5h26"]
+
+[ext_resource type="Script" uid="uid://bglf4cuuawpy" path="res://Scenes/MainGameplayFile/Scripts/used_pile.gd" id="1_a3khx"]
+
+[node name="usedPile" type="Node3D" unique_id=1032281384]
+script = ExtResource("1_a3khx")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

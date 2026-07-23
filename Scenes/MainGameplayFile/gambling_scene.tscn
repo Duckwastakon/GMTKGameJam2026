@@ -1,3 +1,40 @@
 [gd_scene format=3 uid="uid://desey5ovs1yx8"]
 
-[node name="gamblingScene" type="Node3D" unique_id=70054297]
+[ext_resource type="Script" uid="uid://k4ag0761ryry" path="res://Scenes/MainGameplayFile/Scripts/gambling_cam.gd" id="1_c8pox"]
+[ext_resource type="Script" uid="uid://cy35agtwsoljq" path="res://Scenes/MainGameplayFile/Scripts/gamblingController.gd" id="1_psac4"]
+[ext_resource type="PackedScene" uid="uid://cv17w53p4yr46" path="res://Scenes/MainGameplayFile/ChildScenes/cardContainer.tscn" id="2_11xmx"]
+[ext_resource type="PackedScene" uid="uid://b1vnmsbbh5h26" path="res://Scenes/MainGameplayFile/ChildScenes/used_pile.tscn" id="4_no7qd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij4dc"]
+albedo_color = Color(0.43070272, 0.29251617, 0.16413334, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c8pox"]
+material = SubResource("StandardMaterial3D_ij4dc")
+
+[node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("playerCardContainer", "aiCardContainer", "usedPile")]
+script = ExtResource("1_psac4")
+playerCardContainer = NodePath("playerContainer")
+aiCardContainer = NodePath("aiContainer")
+usedPile = NodePath("usedPile")
+
+[node name="table" type="MeshInstance3D" parent="." unique_id=572897691]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_c8pox")
+
+[node name="gamblingCam" type="Camera3D" parent="." unique_id=106288471]
+transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 1, 0.9)
+script = ExtResource("1_c8pox")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1796891404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8707446, 2.3324447)
+light_energy = 5.0
+spot_range = 4.547605
+
+[node name="playerContainer" parent="." unique_id=341785402 instance=ExtResource("2_11xmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.35)
+
+[node name="aiContainer" parent="." unique_id=1921513372 instance=ExtResource("2_11xmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.35)
+
+[node name="usedPile" parent="." unique_id=1032281384 instance=ExtResource("4_no7qd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.55, 0)
