@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="5_iif4s"]
 [ext_resource type="ArrayMesh" uid="uid://dmu7n7cb8c6vi" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_1.obj" id="5_ui63x"]
 [ext_resource type="PackedScene" uid="uid://diwlln00qr4e0" path="res://Models_Art/wheel.glb" id="8_52mfs"]
-[ext_resource type="Shader" uid="uid://bhyvngwtr1se8" path="res://shaders/desert.gdshader" id="8_mlu5n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7uw4k"]
 sky_top_color = Color(0.08375933, 0.24538207, 0.2902046, 1)
@@ -53,15 +52,6 @@ size = Vector3(1, 2.5, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_iif4s"]
 size = Vector3(1.1533203, 3.022583, 1.927185)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0es2"]
-render_priority = 0
-shader = ExtResource("8_mlu5n")
-
-[sub_resource type="SphereMesh" id="SphereMesh_xrckv"]
-flip_faces = true
-radius = 35.0
-height = 60.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ui63x"]
 albedo_color = Color(0.4360694, 0.4360694, 0.4360694, 0.07058824)
 albedo_texture = ExtResource("5_iif4s")
@@ -83,6 +73,17 @@ size = Vector3(0.99768066, 3.272461, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iif4s"]
 radius = 3.0446436
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_52mfs"]
+radius = 5.899168
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlu5n"]
+transparency = 1
+emission_enabled = true
+emission = Color(0.6, 0.41730002, 0.078, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_a0es2"]
 
 [node name="desert" type="Node3D" unique_id=1970585400]
 script = ExtResource("1_0b6bn")
@@ -135,10 +136,6 @@ transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -2.8
 
 [node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("3_2h1u0")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="moving_character" unique_id=326713052]
-material_override = SubResource("ShaderMaterial_a0es2")
-mesh = SubResource("SphereMesh_xrckv")
-
 [node name="ground" type="StaticBody3D" parent="." unique_id=481861379]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground" unique_id=943142268]
@@ -169,12 +166,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.748589, 1.3445392, -6.792
 shape = SubResource("SphereShape3D_iif4s")
 
 [node name="Label3D" type="Label3D" parent="interact_area_ticket" unique_id=493601260]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.064876, 2.5475993, -7)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.064876, 2.337254, -7)
 visible = false
 text = "Press e to interract"
 
 [node name="wheel" parent="." unique_id=1309672880 instance=ExtResource("8_52mfs")]
 transform = Transform3D(-0.39087614, 0, -0.08494615, 0, 0.4, 0, 0.08494615, 0, -0.39087614, -5.987181, 0.39747024, 17.530077)
 
+[node name="Area3D" type="Area3D" parent="wheel" unique_id=1365869900]
+
+[node name="wheel_collision" type="CollisionShape3D" parent="wheel/Area3D" unique_id=948984032]
+transform = Transform3D(0.9999999, 0, 2.9802322e-08, 0, 0.9999998, 0, -2.9802322e-08, 0, 0.9999999, 0, 2.9606924, 0)
+shape = SubResource("SphereShape3D_52mfs")
+
+[node name="wheel" type="Label3D" parent="wheel/Area3D" unique_id=1972828589]
+transform = Transform3D(0.9848047, 0, 0.17366542, 0, 0.9999994, 0, -0.17366542, 0, 0.9848047, 0.05000305, 1.7742715, 1.0835686)
+pixel_size = 0.01
+text = "Press e to spin the wheel"
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=972039711]
+
+[node name="DigitalBox" type="Panel" parent="UI" unique_id=241882590]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -166.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogText" type="Label" parent="UI/DigitalBox" unique_id=315389234]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 25.0
+offset_right = 196.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 75
+
+[node name="ColorRect" type="ColorRect" parent="UI/DigitalBox" unique_id=2117574036]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 136.0
+offset_bottom = 165.0
+color = Color(0.13355187, 0.13355187, 0.13355187, 1)
+
+[node name="Who" type="Label" parent="UI/DigitalBox/ColorRect" unique_id=282737528]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 25.0
+offset_right = 46.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 80
+
+[node name="here" type="MeshInstance3D" parent="." unique_id=351075734]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -14, 3.129, -7.055045)
+material_override = SubResource("StandardMaterial3D_mlu5n")
+mesh = SubResource("SphereMesh_a0es2")
+
 [connection signal="body_entered" from="interact_area_ticket" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="interact_area_ticket" to="." method="_on_body_exited"]
+[connection signal="body_entered" from="wheel/Area3D" to="." method="_on_body_entered_3d"]
+[connection signal="body_exited" from="wheel/Area3D" to="." method="_on_area_exited_3d"]
