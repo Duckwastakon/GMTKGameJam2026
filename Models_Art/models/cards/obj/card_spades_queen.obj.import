@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://rmisws4imsbu"
+path="res://.godot/imported/card_spades_queen.obj-447423dd9e7b289483819f56f8dd8b0c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/card_spades_queen.obj-447423dd9e7b289483819f56f8dd8b0c.mesh"]
+
+source_file="res://Models_Art/models/cards/obj/card_spades_queen.obj"
+dest_files=["res://.godot/imported/card_spades_queen.obj-447423dd9e7b289483819f56f8dd8b0c.mesh", "res://.godot/imported/card_spades_queen.obj-447423dd9e7b289483819f56f8dd8b0c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

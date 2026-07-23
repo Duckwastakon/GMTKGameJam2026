@@ -6,6 +6,7 @@ var opponentsCards: Array[int]
 @export var playerCardContainer: Node3D
 @export var opponentCardContainer: Node3D
 @export var usedPile: Node3D
+@onready var deckNode = $deck
 
 var deck = []
 
@@ -23,14 +24,33 @@ var gameActive = false
 
 const cardScene = preload("res://Scenes/MainGameplayFile/ChildScenes/card.tscn")
 
+@onready var allCards = $allPossibleCards.get_children()
+
+var Specials = {
+	"One": 1,
+	"Two": 2,
+	"Three": 3,
+	"Four": 4,
+	"Five": 5,
+	"Six": 6,
+	"Seven": 7,
+	"Eight": 8,
+	"Nine": 9,
+	"Ten": 10,
+	"Jack": 10,
+	"Queen": 10,
+	"King": 10,
+	"Ace": 11
+}
+
 func shuffleDeck():
 	deck.clear()
 	
-	for x in 10:
-		for y in 4:
-			deck.append(x+1)
+	for x in 4:
+		for card in allCards:
+			deck.append(card)
 	
-	for i in 99:
+	for i in 256:
 		var temp
 		var rand1 = randi_range(0, deck.size() - 1)
 		var rand2 = randi_range(0, deck.size() - 1)
@@ -51,6 +71,9 @@ func playRound() -> bool:
 	drawCard(playersCards, playerCardContainer)
 	
 	canDraw = true
+	
+	print(playersCards)
+	print(opponentsCards)
 	
 	await playerDone
 	
@@ -97,10 +120,15 @@ func countSum(arr):
 
 func drawCard(arr: Array[int], cont, hidden = false):
 	var newCard = cardScene.instantiate()
-	newCard.setText(str(deck[0]), hidden)
+	newCard.setCard(deck[0].duplicate(), hidden)
 	cont.add_child(newCard)
-	newCard.global_position = Vector3(0, 1, 0)
-	arr.append(deck[0])
+	newCard.global_position = deckNode.global_position
+	var cardName: String = deck[0].name
+	var cardsValue = cardName.split("_")[1]
+	print(cardsValue)
+	var val = Specials[cardsValue]
+	print(val)
+	arr.append(val)
 	deck.pop_at(0)
 	
 	return newCard

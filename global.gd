@@ -8,7 +8,6 @@ const maxItems: int = 3
 
 func addCash(amount: int):
 	cash += amount
-	print(cash)
 	
 	cashUpdated.emit(amount)
 

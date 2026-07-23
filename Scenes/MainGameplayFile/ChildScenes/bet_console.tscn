@@ -1,0 +1,223 @@
+[gd_scene format=3 uid="uid://ccdlpbqnbkjeb"]
+
+[ext_resource type="Script" uid="uid://c6j64bbjaxl0v" path="res://Scenes/MainGameplayFile/Scripts/bet_console.gd" id="1_8pky6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pxp8b"]
+font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_8pky6"]
+font_size = 56
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l56qh"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0.64369816, 3.85046e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyj74"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0.93553656, 0.03370996, 5.7756904e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g7lm1"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0.93553656, 0.03370996, 5.7756904e-07, 1)
+
+[node name="betConsole" type="Control" unique_id=328632430]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_right = -576.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_8pky6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1207322650]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1403567298]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 128.0
+text = "$0"
+label_settings = SubResource("LabelSettings_pxp8b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="playButton" type="Button" parent="." unique_id=790537552]
+layout_mode = 0
+offset_top = 384.0
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="Label" type="Label" parent="playButton" unique_id=741497095]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 128.0
+text = "Play"
+label_settings = SubResource("LabelSettings_8pky6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="betIncreaseButtons" type="Control" parent="." unique_id=1789250226]
+anchors_preset = 0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 384.0
+mouse_filter = 2
+
+[node name="25" type="Button" parent="betIncreaseButtons" unique_id=455968568]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 112.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="betIncreaseButtons/25" unique_id=777023138]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+color = Color(0.42687723, 0.96870905, 0.6075241, 1)
+
+[node name="Label" type="Label" parent="betIncreaseButtons/25" unique_id=1638596038]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "+25%"
+label_settings = SubResource("LabelSettings_l56qh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="100" type="Button" parent="betIncreaseButtons" unique_id=2012756273]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 16.0
+offset_right = 456.0
+offset_bottom = 112.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="betIncreaseButtons/100" unique_id=627254727]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+color = Color(0.42687723, 0.96870905, 0.6075241, 1)
+
+[node name="Label" type="Label" parent="betIncreaseButtons/100" unique_id=112184471]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "+100%"
+label_settings = SubResource("LabelSettings_l56qh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5" type="Button" parent="betIncreaseButtons" unique_id=1206149401]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 152.0
+offset_bottom = 112.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="betIncreaseButtons/5" unique_id=1323367216]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+color = Color(0.42687723, 0.96870905, 0.6075241, 1)
+
+[node name="Label" type="Label" parent="betIncreaseButtons/5" unique_id=1621440023]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "+5%"
+label_settings = SubResource("LabelSettings_l56qh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="-25" type="Button" parent="betIncreaseButtons" unique_id=1719188160]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 144.0
+offset_right = 304.0
+offset_bottom = 240.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="betIncreaseButtons/-25" unique_id=75299824]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+color = Color(0.9395507, 0.43462893, 0.39525625, 1)
+
+[node name="Label" type="Label" parent="betIncreaseButtons/-25" unique_id=522157823]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "-25%"
+label_settings = SubResource("LabelSettings_qyj74")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="-100" type="Button" parent="betIncreaseButtons" unique_id=214621476]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 144.0
+offset_right = 456.0
+offset_bottom = 240.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="betIncreaseButtons/-100" unique_id=134016922]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+color = Color(0.9395507, 0.43462893, 0.39525625, 1)
+
+[node name="Label" type="Label" parent="betIncreaseButtons/-100" unique_id=534070078]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "-100%"
+label_settings = SubResource("LabelSettings_g7lm1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="-5" type="Button" parent="betIncreaseButtons" unique_id=924080224]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 144.0
+offset_right = 152.0
+offset_bottom = 240.0
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="betIncreaseButtons/-5" unique_id=1865154031]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+color = Color(0.9395507, 0.43462893, 0.39525625, 1)
+
+[node name="Label" type="Label" parent="betIncreaseButtons/-5" unique_id=354698542]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+text = "-5%"
+label_settings = SubResource("LabelSettings_g7lm1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="playButton" to="." method="_on_play_button_button_down"]
