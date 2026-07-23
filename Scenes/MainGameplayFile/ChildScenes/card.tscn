@@ -2,19 +2,5 @@
 
 [ext_resource type="Script" uid="uid://ds6qy6ewjoc1m" path="res://Scenes/MainGameplayFile/Scripts/card.gd" id="1_my24f"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_11xmx"]
-
-[sub_resource type="SystemFont" id="SystemFont_dgpe0"]
-subpixel_positioning = 0
-
-[node name="card" type="MeshInstance3D" unique_id=1155737716]
-transform = Transform3D(0.1, 0, 0, 0, 0.005, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("BoxMesh_11xmx")
+[node name="Node3D" type="Node3D" unique_id=959598807]
 script = ExtResource("1_my24f")
-
-[node name="Label3D" type="Label3D" parent="." unique_id=678390947]
-transform = Transform3D(0.29999998, 0, 0, 0, -1.3113414e-08, 0.30000007, 0, -0.29999995, -1.311342e-08, 0, 0.6, 0)
-pixel_size = 0.05
-text = "1"
-font = SubResource("SystemFont_dgpe0")
-font_size = 48

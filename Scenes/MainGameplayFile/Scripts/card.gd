@@ -1,14 +1,21 @@
-extends MeshInstance3D
+extends Node3D
 
 signal showCard
+var hidden = false
 
-func setText(str: String, hidden: bool):
+func setCard(card: MeshInstance3D, hidden: bool):
+	add_child(card)
+	card.position = Vector3.ZERO
+	
 	if hidden:
-		rotation_degrees = Vector3(0,0, 180)
+		hidden = true
+		card.rotation_degrees = Vector3(-45-180,0, 0)
 		await showCard
-		$Label3D.text = str
 		var newTween = create_tween()
-		newTween.tween_property(self, "rotation_degrees", Vector3(0,0,0), 0.5)
+		newTween.tween_property(card, "rotation_degrees", Vector3(-45,0,0), 0.5)
 		newTween.play()
 	else:
-		$Label3D.text = str
+		card.rotation_degrees = Vector3(90,0,0)
+		var newTween = create_tween()
+		newTween.tween_property(card, "rotation_degrees", Vector3(-45,0,0), 0.5)
+		newTween.play()

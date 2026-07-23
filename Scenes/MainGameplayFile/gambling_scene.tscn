@@ -4,69 +4,97 @@
 [ext_resource type="Script" uid="uid://cy35agtwsoljq" path="res://Scenes/MainGameplayFile/Scripts/gamblingController.gd" id="1_psac4"]
 [ext_resource type="PackedScene" uid="uid://cv17w53p4yr46" path="res://Scenes/MainGameplayFile/ChildScenes/cardContainer.tscn" id="2_11xmx"]
 [ext_resource type="PackedScene" uid="uid://b1vnmsbbh5h26" path="res://Scenes/MainGameplayFile/ChildScenes/used_pile.tscn" id="4_no7qd"]
-[ext_resource type="Script" uid="uid://s74ujv7gtx6v" path="res://Scenes/MainGameplayFile/Scripts/displayBetAmount.gd" id="5_hyvjx"]
-[ext_resource type="Script" uid="uid://c60pf0v2ybv6d" path="res://Scenes/MainGameplayFile/Scripts/addBet.gd" id="5_qql45"]
-[ext_resource type="Script" uid="uid://dvgtey3883pjn" path="res://Scenes/MainGameplayFile/Scripts/playButton.gd" id="6_fj2yj"]
 [ext_resource type="PackedScene" uid="uid://bdkwq0b8de27c" path="res://Scenes/MainGameplayFile/ChildScenes/cash_display.tscn" id="8_pimvi"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij4dc"]
-albedo_color = Color(0.43070272, 0.29251617, 0.16413334, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_c8pox"]
-material = SubResource("StandardMaterial3D_ij4dc")
-
-[sub_resource type="BoxMesh" id="BoxMesh_no7qd"]
-size = Vector3(0.6, 0.3, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qql45"]
-albedo_color = Color(0.14333999, 0.14333999, 0.14333999, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_hyvjx"]
-material = SubResource("StandardMaterial3D_qql45")
-size = Vector3(0.6, 0.1, 0.01)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_no7qd"]
-albedo_color = Color(1.540184e-06, 0.6811058, 0.2354146, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_qql45"]
-material = SubResource("StandardMaterial3D_no7qd")
-size = Vector3(0.6, 0.1, 0.05)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_no7qd"]
-size = Vector3(0.6, 0.1, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qql45"]
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyvjx"]
-albedo_color = Color(0.9999998, 0.08584627, 0.14359021, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_fj2yj"]
-material = SubResource("StandardMaterial3D_hyvjx")
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pimvi"]
-albedo_color = Color(0, 0.6159227, 0.23193544, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ejs6f"]
-material = SubResource("StandardMaterial3D_pimvi")
+[ext_resource type="ArrayMesh" uid="uid://mxtomui1cuma" path="res://Models_Art/models/button-floor-round.obj" id="9_ejs6f"]
+[ext_resource type="ArrayMesh" uid="uid://d2qqydjacb0m" path="res://Models_Art/models/table.obj" id="10_rq8od"]
+[ext_resource type="ArrayMesh" uid="uid://mpmp7spnj7tw" path="res://Models_Art/models/button-floor-square.obj" id="11_5cil1"]
+[ext_resource type="ArrayMesh" uid="uid://dgx7rufmqry17" path="res://Models_Art/models/cards/obj/card_clubs_ace.obj" id="11_v1a4f"]
+[ext_resource type="ArrayMesh" uid="uid://nqmre7h7j0dp" path="res://Models_Art/models/cards/obj/card_clubs_eight.obj" id="12_k3xgq"]
+[ext_resource type="PackedScene" uid="uid://ccdlpbqnbkjeb" path="res://Scenes/MainGameplayFile/ChildScenes/bet_console.tscn" id="12_mhiwd"]
+[ext_resource type="Script" uid="uid://chwoswtppv6mv" path="res://Scenes/MainGameplayFile/Scripts/pushInputs.gd" id="12_xncwk"]
+[ext_resource type="ArrayMesh" uid="uid://b6ns6taqlk17v" path="res://Models_Art/models/cards/obj/card_clubs_five.obj" id="13_f18wc"]
+[ext_resource type="ArrayMesh" uid="uid://b4xrpxjkelpiy" path="res://Models_Art/models/cards/obj/card_clubs_four.obj" id="14_uvtci"]
+[ext_resource type="ArrayMesh" uid="uid://jnaqgsgdkxeg" path="res://Models_Art/models/cards/obj/card_clubs_jack.obj" id="15_q21dg"]
+[ext_resource type="ArrayMesh" uid="uid://bytx7gjvspjfh" path="res://Models_Art/models/cards/obj/card_clubs_king.obj" id="16_yugw2"]
+[ext_resource type="ArrayMesh" uid="uid://bg42in06t6yyi" path="res://Models_Art/models/cards/obj/card_clubs_nine.obj" id="17_wbj74"]
+[ext_resource type="ArrayMesh" uid="uid://b750qa8qtcm4q" path="res://Models_Art/models/cards/obj/card_clubs_queen.obj" id="18_xw0sv"]
+[ext_resource type="ArrayMesh" uid="uid://dj6e10xfho8hd" path="res://Models_Art/models/cards/obj/card_clubs_seven.obj" id="19_df86l"]
+[ext_resource type="ArrayMesh" uid="uid://bifoeb1rwt42k" path="res://Models_Art/models/cards/obj/card_clubs_six.obj" id="20_7al5g"]
+[ext_resource type="ArrayMesh" uid="uid://r2a841bsqbmv" path="res://Models_Art/models/cards/obj/card_clubs_ten.obj" id="21_vqkqm"]
+[ext_resource type="ArrayMesh" uid="uid://g3e74qawm2yl" path="res://Models_Art/models/cards/obj/card_clubs_three.obj" id="22_8olwl"]
+[ext_resource type="ArrayMesh" uid="uid://jncdba42wbab" path="res://Models_Art/models/cards/obj/card_clubs_two.obj" id="23_eqwvt"]
+[ext_resource type="ArrayMesh" uid="uid://c306jogawfrm6" path="res://Models_Art/models/cards/obj/card_diamonds_ace.obj" id="24_a4mtq"]
+[ext_resource type="ArrayMesh" uid="uid://m627tk1cne8" path="res://Models_Art/models/cards/obj/card_diamonds_eight.obj" id="25_tibxp"]
+[ext_resource type="ArrayMesh" uid="uid://cgqse0fv33two" path="res://Models_Art/models/cards/obj/card_diamonds_five.obj" id="26_hyb6d"]
+[ext_resource type="ArrayMesh" uid="uid://dqvll3pp3nved" path="res://Models_Art/models/cards/obj/card_diamonds_four.obj" id="27_76e26"]
+[ext_resource type="ArrayMesh" uid="uid://cmntf81bl21tt" path="res://Models_Art/models/cards/obj/card_diamonds_jack.obj" id="28_haiug"]
+[ext_resource type="ArrayMesh" uid="uid://tlg1uiqtg3gg" path="res://Models_Art/models/cards/obj/card_diamonds_king.obj" id="29_d4lw2"]
+[ext_resource type="ArrayMesh" uid="uid://wgn2w6mk7u76" path="res://Models_Art/models/cards/obj/card_diamonds_nine.obj" id="30_kk64j"]
+[ext_resource type="ArrayMesh" uid="uid://b1y5tlqpxu3gy" path="res://Models_Art/models/cards/obj/card_diamonds_queen.obj" id="31_0duhh"]
+[ext_resource type="ArrayMesh" uid="uid://mqfa8difs8rk" path="res://Models_Art/models/cards/obj/card_diamonds_seven.obj" id="32_opd5l"]
+[ext_resource type="ArrayMesh" uid="uid://ciabgqu55a5aq" path="res://Models_Art/models/cards/obj/card_diamonds_six.obj" id="33_e5jhx"]
+[ext_resource type="ArrayMesh" uid="uid://cafyuixfcp5k2" path="res://Models_Art/models/cards/obj/card_diamonds_ten.obj" id="34_207gk"]
+[ext_resource type="ArrayMesh" uid="uid://bo23aj3yws85d" path="res://Models_Art/models/cards/obj/card_diamonds_three.obj" id="35_g6nkl"]
+[ext_resource type="ArrayMesh" uid="uid://dno322buwu17m" path="res://Models_Art/models/cards/obj/card_diamonds_two.obj" id="36_yyfrj"]
+[ext_resource type="ArrayMesh" uid="uid://b5gvg4t1ta8it" path="res://Models_Art/models/cards/obj/card_hearts_ace.obj" id="37_t0u2x"]
+[ext_resource type="ArrayMesh" uid="uid://0gbfuy0jgkcd" path="res://Models_Art/models/cards/obj/card_hearts_eight.obj" id="38_h3rx4"]
+[ext_resource type="ArrayMesh" uid="uid://dutnst52dihrq" path="res://Models_Art/models/cards/obj/card_hearts_five.obj" id="39_oe4fp"]
+[ext_resource type="ArrayMesh" uid="uid://cnsciqq7lddyl" path="res://Models_Art/models/cards/obj/card_hearts_four.obj" id="40_4y5rv"]
+[ext_resource type="ArrayMesh" uid="uid://d772y0yyq5wr" path="res://Models_Art/models/cards/obj/card_hearts_jack.obj" id="41_g7obe"]
+[ext_resource type="ArrayMesh" uid="uid://b2s2fv88bv3a7" path="res://Models_Art/models/cards/obj/card_hearts_king.obj" id="42_2b2pb"]
+[ext_resource type="ArrayMesh" uid="uid://wuwqcspesbbf" path="res://Models_Art/models/cards/obj/card_hearts_nine.obj" id="43_lc73q"]
+[ext_resource type="ArrayMesh" uid="uid://djvihumxs2sqk" path="res://Models_Art/models/cards/obj/card_hearts_queen.obj" id="44_vl4k4"]
+[ext_resource type="ArrayMesh" uid="uid://da37krxb53pmm" path="res://Models_Art/models/cards/obj/card_hearts_seven.obj" id="45_g6apf"]
+[ext_resource type="ArrayMesh" uid="uid://b1ui6f84nrfip" path="res://Models_Art/models/cards/obj/card_hearts_six.obj" id="46_bqblc"]
+[ext_resource type="ArrayMesh" uid="uid://doqcfq8c2w1ir" path="res://Models_Art/models/cards/obj/card_hearts_ten.obj" id="47_h52c0"]
+[ext_resource type="ArrayMesh" uid="uid://8sva0dn520s2" path="res://Models_Art/models/cards/obj/card_hearts_three.obj" id="48_niw4x"]
+[ext_resource type="ArrayMesh" uid="uid://cxylajwit43xe" path="res://Models_Art/models/cards/obj/card_hearts_two.obj" id="49_6jda7"]
+[ext_resource type="ArrayMesh" uid="uid://bq2se5jdv8k8y" path="res://Models_Art/models/cards/obj/card_spades_ace.obj" id="52_qsii3"]
+[ext_resource type="ArrayMesh" uid="uid://dmv0pmdd1uven" path="res://Models_Art/models/cards/obj/card_spades_eight.obj" id="53_on5ey"]
+[ext_resource type="ArrayMesh" uid="uid://b56fah5j3sg54" path="res://Models_Art/models/cards/obj/card_spades_five.obj" id="54_7cn1t"]
+[ext_resource type="ArrayMesh" uid="uid://et13ecunak0q" path="res://Models_Art/models/cards/obj/card_spades_four.obj" id="55_upals"]
+[ext_resource type="ArrayMesh" uid="uid://fjhjakxm0kc7" path="res://Models_Art/models/cards/obj/card_spades_jack.obj" id="56_3b4lk"]
+[ext_resource type="ArrayMesh" uid="uid://dvousc1fo44gm" path="res://Models_Art/models/cards/obj/card_spades_king.obj" id="57_0h5l8"]
+[ext_resource type="ArrayMesh" uid="uid://b4vuq2rtsjoeh" path="res://Models_Art/models/cards/obj/card_spades_nine.obj" id="58_8k4vg"]
+[ext_resource type="ArrayMesh" uid="uid://rmisws4imsbu" path="res://Models_Art/models/cards/obj/card_spades_queen.obj" id="59_tiwkf"]
+[ext_resource type="ArrayMesh" uid="uid://dhe2njq2udqim" path="res://Models_Art/models/cards/obj/card_spades_seven.obj" id="60_44xc2"]
+[ext_resource type="ArrayMesh" uid="uid://do84267nkqj4w" path="res://Models_Art/models/cards/obj/card_spades_six.obj" id="61_j2g31"]
+[ext_resource type="ArrayMesh" uid="uid://d2ghkoxcirt3l" path="res://Models_Art/models/cards/obj/card_spades_ten.obj" id="62_7v4ab"]
+[ext_resource type="PackedScene" uid="uid://dqks8kr6mfpuk" path="res://Scenes/MainGameplayFile/ChildScenes/deck.tscn" id="63_d3uk2"]
+[ext_resource type="ArrayMesh" uid="uid://cp0olkc42g3er" path="res://Models_Art/models/cards/obj/card_spades_three.obj" id="63_f1u5h"]
+[ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://Models_Art/models/cards/obj/card_spades_two.obj" id="64_dltly"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
 size = Vector3(0.1, 0.025, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cil1"]
+albedo_color = Color(0.35306245, 0.3530627, 0.3530625, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhiwd"]
+albedo_color = Color(0.4911909, 0.4911909, 0.4911909, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejs6f"]
-albedo_color = Color(0, 0.69803923, 1, 1)
+albedo_color = Color(0, 0.7529412, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_rq8od"]
-material = SubResource("StandardMaterial3D_ejs6f")
-size = Vector3(0.1, 0.025, 0.1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq8od"]
+albedo_color = Color(1, 0.2, 0.1882353, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj2yj"]
-albedo_color = Color(0.8853635, 0.24868074, 0.13935652, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xncwk"]
+albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_pimvi"]
-material = SubResource("StandardMaterial3D_fj2yj")
-size = Vector3(0.1, 0.025, 0.1)
+[sub_resource type="ViewportTexture" id="ViewportTexture_mhiwd"]
+viewport_path = NodePath("betConsole/StaticBody3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ps4gx"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_mhiwd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5cil1"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ps4gx")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mhiwd"]
+size = Vector3(1, 0.15, 1)
 
 [node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("playerCardContainer", "opponentCardContainer", "usedPile")]
 script = ExtResource("1_psac4")
@@ -74,12 +102,8 @@ playerCardContainer = NodePath("playerContainer")
 opponentCardContainer = NodePath("opponentContainer")
 usedPile = NodePath("usedPile")
 
-[node name="table" type="MeshInstance3D" parent="." unique_id=572897691]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_c8pox")
-
 [node name="gamblingCam" type="Camera3D" parent="." unique_id=106288471]
-transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 1, 0.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.7)
 script = ExtResource("1_c8pox")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1796891404]
@@ -88,10 +112,10 @@ light_energy = 5.0
 spot_range = 4.547605
 
 [node name="playerContainer" parent="." unique_id=341785402 instance=ExtResource("2_11xmx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0.25)
 
 [node name="opponentContainer" parent="." unique_id=1921513372 instance=ExtResource("2_11xmx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -0.1)
 
 [node name="usedPile" parent="." unique_id=1032281384 instance=ExtResource("4_no7qd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.55, 0)
@@ -100,175 +124,286 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.55, 0)
 wait_time = 10.0
 autostart = true
 
-[node name="betConsole" type="MeshInstance3D" parent="." unique_id=904665786]
-transform = Transform3D(0.9470143, 0, 0.32119155, 0, 1, 0, -0.32119155, 0, 0.9470143, -0.5988265, 0.6512754, 0.24791902)
-mesh = SubResource("BoxMesh_no7qd")
-
-[node name="betAmount" type="MeshInstance3D" parent="betConsole" unique_id=909305931]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.05)
-mesh = SubResource("BoxMesh_hyvjx")
-script = ExtResource("5_hyvjx")
-
-[node name="Label3D" type="Label3D" parent="betConsole/betAmount" unique_id=777446511]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
-pixel_size = 0.0025
-text = "$0"
-
-[node name="playButton" type="StaticBody3D" parent="betConsole" unique_id=684891190]
-script = ExtResource("6_fj2yj")
-
-[node name="playButton" type="MeshInstance3D" parent="betConsole/playButton" unique_id=1107768901]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, -0.100000024, 0.049999982)
-mesh = SubResource("BoxMesh_qql45")
-
-[node name="Label3D" type="Label3D" parent="betConsole/playButton/playButton" unique_id=2126533146]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03)
-pixel_size = 0.0025
-text = "Play"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/playButton" unique_id=126649355]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.05)
-shape = SubResource("BoxShape3D_no7qd")
-
-[node name="min100" type="StaticBody3D" parent="betConsole" unique_id=2115775190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
-script = ExtResource("5_qql45")
-cashPercent = -100
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/min100" unique_id=1934342922]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-shape = SubResource("BoxShape3D_qql45")
-
-[node name="min100" type="MeshInstance3D" parent="betConsole/min100" unique_id=1788581344]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0.00999999)
-mesh = SubResource("BoxMesh_fj2yj")
-
-[node name="Label3D" type="Label3D" parent="betConsole/min100/min100" unique_id=655967591]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051)
-pixel_size = 0.001
-text = "-100%"
-
-[node name="min25" type="StaticBody3D" parent="betConsole" unique_id=341289005]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0)
-script = ExtResource("5_qql45")
-cashPercent = -25
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/min25" unique_id=210317198]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-shape = SubResource("BoxShape3D_qql45")
-
-[node name="min25" type="MeshInstance3D" parent="betConsole/min25" unique_id=1641559258]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0.010000005)
-mesh = SubResource("BoxMesh_fj2yj")
-
-[node name="Label3D" type="Label3D" parent="betConsole/min25/min25" unique_id=130266308]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051)
-pixel_size = 0.001
-text = "-25%"
-
-[node name="min5" type="StaticBody3D" parent="betConsole" unique_id=432820722]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
-script = ExtResource("5_qql45")
-cashPercent = -5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/min5" unique_id=1219003248]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-shape = SubResource("BoxShape3D_qql45")
-
-[node name="min5" type="MeshInstance3D" parent="betConsole/min5" unique_id=1817703663]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0.00999999)
-mesh = SubResource("BoxMesh_fj2yj")
-
-[node name="Label3D" type="Label3D" parent="betConsole/min5/min5" unique_id=1432190004]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.051)
-pixel_size = 0.001
-text = "-5%"
-
-[node name="plus5" type="StaticBody3D" parent="betConsole" unique_id=1110796375]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
-script = ExtResource("5_qql45")
-cashPercent = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/plus5" unique_id=1996940079]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-shape = SubResource("BoxShape3D_qql45")
-
-[node name="plus5" type="MeshInstance3D" parent="betConsole/plus5" unique_id=1116158429]
-transform = Transform3D(0.10000001, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, 0, 0, 0.00999999)
-mesh = SubResource("BoxMesh_ejs6f")
-
-[node name="Label3D" type="Label3D" parent="betConsole/plus5/plus5" unique_id=1803819166]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
-pixel_size = 0.01
-text = "+5%"
-
-[node name="plus25" type="StaticBody3D" parent="betConsole" unique_id=254525926]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0)
-script = ExtResource("5_qql45")
-cashPercent = 25
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/plus25" unique_id=673890479]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-shape = SubResource("BoxShape3D_qql45")
-
-[node name="plus25" type="MeshInstance3D" parent="betConsole/plus25" unique_id=1829267423]
-transform = Transform3D(0.10000002, 0, -1.8626451e-09, 0, 0.1, 0, 1.8626451e-09, 0, 0.10000002, 0, 0, 0.00999999)
-mesh = SubResource("BoxMesh_ejs6f")
-
-[node name="Label3D" type="Label3D" parent="betConsole/plus25/plus25" unique_id=1621387337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
-pixel_size = 0.01
-text = "+25%"
-
-[node name="plus100" type="StaticBody3D" parent="betConsole" unique_id=690725729]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
-script = ExtResource("5_qql45")
-cashPercent = 100
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/plus100" unique_id=1621089528]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-shape = SubResource("BoxShape3D_qql45")
-
-[node name="plus100" type="MeshInstance3D" parent="betConsole/plus100" unique_id=515183200]
-transform = Transform3D(0.10000001, 0, 0, 0, 0.1, 0, 0, 0, 0.10000001, 0, 0, 0.009999998)
-mesh = SubResource("BoxMesh_ejs6f")
-
-[node name="Label3D" type="Label3D" parent="betConsole/plus100/plus100" unique_id=308652980]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
-pixel_size = 0.01
-text = "+100%"
-
 [node name="hitButton" type="StaticBody3D" parent="." unique_id=23821579]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 0.42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.64, 0.42)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitButton" unique_id=502994031]
 shape = SubResource("BoxShape3D_fj2yj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="hitButton" unique_id=191370775]
-mesh = SubResource("BoxMesh_rq8od")
-
 [node name="Label3D" type="Label3D" parent="hitButton" unique_id=806837590]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.014999986, 0)
-pixel_size = 0.001
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.031, 0)
+pixel_size = 0.0006
 text = "Hit"
 
+[node name="ButtonFloorRound2" type="MeshInstance3D" parent="hitButton" unique_id=2028215765]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = ExtResource("9_ejs6f")
+surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
+surface_material_override/1 = SubResource("StandardMaterial3D_mhiwd")
+surface_material_override/2 = SubResource("StandardMaterial3D_ejs6f")
+
 [node name="standButton" type="StaticBody3D" parent="." unique_id=1950560195]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.5, 0.42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.64, 0.42)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="standButton" unique_id=1143909997]
 shape = SubResource("BoxShape3D_fj2yj")
 
 [node name="Label3D" type="Label3D" parent="standButton" unique_id=1270108345]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.014999986, 0)
-pixel_size = 0.001
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0.031, 0)
+pixel_size = 0.0006
 text = "Stand"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="standButton" unique_id=993215342]
-mesh = SubResource("BoxMesh_pimvi")
+[node name="ButtonFloorRound" type="MeshInstance3D" parent="standButton" unique_id=543951587]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = ExtResource("9_ejs6f")
+surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
+surface_material_override/1 = SubResource("StandardMaterial3D_5cil1")
+surface_material_override/2 = SubResource("StandardMaterial3D_rq8od")
 
 [node name="cashDisplay" parent="." unique_id=101834038 instance=ExtResource("8_pimvi")]
 
+[node name="Table" type="MeshInstance3D" parent="." unique_id=105328506]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.8, 0, -0.4)
+mesh = ExtResource("10_rq8od")
+
+[node name="betConsole" type="MeshInstance3D" parent="." unique_id=1381425050]
+transform = Transform3D(0.21213204, 0.14999999, 0.15, 0, 0.21213204, -0.21213207, -0.21213204, 0.14999999, 0.15, -0.4145376, 0.74375784, 0.27631667)
+mesh = ExtResource("11_5cil1")
+surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
+surface_material_override/1 = SubResource("StandardMaterial3D_5cil1")
+surface_material_override/2 = SubResource("StandardMaterial3D_xncwk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="betConsole" unique_id=1924600430]
+script = ExtResource("12_xncwk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="betConsole/StaticBody3D" unique_id=241877628]
+transform = Transform3D(0.39999992, 0, 0, 0, 0.39999992, -2.9802322e-08, 0, 2.9802322e-08, 0.39999992, 0, 0.16000009, 0)
+mesh = SubResource("PlaneMesh_5cil1")
+
+[node name="SubViewport" type="SubViewport" parent="betConsole/StaticBody3D" unique_id=1032024754]
+
+[node name="betConsole" parent="betConsole/StaticBody3D/SubViewport" unique_id=328632430 instance=ExtResource("12_mhiwd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="betConsole/StaticBody3D" unique_id=1111454839]
+transform = Transform3D(0.9999896, 0, 0, 0, 0.9999998, -1.0430813e-07, 0, 1.0430813e-07, 0.9999998, 0, 0.15, 0)
+shape = SubResource("BoxShape3D_mhiwd")
+
+[node name="allPossibleCards" type="Node3D" parent="." unique_id=609216465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0022731, 0)
+visible = false
+
+[node name="CardClubs_Ace" type="MeshInstance3D" parent="allPossibleCards" unique_id=2050172886]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("11_v1a4f")
+
+[node name="CardClubs_Eight" type="MeshInstance3D" parent="allPossibleCards" unique_id=1796837889]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("12_k3xgq")
+
+[node name="CardClubs_Five" type="MeshInstance3D" parent="allPossibleCards" unique_id=107080744]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("13_f18wc")
+
+[node name="CardClubs_Four" type="MeshInstance3D" parent="allPossibleCards" unique_id=1806285525]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("14_uvtci")
+
+[node name="CardClubs_Jack" type="MeshInstance3D" parent="allPossibleCards" unique_id=682341737]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("15_q21dg")
+
+[node name="CardClubs_King" type="MeshInstance3D" parent="allPossibleCards" unique_id=46945918]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("16_yugw2")
+
+[node name="CardClubs_Nine" type="MeshInstance3D" parent="allPossibleCards" unique_id=2046879845]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("17_wbj74")
+
+[node name="CardClubs_Queen" type="MeshInstance3D" parent="allPossibleCards" unique_id=370969291]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("18_xw0sv")
+
+[node name="CardClubs_Seven" type="MeshInstance3D" parent="allPossibleCards" unique_id=676562409]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("19_df86l")
+
+[node name="CardClubs_Six" type="MeshInstance3D" parent="allPossibleCards" unique_id=1609265733]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("20_7al5g")
+
+[node name="CardClubs_Ten" type="MeshInstance3D" parent="allPossibleCards" unique_id=1498777655]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("21_vqkqm")
+
+[node name="CardClubs_Three" type="MeshInstance3D" parent="allPossibleCards" unique_id=22580911]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("22_8olwl")
+
+[node name="CardClubs_Two" type="MeshInstance3D" parent="allPossibleCards" unique_id=282627700]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("23_eqwvt")
+
+[node name="CardDiamonds_Ace" type="MeshInstance3D" parent="allPossibleCards" unique_id=156707809]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("24_a4mtq")
+
+[node name="CardDiamonds_Eight" type="MeshInstance3D" parent="allPossibleCards" unique_id=105924579]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("25_tibxp")
+
+[node name="CardDiamonds_Five" type="MeshInstance3D" parent="allPossibleCards" unique_id=1804832402]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("26_hyb6d")
+
+[node name="CardDiamonds_Four" type="MeshInstance3D" parent="allPossibleCards" unique_id=1345156378]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("27_76e26")
+
+[node name="CardDiamonds_Jack" type="MeshInstance3D" parent="allPossibleCards" unique_id=809274062]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("28_haiug")
+
+[node name="CardDiamonds_King" type="MeshInstance3D" parent="allPossibleCards" unique_id=1248224192]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("29_d4lw2")
+
+[node name="CardDiamonds_Nine" type="MeshInstance3D" parent="allPossibleCards" unique_id=1136057715]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("30_kk64j")
+
+[node name="CardDiamonds_Queen" type="MeshInstance3D" parent="allPossibleCards" unique_id=883465318]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("31_0duhh")
+
+[node name="CardDiamonds_Seven" type="MeshInstance3D" parent="allPossibleCards" unique_id=162854939]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("32_opd5l")
+
+[node name="CardDiamonds_Six" type="MeshInstance3D" parent="allPossibleCards" unique_id=901675794]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("33_e5jhx")
+
+[node name="CardDiamonds_Ten" type="MeshInstance3D" parent="allPossibleCards" unique_id=1957520369]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("34_207gk")
+
+[node name="CardDiamonds_Three" type="MeshInstance3D" parent="allPossibleCards" unique_id=252348962]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("35_g6nkl")
+
+[node name="CardDiamonds_Two" type="MeshInstance3D" parent="allPossibleCards" unique_id=1111633912]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("36_yyfrj")
+
+[node name="CardHearts_Ace" type="MeshInstance3D" parent="allPossibleCards" unique_id=1783941837]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("37_t0u2x")
+
+[node name="CardHearts_Eight" type="MeshInstance3D" parent="allPossibleCards" unique_id=298731420]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("38_h3rx4")
+
+[node name="CardHearts_Five" type="MeshInstance3D" parent="allPossibleCards" unique_id=84066030]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("39_oe4fp")
+
+[node name="CardHearts_Four" type="MeshInstance3D" parent="allPossibleCards" unique_id=659338609]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("40_4y5rv")
+
+[node name="CardHearts_Jack" type="MeshInstance3D" parent="allPossibleCards" unique_id=525892413]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("41_g7obe")
+
+[node name="CardHearts_King" type="MeshInstance3D" parent="allPossibleCards" unique_id=129158700]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("42_2b2pb")
+
+[node name="CardHearts_Nine" type="MeshInstance3D" parent="allPossibleCards" unique_id=1969666794]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("43_lc73q")
+
+[node name="CardHearts_Queen" type="MeshInstance3D" parent="allPossibleCards" unique_id=713551988]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("44_vl4k4")
+
+[node name="CardHearts_Seven" type="MeshInstance3D" parent="allPossibleCards" unique_id=1954746312]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("45_g6apf")
+
+[node name="CardHearts_Six" type="MeshInstance3D" parent="allPossibleCards" unique_id=1218045152]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("46_bqblc")
+
+[node name="CardHearts_Ten" type="MeshInstance3D" parent="allPossibleCards" unique_id=268838189]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("47_h52c0")
+
+[node name="CardHearts_Three" type="MeshInstance3D" parent="allPossibleCards" unique_id=401034360]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("48_niw4x")
+
+[node name="CardHearts_Two" type="MeshInstance3D" parent="allPossibleCards" unique_id=219323456]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("49_6jda7")
+
+[node name="CardSpades_Ace" type="MeshInstance3D" parent="allPossibleCards" unique_id=1031318966]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("52_qsii3")
+
+[node name="CardSpades_Eight" type="MeshInstance3D" parent="allPossibleCards" unique_id=242204258]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("53_on5ey")
+
+[node name="CardSpades_Five" type="MeshInstance3D" parent="allPossibleCards" unique_id=809858287]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("54_7cn1t")
+
+[node name="CardSpades_Four" type="MeshInstance3D" parent="allPossibleCards" unique_id=1996285501]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("55_upals")
+
+[node name="CardSpades_Jack" type="MeshInstance3D" parent="allPossibleCards" unique_id=1474129886]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("56_3b4lk")
+
+[node name="CardSpades_King" type="MeshInstance3D" parent="allPossibleCards" unique_id=1120753811]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("57_0h5l8")
+
+[node name="CardSpades_Nine" type="MeshInstance3D" parent="allPossibleCards" unique_id=29570124]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("58_8k4vg")
+
+[node name="CardSpades_Queen" type="MeshInstance3D" parent="allPossibleCards" unique_id=614178490]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("59_tiwkf")
+
+[node name="CardSpades_Seven" type="MeshInstance3D" parent="allPossibleCards" unique_id=1561167738]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("60_44xc2")
+
+[node name="CardSpades_Six" type="MeshInstance3D" parent="allPossibleCards" unique_id=662374740]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("61_j2g31")
+
+[node name="CardSpades_Ten" type="MeshInstance3D" parent="allPossibleCards" unique_id=965624825]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("62_7v4ab")
+
+[node name="CardSpades_Three" type="MeshInstance3D" parent="allPossibleCards" unique_id=30823958]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("63_f1u5h")
+
+[node name="CardSpades_Two" type="MeshInstance3D" parent="allPossibleCards" unique_id=88370520]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
+mesh = ExtResource("64_dltly")
+
+[node name="deck" parent="." unique_id=847728579 instance=ExtResource("63_d3uk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.671, 0.1)
+
 [connection signal="timeout" from="cashTimer" to="." method="_on_cash_timer_timeout"]
-[connection signal="input_event" from="betConsole/playButton" to="betConsole/playButton" method="_on_input_event"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]
 [connection signal="input_event" from="standButton" to="." method="_on_stand_button_input_event"]
+[connection signal="input_event" from="betConsole/StaticBody3D" to="betConsole/StaticBody3D" method="_on_input_event"]

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://djvihumxs2sqk"
+path="res://.godot/imported/card_hearts_queen.obj-ad2c11ea1d2bb56afff332f63ec200f7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/card_hearts_queen.obj-ad2c11ea1d2bb56afff332f63ec200f7.mesh"]
+
+source_file="res://Models_Art/models/cards/obj/card_hearts_queen.obj"
+dest_files=["res://.godot/imported/card_hearts_queen.obj-ad2c11ea1d2bb56afff332f63ec200f7.mesh", "res://.godot/imported/card_hearts_queen.obj-ad2c11ea1d2bb56afff332f63ec200f7.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
