@@ -5,6 +5,10 @@ extends CharacterBody3D
 @onready var crouching: CollisionShape3D = $crouching
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
 
+var bob_time = 0.0
+const bob_frequency = 2.0
+const bob_amplitude = 0.12
+const bob_side_amplitude = 0.05
 
 var currant_speed = 5.0
 const walking_speed = 5.0
@@ -33,13 +37,14 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle sprint (moved out of the floor check)
+	var base_head_y = 1.8
 	if Input.is_action_pressed("shift"):
 		currant_speed=crouching_speed
-		head.position.y = lerp(head.position.y, 1.8 + croach_depth, delta*lerp_speed)
+		base_head_y = 1.8 + croach_depth
 		crouching.disabled = false ; standing.disabled = true
 	elif !ray_cast_3d.is_colliding():
 		crouching.disabled = true ; standing.disabled = false
-		head.position.y = lerp(head.position.y, 1.8, delta*lerp_speed)
+		base_head_y = 1.8
 		
 		if Input.is_action_pressed('sprint'):
 			currant_speed = sprint_speed
@@ -61,5 +66,18 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, currant_speed)
 		velocity.z = move_toward(velocity.z, 0, currant_speed)
+		
+	var is_moving = is_on_floor() and Vector2(velocity.x, velocity.z).length() > 0.5
+	if is_moving:
+		var speed_ratio = currant_speed / walking_speed
+		bob_time += delta * bob_frequency * speed_ratio
+		var bob_offset_y = sin(bob_time * TAU) * bob_amplitude
+		var bob_offset_x = cos(bob_time * TAU * 0.5) * bob_side_amplitude
+		head.position.y = lerp(head.position.y, base_head_y + bob_offset_y, delta * lerp_speed)
+		head.position.x = lerp(head.position.x, bob_offset_x, delta * lerp_speed)
+	else:
+		bob_time = 0.0
+		head.position.y = lerp(head.position.y, base_head_y, delta * lerp_speed)
+		head.position.x = lerp(head.position.x, 0.0, delta * lerp_speed)
 
 	move_and_slide()

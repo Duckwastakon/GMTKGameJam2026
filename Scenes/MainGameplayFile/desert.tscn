@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dgakmrjijukw0" path="res://Models_Art/nature_quaternous/Textures/Bark_DeadTree.png" id="1_tnh1l"]
 [ext_resource type="ArrayMesh" uid="uid://c3nqbtikhrjj4" path="res://Models_Art/nature_quaternous/OBJ/DeadTree_1.obj" id="2_2h1u0"]
 [ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="3_2h1u0"]
+[ext_resource type="PackedScene" uid="uid://cmv4gbtsbbgm6" path="res://Models_Art/ModularWoodStructures/scenes/Builds/build_9.tscn" id="5_0b6bn"]
+[ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="5_iif4s"]
+[ext_resource type="ArrayMesh" uid="uid://dmu7n7cb8c6vi" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_1.obj" id="5_ui63x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7uw4k"]
 sky_top_color = Color(0.42711523, 0.7741729, 0.872941, 1)
@@ -25,10 +28,37 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h7nn"]
 albedo_texture = ExtResource("1_tnh1l")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b6bn"]
+albedo_texture = ExtResource("5_iif4s")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ui63x"]
+top_radius = 0.06
+bottom_radius = 0.06
+height = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iif4s"]
+height = 0.06
+
+[sub_resource type="BoxMesh" id="BoxMesh_ui63x"]
+size = Vector3(1, 2.5, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ui63x"]
+albedo_texture = ExtResource("5_iif4s")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_2h1u0"]
+material = SubResource("StandardMaterial3D_ui63x")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2h1u0"]
 size = Vector3(1, 1.4956055, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iif4s"]
+albedo_color = Color(0.9254902, 0.79607844, 0.52156866, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ui63x"]
+size = Vector2(4, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ui63x"]
+size = Vector3(0.99768066, 3.272461, 1)
 
 [node name="desert" type="Node3D" unique_id=1970585400]
 
@@ -43,20 +73,58 @@ environment = SubResource("Environment_tnh1l")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="DeadTree1" type="MeshInstance3D" parent="env" unique_id=2127158392]
+[node name="assets" type="StaticBody3D" parent="env" unique_id=864443039]
+
+[node name="DeadTree1" type="MeshInstance3D" parent="env/assets" unique_id=2127158392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2677855, 0, -2.0161428)
 material_override = SubResource("StandardMaterial3D_2h7nn")
 mesh = ExtResource("2_2h1u0")
 
+[node name="RockMedium1" type="MeshInstance3D" parent="env/assets" unique_id=455056162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.123312, -0.15064454, -4.03174)
+material_override = SubResource("StandardMaterial3D_0b6bn")
+mesh = ExtResource("5_ui63x")
+
+[node name="stop" type="StaticBody3D" parent="env/assets" unique_id=72299588]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env/assets/stop" unique_id=385816692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.188412, 0.77489233, -8.67382)
+mesh = SubResource("CylinderMesh_ui63x")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="env/assets/stop" unique_id=1164472692]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -13.178201, 3.1977682, -8.669715)
+mesh = SubResource("CylinderMesh_iif4s")
+
+[node name="ticket" type="StaticBody3D" parent="env/assets" unique_id=357686409]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="env/assets/ticket" unique_id=491632228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.769322, 1.2510864, -6.9805927)
+mesh = SubResource("BoxMesh_ui63x")
+
+[node name="Build_9" parent="env/assets" unique_id=1224984946 instance=ExtResource("5_0b6bn")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -2.861, 0, 15.347)
+
 [node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("3_2h1u0")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=481861379]
+[node name="ground" type="StaticBody3D" parent="." unique_id=481861379]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=943142268]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground" unique_id=943142268]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("PlaneMesh_2h1u0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1696868306]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground" unique_id=1696868306]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_2h1u0")
 debug_color = Color(0.95350915, 3.657937e-06, 0.55569226, 0.41960785)
+
+[node name="Road" type="StaticBody3D" parent="." unique_id=1242097015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.022372723, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road" unique_id=556684131]
+transform = Transform3D(1, 0, 0, 0, 10, 0, 0, 0, 1, -10.132, 0.08, 0)
+material_override = SubResource("StandardMaterial3D_iif4s")
+mesh = SubResource("PlaneMesh_ui63x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Road" unique_id=2002935056]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 100, -10.121318, -1.5551758, 0)
+shape = SubResource("BoxShape3D_ui63x")
