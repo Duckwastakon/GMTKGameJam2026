@@ -1,18 +1,21 @@
 [gd_scene format=3 uid="uid://dkhsoh8bddyf"]
 
+[ext_resource type="Script" uid="uid://cr24ca6petkql" path="res://Scenes/MainGameplayFile/desert.gd" id="1_0b6bn"]
 [ext_resource type="Texture2D" uid="uid://dgakmrjijukw0" path="res://Models_Art/nature_quaternous/Textures/Bark_DeadTree.png" id="1_tnh1l"]
 [ext_resource type="ArrayMesh" uid="uid://c3nqbtikhrjj4" path="res://Models_Art/nature_quaternous/OBJ/DeadTree_1.obj" id="2_2h1u0"]
 [ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="3_2h1u0"]
 [ext_resource type="PackedScene" uid="uid://cmv4gbtsbbgm6" path="res://Models_Art/ModularWoodStructures/scenes/Builds/build_9.tscn" id="5_0b6bn"]
 [ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="5_iif4s"]
 [ext_resource type="ArrayMesh" uid="uid://dmu7n7cb8c6vi" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_1.obj" id="5_ui63x"]
+[ext_resource type="PackedScene" uid="uid://diwlln00qr4e0" path="res://Models_Art/wheel.glb" id="8_52mfs"]
+[ext_resource type="Shader" uid="uid://bhyvngwtr1se8" path="res://shaders/desert.gdshader" id="8_mlu5n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7uw4k"]
-sky_top_color = Color(0.42711523, 0.7741729, 0.872941, 1)
-sky_horizon_color = Color(0.8355939, 0.8727433, 0.88857555, 1)
+sky_top_color = Color(0.08375933, 0.24538207, 0.2902046, 1)
+sky_horizon_color = Color(0.1817, 0.21631502, 0.23, 1)
 sky_curve = 0.058843788
 sky_cover_modulate = Color(0.2999613, 0.50344956, 0.44785511, 1)
-ground_bottom_color = Color(0.78694844, 0.6143769, 0.44819635, 1)
+ground_bottom_color = Color(0.31, 0.18166, 0.16739999, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
 [sub_resource type="Sky" id="Sky_ynb8f"]
@@ -24,6 +27,11 @@ sky = SubResource("Sky_ynb8f")
 ambient_light_energy = 0.84
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.43181515, 0.46637148, 0.51820636, 1)
+fog_sun_scatter = 0.23
+fog_density = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h7nn"]
 albedo_texture = ExtResource("1_tnh1l")
@@ -42,7 +50,20 @@ height = 0.06
 [sub_resource type="BoxMesh" id="BoxMesh_ui63x"]
 size = Vector3(1, 2.5, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_iif4s"]
+size = Vector3(1.1533203, 3.022583, 1.927185)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0es2"]
+render_priority = 0
+shader = ExtResource("8_mlu5n")
+
+[sub_resource type="SphereMesh" id="SphereMesh_xrckv"]
+flip_faces = true
+radius = 35.0
+height = 60.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ui63x"]
+albedo_color = Color(0.4360694, 0.4360694, 0.4360694, 0.07058824)
 albedo_texture = ExtResource("5_iif4s")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2h1u0"]
@@ -52,7 +73,7 @@ material = SubResource("StandardMaterial3D_ui63x")
 size = Vector3(1, 1.4956055, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iif4s"]
-albedo_color = Color(0.9254902, 0.79607844, 0.52156866, 1)
+albedo_color = Color(0.27, 0.153765, 0.09990001, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ui63x"]
 size = Vector2(4, 100)
@@ -60,7 +81,11 @@ size = Vector2(4, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ui63x"]
 size = Vector3(0.99768066, 3.272461, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_iif4s"]
+radius = 3.0446436
+
 [node name="desert" type="Node3D" unique_id=1970585400]
+script = ExtResource("1_0b6bn")
 
 [node name="stage" type="Node3D" parent="." unique_id=1282208039]
 
@@ -101,10 +126,18 @@ mesh = SubResource("CylinderMesh_iif4s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.769322, 1.2510864, -6.9805927)
 mesh = SubResource("BoxMesh_ui63x")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/assets/ticket" unique_id=1398144960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.825861, 1.0112915, -6.9911776)
+shape = SubResource("BoxShape3D_iif4s")
+
 [node name="Build_9" parent="env/assets" unique_id=1224984946 instance=ExtResource("5_0b6bn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -2.861, 0, 15.347)
 
 [node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("3_2h1u0")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="moving_character" unique_id=326713052]
+material_override = SubResource("ShaderMaterial_a0es2")
+mesh = SubResource("SphereMesh_xrckv")
 
 [node name="ground" type="StaticBody3D" parent="." unique_id=481861379]
 
@@ -128,3 +161,20 @@ mesh = SubResource("PlaneMesh_ui63x")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Road" unique_id=2002935056]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 100, -10.121318, -1.5551758, 0)
 shape = SubResource("BoxShape3D_ui63x")
+
+[node name="interact_area_ticket" type="Area3D" parent="." unique_id=1829757668]
+
+[node name="Collision" type="CollisionShape3D" parent="interact_area_ticket" unique_id=308353801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.748589, 1.3445392, -6.792567)
+shape = SubResource("SphereShape3D_iif4s")
+
+[node name="Label3D" type="Label3D" parent="interact_area_ticket" unique_id=493601260]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.064876, 2.5475993, -7)
+visible = false
+text = "Press e to interract"
+
+[node name="wheel" parent="." unique_id=1309672880 instance=ExtResource("8_52mfs")]
+transform = Transform3D(-0.39087614, 0, -0.08494615, 0, 0.4, 0, 0.08494615, 0, -0.39087614, -5.987181, 0.39747024, 17.530077)
+
+[connection signal="body_entered" from="interact_area_ticket" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="interact_area_ticket" to="." method="_on_body_exited"]
