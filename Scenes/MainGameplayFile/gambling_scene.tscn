@@ -4,9 +4,10 @@
 [ext_resource type="Script" uid="uid://cy35agtwsoljq" path="res://Scenes/MainGameplayFile/Scripts/gamblingController.gd" id="1_psac4"]
 [ext_resource type="PackedScene" uid="uid://cv17w53p4yr46" path="res://Scenes/MainGameplayFile/ChildScenes/cardContainer.tscn" id="2_11xmx"]
 [ext_resource type="PackedScene" uid="uid://b1vnmsbbh5h26" path="res://Scenes/MainGameplayFile/ChildScenes/used_pile.tscn" id="4_no7qd"]
-[ext_resource type="Script" uid="uid://s74ujv7gtx6v" path="res://Scenes/MainGameplayFile/displayBetAmount.gd" id="5_hyvjx"]
-[ext_resource type="Script" uid="uid://c60pf0v2ybv6d" path="res://Scenes/MainGameplayFile/addBet.gd" id="5_qql45"]
-[ext_resource type="Script" uid="uid://dvgtey3883pjn" path="res://Scenes/MainGameplayFile/playButton.gd" id="6_fj2yj"]
+[ext_resource type="Script" uid="uid://s74ujv7gtx6v" path="res://Scenes/MainGameplayFile/Scripts/displayBetAmount.gd" id="5_hyvjx"]
+[ext_resource type="Script" uid="uid://c60pf0v2ybv6d" path="res://Scenes/MainGameplayFile/Scripts/addBet.gd" id="5_qql45"]
+[ext_resource type="Script" uid="uid://dvgtey3883pjn" path="res://Scenes/MainGameplayFile/Scripts/playButton.gd" id="6_fj2yj"]
+[ext_resource type="PackedScene" uid="uid://bdkwq0b8de27c" path="res://Scenes/MainGameplayFile/ChildScenes/cash_display.tscn" id="8_pimvi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij4dc"]
 albedo_color = Color(0.43070272, 0.29251617, 0.16413334, 1)
@@ -264,6 +265,8 @@ text = "Stand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="standButton" unique_id=993215342]
 mesh = SubResource("BoxMesh_pimvi")
+
+[node name="cashDisplay" parent="." unique_id=101834038 instance=ExtResource("8_pimvi")]
 
 [connection signal="timeout" from="cashTimer" to="." method="_on_cash_timer_timeout"]
 [connection signal="input_event" from="betConsole/playButton" to="betConsole/playButton" method="_on_input_event"]
