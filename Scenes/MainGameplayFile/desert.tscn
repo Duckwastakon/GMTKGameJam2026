@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dkhsoh8bddyf"]
+
+[ext_resource type="Texture2D" uid="uid://dgakmrjijukw0" path="res://Models_Art/nature_quaternous/Textures/Bark_DeadTree.png" id="1_tnh1l"]
+[ext_resource type="ArrayMesh" uid="uid://c3nqbtikhrjj4" path="res://Models_Art/nature_quaternous/OBJ/DeadTree_1.obj" id="2_2h1u0"]
+[ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="3_2h1u0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7uw4k"]
+sky_top_color = Color(0.42711523, 0.7741729, 0.872941, 1)
+sky_horizon_color = Color(0.8355939, 0.8727433, 0.88857555, 1)
+sky_curve = 0.058843788
+sky_cover_modulate = Color(0.2999613, 0.50344956, 0.44785511, 1)
+ground_bottom_color = Color(0.78694844, 0.6143769, 0.44819635, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ynb8f"]
+sky_material = SubResource("ProceduralSkyMaterial_7uw4k")
+
+[sub_resource type="Environment" id="Environment_tnh1l"]
+background_mode = 2
+sky = SubResource("Sky_ynb8f")
+ambient_light_energy = 0.84
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h7nn"]
+albedo_texture = ExtResource("1_tnh1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2h1u0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2h1u0"]
+size = Vector3(1, 1.4956055, 1)
+
+[node name="desert" type="Node3D" unique_id=1970585400]
+
+[node name="stage" type="Node3D" parent="." unique_id=1282208039]
+
+[node name="env" type="Node3D" parent="." unique_id=1067976681]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=672006295]
+environment = SubResource("Environment_tnh1l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=1020157171]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="DeadTree1" type="MeshInstance3D" parent="env" unique_id=2127158392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2677855, 0, -2.0161428)
+material_override = SubResource("StandardMaterial3D_2h7nn")
+mesh = ExtResource("2_2h1u0")
+
+[node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("3_2h1u0")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=481861379]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=943142268]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2h1u0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1696868306]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_2h1u0")
+debug_color = Color(0.95350915, 3.657937e-06, 0.55569226, 0.41960785)

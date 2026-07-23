@@ -18,9 +18,13 @@ config/icon="res://Models_Art/icon.svg"
 
 Global="*uid://cbyvd75s6uotj"
 
+[display]
+
+window/size/mode=2
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

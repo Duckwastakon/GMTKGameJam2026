@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bin338476275n"]
+
+[ext_resource type="Script" uid="uid://cg77eac6hwpsp" path="res://Scenes/MainGameplayFile/Scripts/moving_character.gd" id="1_3q1cm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tc0h"]
+
+[node name="moving_character" type="CharacterBody3D" unique_id=943208249]
+script = ExtResource("1_3q1cm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=641342066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_8tc0h")
+
+[node name="head" type="Node3D" parent="." unique_id=1495673031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=784777979]
