@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dkhsoh8bddyf"]
 
-[ext_resource type="Script" uid="uid://cr24ca6petkql" path="res://Scenes/MainGameplayFile/desert.gd" id="1_0b6bn"]
+[ext_resource type="Script" uid="uid://cr24ca6petkql" path="res://Scenes/MainGameplayFile/Scripts/desert.gd" id="1_0b6bn"]
 [ext_resource type="Texture2D" uid="uid://dgakmrjijukw0" path="res://Models_Art/nature_quaternous/Textures/Bark_DeadTree.png" id="1_tnh1l"]
 [ext_resource type="ArrayMesh" uid="uid://c3nqbtikhrjj4" path="res://Models_Art/nature_quaternous/OBJ/DeadTree_1.obj" id="2_2h1u0"]
 [ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="3_2h1u0"]
@@ -8,6 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="5_iif4s"]
 [ext_resource type="ArrayMesh" uid="uid://dmu7n7cb8c6vi" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_1.obj" id="5_ui63x"]
 [ext_resource type="PackedScene" uid="uid://diwlln00qr4e0" path="res://Models_Art/wheel.glb" id="8_52mfs"]
+[ext_resource type="PackedScene" uid="uid://bliww7fniikuk" path="res://Models_Art/nature_quaternous/FBX/DeadTree_3.fbx" id="8_ak3wr"]
+[ext_resource type="ArrayMesh" uid="uid://w8fckbw2tqv3" path="res://Models_Art/Models_cars/OBJ format/box.obj" id="9_a0es2"]
+[ext_resource type="PackedScene" uid="uid://61nhku62wpog" path="res://Models_Art/nature_quaternous/FBX/Pebble_Round_1.fbx" id="9_aifat"]
+[ext_resource type="PackedScene" uid="uid://byiaynulgfu6o" path="res://Models_Art/nature_quaternous/FBX/DeadTree_2.fbx" id="10_wxuvx"]
+[ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="10_xrckv"]
+[ext_resource type="PackedScene" uid="uid://cpj5gxpnrttgi" path="res://Models_Art/nature_quaternous/FBX/Mushroom_Common.fbx" id="14_735ui"]
+[ext_resource type="ArrayMesh" uid="uid://cjg0tvojlpbwq" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_2.obj" id="15_735ui"]
+[ext_resource type="ArrayMesh" uid="uid://c5r1ftgatkail" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_3.obj" id="16_xtnxb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7uw4k"]
 sky_top_color = Color(0.08375933, 0.24538207, 0.2902046, 1)
@@ -28,9 +36,15 @@ tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.43181515, 0.46637148, 0.51820636, 1)
-fog_sun_scatter = 0.23
-fog_density = 1.0
+fog_light_color = Color(0.523383, 0.55989605, 0.6126515, 1)
+fog_light_energy = 1.18
+fog_sun_scatter = 0.33
+fog_density = 0.9463
+fog_height = -336.34
+fog_height_density = 0.5319
+fog_depth_curve = 0.39229208
+fog_depth_begin = 0.0
+fog_depth_end = 334.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h7nn"]
 albedo_texture = ExtResource("1_tnh1l")
@@ -84,6 +98,25 @@ emission = Color(0.6, 0.41730002, 0.078, 1)
 emission_energy_multiplier = 2.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_a0es2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a0es2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrckv"]
+radius = 0.66796875
+height = 2.1582031
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtnxb"]
+albedo_texture = ExtResource("5_iif4s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ef62o"]
+albedo_color = Color(0.651762, 0.65176195, 0.65176195, 1)
+albedo_texture = ExtResource("5_iif4s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q888p"]
+albedo_texture = ExtResource("5_iif4s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a3u0"]
+albedo_texture = ExtResource("5_iif4s")
 
 [node name="desert" type="Node3D" unique_id=1970585400]
 script = ExtResource("1_0b6bn")
@@ -147,6 +180,12 @@ transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.1, 0)
 shape = SubResource("BoxShape3D_2h1u0")
 debug_color = Color(0.95350915, 3.657937e-06, 0.55569226, 0.41960785)
 
+[node name="DeadTree_3" parent="ground" unique_id=15012590 instance=ExtResource("8_ak3wr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.903394, 0.98335636, -7.894885)
+
+[node name="Pebble_Round_1" parent="ground" unique_id=1576924852 instance=ExtResource("9_aifat")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2865925, -0.01873082, 11.712435)
+
 [node name="Road" type="StaticBody3D" parent="." unique_id=1242097015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.022372723, 0)
 
@@ -191,22 +230,23 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -166.0
+offset_top = -198.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="DialogText" type="Label" parent="UI/DigitalBox" unique_id=315389234]
 layout_mode = 0
-offset_left = 156.0
-offset_top = 25.0
-offset_right = 196.0
-offset_bottom = 135.0
+offset_left = 211.0
+offset_top = 26.0
+offset_right = 251.0
+offset_bottom = 136.0
 theme_override_font_sizes/font_size = 75
 
 [node name="ColorRect" type="ColorRect" parent="UI/DigitalBox" unique_id=2117574036]
 layout_mode = 0
 offset_left = 1.0
-offset_right = 136.0
+offset_right = 193.0
 offset_bottom = 165.0
 color = Color(0.13355187, 0.13355187, 0.13355187, 1)
 
@@ -218,10 +258,58 @@ offset_right = 46.0
 offset_bottom = 135.0
 theme_override_font_sizes/font_size = 80
 
+[node name="DeadTree_2" parent="UI" unique_id=411341944 instance=ExtResource("10_wxuvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.060073, 0.9833572, 24.699501)
+
 [node name="here" type="MeshInstance3D" parent="." unique_id=351075734]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -14, 3.129, -7.055045)
 material_override = SubResource("StandardMaterial3D_mlu5n")
 mesh = SubResource("SphereMesh_a0es2")
+
+[node name="Box" type="MeshInstance3D" parent="." unique_id=1968996968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4695444, 0.64780235, 18.087996)
+mesh = ExtResource("9_a0es2")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=973930381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.573, 0.073, 8.553)
+
+[node name="SedanSports" type="MeshInstance3D" parent="Area3D" unique_id=1724442292]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("10_xrckv")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1569557713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2247715, 0.17518532, 8.363628)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1655638552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049800873, 1, 0)
+mesh = SubResource("CapsuleMesh_a0es2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1736710304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.082006454, 1.0097816, 0)
+shape = SubResource("CapsuleShape3D_xrckv")
+
+[node name="Mushroom_Common" parent="." unique_id=1923998035 instance=ExtResource("14_735ui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5453777, 0.66527337, -3.2543283)
+
+[node name="RockMedium2" type="MeshInstance3D" parent="." unique_id=227754528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.748034, -0.13237846, 11.06153)
+material_override = SubResource("StandardMaterial3D_xtnxb")
+mesh = ExtResource("15_735ui")
+
+[node name="RockMedium1" type="MeshInstance3D" parent="." unique_id=1040693575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.507474, 0.096354246, 9.211321)
+material_override = SubResource("StandardMaterial3D_ef62o")
+mesh = ExtResource("5_ui63x")
+
+[node name="RockMedium3" type="MeshInstance3D" parent="." unique_id=1494611450]
+transform = Transform3D(0.607764, 0, -0.7941177, 0, 1, 0, 0.7941177, 0, 0.607764, -17.48565, -0.18832493, -6.14853)
+material_override = SubResource("StandardMaterial3D_q888p")
+mesh = ExtResource("16_xtnxb")
+
+[node name="RockMedium4" type="MeshInstance3D" parent="." unique_id=1215018755]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -25.151382, -0.6315559, -22.364746)
+material_override = SubResource("StandardMaterial3D_5a3u0")
+mesh = ExtResource("15_735ui")
 
 [connection signal="body_entered" from="interact_area_ticket" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="interact_area_ticket" to="." method="_on_body_exited"]

@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://dwc31vyuivir1"]
+
+[ext_resource type="PackedScene" uid="uid://ch4qq4e3bm5j5" path="res://Models_Art/ModularWoodStructures/scenes/Builds/build_7.tscn" id="1_2nf72"]
+[ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="2_nkq4g"]
+[ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_5hgci"]
+[ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="4_dwl5t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwl5t"]
+sky_top_color = Color(0.2709, 0.528255, 0.63, 1)
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_bottom_color = Color(0.41960785, 0.37254903, 0.34901962, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_xhdht"]
+sky_material = SubResource("ProceduralSkyMaterial_dwl5t")
+
+[sub_resource type="Environment" id="Environment_cmdxx"]
+background_mode = 2
+sky = SubResource("Sky_xhdht")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hgci"]
+albedo_color = Color(0.3010395, 0.3010395, 0.30103946, 1)
+albedo_texture = ExtResource("2_nkq4g")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dwl5t"]
+size = Vector2(40, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkq4g"]
+albedo_color = Color(0.3019608, 0.23529412, 0.2, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nkq4g"]
+size = Vector2(40, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwl5t"]
+size = Vector3(40, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhdht"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwl5t"]
+radius = 3.05
+height = 11.134305
+
+[node name="1stShop" type="Node3D" unique_id=1418819911]
+
+[node name="asset" type="Node3D" parent="." unique_id=2003755375]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="asset" unique_id=189271852]
+environment = SubResource("Environment_cmdxx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="asset" unique_id=1473579767]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Build_7" parent="." unique_id=272169497 instance=ExtResource("1_2nf72")]
+
+[node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("4_dwl5t")]
+transform = Transform3D(0.9304367, 0, 0.36645266, 0, 1, 0, -0.36645266, 0, 0.9304367, 4.3656225, 0.46036935, 9.924257)
+
+[node name="ground" type="StaticBody3D" parent="." unique_id=505013201]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground" unique_id=1971512975]
+material_override = SubResource("StandardMaterial3D_5hgci")
+mesh = SubResource("PlaneMesh_dwl5t")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ground" unique_id=368667630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08842817, 9.681)
+material_override = SubResource("StandardMaterial3D_nkq4g")
+mesh = SubResource("PlaneMesh_nkq4g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground" unique_id=1648364880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.41379505, 9.634997)
+shape = SubResource("BoxShape3D_dwl5t")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ground" unique_id=1814595527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5926962, 0)
+shape = SubResource("BoxShape3D_xhdht")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=955493457]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 8.764929, 0.073, 8.87312)
+
+[node name="SedanSports" type="MeshInstance3D" parent="Area3D" unique_id=639491024]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("3_5hgci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1796686696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4045548, 0)
+shape = SubResource("CapsuleShape3D_dwl5t")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1233125006]
+
+[node name="DigitalBox" type="Panel" parent="UI" unique_id=655286289]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -198.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogText" type="Label" parent="UI/DigitalBox" unique_id=291748275]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 26.0
+offset_right = 251.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 75
+
+[node name="ColorRect" type="ColorRect" parent="UI/DigitalBox" unique_id=1487513772]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 193.0
+offset_bottom = 165.0
+color = Color(0.13355187, 0.13355187, 0.13355187, 1)
+
+[node name="Who" type="Label" parent="UI/DigitalBox/ColorRect" unique_id=140986061]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 25.0
+offset_right = 46.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 80
