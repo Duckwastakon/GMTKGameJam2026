@@ -19,8 +19,12 @@ var first = true
 var can_buy = false
 var has_opened_shop = false
 var intro_playing = false
+var hovering1 = false ; var hovering2 = false; var hovering3 = false
 
 func _ready() -> void:
+	$constant/Label.text = "Money : "+str(Global.cash)
+	$shopUi/First/gold.visible = false ; $shopUi/Second/gold.visible = false ; $shopUi/Thrid/gold.visible = false
+	$shopUi/First/Description.visible = false ; $shopUi/Second/Description.visible = false ; $shopUi/Thrid/Description.visible = false 
 	var todays_items = Global.roll("shop_1")
 	update_shop_ui(todays_items)
 	shop_ui.visible = false
@@ -41,10 +45,19 @@ func _ready() -> void:
 	ui.visible = false
 	inside = true
 
-func update_shop_ui(item_names: Array[String]):
-	$shopUi/First/LabelFirst.text = item_names[0] if item_names.size() > 0 else ""
-	$shopUi/Second/LabelSecond.text = item_names[1] if item_names.size() > 1 else ""
-	$shopUi/Thrid/LabelThird.text = item_names[2] if item_names.size() > 2 else ""
+func update_shop_ui(item_list: Array[Dictionary]):
+	if item_list.size() > 0:
+		$shopUi/First/LabelFirst.text = item_list[0]["name"]
+		$shopUi/First/Description.text = item_list[0]["description"]
+		$shopUi/First/LabelFirst/Price.text = str(item_list[0]["price"])
+	if item_list.size() > 1:
+		$shopUi/Second/LabelSecond.text = item_list[1]["name"]
+		$shopUi/Second/Description.text = item_list[1]["description"]
+		$shopUi/Second/LabelSecond/Price.text = str(item_list[1]["price"])
+	if item_list.size() > 2:
+		$shopUi/Thrid/LabelThird.text = item_list[2]["name"]
+		$shopUi/Thrid/Description.text = item_list[2]["description"]
+		$shopUi/Thrid/LabelThird/Price.text = str(item_list[2]["price"])
 
 func _process(delta: float) -> void:
 	if has_entered == false and entering == true:
@@ -58,6 +71,10 @@ func _process(delta: float) -> void:
 		info.visible = true
 		$Info/info/InfoText.text = 'Press Q to look at his stock'
 
+	if ui.visible == true:
+		$constant/one.visible = false; $constant/two.visible = false; $constant/three.visible = false
+	else: $constant/one.visible = true; $constant/two.visible = true; $constant/three.visible = true
+		
 	if can_buy == true:
 		if Input.is_action_just_pressed('Q') and q == 0:
 			shop_ui.visible = true
@@ -73,6 +90,18 @@ func _process(delta: float) -> void:
 			player_camera.current = true
 			character.set_physics_process(true)
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+	if hovering1 == true:
+		$shopUi/First/gold.visible = true ;$shopUi/First/Description.visible = true
+	else: $shopUi/First/gold.visible = false ;$shopUi/First/Description.visible = false
+	
+	if hovering2 == true:
+		$shopUi/Second/gold.visible = true ;$shopUi/Second/Description.visible = true
+	else: $shopUi/Second/gold.visible = false ;$shopUi/Second/Description.visible = false
+	
+	if hovering3 == true:
+		$shopUi/Thrid/gold.visible = true ;$shopUi/Thrid/Description.visible = true
+	else: $shopUi/Thrid/gold.visible = false ;$shopUi/Thrid/Description.visible = false
 
 func _on_door_body_entered(body: Node3D) -> void:
 	if has_entered == false:
@@ -131,3 +160,27 @@ func _on_dobbo_body_exited(body: Node3D) -> void:
 		can_buy = false
 		if not has_opened_shop:
 			info.visible = false
+			
+
+func _on_first_mouse_entered() -> void:
+	hovering1 = true
+func _on_first_mouse_exited() -> void:
+	hovering1 = false
+func _on_second_mouse_entered() -> void:
+	hovering2 = true
+func _on_second_mouse_exited() -> void:
+	hovering2 = false
+func _on_thrid_mouse_entered() -> void:
+	hovering3 = true
+func _on_thrid_mouse_exited() -> void:
+	hovering3 = false
+
+func _on_texture_button_pressed() -> void:
+	$shopUi/First/LabelFirst.text = ""; $shopUi/First/LabelFirst/Price.text = "";$shopUi/First/Description.text="";
+	Global.cash= Global.cash - int($shopUi/First/LabelFirst/Price.text)
+func _on_texture_button_pressed2() -> void:
+	$shopUi/Second/LabelSecond.text = ""; $shopUi/Second/LabelSecond/Price.text = "";$shopUi/Second/Description.text="";
+	Global.cash= Global.cash - int($shopUi/Second/LabelSecond/Price.text)
+func _on_texture_button_pressed3() -> void:
+	$shopUi/Thrid/LabelThird.text = ""; $shopUi/Thrid/LabelThird/Price.text = "";$shopUi/Thrid/Description.text="";
+	Global.cash= Global.cash - int($shopUi/Thrid/LabelThird/Price.text)

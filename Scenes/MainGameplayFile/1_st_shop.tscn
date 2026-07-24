@@ -13,6 +13,7 @@
 [ext_resource type="Material" uid="uid://cthe1ujqiqs6y" path="res://Models_Art/ModularWoodStructures/material/WoodPlanks_A.material" id="11_6f8ka"]
 [ext_resource type="PackedScene" uid="uid://f2v8gqhmkoyj" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_a.tscn" id="12_q6iku"]
 [ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
+[ext_resource type="Texture2D" uid="uid://iebu7bdpkg0w" path="res://Models_Art/Coin_tiles.png" id="14_q6iku"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwl5t"]
 sky_top_color = Color(0.2709, 0.528255, 0.63, 1)
@@ -60,6 +61,56 @@ albedo_texture = ExtResource("9_w313y")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6f8ka"]
 radius = 1.9915038
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inicw"]
+atlas = ExtResource("14_q6iku")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jwip"]
+atlas = ExtResource("14_q6iku")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jugix"]
+atlas = ExtResource("14_q6iku")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s17wf"]
+atlas = ExtResource("14_q6iku")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0ill"]
+atlas = ExtResource("14_q6iku")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sluca"]
+atlas = ExtResource("14_q6iku")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kxqrn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inicw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jwip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jugix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s17wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0ill")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sluca")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="1stShop" type="Node3D" unique_id=1418819911]
 script = ExtResource("1_xhdht")
@@ -225,8 +276,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -186.0
-offset_bottom = 184.0
+offset_top = -272.0
+offset_bottom = 263.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -234,9 +285,10 @@ grow_vertical = 2
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -170.5
-offset_right = 341.0
-offset_bottom = 170.5
+offset_left = 408.0
+offset_top = -207.0
+offset_right = 749.0
+offset_bottom = 213.0
 grow_vertical = 2
 
 [node name="LabelFirst" type="Label" parent="shopUi/First" unique_id=1436504459]
@@ -249,8 +301,43 @@ theme_override_font_sizes/font_size = 40
 text = "First item"
 horizontal_alignment = 1
 
+[node name="Price" type="Label" parent="shopUi/First/LabelFirst" unique_id=1873097099]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 340.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 30
+text = "Price"
+horizontal_alignment = 1
+
 [node name="One" type="Marker2D" parent="shopUi/First" unique_id=398093551]
 position = Vector2(170.5, 170.5)
+
+[node name="gold" type="ColorRect" parent="shopUi/First" unique_id=1641169555]
+visible = false
+modulate = Color(1, 1, 1, 0.49411765)
+layout_mode = 0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 338.0
+offset_bottom = 416.0
+mouse_filter = 2
+color = Color(0.8536143, 0.6742243, 0.36635137, 1)
+
+[node name="Description" type="Label" parent="shopUi/First" unique_id=1292485576]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 237.0
+offset_right = 306.0
+offset_bottom = 312.0
+text = "Description of first item"
+autowrap_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="shopUi/First" unique_id=84517774]
+layout_mode = 0
+offset_right = 341.0
+offset_bottom = 419.0
 
 [node name="Second" type="Panel" parent="shopUi" unique_id=889225588]
 anchors_preset = 8
@@ -259,9 +346,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = -170.5
+offset_top = -205.0
 offset_right = 170.5
-offset_bottom = 170.5
+offset_bottom = 213.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -275,8 +362,43 @@ theme_override_font_sizes/font_size = 40
 text = "Second  item"
 horizontal_alignment = 1
 
+[node name="Price" type="Label" parent="shopUi/Second/LabelSecond" unique_id=478290654]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 340.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 30
+text = "Price"
+horizontal_alignment = 1
+
 [node name="Two" type="Marker2D" parent="shopUi/Second" unique_id=1389179159]
 position = Vector2(170.5, 170.5)
+
+[node name="gold" type="ColorRect" parent="shopUi/Second" unique_id=1856898349]
+visible = false
+modulate = Color(1, 1, 1, 0.49411765)
+layout_mode = 0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 338.0
+offset_bottom = 416.0
+mouse_filter = 2
+color = Color(0.8536143, 0.6742243, 0.36635137, 1)
+
+[node name="Description" type="Label" parent="shopUi/Second" unique_id=669373276]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 237.0
+offset_right = 306.0
+offset_bottom = 312.0
+text = "Description of second item"
+autowrap_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="shopUi/Second" unique_id=101715978]
+layout_mode = 0
+offset_right = 341.0
+offset_bottom = 419.0
 
 [node name="Thrid" type="Panel" parent="shopUi" unique_id=1883164158]
 anchors_preset = 6
@@ -284,9 +406,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -341.0
-offset_top = -170.5
-offset_bottom = 170.5
+offset_left = -747.0
+offset_top = -206.0
+offset_right = -406.0
+offset_bottom = 211.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -299,10 +422,135 @@ theme_override_font_sizes/font_size = 40
 text = "Third  item"
 horizontal_alignment = 1
 
+[node name="Price" type="Label" parent="shopUi/Thrid/LabelThird" unique_id=1865172279]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 340.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 30
+text = "Price"
+horizontal_alignment = 1
+
 [node name="Three" type="Marker2D" parent="shopUi/Thrid" unique_id=527171468]
 position = Vector2(170.5, 170.5)
+
+[node name="gold" type="ColorRect" parent="shopUi/Thrid" unique_id=695346008]
+visible = false
+modulate = Color(1, 1, 1, 0.49411765)
+layout_mode = 0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 338.0
+offset_bottom = 416.0
+mouse_filter = 2
+color = Color(0.8536143, 0.6742243, 0.36635137, 1)
+
+[node name="Description" type="Label" parent="shopUi/Thrid" unique_id=1431708826]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 237.0
+offset_right = 306.0
+offset_bottom = 312.0
+text = "Description of third item"
+autowrap_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="shopUi/Thrid" unique_id=197462527]
+layout_mode = 0
+offset_right = 341.0
+offset_bottom = 419.0
+
+[node name="constant" type="CanvasLayer" parent="." unique_id=1912402050]
+
+[node name="one" type="Panel" parent="constant" unique_id=1860111639]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.5
+offset_top = -199.0
+offset_right = 83.5
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Name" type="Label" parent="constant/one" unique_id=1022239045]
+visible = false
+layout_mode = 0
+offset_right = 167.5
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 26
+text = "First item"
+horizontal_alignment = 1
+
+[node name="two" type="Panel" parent="constant" unique_id=1097685585]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 493.0
+offset_top = -199.0
+offset_right = 660.0
+offset_bottom = -32.0
+grow_vertical = 0
+
+[node name="Name" type="Label" parent="constant/two" unique_id=1160699588]
+visible = false
+layout_mode = 0
+offset_right = 167.5
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 26
+text = "First item"
+horizontal_alignment = 1
+
+[node name="three" type="Panel" parent="constant" unique_id=1157570635]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -659.0
+offset_top = -200.0
+offset_right = -492.0
+offset_bottom = -33.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Name" type="Label" parent="constant/three" unique_id=1276564246]
+visible = false
+layout_mode = 0
+offset_right = 167.5
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 26
+text = "First item"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="constant" unique_id=2050727201]
+position = Vector2(2055, 108.00012)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_kxqrn")
+autoplay = "default"
+frame = 1
+frame_progress = 0.75180376
+
+[node name="Label" type="Label" parent="constant" unique_id=291948790]
+offset_left = 2131.0
+offset_top = 53.0
+offset_right = 2262.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 45
+text = "Money:   "
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
 [connection signal="body_entered" from="Dobbo" to="." method="_on_dobbo_body_entered"]
 [connection signal="body_exited" from="Dobbo" to="." method="_on_dobbo_body_exited"]
+[connection signal="mouse_entered" from="shopUi/First/TextureButton" to="." method="_on_first_mouse_entered"]
+[connection signal="mouse_exited" from="shopUi/First/TextureButton" to="." method="_on_first_mouse_exited"]
+[connection signal="pressed" from="shopUi/First/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="shopUi/Second/TextureButton" to="." method="_on_second_mouse_entered"]
+[connection signal="mouse_exited" from="shopUi/Second/TextureButton" to="." method="_on_second_mouse_exited"]
+[connection signal="pressed" from="shopUi/Second/TextureButton" to="." method="_on_texture_button_pressed2"]
+[connection signal="mouse_entered" from="shopUi/Thrid/TextureButton" to="." method="_on_thrid_mouse_entered"]
+[connection signal="mouse_exited" from="shopUi/Thrid/TextureButton" to="." method="_on_thrid_mouse_exited"]
+[connection signal="pressed" from="shopUi/Thrid/TextureButton" to="." method="_on_texture_button_pressed3"]
