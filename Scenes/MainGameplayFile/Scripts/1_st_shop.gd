@@ -10,6 +10,7 @@ extends Node3D
 @onready var shop_ui: CanvasLayer = $shopUi
 @onready var player_camera: Camera3D = $moving_character/head/Camera3D
 @onready var choice: CanvasLayer = $Choice
+@onready var dobbo: Area3D = $Dobbo
 
 var entering = false
 var has_entered = false
@@ -22,16 +23,22 @@ var has_opened_shop = false
 var intro_playing = false
 var hovering1 = false ; var hovering2 = false; var hovering3 = false
 var back = false; var waiting_for_choice = false
-
+var ready_complete = false
 
 func _ready() -> void:
+	ui.visible = false
+	$"interiors/1".visible = false; $"interiors/2".visible = false; $"interiors/3".visible = false
+	set_interior_collision($"interiors/1", true)
+	set_interior_collision($"interiors/2", true)
+	set_interior_collision($"interiors/3", true)
+	roll()
 	choice.visible = false
 	$constant/one/Name.text = ""
 	$constant/two/Name.text = ""
 	$constant/three/Name.text = ""
-	$constant/Label.text = "Money : "+str(Global.cash)
-	$shopUi/First/gold.visible = false ; $shopUi/Second/gold.visible = false ; $shopUi/Thrid/gold.visible = false
-	$shopUi/First/Description.visible = false ; $shopUi/Second/Description.visible = false ; $shopUi/Thrid/Description.visible = false 
+	$constant/Label.text = "Money : " + str(Global.cash)
+	$shopUi/First/gold.visible = false; $shopUi/Second/gold.visible = false; $shopUi/Thrid/gold.visible = false
+	$shopUi/First/Description.visible = false; $shopUi/Second/Description.visible = false; $shopUi/Thrid/Description.visible = false
 	var todays_items = Global.roll("shop_1")
 	update_shop_ui(todays_items)
 	shop_ui.visible = false
@@ -40,16 +47,26 @@ func _ready() -> void:
 	black_rect.visible = false
 	character.position.x = 4; character.position.y = 0.5; character.position.z = 10
 	info.visible = false
-	ui.visible = false
 	await get_tree().create_timer(1.0).timeout
 	who.text = "Bob"
-	dialog_text.text = "We need to tank up. Go on in and take your time"
+	var type = ["Gotta fuel up! Head on into the store.", "I head that store had some human candy~", "Tank up time! Time to get ready for the next game",
+	"Eager to leave much! Oh, well, I'll be waiting!", "Go on, go on, friendo", "buddy, pal, partner, go stretch you rlegs for a bit."]
+	var num = randi_range(1, 6)
+	var text = type[num - 1]
 	ui.visible = true
+	await typewriter_text(dialog_text, text)
 	info.visible = false
 	await get_tree().create_timer(3.5).timeout
-	dialog_text.text = "Feel free to spend your money as you wish ;)"
+	await typewriter_text(dialog_text, "Feel free to spend your money as you wish ;)")
 	await get_tree().create_timer(2.5).timeout
 	ui.visible = false
+	ready_complete = true
+
+func set_interior_collision(interior_node: Node, disabled: bool):
+	for child in interior_node.get_children():
+		if child is CollisionShape3D:
+			child.disabled = disabled
+		set_interior_collision(child, disabled)
 
 func update_shop_ui(item_list: Array[Dictionary]):
 	if item_list.size() > 0:
@@ -65,8 +82,6 @@ func update_shop_ui(item_list: Array[Dictionary]):
 		$shopUi/Thrid/Description.text = item_list[2]["description"]
 		$shopUi/Thrid/LabelThird/Price.text = str(item_list[2]["price"])
 
-
-
 func _process(delta: float) -> void:
 	if has_entered == false and entering == true:
 		if inside == false:
@@ -76,9 +91,6 @@ func _process(delta: float) -> void:
 				character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
 				await fade_from_black()
 				
-				
-
-# inside the back/inside block, after showing the choice:
 	if back == true and inside == true:
 		info.visible = true
 		$Info/info/InfoText.text = 'Press E to leave'
@@ -88,7 +100,7 @@ func _process(delta: float) -> void:
 			character.position.x = 0.3; character.position.y = 0.5; character.position.z = 5.3
 			await fade_from_black()
 			who.text = "Bob"
-			dialog_text.text = "Suppose you ready to go, ya?"
+			await typewriter_text(dialog_text, "Suppose you ready to go, ya?")
 			ui.visible = true
 			info.visible = false
 			choice.visible = true
@@ -98,12 +110,12 @@ func _process(delta: float) -> void:
 	if waiting_for_choice:
 		if Input.is_action_just_pressed('Yes'):
 			waiting_for_choice = false
-			dialog_text.text = "hen lets go, friend!"
+			await typewriter_text(dialog_text, "then lets go, friend!")
 			await get_tree().create_timer(1.5).timeout
 			get_tree().quit()
 		elif Input.is_action_just_pressed('No'):
 			waiting_for_choice = false
-			dialog_text.text = "Then go back in, geez.."
+			await typewriter_text(dialog_text, "Then go back in, geez..")
 			await get_tree().create_timer(1.0).timeout
 			await fade_to_black()
 			character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
@@ -153,7 +165,6 @@ func _on_door_body_entered(body: Node3D) -> void:
 			$Info/info/InfoText.text = "press e to enter the shop"
 			info.visible = true
 			entering = true
-
 func _on_door_body_exited(body: Node3D) -> void:
 	if body.name == "moving_character":
 		$Info/info/InfoText.text = ""
@@ -165,7 +176,6 @@ func fade_to_black():
 	var tween = create_tween()
 	tween.tween_property(black_rect, "modulate:a", 1.0, 1.0)
 	await tween.finished
-
 func fade_from_black():
 	var tween = create_tween()
 	tween.tween_property(black_rect, "modulate:a", 0.0, 1.0)
@@ -174,31 +184,33 @@ func fade_from_black():
 
 func _on_dobbo_body_entered(body: Node3D) -> void:
 	if body.name == "moving_character":
+		can_buy = true
 		if first == true:
 			first = false
 			intro_playing = true
 			who.text = "Dobbo"
-			dialog_text.text = "Hey.. just buy something or leave.."
+			var type = ["Hey.. just buy something or leave..", "You gonna keep coming here or what?", "Just pick something and go..",
+			"Hey.. just buy something or leave..", "Welcome to sharop-shop..i guess", "What you lookin' at? Buy or leave."]
+			var num = randi_range(1, 6)
+			var text = type[num - 1]
 			ui.visible = true
+			await typewriter_text(dialog_text, text)
 			await get_tree().create_timer(2.5).timeout
 			ui.visible = false
 			await infoAdd()
 			intro_playing = false
-		can_buy = true
-
 func infoAdd():
 	info.visible = true
+	$Info.visible = true
 	$Info/info/InfoText.text = 'Use this time to prepare for the next game'
 	await get_tree().create_timer(2.5).timeout
 	$Info/info/InfoText.text = 'See if Dobbo has anything of use to you'
 	await get_tree().create_timer(2.5).timeout
 	show_q_reminder()
-
 func show_q_reminder():
 	if not has_opened_shop:
 		info.visible = true
 		$Info/info/InfoText.text = 'Press Q to look at his stock'
-
 func _on_dobbo_body_exited(body: Node3D) -> void:
 	if body.name == "moving_character":
 		can_buy = false
@@ -223,12 +235,10 @@ func _on_texture_button_pressed() -> void:
 	var price = int($shopUi/First/LabelFirst/Price.text)
 	var item_name = $shopUi/First/LabelFirst.text
 	buy_item(price, item_name, $shopUi/First/LabelFirst, $shopUi/First/LabelFirst/Price, $shopUi/First/Description)
-
 func _on_texture_button_pressed2() -> void:
 	var price = int($shopUi/Second/LabelSecond/Price.text)
 	var item_name = $shopUi/Second/LabelSecond.text
 	buy_item(price, item_name, $shopUi/Second/LabelSecond, $shopUi/Second/LabelSecond/Price, $shopUi/Second/Description)
-
 func _on_texture_button_pressed3() -> void:
 	var price = int($shopUi/Thrid/LabelThird/Price.text)
 	var item_name = $shopUi/Thrid/LabelThird.text
@@ -253,5 +263,46 @@ func buy_item(price: int, item_name: String, label_node: Label, price_node: Labe
 
 func _on_leave_body_enteredLeave(body: Node3D) -> void:
 	back = true;
+	$Info.visible = true
 func _on_leave_body_exitedLeave(body: Node3D) -> void:
 	back = false
+	$Info.visible = false
+
+func roll():
+	var num = randi_range(1, 3)
+	if num == 1:
+		$"interiors/1".visible = true
+		set_interior_collision($"interiors/1", false)
+		dobbo.position.x = 0; dobbo.position.y = 0; dobbo.position.z = 0
+		dobbo.rotation.x = deg_to_rad(0); dobbo.rotation.y = deg_to_rad(0); dobbo.rotation.z = deg_to_rad(0)
+	elif num == 2:
+		$"interiors/2".visible = true
+		set_interior_collision($"interiors/2", false)
+		dobbo.position.x = 0.925; dobbo.position.y = -0.025; dobbo.position.z = 5.067
+		dobbo.rotation.x = deg_to_rad(0); dobbo.rotation.y = deg_to_rad(-92.4); dobbo.rotation.z = deg_to_rad(0)
+	else:
+		$"interiors/3".visible = true
+		set_interior_collision($"interiors/3", false)
+		dobbo.position.x = 1.582; dobbo.position.y = 0.18; dobbo.position.z = 5.536
+		dobbo.rotation.x = deg_to_rad(2.1); dobbo.rotation.y = deg_to_rad(-126.2); dobbo.rotation.z = deg_to_rad(2.8)
+
+func _on_enter_body_enteredupstairs(body: Node3D) -> void:
+	if not ready_complete:
+		return
+	who.text = "Dobbo(?)"
+	var type = ["...", "..and who are you?"]
+	var num = randi_range(1, 2)
+	var text = type[num - 1]
+	await typewriter_text(dialog_text, text)
+	ui.visible = true
+	await get_tree().create_timer(2.5).timeout
+	ui.visible = false
+func _on_enter_body_exitedupstairs(body: Node3D) -> void:
+	ui.visible = false
+	
+func typewriter_text(label: Label, full_text: String, duration: float = 1.0):
+	label.text = full_text
+	label.visible_characters = 0
+	var tween = create_tween()
+	tween.tween_property(label, "visible_characters", full_text.length(), duration)
+	await tween.finished
