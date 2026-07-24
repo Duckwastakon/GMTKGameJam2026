@@ -5,6 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="2_nkq4g"]
 [ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_5hgci"]
 [ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="4_dwl5t"]
+[ext_resource type="PackedScene" uid="uid://cb7jwxee3xcte" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/cabinet_a_grp.tscn" id="6_0bqxw"]
+[ext_resource type="PackedScene" uid="uid://cl6ws1ksdk402" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/shovel.tscn" id="7_tduwl"]
+[ext_resource type="PackedScene" uid="uid://56hg60bj66pc" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/table_rect_a.tscn" id="8_iaf8e"]
+[ext_resource type="Texture2D" uid="uid://ch0cobgjona8b" path="res://Models_Art/nature_quaternous/glTF/Bark_NormalTree.png" id="9_w313y"]
+[ext_resource type="PackedScene" uid="uid://c1bcjt85teug" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_c.tscn" id="10_w313y"]
+[ext_resource type="Material" uid="uid://cthe1ujqiqs6y" path="res://Models_Art/ModularWoodStructures/material/WoodPlanks_A.material" id="11_6f8ka"]
+[ext_resource type="PackedScene" uid="uid://f2v8gqhmkoyj" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_a.tscn" id="12_q6iku"]
+[ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwl5t"]
 sky_top_color = Color(0.2709, 0.528255, 0.63, 1)
@@ -45,7 +53,13 @@ radius = 3.05
 height = 11.134305
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwl5t"]
-radius = 3.3952277
+radius = 2.910119
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f8ka"]
+albedo_texture = ExtResource("9_w313y")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6f8ka"]
+radius = 1.9915038
 
 [node name="1stShop" type="Node3D" unique_id=1418819911]
 script = ExtResource("1_xhdht")
@@ -165,5 +179,47 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
+[node name="Cabinet_A_Grp" parent="." unique_id=2143932848 instance=ExtResource("6_0bqxw")]
+transform = Transform3D(0.038300637, 0, 0.99926627, 0, 1, 0, -0.99926627, 0, 0.038300637, -5.7087173, 0.48946, 1.6795721)
+
+[node name="Shovel" parent="." unique_id=1372791564 instance=ExtResource("7_tduwl")]
+transform = Transform3D(-0.55726075, -0.48877698, 0.6712359, -0.1509804, 0.854559, 0.49692428, -0.8164959, 0.17557292, -0.550008, -5.6418724, 1.3650122, 1.0507654)
+
+[node name="Table_Rect_A" parent="." unique_id=771308466 instance=ExtResource("8_iaf8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3293924, 0.49999976, 3.9449067)
+material_override = SubResource("StandardMaterial3D_6f8ka")
+
+[node name="Table_Rect_A2" parent="." unique_id=270802146 instance=ExtResource("8_iaf8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1240454, 0.49999976, 3.9444094)
+material_override = SubResource("StandardMaterial3D_6f8ka")
+
+[node name="Table_Rect_A3" parent="." unique_id=795769885 instance=ExtResource("8_iaf8e")]
+transform = Transform3D(0.001640633, 0, -0.9999986, 0, 1, 0, 0.9999986, 0, 0.001640633, -3.8846922, 0.5, 2.9855773)
+material_override = SubResource("StandardMaterial3D_6f8ka")
+
+[node name="BookShelf_C" parent="." unique_id=604268856 instance=ExtResource("10_w313y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7511375, 0.49999988, -0.3107245)
+material_override = ExtResource("11_6f8ka")
+
+[node name="BookShelf_A" parent="." unique_id=261109454 instance=ExtResource("12_q6iku")]
+transform = Transform3D(-0.99435645, 0, -0.10609047, 0, 1, 0, 0.10609047, 0, -0.99435645, -3.8879368, 0.5000001, 2.2905593)
+material_override = ExtResource("11_6f8ka")
+
+[node name="Dobbo" type="Area3D" parent="." unique_id=1253503435]
+
+[node name="Idle" parent="Dobbo" unique_id=92532687 instance=ExtResource("13_6f8ka")]
+transform = Transform3D(-0.19931716, 0, 1.1833313, 0, 1.2, 0, -1.1833313, 0, -0.19931716, -4.895482, 0.51255715, 3.0655522)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dobbo" unique_id=1112923944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5339575, 1.3074187, 2.8321908)
+shape = SubResource("SphereShape3D_6f8ka")
+
+[node name="ShopCamera" type="Camera3D" parent="Dobbo" unique_id=844350551]
+transform = Transform3D(-0.014224001, -0.9454787, 0.32537317, -0.001997284, 0.3254323, 0.94556326, -0.9998969, 0.012799829, -0.0065173386, -3.6249423, 1.6889863, 3.0515952)
+
+[node name="shopUi" type="CanvasLayer" parent="." unique_id=783866916]
+
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
+[connection signal="body_entered" from="Dobbo" to="." method="_on_dobbo_body_entered"]
+[connection signal="body_exited" from="Dobbo" to="." method="_on_dobbo_body_exited"]
