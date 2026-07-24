@@ -3,6 +3,8 @@ extends Node3D
 var playersCards: Array[int]
 var opponentsCards: Array[int]
 
+@export var Bob: Node3D
+
 @export var playerCardContainer: Node3D
 @export var opponentCardContainer: Node3D
 @export var usedPile: Node3D
@@ -201,7 +203,7 @@ func _ready() -> void:
 				wonCash = betAmount * 2
 			
 			betChanged.emit(wonCash, true, "won")
-			
+			Bob.loose()
 			await get_tree().create_timer(3).timeout
 			
 			wonCash -= debt
@@ -210,6 +212,7 @@ func _ready() -> void:
 			betChanged.emit(0)
 		else:
 			betChanged.emit(0, true, "lost")
+			Bob.win()
 		
 		betAmount = 0
 		await discardCards()
@@ -344,3 +347,11 @@ func looseGame():
 
 func _on_reach_end_signal() -> void:
 	pass
+
+func _on_distraction_timer_timeout() -> void:
+	distracted.emit(true)
+	await Bob.distract()
+	distracted.emit(false)
+	$distractionTimer.wait_time = randi_range(8, 26)
+	$distractionTimer.start()
+	

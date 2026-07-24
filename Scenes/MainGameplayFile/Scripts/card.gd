@@ -44,7 +44,7 @@ func clickedCard(event):
 	if event.pressed:
 		if hidden:
 			showing = true
-			while(showing and hidden):
+			while(showing and hidden and distracted):
 				rotation_degrees = lerp(rotation_degrees, Vector3(-45,0,0), 0.25)
 				await get_tree().create_timer(0.02).timeout
 		else:
@@ -52,7 +52,7 @@ func clickedCard(event):
 	else:
 		if showing and hidden: 
 			showing = false
-			while(self.rotation_degrees != Vector3(-45-180,0, 0) and !showing and hidden):
+			while(self.rotation_degrees != Vector3(-45-180,0, 0) and !showing and hidden and distracted):
 				rotation_degrees = lerp(rotation_degrees, Vector3(-45-180,0, 0), 0.25)
 				await get_tree().create_timer(0.02).timeout
 
