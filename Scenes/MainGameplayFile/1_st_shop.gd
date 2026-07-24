@@ -9,6 +9,7 @@ extends Node3D
 @onready var shop_camera: Camera3D = $Dobbo/ShopCamera
 @onready var shop_ui: CanvasLayer = $shopUi
 @onready var player_camera: Camera3D = $moving_character/head/Camera3D
+@onready var choice: CanvasLayer = $Choice
 
 var entering = false
 var has_entered = false
@@ -20,9 +21,11 @@ var can_buy = false
 var has_opened_shop = false
 var intro_playing = false
 var hovering1 = false ; var hovering2 = false; var hovering3 = false
-var back = false;
+var back = false; var waiting_for_choice = false
+
 
 func _ready() -> void:
+	choice.visible = false
 	$constant/one/Name.text = ""
 	$constant/two/Name.text = ""
 	$constant/three/Name.text = ""
@@ -62,6 +65,8 @@ func update_shop_ui(item_list: Array[Dictionary]):
 		$shopUi/Thrid/Description.text = item_list[2]["description"]
 		$shopUi/Thrid/LabelThird/Price.text = str(item_list[2]["price"])
 
+
+
 func _process(delta: float) -> void:
 	if has_entered == false and entering == true:
 		if inside == false:
@@ -72,6 +77,8 @@ func _process(delta: float) -> void:
 				await fade_from_black()
 				
 				
+
+# inside the back/inside block, after showing the choice:
 	if back == true and inside == true:
 		info.visible = true
 		$Info/info/InfoText.text = 'Press E to leave'
@@ -80,8 +87,29 @@ func _process(delta: float) -> void:
 			await fade_to_black()
 			character.position.x = 0.3; character.position.y = 0.5; character.position.z = 5.3
 			await fade_from_black()
+			who.text = "Bob"
+			dialog_text.text = "Suppose you ready to go, ya?"
+			ui.visible = true
+			info.visible = false
+			choice.visible = true
+			character.set_physics_process(false)
+			waiting_for_choice = true  # now check Yes/No every subsequent frame
 
-
+	if waiting_for_choice:
+		if Input.is_action_just_pressed('Yes'):
+			waiting_for_choice = false
+			dialog_text.text = "hen lets go, friend!"
+			await get_tree().create_timer(1.5).timeout
+			get_tree().quit()
+		elif Input.is_action_just_pressed('No'):
+			waiting_for_choice = false
+			dialog_text.text = "Then go back in, geez.."
+			await get_tree().create_timer(1.0).timeout
+			await fade_to_black()
+			character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
+			await fade_from_black()
+			character.set_physics_process(true)
+			choice.visible = false; ui.visible = false; inside = true ; has_entered = true
 
 	if can_buy == true and not has_opened_shop and not intro_playing:
 		info.visible = true

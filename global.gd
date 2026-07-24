@@ -6,12 +6,12 @@ var cash: int = 500
 const maxItems: int = 3
 
 var items: Array[Dictionary] = [
-	{"name": "Scissors", "description": "Sharp and useful for cutting cards.", "price": 15},
-	{"name": "Matches", "description": "A small box, good for lighting cards.", "price": 5},
-	{"name": "Pen", "description": "Helps with rewriting a card.", "price": 3},
-	{"name": "Deck", "description": "A deck of playing cards.", "price": 10},
-	{"name": "Old coin", "description": "Might be worth something to a collector.", "price": 20},
-	{"name": "Mask", "description": "hides your face = no facial cues.", "price": 25},
+	{"name": "Scissors", "description": "You can cut a card in half, making Bob be forced to redraw it.", "price": 15},
+	{"name": "Magic wand", "description": "+1 to a card or if on an ace -> 2.", "price": 5},
+	{"name": "Gun", "description": "Forces Bob to draw a card in ANY scenario.", "price": 3},
+	{"name": "Alcohol", "description": "Next round -> your wins or losses are 2.5 times bigger.", "price": 10},
+	{"name": "Collectors coin", "description": "Can give at any loss and wont cause money to be taken away.", "price": 20},
+	{"name": "Magnifying glass", "description": "Lets you see Bobs hidden card.", "price": 25},
 ]
 
 var shop_items: Dictionary = {}
