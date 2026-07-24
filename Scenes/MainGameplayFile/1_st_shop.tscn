@@ -112,6 +112,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_q6iku"]
+size = Vector3(2.9717102, 2.4832764, 1.7018738)
+
 [node name="1stShop" type="Node3D" unique_id=1418819911]
 script = ExtResource("1_xhdht")
 
@@ -127,7 +130,7 @@ shadow_enabled = true
 [node name="Build_7" parent="." unique_id=272169497 instance=ExtResource("1_2nf72")]
 
 [node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("4_dwl5t")]
-transform = Transform3D(0.9304368, 0, 0.3664527, -0.00017268673, 0.9999999, 0.0004384579, -0.36645266, -0.00047123892, 0.9304367, 4, 0.5, 10)
+transform = Transform3D(0.9304368, 0, 0.3664527, -0.00017268673, 0.9999999, 0.0004384579, -0.36645266, -0.00047123892, 0.9304367, 0.3, 0.5, 5.3)
 
 [node name="ground" type="StaticBody3D" parent="." unique_id=505013201]
 
@@ -220,7 +223,6 @@ shape = SubResource("SphereShape3D_dwl5t")
 
 [node name="black" type="CanvasLayer" parent="." unique_id=1750686813]
 layer = 10
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="black" unique_id=323950508]
 anchors_preset = 15
@@ -481,7 +483,6 @@ layout_mode = 0
 offset_right = 167.5
 offset_bottom = 42.0
 theme_override_font_sizes/font_size = 26
-text = "First item"
 horizontal_alignment = 1
 
 [node name="two" type="Panel" parent="constant" unique_id=1097685585]
@@ -500,7 +501,6 @@ layout_mode = 0
 offset_right = 167.5
 offset_bottom = 42.0
 theme_override_font_sizes/font_size = 26
-text = "First item"
 horizontal_alignment = 1
 
 [node name="three" type="Panel" parent="constant" unique_id=1157570635]
@@ -522,7 +522,6 @@ layout_mode = 0
 offset_right = 167.5
 offset_bottom = 42.0
 theme_override_font_sizes/font_size = 26
-text = "First item"
 horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="constant" unique_id=2050727201]
@@ -541,6 +540,12 @@ offset_bottom = 95.0
 theme_override_font_sizes/font_size = 45
 text = "Money:   "
 
+[node name="Leave" type="Area3D" parent="." unique_id=1560285028]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Leave" unique_id=1211948187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009231567, 1.6664174, 3.5491886)
+shape = SubResource("BoxShape3D_q6iku")
+
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
 [connection signal="body_entered" from="Dobbo" to="." method="_on_dobbo_body_entered"]
@@ -554,3 +559,5 @@ text = "Money:   "
 [connection signal="mouse_entered" from="shopUi/Thrid/TextureButton" to="." method="_on_thrid_mouse_entered"]
 [connection signal="mouse_exited" from="shopUi/Thrid/TextureButton" to="." method="_on_thrid_mouse_exited"]
 [connection signal="pressed" from="shopUi/Thrid/TextureButton" to="." method="_on_texture_button_pressed3"]
+[connection signal="body_entered" from="Leave" to="." method="_on_leave_body_enteredLeave"]
+[connection signal="body_exited" from="Leave" to="." method="_on_leave_body_exitedLeave"]

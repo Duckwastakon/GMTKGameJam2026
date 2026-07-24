@@ -20,8 +20,12 @@ var can_buy = false
 var has_opened_shop = false
 var intro_playing = false
 var hovering1 = false ; var hovering2 = false; var hovering3 = false
+var back = false;
 
 func _ready() -> void:
+	$constant/one/Name.text = ""
+	$constant/two/Name.text = ""
+	$constant/three/Name.text = ""
 	$constant/Label.text = "Money : "+str(Global.cash)
 	$shopUi/First/gold.visible = false ; $shopUi/Second/gold.visible = false ; $shopUi/Thrid/gold.visible = false
 	$shopUi/First/Description.visible = false ; $shopUi/Second/Description.visible = false ; $shopUi/Thrid/Description.visible = false 
@@ -43,7 +47,6 @@ func _ready() -> void:
 	dialog_text.text = "Feel free to spend your money as you wish ;)"
 	await get_tree().create_timer(2.5).timeout
 	ui.visible = false
-	inside = true
 
 func update_shop_ui(item_list: Array[Dictionary]):
 	if item_list.size() > 0:
@@ -61,11 +64,24 @@ func update_shop_ui(item_list: Array[Dictionary]):
 
 func _process(delta: float) -> void:
 	if has_entered == false and entering == true:
+		if inside == false:
+			if Input.is_action_just_pressed('interract'):
+				info.visible = false; inside = true; has_entered = true
+				await fade_to_black()
+				character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
+				await fade_from_black()
+				
+				
+	if back == true and inside == true:
+		info.visible = true
+		$Info/info/InfoText.text = 'Press E to leave'
 		if Input.is_action_just_pressed('interract'):
-			info.visible = false; inside = true; has_entered = true
+			info.visible = false; inside = false; has_entered = false
 			await fade_to_black()
-			character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
+			character.position.x = 0.3; character.position.y = 0.5; character.position.z = 5.3
 			await fade_from_black()
+
+
 
 	if can_buy == true and not has_opened_shop and not intro_playing:
 		info.visible = true
@@ -176,11 +192,38 @@ func _on_thrid_mouse_exited() -> void:
 	hovering3 = false
 
 func _on_texture_button_pressed() -> void:
-	$shopUi/First/LabelFirst.text = ""; $shopUi/First/LabelFirst/Price.text = "";$shopUi/First/Description.text="";
-	Global.cash= Global.cash - int($shopUi/First/LabelFirst/Price.text)
+	var price = int($shopUi/First/LabelFirst/Price.text)
+	var item_name = $shopUi/First/LabelFirst.text
+	buy_item(price, item_name, $shopUi/First/LabelFirst, $shopUi/First/LabelFirst/Price, $shopUi/First/Description)
+
 func _on_texture_button_pressed2() -> void:
-	$shopUi/Second/LabelSecond.text = ""; $shopUi/Second/LabelSecond/Price.text = "";$shopUi/Second/Description.text="";
-	Global.cash= Global.cash - int($shopUi/Second/LabelSecond/Price.text)
+	var price = int($shopUi/Second/LabelSecond/Price.text)
+	var item_name = $shopUi/Second/LabelSecond.text
+	buy_item(price, item_name, $shopUi/Second/LabelSecond, $shopUi/Second/LabelSecond/Price, $shopUi/Second/Description)
+
 func _on_texture_button_pressed3() -> void:
-	$shopUi/Thrid/LabelThird.text = ""; $shopUi/Thrid/LabelThird/Price.text = "";$shopUi/Thrid/Description.text="";
-	Global.cash= Global.cash - int($shopUi/Thrid/LabelThird/Price.text)
+	var price = int($shopUi/Thrid/LabelThird/Price.text)
+	var item_name = $shopUi/Thrid/LabelThird.text
+	buy_item(price, item_name, $shopUi/Thrid/LabelThird, $shopUi/Thrid/LabelThird/Price, $shopUi/Thrid/Description)
+
+func buy_item(price: int, item_name: String, label_node: Label, price_node: Label, description_node: Label) -> void:
+	if not Global.compareCash(price):
+		print("Not enough money!")
+		return
+
+	var slots = [$constant/one/Name, $constant/two/Name, $constant/three/Name]
+	for slot in slots:
+		if slot.text == "":
+			slot.visible = true
+			slot.text = item_name
+			break
+	label_node.text = ""
+	price_node.text = ""
+	description_node.text = ""
+	Global.cash -= price
+	$constant/Label.text = "Money : " + str(Global.cash)
+
+func _on_leave_body_enteredLeave(body: Node3D) -> void:
+	back = true;
+func _on_leave_body_exitedLeave(body: Node3D) -> void:
+	back = false
