@@ -13,6 +13,7 @@ var clickPower = ""
 
 var deck = []
 
+signal editInteractMessage
 signal finishGame
 signal playerDone
 
@@ -156,6 +157,7 @@ func drawCard(arr: Array[int], cont, hidden = false):
 	deck.pop_at(0)
 	
 	cardDrawn.emit()
+	connect("editInteractMessage", newCard.updateText)
 	connect("distracted", newCard.setDistracted)
 	newCard.connect("input_event", usePowerOnCard.bind(newCard, arr, arr.size() - 1, cont, newCard.cheat))
 	newCard.connect("destroyCard", destroyCard.bind(newCard,arr, arr.size()-1,cont))
@@ -227,10 +229,10 @@ func betAdded(amount: int):
 	betChanged.emit(betAmount, true)
 
 func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("E") and canDraw:
-	#	await drawCard(playersCards, playerCardContainer)
-	#	if(countSum(playersCards) >= 21):
-	#		playerDone.emit()
+	if event.is_action_pressed("E") and canDraw:
+		await drawCard(playersCards, playerCardContainer)
+		if(countSum(playersCards) >= 21):
+			playerDone.emit()
 	
 	if event.is_action_pressed("Q") and canDraw:
 		playerDone.emit()
@@ -304,6 +306,7 @@ func usePowerOnCard(_a, event: InputEvent, _c, _d, _e, card, arr: Array, pos: in
 		
 		if clickPower != "":
 			useItem.emit()
+			editInteractMessage.emit("")
 			clickPower = ""
 	else:
 		cardSignal.emit(event)

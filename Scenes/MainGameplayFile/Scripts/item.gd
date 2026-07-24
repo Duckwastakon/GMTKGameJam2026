@@ -4,7 +4,7 @@ var item: String = "upgrade"
 var active = false
 var uses = 3
 
-var itemName: String
+var itemName: String = "Scissors"
 
 func _ready() -> void:
 	if get_tree().current_scene.name == "gamblingScene":
@@ -13,15 +13,36 @@ func _ready() -> void:
 func setItem(gottenName: String, newUses: int, abilityName: String):
 	item = abilityName
 	uses = newUses
-
+	itemName = gottenName
+	$Label3D.text = "use " + gottenName
 
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if get_tree().current_scene.name == "gamblingScene":
+				if active:
+					active = false
+					get_tree().current_scene.specialPower("")
+					return
+				
+				for c in get_parent().get_children():
+					c.active = false
 				if item != "":
 					active = true
 					get_tree().current_scene.specialPower(item)
+					get_tree().current_scene.editInteractMessage.emit(itemName)
+					
+					var originalPos = position
+					$Label3D.text = "cancel " + itemName
+					while(active):
+						position = lerp(position, originalPos + Vector3(0, 0.1, 0), 0.25)
+						await get_tree().create_timer(0.02).timeout
+					
+					get_tree().current_scene.editInteractMessage.emit("")
+					var newTween = create_tween()
+					newTween.tween_property(self, "position", originalPos, 0.2)
+					newTween.play()
+					$Label3D.text = "use " + itemName
 
 func destroy_item() -> void:
 	if active:

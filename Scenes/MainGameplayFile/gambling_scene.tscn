@@ -64,6 +64,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cp0olkc42g3er" path="res://Models_Art/models/cards/obj/card_spades_three.obj" id="63_f1u5h"]
 [ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://Models_Art/models/cards/obj/card_spades_two.obj" id="64_dltly"]
 [ext_resource type="Texture2D" uid="uid://qowbxwhdauwu" path="res://Models_Art/models/bob_Material Base Color.png" id="64_v1a4f"]
+[ext_resource type="Script" uid="uid://d30a1188cwr6n" path="res://Scenes/MainGameplayFile/Scripts/itemSetup.gd" id="65_f18wc"]
 [ext_resource type="PackedScene" uid="uid://cjbyyab87agf0" path="res://Scenes/MainGameplayFile/ChildScenes/item.tscn" id="65_k3xgq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
@@ -453,6 +454,7 @@ sky_mode = 1
 
 [node name="item" type="Node3D" parent="." unique_id=1753627350]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6264612, 0.70317036, 0.30323553)
+script = ExtResource("65_f18wc")
 
 [node name="Item" parent="item" unique_id=767929299 instance=ExtResource("65_k3xgq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11538869, 0.030329645, 0.07832593)

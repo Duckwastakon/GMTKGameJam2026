@@ -6,7 +6,7 @@ signal cheat
 
 var hidden = false
 var showing = false
-var distracted = true
+var distracted = false
 
 func _ready() -> void:
 	connect("cheat", clickedCard)
@@ -39,10 +39,12 @@ func setCard(card: MeshInstance3D, hid: bool):
 		newTween.play()
 
 func clickedCard(event):
+	if !distracted: return
+	
 	if event.pressed:
 		if hidden:
 			showing = true
-			while(showing):
+			while(showing and hidden):
 				rotation_degrees = lerp(rotation_degrees, Vector3(-45,0,0), 0.25)
 				await get_tree().create_timer(0.02).timeout
 		else:
@@ -50,12 +52,24 @@ func clickedCard(event):
 	else:
 		if showing and hidden: 
 			showing = false
-			while(self.rotation_degrees != Vector3(-45-180,0, 0) and !showing):
+			while(self.rotation_degrees != Vector3(-45-180,0, 0) and !showing and hidden):
 				rotation_degrees = lerp(rotation_degrees, Vector3(-45-180,0, 0), 0.25)
 				await get_tree().create_timer(0.02).timeout
 
+func updateText(itemName: String):
+	if itemName != "":
+		$Label3D.text = "use " + itemName
+	else:
+		if distracted:
+			if hidden:
+				$Label3D.text = "peek card"
+			else:
+				$Label3D.text = "replace card"
+		else:
+			$Label3D.text = ""
 
 func _on_mouse_exited() -> void:
+	$Label3D.visible = false
 	if showing: 
 		showing = false
 		while(self.rotation_degrees != Vector3(-45-180,0, 0) and !showing):
@@ -63,4 +77,4 @@ func _on_mouse_exited() -> void:
 			await get_tree().create_timer(0.02).timeout
 
 func _on_mouse_entered() -> void:
-	pass # Replace with function body.
+	$Label3D.visible = true
