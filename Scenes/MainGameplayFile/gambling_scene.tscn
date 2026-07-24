@@ -148,11 +148,6 @@ usedPile = NodePath("usedPile")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.7)
 script = ExtResource("1_c8pox")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1796891404]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8707446, 2.3324447)
-light_energy = 5.0
-spot_range = 4.547605
-
 [node name="playerContainer" parent="." unique_id=341785402 instance=ExtResource("2_11xmx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0.25)
 
@@ -442,12 +437,18 @@ mesh = ExtResource("63_f1u5h")
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -1.5282354, -1.0022731, -2.7592921)
 mesh = ExtResource("64_dltly")
 
-[node name="deck" parent="." unique_id=847728579 instance=ExtResource("63_d3uk2")]
+[node name="deck" parent="." unique_id=847728579 node_paths=PackedStringArray("cardController") instance=ExtResource("63_d3uk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.671, 0.1)
+cardController = NodePath("..")
 
 [node name="bob" type="MeshInstance3D" parent="." unique_id=1487564735]
 transform = Transform3D(0.8, 0, 0, 0, 0.614, 0, 0, 0, 0.348, 0, -0.15296665, -0.60238457)
 mesh = SubResource("ArrayMesh_k3xgq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=737505481]
+transform = Transform3D(1, 0, 0, 0, 0.81811965, 0.5750481, 0, -0.5750481, 0.81811965, 0, 1.8246052, 2.3031235)
+light_energy = 3.0
+sky_mode = 1
 
 [connection signal="timeout" from="cashTimer" to="." method="_on_cash_timer_timeout"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]

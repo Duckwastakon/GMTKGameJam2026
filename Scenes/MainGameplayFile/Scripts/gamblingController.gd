@@ -8,6 +8,9 @@ var opponentsCards: Array[int]
 @export var usedPile: Node3D
 @onready var deckNode = $deck
 
+const specialAbilities = ["destroy", "upgrade", "forcePickup", "downgrade", "checkNextCard", "checkOppCard"]
+var clickPower = "upgrade"
+
 var deck = []
 
 signal finishGame
@@ -19,6 +22,9 @@ signal addBet
 signal betChanged
 signal startGame
 
+signal distracted
+signal cardDrawn
+
 var canDraw = false
 var gameActive = false
 
@@ -27,7 +33,6 @@ const cardScene = preload("res://Scenes/MainGameplayFile/ChildScenes/card.tscn")
 @onready var allCards = $allPossibleCards.get_children()
 
 var Specials = {
-	"One": 1,
 	"Two": 2,
 	"Three": 3,
 	"Four": 4,
@@ -72,6 +77,7 @@ func playRound() -> bool:
 	
 	canDraw = true
 	
+	
 	print(playersCards)
 	print(opponentsCards)
 	
@@ -84,6 +90,8 @@ func playRound() -> bool:
 	await opponentTurn()
 	
 	print("opponentFinished")
+	
+	distracted.emit(false)
 	
 	var sumPlayer = countSum(playersCards)
 	var sumOpponent = countSum(opponentsCards)
@@ -131,18 +139,24 @@ func countSum(arr):
 	return num
 
 func drawCard(arr: Array[int], cont, hidden = false):
+	if(deck.size()<1):
+		shuffleDeck()
+	
+	print(hidden)
 	var newCard = cardScene.instantiate()
 	newCard.setCard(deck[0].duplicate(), hidden)
 	cont.add_child(newCard)
 	newCard.global_position = deckNode.global_position
 	var cardName: String = deck[0].name
 	var cardsValue = cardName.split("_")[1]
-	print(cardsValue)
 	var val = Specials[cardsValue]
-	print(val)
 	arr.append(val)
 	deck.pop_at(0)
 	
+	cardDrawn.emit()
+	connect("distracted", newCard.setDistracted)
+	#newCard.connect("input_event", usePowerOnCard.bind(newCard, arr, arr.size() - 1, cont, newCard.cheat))
+	newCard.connect("destroyCard", destroyCard.bind(newCard,arr, arr.size()-1,cont))
 	return newCard
 
 func discardCards() -> void:
@@ -232,3 +246,60 @@ func _on_stand_button_input_event(camera: Node, event: InputEvent, event_positio
 	if event is InputEventMouseButton and canDraw:
 		if event.pressed:
 			playerDone.emit()
+
+func destroyCard(card: StaticBody3D, arr: Array, pos: int, cont):
+	card.reparent(usedPile)
+	arr.remove_at(pos)
+	
+	drawCard(arr, cont, false)
+
+func specialPower():
+	pass
+
+func usePowerOnCard(_a, event: InputEvent, _c, _d, _e, card, arr: Array, pos: int, cont, cardSignal: Signal):
+	if event is not InputEventMouseButton: return
+	if event.pressed:
+		if(clickPower=="destroy"):
+			destroyCard(card, arr, pos, cont)
+		elif(clickPower=="upgrade"):
+			var currentNum = arr[pos]
+			if currentNum >= 11:
+				currentNum = 2
+			else:
+				currentNum += 1
+		
+			arr[pos] = currentNum
+			getCard(card, currentNum)
+		elif(clickPower=="downgrade"):
+			var currentNum = arr[pos]
+			if currentNum <= 1:
+				currentNum = 11
+			else:
+				currentNum -= 1
+			arr[pos] = currentNum
+		else:
+			cardSignal.emit()
+	else:
+		cardSignal.emit()
+
+func getCard(card: StaticBody3D, num: int):
+	var cardName: String
+	for c in card.get_children():
+		if c is MeshInstance3D:
+			cardName = c.name
+			break
+	
+	var splitName = cardName.split("_")
+	var stringEnd: String
+	for i in Specials:
+		if Specials[i] == num:
+			stringEnd = i
+	
+	var newString = splitName[0]+"_"+stringEnd
+	print(newString)
+	var newCard = $allPossibleCards.get_node(newString)
+	$allPossibleCards.get_node("CardClubs_Ace")
+	for c in card.get_children():
+		if c is MeshInstance3D:
+			c.mesh = newCard.mesh
+			
