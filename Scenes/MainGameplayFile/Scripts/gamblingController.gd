@@ -181,6 +181,9 @@ func discardCards() -> void:
 	opponentsCards.clear()
 
 func _ready() -> void:
+	Bob.talk("Heyyyyyyyy broskis and gamers")
+	Bob.talk("How the flip did you win 
+	that should not be possibe")
 	connect("addBet", betAdded)
 	shuffleDeck()
 	
@@ -347,6 +350,9 @@ func looseGame():
 
 func _on_reach_end_signal() -> void:
 	pass
+
+func bobTalk(str: String):
+	Bob.talk(str)
 
 func _on_distraction_timer_timeout() -> void:
 	distracted.emit(true)

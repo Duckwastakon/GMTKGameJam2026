@@ -2,6 +2,8 @@ extends Node
 
 signal cashUpdated
 
+var nextCashBuff: float = 1.0
+var permanentCashBuff: float = 1.0
 var cash: int = 500
 const maxItems: int = 3
 
@@ -17,7 +19,11 @@ var items: Array[Dictionary] = [
 var shop_items: Dictionary = {}
 
 func addCash(amount: int):
-	cash += amount
+	if amount>0:
+		amount *= permanentCashBuff
+	cash += amount * nextCashBuff
+	
+	nextCashBuff = 1.0
 	
 	cashUpdated.emit(amount)
 

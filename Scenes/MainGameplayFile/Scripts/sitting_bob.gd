@@ -1,10 +1,13 @@
 extends Node3D
 
+@onready var talkingLabel = $Label3D
 @onready var Anims = $AnimationPlayer
 var idleAnims = ["idle", "sitting1"]
 var distractionAnims = ["distracted", "distracted2", "distracted3"]
 
 var currentIdleAnim: String
+
+var textQueue: Array[String]
 
 func distract():
 	Anims.stop()
@@ -47,3 +50,23 @@ func _on_change_idle_timeout() -> void:
 	print("Changed idle Anim")
 	$changeIdle.wait_time = randi_range(8, 36)
 	$changeIdle.start()
+
+func talk(str: String):
+	if textQueue.size() == 0:
+		textQueue.append(str)
+		
+		while(textQueue.size()>0):
+			var word = textQueue[0]
+			var stringLength = 0
+			while(stringLength != word.length()):
+				stringLength += 1
+				talkingLabel.text = word.substr(0, stringLength)
+				await get_tree().create_timer(0.025).timeout
+			await get_tree().create_timer(3).timeout
+			while talkingLabel.text != "":
+				talkingLabel.text = talkingLabel.text.substr(0, talkingLabel.text.length() - 1)
+				await get_tree().create_timer(0.01).timeout
+			
+			textQueue.pop_front()
+	else:
+		textQueue.append(str)

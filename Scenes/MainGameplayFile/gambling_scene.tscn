@@ -110,7 +110,7 @@ albedo_texture = SubResource("ViewportTexture_uvtci")
 [sub_resource type="PlaneMesh" id="PlaneMesh_q21dg"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_q21dg")
-size = Vector2(0.8, 0.8)
+size = Vector2(0.75, 0.75)
 
 [node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("Bob", "playerCardContainer", "opponentCardContainer", "usedPile")]
 script = ExtResource("1_psac4")
@@ -431,7 +431,7 @@ transform = Transform3D(0.9346086, 0, 0.35567796, 0, 1, 0, -0.35567796, 0, 0.934
 transform = Transform3D(0.97149533, 0, -0.23705858, 0, 1, 0, 0.23705858, 0, 0.97149533, 0.023558915, 0.030329645, -0.43589562)
 
 [node name="importantDataDisplay" type="MeshInstance3D" parent="." unique_id=23713951]
-transform = Transform3D(0.18793853, -0.011697777, -0.022497565, 0, 0.09396926, -0.023941409, 0.06840403, 0.03213938, 0.061811555, 0.36673123, 0.6603527, 0.3877287)
+transform = Transform3D(0.16735286, -0.044298794, -0.02252947, 0, 0.058778524, -0.05663119, 0.109512635, 0.06769566, 0.03442864, 0.36673123, 0.688102, 0.3877287)
 mesh = ExtResource("11_5cil1")
 surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
 surface_material_override/1 = SubResource("StandardMaterial3D_5cil1")
@@ -444,7 +444,7 @@ size = Vector2i(512, 128)
 mainController = NodePath("../../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="importantDataDisplay" unique_id=1281135274]
-transform = Transform3D(0.9999999, 7.450581e-09, 1.4901161e-08, 1.4901161e-08, 0.9999999, 2.9802322e-08, 0, -5.9604645e-08, 0.99999994, 0, 0.151, -0.076)
+transform = Transform3D(0.9999999, 7.450581e-09, 1.4901161e-08, 1.4901161e-08, 0.9999999, 2.9802322e-08, 0, -5.9604645e-08, 0.99999994, 0, 0.151, 0)
 mesh = SubResource("PlaneMesh_q21dg")
 
 [node name="sittingBob" parent="." unique_id=2132038647 instance=ExtResource("67_q21dg")]

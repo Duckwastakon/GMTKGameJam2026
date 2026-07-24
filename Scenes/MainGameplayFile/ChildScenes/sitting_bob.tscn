@@ -593,4 +593,10 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
+[node name="Label3D" type="Label3D" parent="." unique_id=2142243514]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.1, 0)
+billboard = 1
+no_depth_test = true
+font_size = 48
+
 [connection signal="timeout" from="changeIdle" to="." method="_on_change_idle_timeout"]

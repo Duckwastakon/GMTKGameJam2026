@@ -1,6 +1,7 @@
 extends Control
 
 @onready var betButtons = $betIncreaseButtons.get_children()
+var currentBet = 0
 
 func increaseBet(amt: int):
 	print("clicked")
@@ -21,9 +22,14 @@ func _ready() -> void:
 func _on_play_button_button_down() -> void:
 	var check = get_tree().current_scene.startGame || null
 	if check != null:
+		if $playButton.flat == true:
+			get_tree().current_scene.bobTalk("You cant just bet nothing")
 		get_tree().current_scene.startGame.emit()
 
 func updateCounter(amt: int, show: bool = false, message: String = ""):
+	if amt > 0:
+		$playButton.flat = true
+	
 	if message != "":
 		$Label.text = message
 		await get_tree().create_timer(2).timeout

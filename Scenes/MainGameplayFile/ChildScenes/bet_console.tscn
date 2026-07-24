@@ -59,6 +59,7 @@ layout_mode = 0
 offset_top = 384.0
 offset_right = 512.0
 offset_bottom = 512.0
+flat = true
 
 [node name="Label" type="Label" parent="playButton" unique_id=741497095]
 layout_mode = 0
