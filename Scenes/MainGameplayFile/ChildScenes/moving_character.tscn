@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://cg77eac6hwpsp" path="res://Scenes/MainGameplayFile/Scripts/moving_character.gd" id="1_3q1cm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8tc0h"]
+radius = 0.4404297
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3q1cm"]
+radius = 0.38867188
 height = 1.2
 
 [node name="moving_character" type="CharacterBody3D" unique_id=943208249]
