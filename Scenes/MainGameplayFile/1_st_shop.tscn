@@ -5,15 +5,24 @@
 [ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="2_nkq4g"]
 [ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_5hgci"]
 [ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="4_dwl5t"]
+[ext_resource type="PackedScene" uid="uid://bad6d1lry27jc" path="res://Models_Art/nature_quaternous/FBX/Grass_Common_Tall.fbx" id="5_kxqrn"]
 [ext_resource type="PackedScene" uid="uid://cb7jwxee3xcte" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/cabinet_a_grp.tscn" id="6_0bqxw"]
+[ext_resource type="PackedScene" uid="uid://c1lcnh7uwjn68" path="res://Models_Art/nature_quaternous/FBX/Grass_Wispy_Tall.fbx" id="6_e6ubx"]
+[ext_resource type="PackedScene" uid="uid://brg6gh6n27lbh" path="res://Models_Art/nature_quaternous/FBX/RockPath_Round_Small_3.fbx" id="7_0qlwv"]
 [ext_resource type="PackedScene" uid="uid://cl6ws1ksdk402" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/shovel.tscn" id="7_tduwl"]
+[ext_resource type="PackedScene" uid="uid://daaahfriaqyeg" path="res://Models_Art/nature_quaternous/FBX/Flower_4_Group.fbx" id="8_4wm6e"]
 [ext_resource type="PackedScene" uid="uid://56hg60bj66pc" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/table_rect_a.tscn" id="8_iaf8e"]
+[ext_resource type="PackedScene" uid="uid://drao6ymjcb413" path="res://Models_Art/nature_quaternous/FBX/CommonTree_3.fbx" id="9_hrwc4"]
 [ext_resource type="Texture2D" uid="uid://ch0cobgjona8b" path="res://Models_Art/nature_quaternous/glTF/Bark_NormalTree.png" id="9_w313y"]
+[ext_resource type="PackedScene" uid="uid://bbgg8r5vgskfo" path="res://Models_Art/nature_quaternous/FBX/CommonTree_5.fbx" id="10_6d6t2"]
 [ext_resource type="PackedScene" uid="uid://c1bcjt85teug" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_c.tscn" id="10_w313y"]
 [ext_resource type="Material" uid="uid://cthe1ujqiqs6y" path="res://Models_Art/ModularWoodStructures/material/WoodPlanks_A.material" id="11_6f8ka"]
+[ext_resource type="PackedScene" uid="uid://cihhhpthjyti5" path="res://Models_Art/nature_quaternous/FBX/CommonTree_1.fbx" id="11_l3jff"]
+[ext_resource type="PackedScene" uid="uid://cwqd2e5p2gped" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_2.fbx" id="12_0qlwv"]
 [ext_resource type="PackedScene" uid="uid://f2v8gqhmkoyj" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_a.tscn" id="12_q6iku"]
 [ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
 [ext_resource type="Texture2D" uid="uid://iebu7bdpkg0w" path="res://Models_Art/Coin_tiles.png" id="14_q6iku"]
+[ext_resource type="PackedScene" uid="uid://bis4w7qskna3i" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_3.fbx" id="23_4wm6e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwl5t"]
 sky_top_color = Color(0.2709, 0.528255, 0.63, 1)
@@ -29,32 +38,39 @@ background_mode = 2
 sky = SubResource("Sky_xhdht")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.62965465, 0.6619973, 0.7123055, 1)
+fog_light_energy = 1.03
+fog_density = 0.0118
+fog_height = 234.37
+volumetric_fog_enabled = true
+volumetric_fog_detail_spread = 4.438277
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hgci"]
 albedo_color = Color(0.3010395, 0.3010395, 0.30103946, 1)
 albedo_texture = ExtResource("2_nkq4g")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dwl5t"]
-size = Vector2(40, 40)
+size = Vector2(70, 70)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkq4g"]
 albedo_color = Color(0.3019608, 0.23529412, 0.2, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nkq4g"]
-size = Vector2(40, 4)
+size = Vector2(70, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dwl5t"]
-size = Vector3(40, 1, 4)
+size = Vector3(70, 1, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhdht"]
-size = Vector3(40, 1, 40)
+size = Vector3(70, 1, 40)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwl5t"]
 radius = 3.05
 height = 11.134305
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwl5t"]
-radius = 3.1893847
+radius = 2.2725832
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f8ka"]
 albedo_texture = ExtResource("9_w313y")
@@ -113,7 +129,7 @@ animations = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q6iku"]
-size = Vector3(2.9717102, 2.4832764, 1.7018738)
+size = Vector3(2.9717102, 2.4832764, 1.8187103)
 
 [node name="1stShop" type="Node3D" unique_id=1418819911]
 script = ExtResource("1_xhdht")
@@ -150,6 +166,30 @@ shape = SubResource("BoxShape3D_dwl5t")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ground" unique_id=1814595527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5926962, 0)
 shape = SubResource("BoxShape3D_xhdht")
+
+[node name="Grass_Common_Tall" parent="ground" unique_id=1700672907 instance=ExtResource("5_kxqrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4602947, -0.061333887, 5.71976)
+
+[node name="Grass_Wispy_Tall" parent="ground" unique_id=1071035803 instance=ExtResource("6_e6ubx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.624817, -0.05664428, 5.770774)
+
+[node name="RockPath_Round_Small_3" parent="ground" unique_id=1257081744 instance=ExtResource("7_0qlwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50475746, -0.08489814, 6.2719326)
+
+[node name="Flower_4_Group" parent="ground" unique_id=168613072 instance=ExtResource("8_4wm6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.837571, -0.035698507, 4.7919226)
+
+[node name="CommonTree_3" parent="ground" unique_id=2092780835 instance=ExtResource("9_hrwc4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.385396, 0.15007652, 2.6072693)
+
+[node name="CommonTree_5" parent="ground" unique_id=1606863369 instance=ExtResource("10_6d6t2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.113284, -0.103495926, 13.040022)
+
+[node name="CommonTree_1" parent="ground" unique_id=1181683554 instance=ExtResource("11_l3jff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.019708, 0.15007608, 5.9349785)
+
+[node name="Rock_Medium_2" parent="ground" unique_id=1019581276 instance=ExtResource("12_0qlwv")]
+transform = Transform3D(1.6842165, 0, 0, 0, 1.7372508, 0, 0, 0, 1.3124851, -15.287453, -0.04185624, 15.309433)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=955493457]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 8.764929, 0.073, 8.87312)
@@ -543,8 +583,59 @@ text = "Money:   "
 [node name="Leave" type="Area3D" parent="." unique_id=1560285028]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Leave" unique_id=1211948187]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009231567, 1.6664174, 3.5491886)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009231567, 1.6664174, 3.607607)
 shape = SubResource("BoxShape3D_q6iku")
+
+[node name="Choice" type="CanvasLayer" parent="." unique_id=777941836]
+
+[node name="Panel" type="Panel" parent="Choice" unique_id=711136549]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Yes" type="Button" parent="Choice" unique_id=1409875992]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -100.0
+offset_right = -78.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "YES"
+
+[node name="No" type="Button" parent="Choice" unique_id=1042128600]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 77.0
+offset_top = -100.0
+offset_right = 170.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "NO"
+
+[node name="Rock_Medium_3" parent="." unique_id=685982538 instance=ExtResource("23_4wm6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.580193, -0.23930278, 1.861248)
+
+[node name="Rock_Medium_4" parent="." unique_id=1098138878 instance=ExtResource("23_4wm6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.687251, -0.030762106, 13.316374)
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
@@ -561,3 +652,5 @@ shape = SubResource("BoxShape3D_q6iku")
 [connection signal="pressed" from="shopUi/Thrid/TextureButton" to="." method="_on_texture_button_pressed3"]
 [connection signal="body_entered" from="Leave" to="." method="_on_leave_body_enteredLeave"]
 [connection signal="body_exited" from="Leave" to="." method="_on_leave_body_exitedLeave"]
+[connection signal="pressed" from="Choice/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Choice/No" to="." method="_on_no_pressed"]
