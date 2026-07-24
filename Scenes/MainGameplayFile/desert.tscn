@@ -100,24 +100,9 @@ emission_energy_multiplier = 2.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_a0es2"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_a0es2"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrckv"]
-radius = 0.66796875
-height = 2.1582031
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtnxb"]
-albedo_texture = ExtResource("5_iif4s")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ef62o"]
-albedo_color = Color(0.651762, 0.65176195, 0.65176195, 1)
-albedo_texture = ExtResource("5_iif4s")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q888p"]
-albedo_texture = ExtResource("5_iif4s")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a3u0"]
-albedo_texture = ExtResource("5_iif4s")
+radius = 0.3544922
+height = 2.5561523
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lyb5g"]
 resource_name = "Material"
@@ -159,6 +144,19 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v1a4f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtnxb"]
+albedo_texture = ExtResource("5_iif4s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ef62o"]
+albedo_color = Color(0.651762, 0.65176195, 0.65176195, 1)
+albedo_texture = ExtResource("5_iif4s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q888p"]
+albedo_texture = ExtResource("5_iif4s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a3u0"]
+albedo_texture = ExtResource("5_iif4s")
 
 [node name="desert" type="Node3D" unique_id=1970585400]
 script = ExtResource("1_0b6bn")
@@ -322,13 +320,13 @@ mesh = ExtResource("10_xrckv")
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1569557713]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2247715, 0.17518532, 8.363628)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1655638552]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049800873, 1, 0)
-mesh = SubResource("CapsuleMesh_a0es2")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1736710304]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.082006454, 1.0097816, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01652813, 1.2087562, 0)
 shape = SubResource("CapsuleShape3D_xrckv")
+
+[node name="bob" type="MeshInstance3D" parent="CharacterBody3D" unique_id=926299774]
+transform = Transform3D(1.2, 0, 0, 0, 0.921, 0, 0, 0, 0.522, 0.009841442, 0.32911813, 0.033582687)
+mesh = SubResource("ArrayMesh_ef62o")
 
 [node name="Mushroom_Common" parent="." unique_id=1923998035 instance=ExtResource("14_735ui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5453777, 0.66527337, -3.2543283)
@@ -352,10 +350,6 @@ mesh = ExtResource("16_xtnxb")
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -25.151382, -0.6315559, -22.364746)
 material_override = SubResource("StandardMaterial3D_5a3u0")
 mesh = ExtResource("15_735ui")
-
-[node name="bob" type="MeshInstance3D" parent="." unique_id=926299774]
-transform = Transform3D(1.4, 0, 0, 0, 1.075, 0, 0, 0, 0.609, -3.526919, 0.7574469, -0.60238457)
-mesh = SubResource("ArrayMesh_ef62o")
 
 [connection signal="body_entered" from="interact_area_ticket" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="interact_area_ticket" to="." method="_on_body_exited"]

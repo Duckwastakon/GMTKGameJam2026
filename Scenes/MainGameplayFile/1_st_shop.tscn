@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwc31vyuivir1"]
 
 [ext_resource type="PackedScene" uid="uid://ch4qq4e3bm5j5" path="res://Models_Art/ModularWoodStructures/scenes/Builds/build_7.tscn" id="1_2nf72"]
+[ext_resource type="Script" uid="uid://nrnt5tpqe823" path="res://Scenes/MainGameplayFile/1_st_shop.gd" id="1_xhdht"]
 [ext_resource type="Texture2D" uid="uid://d1un05m1s1yve" path="res://Models_Art/nature_quaternous/Textures/Rocks_Desert_Diffuse.png" id="2_nkq4g"]
 [ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_5hgci"]
 [ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="4_dwl5t"]
@@ -43,7 +44,11 @@ size = Vector3(40, 1, 40)
 radius = 3.05
 height = 11.134305
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_dwl5t"]
+radius = 3.3952277
+
 [node name="1stShop" type="Node3D" unique_id=1418819911]
+script = ExtResource("1_xhdht")
 
 [node name="asset" type="Node3D" parent="." unique_id=2003755375]
 
@@ -57,7 +62,7 @@ shadow_enabled = true
 [node name="Build_7" parent="." unique_id=272169497 instance=ExtResource("1_2nf72")]
 
 [node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("4_dwl5t")]
-transform = Transform3D(0.9304367, 0, 0.36645266, 0, 1, 0, -0.36645266, 0, 0.9304367, 4.3656225, 0.46036935, 9.924257)
+transform = Transform3D(0.9304368, 0, 0.3664527, -0.00017268673, 0.9999999, 0.0004384579, -0.36645266, -0.00047123892, 0.9304367, 4, 0.5, 10)
 
 [node name="ground" type="StaticBody3D" parent="." unique_id=505013201]
 
@@ -123,3 +128,42 @@ offset_top = 25.0
 offset_right = 46.0
 offset_bottom = 135.0
 theme_override_font_sizes/font_size = 80
+
+[node name="Info" type="CanvasLayer" parent="." unique_id=1092292374]
+
+[node name="info" type="Panel" parent="Info" unique_id=1226310012]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 119.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoText" type="Label" parent="Info/info" unique_id=1960357067]
+layout_mode = 0
+offset_left = 100.0
+offset_top = -1.0
+offset_right = 200.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 45
+
+[node name="Door" type="Area3D" parent="." unique_id=908135722]
+
+[node name="door" type="CollisionShape3D" parent="Door" unique_id=363206468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476063, 4.5110135)
+shape = SubResource("SphereShape3D_dwl5t")
+
+[node name="black" type="CanvasLayer" parent="." unique_id=1750686813]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="black" unique_id=323950508]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
+[connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
