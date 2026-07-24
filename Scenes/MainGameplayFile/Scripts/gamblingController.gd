@@ -17,7 +17,11 @@ signal editInteractMessage
 signal finishGame
 signal playerDone
 
+signal reachEndSignal
+
 var betAmount = 0
+
+var debt: int = 0
 
 signal addBet
 signal betChanged
@@ -200,6 +204,8 @@ func _ready() -> void:
 			
 			await get_tree().create_timer(3).timeout
 			
+			wonCash -= debt
+			debt = 0
 			Global.addCash(wonCash)
 			betChanged.emit(0)
 		else:
@@ -207,12 +213,14 @@ func _ready() -> void:
 		
 		betAmount = 0
 		await discardCards()
+		if debt > 0:
+			if Global.cash < debt:
+				looseGame()
+			else:
+				Global.cash -= debt
+				debt = 0
 		gameActive = false
 		print("roundDone")
-
-
-func _on_cash_timer_timeout() -> void:
-	Global.addCash(-10)
 
 func betAdded(amount: int):
 	if(gameActive): return
@@ -330,3 +338,9 @@ func getCard(card: StaticBody3D, num: int):
 	for c in card.get_children():
 		if c is MeshInstance3D:
 			c.mesh = newCard.mesh
+
+func looseGame():
+	print("Loose")
+
+func _on_reach_end_signal() -> void:
+	pass
