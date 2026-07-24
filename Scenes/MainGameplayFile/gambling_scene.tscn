@@ -64,6 +64,9 @@
 [ext_resource type="ArrayMesh" uid="uid://cp0olkc42g3er" path="res://Models_Art/models/cards/obj/card_spades_three.obj" id="63_f1u5h"]
 [ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://Models_Art/models/cards/obj/card_spades_two.obj" id="64_dltly"]
 [ext_resource type="Texture2D" uid="uid://qowbxwhdauwu" path="res://Models_Art/models/bob_Material Base Color.png" id="64_v1a4f"]
+[ext_resource type="Script" uid="uid://d30a1188cwr6n" path="res://Scenes/MainGameplayFile/Scripts/itemSetup.gd" id="65_f18wc"]
+[ext_resource type="PackedScene" uid="uid://cjbyyab87agf0" path="res://Scenes/MainGameplayFile/ChildScenes/item.tscn" id="65_k3xgq"]
+[ext_resource type="PackedScene" uid="uid://bma5phjgbgen0" path="res://Scenes/MainGameplayFile/ChildScenes/distance_debt.tscn" id="67_uvtci"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
 size = Vector3(0.1, 0.025, 0.1)
@@ -138,6 +141,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v1a4f")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_uvtci"]
+viewport_path = NodePath("importantDataDisplay/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q21dg"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_uvtci")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q21dg"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_q21dg")
+size = Vector2(0.8, 0.8)
+
 [node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("playerCardContainer", "opponentCardContainer", "usedPile")]
 script = ExtResource("1_psac4")
 playerCardContainer = NodePath("playerContainer")
@@ -156,10 +171,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -0.1)
 
 [node name="usedPile" parent="." unique_id=1032281384 instance=ExtResource("4_no7qd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.55, 0)
-
-[node name="cashTimer" type="Timer" parent="." unique_id=813787386]
-wait_time = 10.0
-autostart = true
 
 [node name="hitButton" type="StaticBody3D" parent="." unique_id=23821579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.64, 0.42)
@@ -204,7 +215,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.8, 0, -0.4)
 mesh = ExtResource("10_rq8od")
 
 [node name="betConsole" type="MeshInstance3D" parent="." unique_id=1381425050]
-transform = Transform3D(0.21213204, 0.14999999, 0.15, 0, 0.21213204, -0.21213207, -0.21213204, 0.14999999, 0.15, -0.4145376, 0.74375784, 0.27631667)
+transform = Transform3D(0.2883482, 0.058546253, 0.05854626, 0, 0.21213204, -0.21213207, -0.0827969, 0.20389295, 0.20389298, -0.4145376, 0.74375784, 0.2863659)
 mesh = ExtResource("11_5cil1")
 surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
 surface_material_override/1 = SubResource("StandardMaterial3D_5cil1")
@@ -450,7 +461,37 @@ transform = Transform3D(1, 0, 0, 0, 0.81811965, 0.5750481, 0, -0.5750481, 0.8181
 light_energy = 3.0
 sky_mode = 1
 
-[connection signal="timeout" from="cashTimer" to="." method="_on_cash_timer_timeout"]
+[node name="item" type="Node3D" parent="." unique_id=1753627350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6264612, 0.70317036, 0.30323553)
+script = ExtResource("65_f18wc")
+
+[node name="Item" parent="item" unique_id=767929299 instance=ExtResource("65_k3xgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005035758, 0.030329645, 0.051756978)
+
+[node name="Item2" parent="item" unique_id=280384621 instance=ExtResource("65_k3xgq")]
+transform = Transform3D(0.9346086, 0, 0.35567796, 0, 1, 0, -0.35567796, 0, 0.9346086, -0.19456029, 0.030329645, -0.5020791)
+
+[node name="Item3" parent="item" unique_id=1397786262 instance=ExtResource("65_k3xgq")]
+transform = Transform3D(0.97149533, 0, -0.23705858, 0, 1, 0, 0.23705858, 0, 0.97149533, 0.023558915, 0.030329645, -0.43589562)
+
+[node name="importantDataDisplay" type="MeshInstance3D" parent="." unique_id=23713951]
+transform = Transform3D(0.18793853, -0.011697777, -0.022497565, 0, 0.09396926, -0.023941409, 0.06840403, 0.03213938, 0.061811555, 0.36673123, 0.6603527, 0.3877287)
+mesh = ExtResource("11_5cil1")
+surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
+surface_material_override/1 = SubResource("StandardMaterial3D_5cil1")
+surface_material_override/2 = SubResource("StandardMaterial3D_xncwk")
+
+[node name="SubViewport" type="SubViewport" parent="importantDataDisplay" unique_id=2038698159]
+size = Vector2i(512, 128)
+
+[node name="distance_debt" parent="importantDataDisplay/SubViewport" unique_id=1123226043 node_paths=PackedStringArray("mainController") instance=ExtResource("67_uvtci")]
+mainController = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="importantDataDisplay" unique_id=1281135274]
+transform = Transform3D(0.9999999, 7.450581e-09, 1.4901161e-08, 1.4901161e-08, 0.9999999, 2.9802322e-08, 0, -5.9604645e-08, 0.99999994, 0, 0.151, -0.076)
+mesh = SubResource("PlaneMesh_q21dg")
+
+[connection signal="reachEndSignal" from="." to="." method="_on_reach_end_signal"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]
 [connection signal="input_event" from="standButton" to="." method="_on_stand_button_input_event"]
 [connection signal="input_event" from="betConsole/StaticBody3D" to="betConsole/StaticBody3D" method="_on_input_event"]

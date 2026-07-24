@@ -8,15 +8,20 @@ var opponentsCards: Array[int]
 @export var usedPile: Node3D
 @onready var deckNode = $deck
 
-const specialAbilities = ["destroy", "upgrade", "forcePickup", "downgrade", "checkNextCard", "checkOppCard"]
-var clickPower = "upgrade"
+const specialAbilities = ["destroy", "upgrade", "forcePickup", "downgrade", "checkNextCard", "checkOppCard", "skipNextLoss"]
+var clickPower = ""
 
 var deck = []
 
+signal editInteractMessage
 signal finishGame
 signal playerDone
 
+signal reachEndSignal
+
 var betAmount = 0
+
+var debt: int = 0
 
 signal addBet
 signal betChanged
@@ -24,6 +29,8 @@ signal startGame
 
 signal distracted
 signal cardDrawn
+
+signal useItem
 
 var canDraw = false
 var gameActive = false
@@ -154,8 +161,9 @@ func drawCard(arr: Array[int], cont, hidden = false):
 	deck.pop_at(0)
 	
 	cardDrawn.emit()
+	connect("editInteractMessage", newCard.updateText)
 	connect("distracted", newCard.setDistracted)
-	#newCard.connect("input_event", usePowerOnCard.bind(newCard, arr, arr.size() - 1, cont, newCard.cheat))
+	newCard.connect("input_event", usePowerOnCard.bind(newCard, arr, arr.size() - 1, cont, newCard.cheat))
 	newCard.connect("destroyCard", destroyCard.bind(newCard,arr, arr.size()-1,cont))
 	return newCard
 
@@ -196,6 +204,8 @@ func _ready() -> void:
 			
 			await get_tree().create_timer(3).timeout
 			
+			wonCash -= debt
+			debt = 0
 			Global.addCash(wonCash)
 			betChanged.emit(0)
 		else:
@@ -203,12 +213,14 @@ func _ready() -> void:
 		
 		betAmount = 0
 		await discardCards()
+		if debt > 0:
+			if Global.cash < debt:
+				looseGame()
+			else:
+				Global.cash -= debt
+				debt = 0
 		gameActive = false
 		print("roundDone")
-
-
-func _on_cash_timer_timeout() -> void:
-	Global.addCash(-10)
 
 func betAdded(amount: int):
 	if(gameActive): return
@@ -253,14 +265,29 @@ func destroyCard(card: StaticBody3D, arr: Array, pos: int, cont):
 	
 	drawCard(arr, cont, false)
 
-func specialPower():
-	pass
+func specialPower(power: String):
+	if power == "forcePickup":
+		useItem.emit()
+		drawCard(opponentsCards, opponentCardContainer, false)
+	elif power == "checkOpponentsCard":
+		for c in opponentCardContainer.get_children():
+			c.showCard.emit()
+		useItem.emit()
+	elif power == "checkNextCard":
+		useItem.emit()
+		pass
+	elif power == "skipNextLoss":
+		useItem.emit()
+		pass
+	else:
+		clickPower = power
 
 func usePowerOnCard(_a, event: InputEvent, _c, _d, _e, card, arr: Array, pos: int, cont, cardSignal: Signal):
 	if event is not InputEventMouseButton: return
 	if event.pressed:
 		if(clickPower=="destroy"):
 			destroyCard(card, arr, pos, cont)
+			useItem.emit()
 		elif(clickPower=="upgrade"):
 			var currentNum = arr[pos]
 			if currentNum >= 11:
@@ -270,6 +297,8 @@ func usePowerOnCard(_a, event: InputEvent, _c, _d, _e, card, arr: Array, pos: in
 		
 			arr[pos] = currentNum
 			getCard(card, currentNum)
+			
+			useItem.emit()
 		elif(clickPower=="downgrade"):
 			var currentNum = arr[pos]
 			if currentNum <= 1:
@@ -277,10 +306,18 @@ func usePowerOnCard(_a, event: InputEvent, _c, _d, _e, card, arr: Array, pos: in
 			else:
 				currentNum -= 1
 			arr[pos] = currentNum
+			getCard(card, currentNum)
+			
+			useItem.emit()
 		else:
-			cardSignal.emit()
+			cardSignal.emit(event)
+		
+		if clickPower != "":
+			useItem.emit()
+			editInteractMessage.emit("")
+			clickPower = ""
 	else:
-		cardSignal.emit()
+		cardSignal.emit(event)
 
 func getCard(card: StaticBody3D, num: int):
 	var cardName: String
@@ -296,10 +333,14 @@ func getCard(card: StaticBody3D, num: int):
 			stringEnd = i
 	
 	var newString = splitName[0]+"_"+stringEnd
-	print(newString)
 	var newCard = $allPossibleCards.get_node(newString)
 	$allPossibleCards.get_node("CardClubs_Ace")
 	for c in card.get_children():
 		if c is MeshInstance3D:
 			c.mesh = newCard.mesh
-			
+
+func looseGame():
+	print("Loose")
+
+func _on_reach_end_signal() -> void:
+	pass

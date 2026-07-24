@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-var distracted = true
+var distracted = false
 var showing = false
 
 var topCard: MeshInstance3D
@@ -15,6 +15,11 @@ func setDistracted(val: bool):
 	distracted = val
 	if showing:
 		showing = val
+	
+	if val:
+		$Label3D.text = "peek next card"
+	else:
+		$Label3D.text = ""
 
 func discardTopCard():
 	if topCard:
@@ -49,9 +54,10 @@ func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, n
 					await get_tree().create_timer(0.02).timeout
 
 func _on_mouse_entered() -> void:
-	pass # Replace with function body.
+	$Label3D.visible = true
 
 func _on_mouse_exited() -> void:
+	$Label3D.visible = false
 	if showing and topCard != null: 
 		showing = false
 		while(self.rotation_degrees != Vector3(90,0, 0) and !showing and topCard != null):
