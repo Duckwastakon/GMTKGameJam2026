@@ -64,6 +64,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cp0olkc42g3er" path="res://Models_Art/models/cards/obj/card_spades_three.obj" id="63_f1u5h"]
 [ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://Models_Art/models/cards/obj/card_spades_two.obj" id="64_dltly"]
 [ext_resource type="Texture2D" uid="uid://qowbxwhdauwu" path="res://Models_Art/models/bob_Material Base Color.png" id="64_v1a4f"]
+[ext_resource type="PackedScene" uid="uid://cjbyyab87agf0" path="res://Scenes/MainGameplayFile/ChildScenes/item.tscn" id="65_k3xgq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
 size = Vector3(0.1, 0.025, 0.1)
@@ -449,6 +450,18 @@ mesh = SubResource("ArrayMesh_k3xgq")
 transform = Transform3D(1, 0, 0, 0, 0.81811965, 0.5750481, 0, -0.5750481, 0.81811965, 0, 1.8246052, 2.3031235)
 light_energy = 3.0
 sky_mode = 1
+
+[node name="item" type="Node3D" parent="." unique_id=1753627350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6264612, 0.70317036, 0.30323553)
+
+[node name="Item" parent="item" unique_id=767929299 instance=ExtResource("65_k3xgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11538869, 0.030329645, 0.07832593)
+
+[node name="Item2" parent="item" unique_id=280384621 instance=ExtResource("65_k3xgq")]
+transform = Transform3D(0.9346086, 0, 0.35567796, 0, 1, 0, -0.35567796, 0, 0.9346086, -0.19456029, 0.030329645, -0.5020791)
+
+[node name="Item3" parent="item" unique_id=1397786262 instance=ExtResource("65_k3xgq")]
+transform = Transform3D(0.97149533, 0, -0.23705858, 0, 1, 0, 0.23705858, 0, 0.97149533, 0.023558915, 0.030329645, -0.43589562)
 
 [connection signal="timeout" from="cashTimer" to="." method="_on_cash_timer_timeout"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]

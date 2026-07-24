@@ -8,6 +8,9 @@ var hidden = false
 var showing = false
 var distracted = true
 
+func _ready() -> void:
+	connect("cheat", clickedCard)
+
 func setDistracted(val: bool):
 	distracted = val
 	if showing and !val and hidden:
@@ -35,24 +38,22 @@ func setCard(card: MeshInstance3D, hid: bool):
 		newTween.tween_property(self, "rotation_degrees", Vector3(-45,0,0), 0.5)
 		newTween.play()
 
-func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	if event is InputEventMouseButton and distracted:
-		if event.pressed:
-			
-			if hidden:
-				print(hidden)
-				showing = true
-				while(showing):
-					rotation_degrees = lerp(rotation_degrees, Vector3(-45,0,0), 0.25)
-					await get_tree().create_timer(0.02).timeout
-			else:
-				destroyCard.emit()
+func clickedCard(event):
+	if event.pressed:
+		if hidden:
+			showing = true
+			while(showing):
+				rotation_degrees = lerp(rotation_degrees, Vector3(-45,0,0), 0.25)
+				await get_tree().create_timer(0.02).timeout
 		else:
-			if showing and hidden: 
-				showing = false
-				while(self.rotation_degrees != Vector3(-45-180,0, 0) and !showing):
-					rotation_degrees = lerp(rotation_degrees, Vector3(-45-180,0, 0), 0.25)
-					await get_tree().create_timer(0.02).timeout
+			destroyCard.emit()
+	else:
+		if showing and hidden: 
+			showing = false
+			while(self.rotation_degrees != Vector3(-45-180,0, 0) and !showing):
+				rotation_degrees = lerp(rotation_degrees, Vector3(-45-180,0, 0), 0.25)
+				await get_tree().create_timer(0.02).timeout
+
 
 func _on_mouse_exited() -> void:
 	if showing: 
