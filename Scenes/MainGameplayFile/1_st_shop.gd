@@ -21,6 +21,8 @@ var has_opened_shop = false
 var intro_playing = false
 
 func _ready() -> void:
+	var todays_items = Global.roll("shop_1")
+	update_shop_ui(todays_items)
 	shop_ui.visible = false
 	player_camera.current = true
 	black_rect.modulate.a = 0.0
@@ -38,6 +40,11 @@ func _ready() -> void:
 	await get_tree().create_timer(2.5).timeout
 	ui.visible = false
 	inside = true
+
+func update_shop_ui(item_names: Array[String]):
+	$shopUi/First/LabelFirst.text = item_names[0] if item_names.size() > 0 else ""
+	$shopUi/Second/LabelSecond.text = item_names[1] if item_names.size() > 1 else ""
+	$shopUi/Thrid/LabelThird.text = item_names[2] if item_names.size() > 2 else ""
 
 func _process(delta: float) -> void:
 	if has_entered == false and entering == true:
