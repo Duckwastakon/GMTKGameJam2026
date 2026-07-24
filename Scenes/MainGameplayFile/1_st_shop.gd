@@ -1,5 +1,4 @@
 extends Node3D
-
 @onready var dialog_text: Label = $UI/DigitalBox/DialogText
 @onready var digital_box: Panel = $UI/DigitalBox
 @onready var who: Label = $UI/DigitalBox/ColorRect/Who
@@ -9,17 +8,24 @@ extends Node3D
 @onready var character: CharacterBody3D = $moving_character
 @onready var shop_camera: Camera3D = $Dobbo/ShopCamera
 @onready var shop_ui: CanvasLayer = $shopUi
-@onready var player_camera: Camera3D = $head/Camera3D
+@onready var player_camera: Camera3D = $moving_character/head/Camera3D
 
-var entering = false ; var has_entered = false;
-var inside = false;
+var entering = false
+var has_entered = false
+var inside = false
+var q = 0
+var firsttime = true
+var first = true
+var can_buy = false
+var has_opened_shop = false
+var intro_playing = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player_camera.current = true 
+	shop_ui.visible = false
+	player_camera.current = true
 	black_rect.modulate.a = 0.0
 	black_rect.visible = false
-	character.position.x = 4; character.position.y = 0.5; character.position.z = 10; 
+	character.position.x = 4; character.position.y = 0.5; character.position.z = 10
 	info.visible = false
 	ui.visible = false
 	await get_tree().create_timer(1.0).timeout
@@ -33,35 +39,41 @@ func _ready() -> void:
 	ui.visible = false
 	inside = true
 
-var q =0
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if has_entered == false and entering == true:
 		if Input.is_action_just_pressed('interract'):
-			info.visible = false ; inside = true ; has_entered = true
+			info.visible = false; inside = true; has_entered = true
 			await fade_to_black()
 			character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
 			await fade_from_black()
-			
+
+	if can_buy == true and not has_opened_shop and not intro_playing:
+		info.visible = true
+		$Info/info/InfoText.text = 'Press Q to look at his stock'
+
 	if can_buy == true:
 		if Input.is_action_just_pressed('Q') and q == 0:
-			shop_camera.current = true  # switches active camera
-			character.set_physics_process(false)  # freeze player movement
-			#generate_random_items()  # pick 3 items from your item pool
 			shop_ui.visible = true
+			shop_camera.current = true
+			character.set_physics_process(false)
+			has_opened_shop = true
+			info.visible = false
 			q = 1
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		elif Input.is_action_just_pressed('Q') and q == 1:
-			q=0
-			player_camera.current = true  # switch back
-			character.set_physics_process(true)
 			shop_ui.visible = false
-			
+			q = 0
+			player_camera.current = true
+			character.set_physics_process(true)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _on_door_body_entered(body: Node3D) -> void:
 	if has_entered == false:
 		if body.name == "moving_character":
 			$Info/info/InfoText.text = "press e to enter the shop"
 			info.visible = true
 			entering = true
+
 func _on_door_body_exited(body: Node3D) -> void:
 	if body.name == "moving_character":
 		$Info/info/InfoText.text = ""
@@ -80,22 +92,35 @@ func fade_from_black():
 	await tween.finished
 	black_rect.visible = false
 
-var first= true;
-var can_buy = false
 func _on_dobbo_body_entered(body: Node3D) -> void:
-	if body.name == "moving_character" and first == true:
-		who.text = "Dobbo"
-		dialog_text.text = "Hey.. just buy something or leave.."
-		ui.visible = true
-		await get_tree().create_timer(2.5).timeout
-		ui.visible = false
-		info.text = 'Use this time to prepare for the next game'
-		info.visivle = true
-		await get_tree().create_timer(2.5).timeout
-		info.text = 'See if Dobbo has anything of use to you'
-		await get_tree().create_timer(2.5).timeout
-		can_buy = true;
+	if body.name == "moving_character":
+		if first == true:
+			first = false
+			intro_playing = true
+			who.text = "Dobbo"
+			dialog_text.text = "Hey.. just buy something or leave.."
+			ui.visible = true
+			await get_tree().create_timer(2.5).timeout
+			ui.visible = false
+			await infoAdd()
+			intro_playing = false
+		can_buy = true
+
+func infoAdd():
+	info.visible = true
+	$Info/info/InfoText.text = 'Use this time to prepare for the next game'
+	await get_tree().create_timer(2.5).timeout
+	$Info/info/InfoText.text = 'See if Dobbo has anything of use to you'
+	await get_tree().create_timer(2.5).timeout
+	show_q_reminder()
+
+func show_q_reminder():
+	if not has_opened_shop:
+		info.visible = true
+		$Info/info/InfoText.text = 'Press Q to look at his stock'
 
 func _on_dobbo_body_exited(body: Node3D) -> void:
 	if body.name == "moving_character":
-		can_buy = false;
+		can_buy = false
+		if not has_opened_shop:
+			info.visible = false

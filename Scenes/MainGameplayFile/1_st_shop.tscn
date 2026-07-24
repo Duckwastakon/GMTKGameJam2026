@@ -53,7 +53,7 @@ radius = 3.05
 height = 11.134305
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwl5t"]
-radius = 2.910119
+radius = 3.1893847
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f8ka"]
 albedo_texture = ExtResource("9_w313y")
@@ -122,16 +122,16 @@ grow_vertical = 0
 
 [node name="DialogText" type="Label" parent="UI/DigitalBox" unique_id=291748275]
 layout_mode = 0
-offset_left = 211.0
+offset_left = 352.0
 offset_top = 26.0
-offset_right = 251.0
+offset_right = 392.0
 offset_bottom = 136.0
 theme_override_font_sizes/font_size = 75
 
 [node name="ColorRect" type="ColorRect" parent="UI/DigitalBox" unique_id=1487513772]
 layout_mode = 0
 offset_left = 1.0
-offset_right = 193.0
+offset_right = 336.0
 offset_bottom = 165.0
 color = Color(0.13355187, 0.13355187, 0.13355187, 1)
 
@@ -169,6 +169,7 @@ shape = SubResource("SphereShape3D_dwl5t")
 
 [node name="black" type="CanvasLayer" parent="." unique_id=1750686813]
 layer = 10
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="black" unique_id=323950508]
 anchors_preset = 15
@@ -218,6 +219,88 @@ shape = SubResource("SphereShape3D_6f8ka")
 transform = Transform3D(-0.014224001, -0.9454787, 0.32537317, -0.001997284, 0.3254323, 0.94556326, -0.9998969, 0.012799829, -0.0065173386, -3.6249423, 1.6889863, 3.0515952)
 
 [node name="shopUi" type="CanvasLayer" parent="." unique_id=783866916]
+
+[node name="Panel" type="Panel" parent="shopUi" unique_id=1215711219]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -186.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="First" type="Panel" parent="shopUi" unique_id=798419240]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -170.5
+offset_right = 341.0
+offset_bottom = 170.5
+grow_vertical = 2
+
+[node name="LabelFirst" type="Label" parent="shopUi/First" unique_id=1436504459]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 15.0
+offset_right = 340.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 40
+text = "First item"
+horizontal_alignment = 1
+
+[node name="One" type="Marker2D" parent="shopUi/First" unique_id=398093551]
+position = Vector2(170.5, 170.5)
+
+[node name="Second" type="Panel" parent="shopUi" unique_id=889225588]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -170.5
+offset_right = 170.5
+offset_bottom = 170.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelSecond" type="Label" parent="shopUi/Second" unique_id=798607267]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 12.0
+offset_right = 341.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 40
+text = "Second  item"
+horizontal_alignment = 1
+
+[node name="Two" type="Marker2D" parent="shopUi/Second" unique_id=1389179159]
+position = Vector2(170.5, 170.5)
+
+[node name="Thrid" type="Panel" parent="shopUi" unique_id=1883164158]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -341.0
+offset_top = -170.5
+offset_bottom = 170.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LabelThird" type="Label" parent="shopUi/Thrid" unique_id=1748902070]
+layout_mode = 0
+offset_top = 15.0
+offset_right = 340.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 40
+text = "Third  item"
+horizontal_alignment = 1
+
+[node name="Three" type="Marker2D" parent="shopUi/Thrid" unique_id=527171468]
+position = Vector2(170.5, 170.5)
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
