@@ -2,7 +2,6 @@ extends Node3D
 @onready var car: RigidBody3D = $car
 @onready var camera: Camera3D = $car/Camera3D
 @onready var character: CharacterBody3D = $moving_character
-@onready var path_follow: PathFollow3D = $car/Path3D/PathFollow3D
 @onready var player_camera: Camera3D = $moving_character/head/Camera3D
 @onready var one: Area3D = $"Node3envD/house/1"
 @onready var two: Area3D = $"Node3envD/house/2"
@@ -15,8 +14,10 @@ extends Node3D
 const Czstart = 503.851; const Czmid = 154.837 ; 
 const Czend = -9.186; const Cyend = 74.526 ; const Cr = deg_to_rad(26.0)
 const Czspin = -29.002; const Cyspin = 83.787  ; const Crs = deg_to_rad(-26.0) ; const Crsy = deg_to_rad(-180)
+var ONE = false; var TWO = false; var THREE = false; var FOUR = false; var FIVE = false; var SIX = false; 
 
 func _ready() -> void:
+	ONE = false; TWO = false; THREE = false; FOUR = false; FIVE = false; SIX = false; 
 	one.visible = false;two.visible = false;three.visible = false;four.visible = false;five.visible = false;six.visible = false;
 	camera.current = true ; car.freeze = true ; character.set_physics_process(false)
 	
@@ -96,10 +97,61 @@ func launch_to_target(start_pos: Vector3, target_pos: Vector3, arc_height: float
 	var horizontal_velocity = Vector3(displacement.x, 0, displacement.z) / duration
 	return horizontal_velocity + Vector3.UP * vertical_velocity
 
+func finnish():
+	print('this worked. finnish')
+	get_tree().quit()
 
 func roll():
 	var num = randi_range(1, 6)
 	var which = [one, two, three, four, five, six]
 	var home = which[num - 1]
 	home.visible = true;
-	
+	if home == one:
+		ONE = true
+	elif home == two:
+		TWO = true
+	elif home == three:
+		THREE = true
+	elif home == four:
+		FOUR = true
+	elif home == five:
+		FIVE = true
+	elif home == six:
+		SIX == true;
+
+func _on__body_entered1(body: Node3D) -> void:
+	if body.name == "moving_character" and ONE == true:
+		print('one is active')
+		finnish()
+	else:
+		return
+func _on__body_entered2(body: Node3D) -> void:
+	if body.name == "moving_character" and TWO == true:
+		finnish()
+		print('one is active')
+	else:
+		return
+func _on__body_entered3(body: Node3D) -> void:
+	if body.name == "moving_character" and THREE == true:
+		finnish()
+		print('one is active')
+	else:
+		return
+func _on__body_entered4(body: Node3D) -> void:
+	if body.name == "moving_character" and FOUR == true:
+		finnish()
+		print('one is active')
+	else:
+		return
+func _on__body_entered5(body: Node3D) -> void:
+	if body.name == "moving_character" and FIVE == true:
+		finnish()
+		print('one is active')
+	else:
+		return
+func _on__body_exited5(body: Node3D) -> void:
+	if body.name == "moving_character" and SIX == true:
+		finnish()
+		print('one is active')
+	else:
+		return
