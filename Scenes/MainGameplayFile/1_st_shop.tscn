@@ -286,25 +286,6 @@ offset_right = 46.0
 offset_bottom = 135.0
 theme_override_font_sizes/font_size = 40
 
-[node name="Info" type="CanvasLayer" parent="." unique_id=1092292374]
-
-[node name="info" type="Panel" parent="Info" unique_id=1226310012]
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 50.0
-offset_bottom = 119.0
-grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="InfoText" type="Label" parent="Info/info" unique_id=1960357067]
-layout_mode = 0
-offset_left = 100.0
-offset_top = -1.0
-offset_right = 200.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 45
-autowrap_mode = 1
-
 [node name="black" type="CanvasLayer" parent="." unique_id=1750686813]
 layer = 10
 
@@ -807,6 +788,25 @@ shape = SubResource("SphereShape3D_6f8ka")
 
 [node name="ShopCamera" type="Camera3D" parent="Dobbo" unique_id=844350551]
 transform = Transform3D(-0.014224001, -0.9454787, 0.32537317, -0.001997284, 0.3254323, 0.94556326, -0.9998969, 0.012799829, -0.0065173386, -3.6249423, 1.6889863, 3.0515952)
+
+[node name="Info" type="CanvasLayer" parent="." unique_id=2061670443]
+
+[node name="info" type="Panel" parent="Info" unique_id=916532645]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 119.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoText" type="Label" parent="Info/info" unique_id=2040377991]
+layout_mode = 0
+offset_left = 100.0
+offset_top = -1.0
+offset_right = 200.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 45
+autowrap_mode = 1
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
