@@ -17,12 +17,14 @@ func setNextPayoutBar(extra: int):
 var lastPayment: int
 
 func _ready() -> void:
-	var finishTween = create_tween()
-	finishTween.tween_property($background/fillIn, "scale", Vector2(1,1), fullRideTime)
-	finishTween.play()
 	if mainController:
+		await mainController.finishTutorial
+		var finishTween = create_tween()
+		finishTween.tween_property($background/fillIn, "scale", Vector2(1,1), fullRideTime)
+		finishTween.play()
+	
 		$cashPaymentTimer.start()
-		var nextPaymentTime = 10 + randi_range(-3, 3)
+		var nextPaymentTime = 30 + randi_range(-3, 3)
 		var nextPaymentAmount = int(basePaymentAmount * randf_range(0.9, 1.1))
 		
 		$paymentInfo.text = "next payment: " + str(nextPaymentAmount) + "$"

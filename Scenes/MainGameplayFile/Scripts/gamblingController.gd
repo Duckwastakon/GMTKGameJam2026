@@ -36,6 +36,8 @@ signal cardDrawn
 signal useItem
 signal roundFinished
 
+signal finishTutorial
+
 var canDraw = false
 var gameActive = false
 
@@ -149,6 +151,62 @@ func countSum(arr):
 	
 	return num
 
+@onready var indArrow = $indicatorArrow
+
+func tutorial():
+	indArrow.visible = true
+	indArrow.rotation_degrees = Vector3(0, -15, 0)
+	indArrow.global_position = $importantDataDisplay.global_position + Vector3(0, 0.2, 0)
+	Bob.talk("here you can see how
+	far we are")
+	await Bob.finishedTalking
+	var newTween = create_tween()
+	newTween.tween_property(indArrow, "global_position", opponentCardContainer.global_position + Vector3(0, 0.3, 0), 1)
+	newTween.play()
+	indArrow.rotation = opponentCardContainer.rotation
+	await newTween.finished
+	Bob.talk("The simple game of 21")
+	drawCard(opponentsCards, opponentCardContainer)
+	await get_tree().create_timer(0.5).timeout
+	drawCard(playersCards, playerCardContainer)
+	await get_tree().create_timer(0.5).timeout
+	drawCard(opponentsCards, opponentCardContainer)
+	await get_tree().create_timer(0.5).timeout
+	drawCard(playersCards, playerCardContainer)
+	Bob.talk("the person whos cards add up closest to 21
+	but don't go over wins")
+	var playerSum = countSum(playersCards)
+	var opponentsSum = countSum(opponentsCards)
+	Bob.talk("you have " + str(playerSum) + " points
+	I have " + str(opponentsSum) + " points")
+	
+	if playerSum>opponentsSum:
+		Bob.talk("Here you would win")
+	else:
+		Bob.talk("Here I would win")
+	
+	Bob.talk("do NOT try to cheat when I am looking")
+	await Bob.finishedTalking
+	Bob.startTut()
+	distracted.emit(true)
+	await cardDrawn
+	Bob.StoppedDistract.emit()
+	distracted.emit(false)
+	Bob.talk("Hmm something changed")
+	Bob.talk("whatever")
+	await Bob.finishedTalking
+	
+	discardCards()
+	newTween = create_tween()
+	newTween.tween_property(indArrow, "global_position", $betConsole.global_position + Vector3(0, 0.2, 0), 1)
+	newTween.play()
+	indArrow.rotation_degrees = Vector3(0, 15, 0)
+	await newTween.finished
+	Bob.talk("Here click the buttons to change your bet amount")
+	Bob.talk("Then click play to start the hand")
+	await Bob.finishedTalking
+	finishTutorial.emit()
+
 func drawCard(arr: Array[int], cont, hidden = false):
 	if(deck.size()<1):
 		shuffleDeck()
@@ -183,15 +241,21 @@ func discardCards() -> void:
 	opponentsCards.clear()
 
 func _ready() -> void:
+	tutorial()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	connect("addBet", betAdded)
 	shuffleDeck()
 	
+	await finishTutorial
 	while(!reachedEnd):
 		while(!gameActive):
 			await startGame
 			if betAmount > 0:
 				gameActive = true
+			else:
+				Bob.talk("You have to bet something")
 		
+		indArrow.visible = false
 		var result = await playRound()
 		if(result):
 			var wonCash: int
@@ -377,8 +441,9 @@ func bobTalk(str: String):
 	Bob.talk(str)
 
 func _on_distraction_timer_timeout() -> void:
-	distracted.emit(true)
-	await Bob.distract()
-	distracted.emit(false)
+	if gameActive:
+		distracted.emit(true)
+		await Bob.distract()
+		distracted.emit(false)
 	$distractionTimer.wait_time = randi_range(8, 26)
 	$distractionTimer.start()

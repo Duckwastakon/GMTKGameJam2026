@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cnxpdm08hdra5"]
+
+[ext_resource type="Texture2D" uid="uid://cxlwfe3ptjcsv" path="res://Models_Art/models/arrowDown.png" id="1_amape"]
+[ext_resource type="Script" uid="uid://c5yb0fm54cnvy" path="res://Scenes/MainGameplayFile/Scripts/bobble.gd" id="2_4tkwn"]
+
+[node name="indicatorArrow" type="Node3D" unique_id=27110688]
+
+[node name="IndicatorArrow" type="Sprite3D" parent="." unique_id=1916763625]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+texture = ExtResource("1_amape")
+script = ExtResource("2_4tkwn")

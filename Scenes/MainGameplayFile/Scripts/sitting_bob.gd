@@ -10,6 +10,22 @@ var currentIdleAnim: String
 var textQueue: Array[String]
 
 signal finishedTalking
+signal StoppedDistract
+
+var distr = false
+
+func startTut():
+	Infdistract()
+	await StoppedDistract
+	distr = false
+
+func Infdistract():
+	distr = true
+	while(distr):
+		Anims.stop()
+		var randDistraction = randi_range(0, distractionAnims.size() - 1)
+		Anims.play(distractionAnims[randDistraction])
+		await Anims.animation_finished or Anims.animation_changed
 
 func distract():
 	Anims.stop()
@@ -36,7 +52,7 @@ func changeIdleAnimation():
 	print("changed to " + idleAnims[randIdle])
 
 func playIdle(currentAnim):
-	if currentAnim != currentIdleAnim:
+	if currentAnim != currentIdleAnim and distr != true:
 		Anims.play(currentIdleAnim)
 
 func _ready() -> void:
