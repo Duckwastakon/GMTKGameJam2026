@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://cy35agtwsoljq" path="res://Scenes/MainGameplayFile/Scripts/gamblingController.gd" id="1_psac4"]
 [ext_resource type="PackedScene" uid="uid://cv17w53p4yr46" path="res://Scenes/MainGameplayFile/ChildScenes/cardContainer.tscn" id="2_11xmx"]
 [ext_resource type="PackedScene" uid="uid://b1vnmsbbh5h26" path="res://Scenes/MainGameplayFile/ChildScenes/used_pile.tscn" id="4_no7qd"]
+[ext_resource type="Script" uid="uid://c2dfmon3jdx3h" path="res://Scenes/MainGameplayFile/Scripts/hit_button.gd" id="5_7al5g"]
+[ext_resource type="Shader" uid="uid://dr1inrh66cgjd" path="res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader" id="7_df86l"]
 [ext_resource type="PackedScene" uid="uid://bdkwq0b8de27c" path="res://Scenes/MainGameplayFile/ChildScenes/cash_display.tscn" id="8_pimvi"]
+[ext_resource type="Script" uid="uid://cytgkdv7yd5kf" path="res://Scenes/MainGameplayFile/stand_button.gd" id="8_vqkqm"]
 [ext_resource type="ArrayMesh" uid="uid://mxtomui1cuma" path="res://Models_Art/models/button-floor-round.obj" id="9_ejs6f"]
 [ext_resource type="ArrayMesh" uid="uid://d2qqydjacb0m" path="res://Models_Art/models/table.obj" id="10_rq8od"]
 [ext_resource type="ArrayMesh" uid="uid://mpmp7spnj7tw" path="res://Models_Art/models/button-floor-square.obj" id="11_5cil1"]
@@ -75,6 +78,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
 size = Vector3(0.1, 0.025, 0.1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_df86l"]
+render_priority = 0
+shader = ExtResource("7_df86l")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 3.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cil1"]
 albedo_color = Color(0.35306245, 0.3530627, 0.3530625, 1)
 
@@ -84,8 +93,20 @@ albedo_color = Color(0.4911909, 0.4911909, 0.4911909, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejs6f"]
 albedo_color = Color(0, 0.7529412, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqkqm"]
+render_priority = 0
+shader = ExtResource("7_df86l")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 3.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq8od"]
 albedo_color = Color(1, 0.2, 0.1882353, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7al5g"]
+render_priority = 0
+shader = ExtResource("7_df86l")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xncwk"]
 albedo_color = Color(0, 0, 0, 1)
@@ -149,6 +170,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.55, 0)
 
 [node name="hitButton" type="StaticBody3D" parent="." unique_id=23821579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.64, 0.42)
+script = ExtResource("5_7al5g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitButton" unique_id=502994031]
 shape = SubResource("BoxShape3D_fj2yj")
@@ -160,6 +182,7 @@ text = "Hit"
 
 [node name="ButtonFloorRound2" type="MeshInstance3D" parent="hitButton" unique_id=2028215765]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_df86l")
 mesh = ExtResource("9_ejs6f")
 surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
 surface_material_override/1 = SubResource("StandardMaterial3D_mhiwd")
@@ -167,6 +190,7 @@ surface_material_override/2 = SubResource("StandardMaterial3D_ejs6f")
 
 [node name="standButton" type="StaticBody3D" parent="." unique_id=1950560195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.64, 0.42)
+script = ExtResource("8_vqkqm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="standButton" unique_id=1143909997]
 shape = SubResource("BoxShape3D_fj2yj")
@@ -178,6 +202,7 @@ text = "Stand"
 
 [node name="ButtonFloorRound" type="MeshInstance3D" parent="standButton" unique_id=543951587]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_vqkqm")
 mesh = ExtResource("9_ejs6f")
 surface_material_override/0 = SubResource("StandardMaterial3D_5cil1")
 surface_material_override/1 = SubResource("StandardMaterial3D_5cil1")
@@ -187,6 +212,7 @@ surface_material_override/2 = SubResource("StandardMaterial3D_rq8od")
 
 [node name="Table" type="MeshInstance3D" parent="." unique_id=105328506]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.8, 0, -0.4)
+material_overlay = SubResource("ShaderMaterial_7al5g")
 mesh = ExtResource("10_rq8od")
 
 [node name="betConsole" type="MeshInstance3D" parent="." unique_id=1381425050]
@@ -427,11 +453,6 @@ mesh = ExtResource("64_dltly")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.671, 0.1)
 cardController = NodePath("..")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=737505481]
-transform = Transform3D(1, 0, 0, 0, 0.81811965, 0.5750481, 0, -0.5750481, 0.81811965, 0, 1.8246052, 2.3031235)
-light_energy = 3.0
-sky_mode = 1
-
 [node name="item" type="Node3D" parent="." unique_id=1753627350]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6264612, 0.70317036, 0.30323553)
 script = ExtResource("65_f18wc")
@@ -467,10 +488,12 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0.008, 0.05091071, -0.8874945
 
 [node name="distractionTimer" type="Timer" parent="." unique_id=1196796818]
 wait_time = 5.0
+one_shot = true
 autostart = true
 
 [node name="movingBackground" parent="." unique_id=1140760169 instance=ExtResource("68_q21dg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -68)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, -134)
+speed = 1
 resolution = 8
 
 [node name="GPUParticles3D" parent="." unique_id=1085363938 instance=ExtResource("69_yugw2")]
@@ -490,6 +513,10 @@ visible = false
 
 [connection signal="reachEndSignal" from="." to="." method="_on_reach_end_signal"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]
+[connection signal="mouse_entered" from="hitButton" to="hitButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="hitButton" to="hitButton" method="_on_mouse_exited"]
 [connection signal="input_event" from="standButton" to="." method="_on_stand_button_input_event"]
+[connection signal="mouse_entered" from="standButton" to="standButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="standButton" to="standButton" method="_on_mouse_exited"]
 [connection signal="input_event" from="betConsole/StaticBody3D" to="betConsole/StaticBody3D" method="_on_input_event"]
 [connection signal="timeout" from="distractionTimer" to="." method="_on_distraction_timer_timeout"]

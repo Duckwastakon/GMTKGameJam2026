@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://qowbxwhdauwu" path="res://Models_Art/models/bob_Material Base Color.png" id="1_bbm8l"]
 [ext_resource type="Script" uid="uid://b6hfkmirlgu24" path="res://Scenes/MainGameplayFile/Scripts/sitting_bob.gd" id="1_gf7vm"]
+[ext_resource type="Shader" uid="uid://dr1inrh66cgjd" path="res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader" id="2_7xlli"]
 [ext_resource type="Animation" uid="uid://cqfesy7edt7no" path="res://Models_Art/models/bobAnimations/sitting2.anim" id="2_fiyu2"]
 [ext_resource type="Animation" uid="uid://c47ssbrnc71tu" path="res://Models_Art/models/bobAnimations/sitting3.anim" id="3_gf7vm"]
 [ext_resource type="Animation" uid="uid://uimcagey62ud" path="res://Models_Art/models/bobAnimations/Duck.anim" id="4_7xlli"]
@@ -9,6 +10,12 @@
 [ext_resource type="Animation" uid="uid://doaxy213rsnmt" path="res://Models_Art/models/bobAnimations/sitDown.anim" id="6_apr4b"]
 [ext_resource type="Animation" uid="uid://wkga4jimojpo" path="res://Models_Art/models/bobAnimations/sitting1.anim" id="7_cy42x"]
 [ext_resource type="Animation" uid="uid://56qyqvtdmtij" path="res://Models_Art/models/bobAnimations/win.anim" id="8_4fpdy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gf4d"]
+render_priority = 0
+shader = ExtResource("2_7xlli")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejdh2"]
 
@@ -121,6 +128,8 @@ bind/27/pose = Transform3D(-0.9989255, 0.04599893, 0.0056473054, 0.0034128092, -
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wr0x"]
 albedo_texture = ExtResource("1_bbm8l")
+stencil_flags = 2
+stencil_outline_thickness = 0.002
 
 [sub_resource type="Animation" id="Animation_776c1"]
 resource_name = "mixamo_com"
@@ -580,6 +589,7 @@ bones/32/scale = Vector3(1, 1, 1)
 
 [node name="Cube" type="MeshInstance3D" parent="Skeleton3D" unique_id=1448737896]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_1gf4d")
 mesh = SubResource("ArrayMesh_w6pu0")
 skin = SubResource("Skin_xxui8")
 skeleton = NodePath("..")

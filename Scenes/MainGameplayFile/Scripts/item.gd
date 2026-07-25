@@ -6,6 +6,12 @@ var uses = 3
 
 var itemName: String = "Scissors"
 
+var savedMaterial: StandardMaterial3D
+var savedOutline: ShaderMaterial
+
+var hoverShader = load("res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader")
+
+
 func _ready() -> void:
 	if get_tree().current_scene.name == "gamblingScene":
 		get_tree().current_scene.connect("useItem", destroy_item)
@@ -15,6 +21,20 @@ func setItem(gottenName: String, newUses: int, abilityName: String):
 	uses = newUses
 	itemName = gottenName
 	$Label3D.text = "use " + gottenName
+	
+	var newShaderMaterial = ShaderMaterial.new()
+	newShaderMaterial.shader = hoverShader
+	newShaderMaterial.set_shader_parameter("outline_color", Color.WHITE)
+	newShaderMaterial.set_shader_parameter("outline_width", 1)
+	var newMaterial = StandardMaterial3D.new()
+	newMaterial.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	newMaterial.albedo_color.a = 0.2
+	newShaderMaterial.next_pass = newMaterial
+	
+	savedMaterial = newMaterial
+	savedOutline = newShaderMaterial
+	
+	$MeshInstance3D.mesh = newShaderMaterial
 
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:

@@ -1,10 +1,11 @@
 extends MeshInstance3D
 
-const size = 128
+const size = 256
 
 var offset: float = 0
 var newRayCast3D: RayCast3D
 
+@export var speed: int
 @export var noise: FastNoiseLite
 
 @export_range(4, 256, 4) var resolution = 32
@@ -68,6 +69,6 @@ func _ready() -> void:
 	#newRayCast3D.target_position = Vector3(0, -2, 0)
 	while true:
 		updateMesh()
-		await get_tree().create_timer(0.025).timeout
-		offset += 1.0
+		await get_tree().create_timer(0.01).timeout
+		offset -= 1.0 * speed
 		

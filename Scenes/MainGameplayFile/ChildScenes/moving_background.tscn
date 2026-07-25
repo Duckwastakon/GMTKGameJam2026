@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bg1c4gpeobe0m"]
 
 [ext_resource type="Shader" uid="uid://drv3rmrrshn2y" path="res://Scenes/MainGameplayFile/ChildScenes/terainShader.gdshader" id="1_3fpb8"]
-[ext_resource type="Script" uid="uid://bqg770osieqmy" path="res://Scenes/MainGameplayFile/ChildScenes/terain.gd" id="3_hqnok"]
+[ext_resource type="Script" uid="uid://bqg770osieqmy" path="res://Scenes/MainGameplayFile/Scripts/terain.gd" id="3_hqnok"]
 
 [sub_resource type="Gradient" id="Gradient_3fpb8"]
 offsets = PackedFloat32Array(0.18125, 1)

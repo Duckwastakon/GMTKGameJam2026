@@ -20,6 +20,7 @@ signal finishGame
 signal playerDone
 
 signal reachEndSignal
+var reachedEnd = false
 
 var betAmount = 0
 
@@ -33,6 +34,7 @@ signal distracted
 signal cardDrawn
 
 signal useItem
+signal roundFinished
 
 var canDraw = false
 var gameActive = false
@@ -181,13 +183,10 @@ func discardCards() -> void:
 	opponentsCards.clear()
 
 func _ready() -> void:
-	Bob.talk("Heyyyyyyyy broskis and gamers")
-	Bob.talk("How the flip did you win 
-	that should not be possibe")
 	connect("addBet", betAdded)
 	shuffleDeck()
 	
-	while(true):
+	while(!reachedEnd):
 		while(!gameActive):
 			await startGame
 			if betAmount > 0:
@@ -219,6 +218,12 @@ func _ready() -> void:
 		
 		betAmount = 0
 		await discardCards()
+		if Global.cash <= 0 and betAmount == 0:
+			gameActive = false
+			roundFinished.emit()
+			looseGame()
+			return
+		
 		if debt > 0:
 			if Global.cash < debt:
 				looseGame()
@@ -226,7 +231,8 @@ func _ready() -> void:
 				Global.cash -= debt
 				debt = 0
 		gameActive = false
-		print("roundDone")
+		
+		roundFinished.emit()
 
 func betAdded(amount: int):
 	if(gameActive): return
@@ -242,14 +248,14 @@ func betAdded(amount: int):
 	print(betAmount)
 	betChanged.emit(betAmount, true)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("E") and canDraw:
-		await drawCard(playersCards, playerCardContainer)
-		if(countSum(playersCards) >= 21):
-			playerDone.emit()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("E") and canDraw:
+		#await drawCard(playersCards, playerCardContainer)
+		#if(countSum(playersCards) >= 21):
+			#playerDone.emit()
 	
-	if event.is_action_pressed("Q") and canDraw:
-		playerDone.emit()
+	#if event.is_action_pressed("Q") and canDraw:
+		#playerDone.emit()
 
 
 func _on_hit_button_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
@@ -346,10 +352,26 @@ func getCard(card: StaticBody3D, num: int):
 			c.mesh = newCard.mesh
 
 func looseGame():
-	print("Loose")
+	Bob.talk("well you have lost")
+	reachedEnd = true
 
 func _on_reach_end_signal() -> void:
-	pass
+	reachedEnd = true
+	
+	if gameActive:
+		Bob.talk("Last round")
+		await roundFinished
+	
+	betAdded(-betAmount)
+	
+	Global.addCash(-debt)
+	debt = 0
+	if debt <= 0 and Global.cash > 5:
+		Bob.talk("hmmm, good job")
+		await Bob.finishedTalking
+		get_tree().change_scene_to_file("res://Scenes/MainGameplayFile/1_st_shop.tscn")
+	else:
+		looseGame()
 
 func bobTalk(str: String):
 	Bob.talk(str)
@@ -360,4 +382,3 @@ func _on_distraction_timer_timeout() -> void:
 	distracted.emit(false)
 	$distractionTimer.wait_time = randi_range(8, 26)
 	$distractionTimer.start()
-	

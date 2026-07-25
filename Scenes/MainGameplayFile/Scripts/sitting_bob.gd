@@ -9,6 +9,8 @@ var currentIdleAnim: String
 
 var textQueue: Array[String]
 
+signal finishedTalking
+
 func distract():
 	Anims.stop()
 	var randDistraction = randi_range(0, distractionAnims.size() - 1)
@@ -68,5 +70,9 @@ func talk(str: String):
 				await get_tree().create_timer(0.01).timeout
 			
 			textQueue.pop_front()
+		
+		finishedTalking.emit()
 	else:
+		if textQueue.size() >= 3:
+			textQueue.pop_back()
 		textQueue.append(str)
