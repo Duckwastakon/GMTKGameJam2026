@@ -245,7 +245,7 @@ func _on_texture_button_pressed3() -> void:
 	buy_item(price, item_name, $shopUi/Thrid/LabelThird, $shopUi/Thrid/LabelThird/Price, $shopUi/Thrid/Description)
 
 func buy_item(price: int, item_name: String, label_node: Label, price_node: Label, description_node: Label) -> void:
-	if not Global.compareCash(price):
+	if not Global.compareCash(price) or Global.boughtItems.size() >=3:
 		print("Not enough money!")
 		return
 
@@ -260,6 +260,7 @@ func buy_item(price: int, item_name: String, label_node: Label, price_node: Labe
 	description_node.text = ""
 	Global.cash -= price
 	$constant/Label.text = "Money : " + str(Global.cash)
+	Global.boughtItems.append(item_name)
 
 func _on_leave_body_enteredLeave(body: Node3D) -> void:
 	back = true;

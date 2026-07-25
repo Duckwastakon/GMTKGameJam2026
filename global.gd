@@ -7,6 +7,8 @@ var permanentCashBuff: float = 1.0
 var cash: int = 500
 const maxItems: int = 3
 
+var boughtItems: Array[String]
+
 var items: Array[Dictionary] = [
 	{"name": "Scissors", "description": "You can cut a card in half, making Bob be forced to redraw it.", "price": 15},
 	{"name": "Magic wand", "description": "+1 to a card or if on an ace -> 2.", "price": 5},

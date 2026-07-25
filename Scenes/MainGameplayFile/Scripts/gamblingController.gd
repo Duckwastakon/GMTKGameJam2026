@@ -312,8 +312,11 @@ func betAdded(amount: int):
 	print(betAmount)
 	betChanged.emit(betAmount, true)
 
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("E") and canDraw:
+signal nextLine
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("E"):
+		nextLine.emit()
 		#await drawCard(playersCards, playerCardContainer)
 		#if(countSum(playersCards) >= 21):
 			#playerDone.emit()
