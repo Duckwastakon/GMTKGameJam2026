@@ -9,6 +9,7 @@ extends Node3D
 @onready var wheel_collision: CollisionShape3D = $wheel/Area3D/wheel_collision
 @onready var car: Area3D = $Area3D
 @onready var bobnpc: CharacterBody3D = $CharacterBody3D
+@onready var info: CanvasLayer = $Info
 
 
 
@@ -23,11 +24,16 @@ var ticket_time = true
 var spin_time = false
 
 func _ready() -> void:
+	
 	bobnpc.visible = false
 	marker.position.x =  -14 ; marker.position.y = 3.129 ; marker.position.z = -7.055
 	car.position.x =  -9.573 ; car.position.y = 0.073 ; car.position.z = -55.447
 	bobnpc.position.x =  -9.501 ; bobnpc.position.y = 0.236 ; bobnpc.position.z = 8.006
 	car.visible = false
+	
+	info.visible = false;
+	$Info/info/InfoText.text = 'press Shift to run & Ctrl to crouch..'
+	info.visible = true
 	
 	who.text = "Me"
 	digital_box.visible = false

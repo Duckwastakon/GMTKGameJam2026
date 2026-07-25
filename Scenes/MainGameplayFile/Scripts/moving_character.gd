@@ -11,7 +11,7 @@ const bob_amplitude = 0.12
 const bob_side_amplitude = 0.05
 
 var currant_speed = 5.0
-const walking_speed = 5.0
+const walking_speed = 6.0
 const sprint_speed = 8.0
 const crouching_speed = 3.0
 const JUMP_VELOCITY = 4.5
