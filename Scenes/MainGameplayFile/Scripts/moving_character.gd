@@ -18,6 +18,7 @@ const JUMP_VELOCITY = 4.5
 var lerp_speed = 10
 var direction = Vector3.ZERO
 var croach_depth = -0.5
+var external_control = false
 
 const mouse = 0.4
 const STEP_HEIGHT = 0.2
@@ -35,6 +36,9 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	if external_control:  
+		move_and_slide()
+		return
 
 	var base_head_y = 1.8
 	if Input.is_action_pressed("shift"):
@@ -48,20 +52,16 @@ func _physics_process(delta: float) -> void:
 			currant_speed = sprint_speed
 		else:
 			currant_speed = walking_speed
-
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * lerp_speed)
-
 	if direction:
 		velocity.x = direction.x * currant_speed
 		velocity.z = direction.z * currant_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, currant_speed)
 		velocity.z = move_toward(velocity.z, 0, currant_speed)
-
 	var is_moving = is_on_floor() and Vector2(velocity.x, velocity.z).length() > 0.5
 	if is_moving:
 		var speed_ratio = currant_speed / walking_speed
@@ -74,8 +74,7 @@ func _physics_process(delta: float) -> void:
 		bob_time = 0.0
 		head.position.y = lerp(head.position.y, base_head_y, delta * lerp_speed)
 		head.position.x = lerp(head.position.x, 0.0, delta * lerp_speed)
-
-	try_step_up()  
+	try_step_up()
 	move_and_slide()
 
 func try_step_up():
@@ -84,9 +83,8 @@ func try_step_up():
 	var horizontal_velocity = Vector2(velocity.x, velocity.z)
 	if horizontal_velocity.length() < 0.1:
 		return
-
 	var motion_dir = Vector3(velocity.x, 0, velocity.z).normalized()
-	var collision = move_and_collide(motion_dir * 0.1, true)  # test-only
+	var collision = move_and_collide(motion_dir * 0.1, true)
 	if collision:
 		global_position.y += STEP_HEIGHT
 		var collision_after_step = move_and_collide(motion_dir * 0.1, true)
