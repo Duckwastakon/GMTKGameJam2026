@@ -67,6 +67,10 @@
 [ext_resource type="PackedScene" uid="uid://cjbyyab87agf0" path="res://Scenes/MainGameplayFile/ChildScenes/item.tscn" id="65_k3xgq"]
 [ext_resource type="PackedScene" uid="uid://deaywkbxsb0g3" path="res://Scenes/MainGameplayFile/ChildScenes/sitting_bob.tscn" id="67_q21dg"]
 [ext_resource type="PackedScene" uid="uid://bma5phjgbgen0" path="res://Scenes/MainGameplayFile/ChildScenes/distance_debt.tscn" id="67_uvtci"]
+[ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="68_q21dg"]
+[ext_resource type="PackedScene" uid="uid://c1tdnkaa0g74i" path="res://Scenes/MainGameplayFile/ChildScenes/speedParticles.tscn" id="69_yugw2"]
+[ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="70_wbj74"]
+[ext_resource type="PackedScene" uid="uid://xtd3v83if61p" path="res://Scenes/MainGameplayFile/ChildScenes/flying_card_particle.tscn" id="71_xw0sv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
 size = Vector3(0.1, 0.025, 0.1)
@@ -111,6 +115,17 @@ albedo_texture = SubResource("ViewportTexture_uvtci")
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_q21dg")
 size = Vector2(0.75, 0.75)
+
+[sub_resource type="Environment" id="Environment_wbj74"]
+background_mode = 1
+background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 0.02
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_wbj74"]
 
 [node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("Bob", "playerCardContainer", "opponentCardContainer", "usedPile")]
 script = ExtResource("1_psac4")
@@ -453,6 +468,25 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0.008, 0.05091071, -0.8874945
 [node name="distractionTimer" type="Timer" parent="." unique_id=1196796818]
 wait_time = 5.0
 autostart = true
+
+[node name="movingBackground" parent="." unique_id=1140760169 instance=ExtResource("68_q21dg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -68)
+resolution = 8
+
+[node name="GPUParticles3D" parent="." unique_id=1085363938 instance=ExtResource("69_yugw2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0299916, 0.42468894, -1.3393459)
+
+[node name="SedanSports" type="MeshInstance3D" parent="." unique_id=575463983]
+transform = Transform3D(-1.09278474e-07, 0, -2.5, 0, 2.5, 0, 2.5, 0, -1.09278474e-07, -0.52762985, -2.6392424, 0)
+mesh = ExtResource("70_wbj74")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=877686541]
+environment = SubResource("Environment_wbj74")
+camera_attributes = SubResource("CameraAttributesPractical_wbj74")
+
+[node name="flyingCardParticle" parent="." unique_id=1183306964 instance=ExtResource("71_xw0sv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.0598421, 0, -0.48116493)
+visible = false
 
 [connection signal="reachEndSignal" from="." to="." method="_on_reach_end_signal"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]
