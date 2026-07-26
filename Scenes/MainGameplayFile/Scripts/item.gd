@@ -109,6 +109,7 @@ func destroy_item() -> void:
 		if uses > 0:
 			active = false
 			return
+		Global.boughtItems.erase(item)
 		item = ""
 		for c in get_children():
 			if c is MeshInstance3D:

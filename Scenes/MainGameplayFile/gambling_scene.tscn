@@ -72,7 +72,7 @@
 [ext_resource type="PackedScene" uid="uid://bma5phjgbgen0" path="res://Scenes/MainGameplayFile/ChildScenes/distance_debt.tscn" id="67_uvtci"]
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="68_q21dg"]
 [ext_resource type="PackedScene" uid="uid://c1tdnkaa0g74i" path="res://Scenes/MainGameplayFile/ChildScenes/speedParticles.tscn" id="69_yugw2"]
-[ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="70_wbj74"]
+[ext_resource type="ArrayMesh" uid="uid://wilvvu1kv02t" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="70_wbj74"]
 [ext_resource type="PackedScene" uid="uid://xtd3v83if61p" path="res://Scenes/MainGameplayFile/ChildScenes/flying_card_particle.tscn" id="71_xw0sv"]
 [ext_resource type="PackedScene" uid="uid://cnxpdm08hdra5" path="res://Scenes/MainGameplayFile/ChildScenes/indicator_arrow.tscn" id="75_8olwl"]
 [ext_resource type="PackedScene" uid="uid://ccth3ackscydl" path="res://Models_Art/models/wand.glb" id="76_eqwvt"]
