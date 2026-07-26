@@ -11,7 +11,7 @@ extends Node3D
 @onready var four: Area3D = $"Node3envD/house/4"
 @onready var countdown_timer: CanvasLayer = $countdown
 @onready var bob: Node3D = $moving_character/Bob
-
+signal stopTimer
 
 const Czstart = 503.851; const Czmid = 154.837 ; 
 const Czend = -9.186; const Cyend = 74.526 ; const Cr = deg_to_rad(26.0)
@@ -19,6 +19,7 @@ const Czspin = -29.002; const Cyspin = 83.787  ; const Crs = deg_to_rad(-26.0) ;
 var ONE = false; var TWO = false; var THREE = false; var FOUR = false; var FIVE = false; var SIX = false; 
 
 func _ready() -> void:
+	$Node3D/Dramatic.play()
 	bob.visible = false ; $UI.visible = false; $Info.visible = false
 	countdown_timer.countdownFinished.connect(_on_countdown_finished)
 	countdown_timer.countdownStarted.connect(_on_countdown_started)
@@ -72,6 +73,8 @@ func _ready() -> void:
 
 func _on_countdown_finished():
 	bob.visible = true
+	$Node3D/Dramatic.stop()
+	$Node3D/Dramaticbob.play()
 	$UI/DigitalBox/ColorRect/Who.text = "Bob"
 	$UI/DigitalBox/DialogText.text = "Come and lets play forever..cheater"
 	$UI.visible = true
@@ -135,7 +138,9 @@ func launch_to_target(start_pos: Vector3, target_pos: Vector3, arc_height: float
 	return horizontal_velocity + Vector3.UP * vertical_velocity
 
 func finnish():
-	print('this worked. finnish')
+	stopTimer.emit()
+	$Node3D/Coin.play()
+	await get_tree().create_timer(0.89).timeout
 	get_tree().quit()
 
 func roll():
