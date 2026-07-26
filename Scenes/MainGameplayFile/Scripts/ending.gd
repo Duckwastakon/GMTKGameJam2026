@@ -9,6 +9,8 @@ extends Node3D
 @onready var five: Area3D = $"Node3envD/house/5"
 @onready var six: Area3D = $"Node3envD/house/6"
 @onready var four: Area3D = $"Node3envD/house/4"
+@onready var countdown_timer: CanvasLayer = $countdown
+@onready var bob: Node3D = $moving_character/Bob
 
 
 const Czstart = 503.851; const Czmid = 154.837 ; 
@@ -17,6 +19,8 @@ const Czspin = -29.002; const Cyspin = 83.787  ; const Crs = deg_to_rad(-26.0) ;
 var ONE = false; var TWO = false; var THREE = false; var FOUR = false; var FIVE = false; var SIX = false; 
 
 func _ready() -> void:
+	bob.visible = false ; $UI.visible = false; $Info.visible = false
+	countdown_timer.countdownFinished.connect(_on_countdown_finished)
 	ONE = false; TWO = false; THREE = false; FOUR = false; FIVE = false; SIX = false; 
 	one.visible = false;two.visible = false;three.visible = false;four.visible = false;five.visible = false;six.visible = false;
 	camera.current = true ; car.freeze = true ; character.set_physics_process(false)
@@ -63,6 +67,14 @@ func _ready() -> void:
 	var tween5 = create_tween()
 	tween.tween_property(car, "position", Vector3(0, Cyend, Czend), 3.5)
 	release_and_fall()
+
+func _on_countdown_finished():
+	bob.visible = true
+	$UI/DigitalBox/ColorRect/Who.text = "Bob"
+	$UI/DigitalBox/DialogText.text = "Come and lets play forever..cheater"
+	$UI.visible = true
+	await get_tree().create_timer(1.5).timeout
+	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/ChildScenes/main_menue.tscn")
 
 
 func _process(delta: float) -> void:

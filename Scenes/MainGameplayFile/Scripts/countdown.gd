@@ -2,6 +2,7 @@ extends CanvasLayer
 @onready var countdown_label: Label = $CountdownLabel
 var time_remaining: float = 60.0  # starting time in seconds
 var counting_down = true
+signal countdownFinished
 
 func _ready():
 	countdown_label.visible = false
@@ -24,4 +25,4 @@ func update_display():
 	countdown_label.text = "%02d:%02d" % [minutes, seconds]
 
 func on_countdown_finished():
-	print("Time's up!")
+	countdownFinished.emit() 
