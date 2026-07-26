@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://qowbxwhdauwu" path="res://Models_Art/models/bob_Material Base Color.png" id="1_0bvq0"]
 [ext_resource type="Shader" uid="uid://dr1inrh66cgjd" path="res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader" id="1_75c76"]
-[ext_resource type="Animation" uid="uid://dx4fkpk1mdwxr" path="res://Models_Art/models/walk.anim" id="2_75c76"]
+[ext_resource type="Animation" uid="uid://dxp5a5itb806x" path="res://Models_Art/models/walk.anim" id="2_75c76"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lgro6"]
 render_priority = 0

@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cwqd2e5p2gped" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_2.fbx" id="16_74urv"]
 [ext_resource type="PackedScene" uid="uid://7im28veklmow" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_1.fbx" id="17_5w3mk"]
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="18_meyxk"]
+[ext_resource type="Script" uid="uid://cjur83q7w43qh" path="res://Scenes/MainGameplayFile/Scripts/countdown.gd" id="19_wo0bo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew20g"]
 sky_top_color = Color(0.33246842, 0.49551493, 0.72834456, 1)
@@ -30,10 +31,14 @@ energy_multiplier = 0.9
 sky_material = SubResource("ProceduralSkyMaterial_ew20g")
 
 [sub_resource type="Environment" id="Environment_kg0jb"]
-background_mode = 2
 sky = SubResource("Sky_5jm55")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.5206027, 0.5558827, 0.61076283, 1)
+fog_light_energy = 0.8
+volumetric_fog_enabled = true
+volumetric_fog_detail_spread = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kkhv1"]
 size = Vector3(2.7045288, 3.3037415, 6.682373)
@@ -42,10 +47,10 @@ size = Vector3(2.7045288, 3.3037415, 6.682373)
 size = Vector2(100, 100)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6u0w7"]
-size = Vector2(100, 200)
+size = Vector2(50, 200)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bxiex"]
-size = Vector2(100, 200)
+size = Vector2(50, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kg0jb"]
 size = Vector3(101.58685, 8.418945, 810.61084)
@@ -455,7 +460,7 @@ transform = Transform3D(0.6111331, 0, -14.987545, 0, 15, 0, 14.987545, 0, 0.6111
 [node name="Rock_Medium_4" parent="StaticBody3D" unique_id=674598578 instance=ExtResource("16_74urv")]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, -12.141229, 28.749657, -17.594429)
 
-[node name="Rock_Medium_3" parent="." unique_id=1409115579 instance=ExtResource("15_io1t0")]
+[node name="Rock_Medium_5" parent="StaticBody3D" unique_id=1409115579 instance=ExtResource("15_io1t0")]
 transform = Transform3D(10.1577635, 0, 11.037202, 0, 14.999999, 0, -11.037202, 0, 10.1577635, 33.095055, 49.986237, -30.794365)
 
 [node name="river" type="StaticBody3D" parent="." unique_id=600434509]
@@ -672,6 +677,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270, -10, 256)
 size = 512
 resolution = 8
 height = 32.0
+
+[node name="countdown" type="CanvasLayer" parent="." unique_id=1713499045]
+script = ExtResource("19_wo0bo")
+
+[node name="CountdownLabel" type="Label" parent="countdown" unique_id=699480955]
+offset_left = 490.0
+offset_top = 1.0
+offset_right = 530.0
+offset_bottom = 24.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Node3envD/house/1" to="." method="_on__body_entered1"]
 [connection signal="body_entered" from="Node3envD/house/2" to="." method="_on__body_entered2"]

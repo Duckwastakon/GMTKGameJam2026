@@ -54,7 +54,7 @@ func _ready() -> void:
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(-135), 0), 1.5625)
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(-180), 0), 1)
 	tween3.kill()
-	#roll()
+	roll()
 	
 	tween.play()
 	
@@ -120,7 +120,7 @@ func roll():
 	elif home == five:
 		FIVE = true
 	elif home == six:
-		SIX == true;
+		SIX = true;
 
 func _on__body_entered1(body: Node3D) -> void:
 	if body.name == "moving_character" and ONE == true:
