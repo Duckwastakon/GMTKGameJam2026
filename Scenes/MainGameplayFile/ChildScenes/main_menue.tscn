@@ -237,6 +237,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 
 [node name="Menu" type="AudioStreamPlayer" parent="sound" unique_id=714102865]
 stream = ExtResource("11_oxuiv")
+parameters/looping = true
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/play" to="CanvasLayer" method="_on_play_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/settings" to="CanvasLayer" method="_on_settings_button_up"]
