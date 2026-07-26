@@ -10,7 +10,7 @@ var opponentsCards: Array[int]
 @export var usedPile: Node3D
 @onready var deckNode = $deck
 
-const specialAbilities = ["destroy", "upgrade", "forcePickup", "downgrade", "checkNextCard", "checkOppCard", "skipNextLoss"]
+const specialAbilities = ["destroy", "upgrade", "forcePickup", "downgrade", "checkNextCard", "checkOppCard", "skipNextLoss", "multi"]
 var clickPower = ""
 
 var deck = []
@@ -399,10 +399,11 @@ func specialPower(power: String):
 		for c in opponentCardContainer.get_children():
 			c.showCard.emit()
 		useItem.emit()
-	elif power == "checkNextCard":
+	elif power == "multi":
+		Global.nextCashBuff = 2.5
 		useItem.emit()
-		pass
 	elif power == "skipNextLoss":
+		Global.preventNextLoss = true
 		useItem.emit()
 		pass
 	else:
@@ -487,7 +488,7 @@ func _on_reach_end_signal() -> void:
 		Global.round = +1
 		Bob.talk("hmmm, good job")
 		await Bob.finishedTalking
-		if Global.round < 4:
+		if Global.round < 3:
 			TransitionController.ChangeScene("res://Scenes/MainGameplayFile/1_st_shop.tscn")
 		else:
 			TransitionController.ChangeScene("res://Scenes/MainGameplayFile/Scripts/ending.tscn")

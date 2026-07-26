@@ -26,7 +26,7 @@ var item_Abilities_Models = {
 		"itemScale": Vector3(0.02, 0.1, 0.02),
 	},
 	"Soda" = {
-		"power": "upgrade",
+		"power": "multi",
 		"meshLoad": load("res://Models_Art/models/soda.mesh"),
 		"itemScale": Vector3(0.35, 0.35, 0.35),
 	},
@@ -54,7 +54,7 @@ func setItem(gottenName: String):
 	visible = true
 	var itemStats = item_Abilities_Models[gottenName]
 	item = itemStats.power
-	uses = 3
+	uses = 1
 	itemName = gottenName
 	
 	$MeshInstance3D.mesh = itemStats.meshLoad
@@ -126,4 +126,5 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	$Label3D.visible = false
 	
-	$MeshInstance3D.material_overlay = null
+	if $MeshInstance3D != null:
+		$MeshInstance3D.material_overlay = null

@@ -18,9 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://cwqd2e5p2gped" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_2.fbx" id="16_74urv"]
 [ext_resource type="PackedScene" uid="uid://7im28veklmow" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_1.fbx" id="17_5w3mk"]
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="18_meyxk"]
-[ext_resource type="Script" uid="uid://cjur83q7w43qh" path="res://Scenes/MainGameplayFile/Scripts/countdown.gd" id="19_wo0bo"]
+[ext_resource type="Script" path="res://Scenes/MainGameplayFile/Scripts/countdown.gd" id="19_wo0bo"]
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="20_02nf2"]
 [ext_resource type="AudioStream" uid="uid://d143wb2dgm8lv" path="res://sounds/heart.mp3" id="21_ahjow"]
+[ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="21_kisdy"]
 [ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="21_o2ojy"]
 [ext_resource type="AudioStream" uid="uid://l5t1i21qyely" path="res://sounds/dramaticbob.mp3" id="22_truay"]
 [ext_resource type="AudioStream" uid="uid://dfkxmlw6r6bjy" path="res://sounds/dramatic.mp3" id="23_7a6f2"]
@@ -760,6 +761,7 @@ theme_override_font_sizes/font_size = 16
 autowrap_mode = 2
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1947259601]
+script = ExtResource("21_kisdy")
 
 [node name="Coin" type="AudioStreamPlayer" parent="Node3D" unique_id=1982282781]
 stream = ExtResource("21_o2ojy")

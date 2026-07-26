@@ -20,10 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://cihhhpthjyti5" path="res://Models_Art/nature_quaternous/FBX/CommonTree_1.fbx" id="11_l3jff"]
 [ext_resource type="PackedScene" uid="uid://cwqd2e5p2gped" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_2.fbx" id="12_0qlwv"]
 [ext_resource type="PackedScene" uid="uid://f2v8gqhmkoyj" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_a.tscn" id="12_q6iku"]
-[ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
+[ext_resource type="PackedScene" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
 [ext_resource type="Texture2D" uid="uid://iebu7bdpkg0w" path="res://Models_Art/Coin_tiles.png" id="14_q6iku"]
 [ext_resource type="PackedScene" uid="uid://bis4w7qskna3i" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_3.fbx" id="23_4wm6e"]
-[ext_resource type="PackedScene" uid="uid://bp8h3qrbkjmy1" path="res://Scenes/MainGameplayFile/ChildScenes/sitting.tscn" id="24_4wm6e"]
+[ext_resource type="PackedScene" path="res://Scenes/MainGameplayFile/ChildScenes/sitting.tscn" id="24_4wm6e"]
 [ext_resource type="PackedScene" uid="uid://vd3nlgff7cba" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/barrel_a.tscn" id="25_6d6t2"]
 [ext_resource type="PackedScene" uid="uid://eqpcw73h1p47" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/chair_b.tscn" id="26_l3jff"]
 [ext_resource type="PackedScene" uid="uid://d2i0bgju0r4w5" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/cabinet_b_grp.tscn" id="27_1oscj"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://qlx78w7ljub" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/axe.tscn" id="47_wju7d"]
 [ext_resource type="PackedScene" uid="uid://byiaynulgfu6o" path="res://Models_Art/nature_quaternous/FBX/DeadTree_2.fbx" id="48_c2mg3"]
 [ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="49_bwb5q"]
+[ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="49_s5eus"]
 [ext_resource type="AudioStream" uid="uid://dt3iem8pavv4a" path="res://sounds/desert.mp3" id="50_34hyv"]
 [ext_resource type="AudioStream" uid="uid://ctcb21dqyb1fe" path="res://sounds/shop.mp3" id="51_bwb5q"]
 
@@ -825,6 +826,7 @@ transform = Transform3D(-0.014224001, -0.9454787, 0.32537317, -0.001997284, 0.32
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.060073, 0.9833572, 24.699501)
 
 [node name="sounds" type="Node3D" parent="." unique_id=1589722983]
+script = ExtResource("49_s5eus")
 
 [node name="coin" type="AudioStreamPlayer" parent="sounds" unique_id=541274013]
 stream = ExtResource("49_bwb5q")
