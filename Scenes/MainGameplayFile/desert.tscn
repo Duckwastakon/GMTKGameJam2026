@@ -496,9 +496,6 @@ stream = ExtResource("19_5a3u0")
 [node name="beep" type="AudioStreamPlayer" parent="sounds" unique_id=939905058]
 stream = ExtResource("20_6rcx3")
 
-[node name="background" type="AudioStreamPlayer" parent="sounds" unique_id=161675240]
-stream = ExtResource("18_q888p")
-
 [connection signal="body_entered" from="interact_area_ticket" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="interact_area_ticket" to="." method="_on_body_exited"]
 [connection signal="body_entered" from="wheel/Area3D" to="." method="_on_body_entered_3d"]

@@ -49,8 +49,8 @@ func _physics_process(delta: float) -> void:
 		#var rotationY = Vector2(playerPos.x, playerPos.z).direction_to(Vector2(itemPos.x, itemPos.z)).angle()
 		#var rotationY = Vector2(playerPos.x, playerPos.z).angle_to(Vector2(itemPos.x, itemPos.z))
 		#$arrow.rotation = Vector3(0, rotationY - self.rotation.y , 0)
-	else:
-		$arrow.visible = false
+	#else:
+		#$arrow.visible = false
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta

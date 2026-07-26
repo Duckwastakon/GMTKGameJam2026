@@ -33,9 +33,15 @@ func _ready() -> void:
 	set_interior_collision($"interiors/3", true)
 	roll()
 	choice.visible = false
-	$constant/one/Name.text = ""
-	$constant/two/Name.text = ""
-	$constant/three/Name.text = ""
+	
+	var slots = [$constant/one/Name, $constant/two/Name, $constant/three/Name]
+	for i in range(slots.size()):
+		if i < Global.boughtItems.size():
+			slots[i].text = Global.boughtItems[i]
+			slots[i].visible = true
+		else:
+			slots[i].text = ""
+
 	$constant/Label.text = "Money : " + str(Global.cash)
 	$shopUi/First/gold.visible = false; $shopUi/Second/gold.visible = false; $shopUi/Thrid/gold.visible = false
 	$shopUi/First/Description.visible = false; $shopUi/Second/Description.visible = false; $shopUi/Thrid/Description.visible = false
@@ -83,6 +89,11 @@ func update_shop_ui(item_list: Array[Dictionary]):
 		$shopUi/Thrid/LabelThird/Price.text = str(item_list[2]["price"])
 
 func _process(delta: float) -> void:
+	
+	if shop_ui.visible == true:
+		ui.visible = false
+		info.visible = false
+	
 	if has_entered == false and entering == true:
 		if inside == false:
 			if Input.is_action_just_pressed('interract'):
@@ -245,22 +256,37 @@ func _on_texture_button_pressed3() -> void:
 	buy_item(price, item_name, $shopUi/Thrid/LabelThird, $shopUi/Thrid/LabelThird/Price, $shopUi/Thrid/Description)
 
 func buy_item(price: int, item_name: String, label_node: Label, price_node: Label, description_node: Label) -> void:
-	if not Global.compareCash(price) or Global.boughtItems.size() >=3:
-		print("Not enough money!")
+	if Global.boughtItems.size() >= 3:
+		print("Backpack full!")
+		$Info/info/InfoText.text = 'Your inventory is full. you are unable to own more than 3 items'
+		info.visible = true
+		await get_tree().create_timer(3).timeout
+		info.visible = false
 		return
 
+	if not Global.compareCash(price):
+		print("Not enough money!")
+		$Info/info/InfoText.text = 'You do not have enough money to purchase this'
+		info.visible = true
+		await get_tree().create_timer(3).timeout
+		info.visible = false
+		return
+
+	$sounds/coin.play()
 	var slots = [$constant/one/Name, $constant/two/Name, $constant/three/Name]
 	for slot in slots:
 		if slot.text == "":
 			slot.visible = true
 			slot.text = item_name
 			break
+
 	label_node.text = ""
 	price_node.text = ""
 	description_node.text = ""
+
+	Global.boughtItems.append(item_name)
 	Global.cash -= price
 	$constant/Label.text = "Money : " + str(Global.cash)
-	Global.boughtItems.append(item_name)
 
 func _on_leave_body_enteredLeave(body: Node3D) -> void:
 	back = true;

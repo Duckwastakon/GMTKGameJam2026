@@ -20,10 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://cihhhpthjyti5" path="res://Models_Art/nature_quaternous/FBX/CommonTree_1.fbx" id="11_l3jff"]
 [ext_resource type="PackedScene" uid="uid://cwqd2e5p2gped" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_2.fbx" id="12_0qlwv"]
 [ext_resource type="PackedScene" uid="uid://f2v8gqhmkoyj" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_a.tscn" id="12_q6iku"]
-[ext_resource type="PackedScene" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
+[ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
 [ext_resource type="Texture2D" uid="uid://iebu7bdpkg0w" path="res://Models_Art/Coin_tiles.png" id="14_q6iku"]
 [ext_resource type="PackedScene" uid="uid://bis4w7qskna3i" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_3.fbx" id="23_4wm6e"]
-[ext_resource type="PackedScene" path="res://Scenes/MainGameplayFile/ChildScenes/sitting.tscn" id="24_4wm6e"]
+[ext_resource type="PackedScene" uid="uid://bp8h3qrbkjmy1" path="res://Scenes/MainGameplayFile/ChildScenes/sitting.tscn" id="24_4wm6e"]
 [ext_resource type="PackedScene" uid="uid://vd3nlgff7cba" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/barrel_a.tscn" id="25_6d6t2"]
 [ext_resource type="PackedScene" uid="uid://eqpcw73h1p47" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/chair_b.tscn" id="26_l3jff"]
 [ext_resource type="PackedScene" uid="uid://d2i0bgju0r4w5" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/cabinet_b_grp.tscn" id="27_1oscj"]
@@ -47,6 +47,10 @@
 [ext_resource type="PackedScene" uid="uid://caj26hsylwv31" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/basin.tscn" id="45_0wys3"]
 [ext_resource type="PackedScene" uid="uid://hdxgkxt1sbsc" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/barrel_a_open.tscn" id="46_5fgdr"]
 [ext_resource type="PackedScene" uid="uid://qlx78w7ljub" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/axe.tscn" id="47_wju7d"]
+[ext_resource type="PackedScene" uid="uid://byiaynulgfu6o" path="res://Models_Art/nature_quaternous/FBX/DeadTree_2.fbx" id="48_c2mg3"]
+[ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="49_bwb5q"]
+[ext_resource type="AudioStream" uid="uid://ux6dl48xioby" path="res://sounds/car-stop.mp3" id="50_s5eus"]
+[ext_resource type="AudioStream" uid="uid://cvdenuuxbeg66" path="res://sounds/beep.mp3" id="51_0wys3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwl5t"]
 sky_top_color = Color(0.2709, 0.528255, 0.63, 1)
@@ -250,42 +254,6 @@ shape = SubResource("BoxShape3D_c2mg3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01601696, 1.6664174, 4.053145)
 shape = SubResource("BoxShape3D_q6iku")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1233125006]
-
-[node name="DigitalBox" type="Panel" parent="UI" unique_id=655286289]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -198.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="DialogText" type="Label" parent="UI/DigitalBox" unique_id=291748275]
-layout_mode = 0
-offset_left = 280.0
-offset_top = 27.0
-offset_right = 320.0
-offset_bottom = 137.0
-theme_override_font_sizes/font_size = 50
-autowrap_mode = 1
-
-[node name="ColorRect" type="ColorRect" parent="UI/DigitalBox" unique_id=1487513772]
-layout_mode = 0
-offset_left = 1.0
-offset_right = 267.0
-offset_bottom = 165.0
-color = Color(0.13355187, 0.13355187, 0.13355187, 1)
-
-[node name="Who" type="Label" parent="UI/DigitalBox/ColorRect" unique_id=140986061]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 25.0
-offset_right = 46.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 40
-
 [node name="black" type="CanvasLayer" parent="." unique_id=1750686813]
 layer = 10
 
@@ -305,20 +273,24 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -272.0
-offset_bottom = 263.0
+offset_left = 1.0
+offset_top = -306.0
+offset_right = 1.0
+offset_bottom = 229.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.88)
 
 [node name="First" type="Panel" parent="shopUi" unique_id=798419240]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 408.0
-offset_top = -207.0
-offset_right = 749.0
-offset_bottom = 213.0
+offset_left = 43.0
+offset_top = -260.0
+offset_right = 384.0
+offset_bottom = 160.0
 grow_vertical = 2
+scale = Vector2(0.853929, 0.88)
 
 [node name="LabelFirst" type="Label" parent="shopUi/First" unique_id=1436504459]
 layout_mode = 0
@@ -375,11 +347,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = -205.0
+offset_top = -258.0
 offset_right = 170.5
-offset_bottom = 213.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.853929, 0.88)
 
 [node name="LabelSecond" type="Label" parent="shopUi/Second" unique_id=798607267]
 layout_mode = 0
@@ -435,12 +408,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -747.0
-offset_top = -206.0
-offset_right = -406.0
-offset_bottom = 211.0
+offset_left = -385.0
+offset_top = -258.0
+offset_right = -44.0
+offset_bottom = 159.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.853929, 0.88)
 
 [node name="LabelThird" type="Label" parent="shopUi/Thrid" unique_id=1748902070]
 layout_mode = 0
@@ -498,18 +472,17 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -83.5
-offset_top = -199.0
-offset_right = 83.5
-offset_bottom = -32.0
+offset_top = -113.0
+offset_right = 16.5
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Name" type="Label" parent="constant/one" unique_id=1022239045]
-visible = false
 layout_mode = 0
-offset_right = 167.5
-offset_bottom = 42.0
-theme_override_font_sizes/font_size = 26
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 autowrap_mode = 1
 
@@ -517,18 +490,17 @@ autowrap_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 493.0
-offset_top = -199.0
-offset_right = 660.0
-offset_bottom = -32.0
+offset_left = 274.0
+offset_top = -113.0
+offset_right = 374.0
+offset_bottom = -13.0
 grow_vertical = 0
 
 [node name="Name" type="Label" parent="constant/two" unique_id=1160699588]
-visible = false
 layout_mode = 0
-offset_right = 167.5
-offset_bottom = 42.0
-theme_override_font_sizes/font_size = 26
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 autowrap_mode = 1
 
@@ -538,37 +510,91 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -659.0
-offset_top = -200.0
-offset_right = -492.0
-offset_bottom = -33.0
+offset_left = -449.0
+offset_top = -114.0
+offset_right = -349.0
+offset_bottom = -14.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Name" type="Label" parent="constant/three" unique_id=1276564246]
-visible = false
+[node name="Name" type="Label" parent="constant/three" unique_id=368797798]
 layout_mode = 0
-offset_right = 167.5
-offset_bottom = 42.0
-theme_override_font_sizes/font_size = 26
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="constant" unique_id=2050727201]
-position = Vector2(2055, 108.00012)
-scale = Vector2(10, 10)
+position = Vector2(1029.9999, 39.99996)
+scale = Vector2(2.1249952, 2.1249952)
 sprite_frames = SubResource("SpriteFrames_kxqrn")
 autoplay = "default"
 frame = 1
 frame_progress = 0.75180376
 
-[node name="Label" type="Label" parent="constant" unique_id=291948790]
-offset_left = 2131.0
-offset_top = 53.0
-offset_right = 2262.0
-offset_bottom = 95.0
+[node name="Label" type="Label" parent="constant" unique_id=1025299990]
+offset_left = 1049.0
+offset_top = 27.999962
+offset_right = 1115.0
+offset_bottom = 50.99996
+text = "Money : "
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1856416226]
+
+[node name="DigitalBox" type="Panel" parent="UI" unique_id=462329173]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -134.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogText" type="Label" parent="UI/DigitalBox" unique_id=1201030063]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 7.0
+offset_right = 1113.0
+offset_bottom = 70.0
 theme_override_font_sizes/font_size = 45
-text = "Money:   "
+autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/DigitalBox" unique_id=260262457]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 193.0
+offset_bottom = 128.0
+color = Color(0.13355187, 0.13355187, 0.13355187, 1)
+
+[node name="Who" type="Label" parent="UI/DigitalBox/ColorRect" unique_id=1240184462]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 14.0
+offset_right = 185.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 50
+
+[node name="Info" type="CanvasLayer" parent="." unique_id=807996531]
+
+[node name="info" type="Panel" parent="Info" unique_id=1662009036]
+anchors_preset = -1
+anchor_top = -0.012345679
+anchor_right = 1.0
+anchor_bottom = -0.012345679
+offset_top = 27.0
+offset_bottom = 96.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoText" type="Label" parent="Info/info" unique_id=1669176564]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 1119.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 40
+autowrap_mode = 2
 
 [node name="Choice" type="CanvasLayer" parent="." unique_id=777941836]
 
@@ -789,24 +815,19 @@ shape = SubResource("SphereShape3D_6f8ka")
 [node name="ShopCamera" type="Camera3D" parent="Dobbo" unique_id=844350551]
 transform = Transform3D(-0.014224001, -0.9454787, 0.32537317, -0.001997284, 0.3254323, 0.94556326, -0.9998969, 0.012799829, -0.0065173386, -3.6249423, 1.6889863, 3.0515952)
 
-[node name="Info" type="CanvasLayer" parent="." unique_id=2061670443]
+[node name="DeadTree_2" parent="." unique_id=411341944 instance=ExtResource("48_c2mg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.060073, 0.9833572, 24.699501)
 
-[node name="info" type="Panel" parent="Info" unique_id=916532645]
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 50.0
-offset_bottom = 119.0
-grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
+[node name="sounds" type="Node3D" parent="." unique_id=1589722983]
 
-[node name="InfoText" type="Label" parent="Info/info" unique_id=2040377991]
-layout_mode = 0
-offset_left = 100.0
-offset_top = -1.0
-offset_right = 200.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 45
-autowrap_mode = 1
+[node name="coin" type="AudioStreamPlayer" parent="sounds" unique_id=541274013]
+stream = ExtResource("49_bwb5q")
+
+[node name="car" type="AudioStreamPlayer" parent="sounds" unique_id=66197762]
+stream = ExtResource("50_s5eus")
+
+[node name="beep" type="AudioStreamPlayer" parent="sounds" unique_id=1957506254]
+stream = ExtResource("51_0wys3")
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]
