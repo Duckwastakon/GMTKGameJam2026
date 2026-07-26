@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/Scripts/sliders.gd" id="8_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
 [ext_resource type="AudioStream" uid="uid://b3wxlvpa2vvcu" path="res://sounds/menu.mp3" id="11_oxuiv"]
+[ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="11_wukyj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
 font_size = 48
@@ -299,13 +300,14 @@ vertical_alignment = 1
 
 [node name="settings" type="Node" parent="CanvasLayer/Control" unique_id=148601573]
 
-[node name="background" type="TextureRect" parent="CanvasLayer/Control/settings" unique_id=1436459331]
+[node name="background" type="TextureRect" parent="CanvasLayer/Control/settings" unique_id=1436459331 node_paths=PackedStringArray("music")]
 offset_left = 344.0
 offset_top = 688.0
 offset_right = 808.0
 offset_bottom = 1152.0
 texture = ExtResource("7_iqcnt")
 script = ExtResource("8_4jwo1")
+music = NodePath("../../../../sound/Menu")
 
 [node name="title" type="Label" parent="CanvasLayer/Control/settings/background" unique_id=138647872]
 layout_mode = 0
@@ -474,6 +476,7 @@ stretch_mode = 0
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
 
 [node name="sound" type="Node3D" parent="." unique_id=87030743]
+script = ExtResource("11_wukyj")
 
 [node name="Menu" type="AudioStreamPlayer" parent="sound" unique_id=714102865]
 stream = ExtResource("11_oxuiv")

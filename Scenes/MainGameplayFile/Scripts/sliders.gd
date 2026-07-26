@@ -1,6 +1,6 @@
 extends TextureRect
 
-
+@export var music: AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$screenShake/SS.value = Global.screenShake
@@ -14,6 +14,9 @@ func _on_s_value_changed(value: float) -> void:
 func _on_v_value_changed(value: float) -> void:
 	Global.volume = int(value)
 	$volume/V.value = Global.volume
+	if music == null: return
+	
+	music.volume_db = (-4 + (8 * (Global.volume / 100))) * 3
 
 func _on_ss_value_changed(value: float) -> void:
 	Global.screenShake = int(value)
