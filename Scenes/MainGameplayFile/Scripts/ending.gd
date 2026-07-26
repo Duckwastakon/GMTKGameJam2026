@@ -25,6 +25,8 @@ func _ready() -> void:
 	one.visible = false;two.visible = false;three.visible = false;four.visible = false;five.visible = false;six.visible = false;
 	camera.current = true ; car.freeze = true ; character.set_physics_process(false)
 	
+	beginnigSpeak()
+	
 	car.position = Vector3(0, 0, Czstart)
 	car.rotation = Vector3(0, 0, 0)
 	#camera.position = Vector3(-0.875, 2.795, 4.066)
@@ -58,7 +60,6 @@ func _ready() -> void:
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(-135), 0), 1.5625)
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(-180), 0), 1)
 	tween3.kill()
-	roll()
 	
 	tween.play()
 	
@@ -74,12 +75,29 @@ func _on_countdown_finished():
 	$UI/DigitalBox/DialogText.text = "Come and lets play forever..cheater"
 	$UI.visible = true
 	await get_tree().create_timer(1.5).timeout
-	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/ChildScenes/main_menue.tscn")
+	TransitionController.ChangeScene("res://finnish.tscn")
 
 
 func _process(delta: float) -> void:
 	pass
 	
+func beginnigSpeak():
+	$UI/DigitalBox/ColorRect/Who.text = "BOB"
+	$UI/DigitalBox/DialogText.text = "OK, ok, fine, we are almost there... time to let you go"
+	$Info/info/InfoText.text = "Bob is about to drop you off, but who says he wont try to find you"
+	$UI.visible = true
+	await get_tree().create_timer(2.5).timeout
+	$Info.visible = true
+	$UI.visible = false
+	await get_tree().create_timer(2.6).timeout
+	$Info/info/InfoText.text = "When Bob drops you off, you'll only have a few seconds to find your home"
+	await get_tree().create_timer(2.6).timeout
+	$Info/info/InfoText.text = "Either you find your home or Bob finds you"
+	await get_tree().create_timer(2.0).timeout
+	$Info/info/InfoText.text = "Run by pressing Shift and find the yellow indicator"
+	await get_tree().create_timer(3.0).timeout
+	$Info.visible = false
+	roll()
 
 func release_and_fall():
 	character.external_control = true   
@@ -117,6 +135,7 @@ func finnish():
 	get_tree().quit()
 
 func roll():
+	await get_tree().create_timer(6.0).timeout
 	var num = randi_range(1, 6)
 	var which = [one, two, three, four, five, six]
 	var home = which[num - 1]

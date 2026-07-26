@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://ctptxqsodx2qy"]
+
+[ext_resource type="Script" uid="uid://cmuxxwdw3g7iq" path="res://finnish.gd" id="1_3rh1e"]
+[ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="1_6uj6w"]
+[ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="2_x86ya"]
+[ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_x86ya"]
+[ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="4_f7l6h"]
+[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="6_ccc36"]
+[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="7_wnk55"]
+[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="8_81sk0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5o151"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="finnish" type="Node3D" unique_id=303695204]
+script = ExtResource("1_3rh1e")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=137331777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1800753, 0.48934972)
+
+[node name="movingBackground" parent="." unique_id=1140760169 instance=ExtResource("1_6uj6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24, -128)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1314306463]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
+
+[node name="Bob" parent="." unique_id=1942641608 instance=ExtResource("2_x86ya")]
+transform = Transform3D(4.4874854, 0, -2.2051017, 0, 4.9999995, 0, 2.2051017, 0, 4.4874854, 0.2374241, -0.94821125, 0.23720992)
+
+[node name="SedanSports" type="MeshInstance3D" parent="." unique_id=1902527636]
+transform = Transform3D(-0.11417356, 0, 0.22240593, 0, 0.25, 0, -0.22240593, 0, -0.11417356, 0.005320832, 0, -0.17320645)
+mesh = ExtResource("3_x86ya")
+
+[node name="Idle" parent="." unique_id=92532687 instance=ExtResource("4_f7l6h")]
+transform = Transform3D(0.14976875, 0, -0.008326175, 0, 0.15000002, 0, 0.008326175, 0, 0.14976875, -0.25132596, 0, 0.0783366)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1263251491]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1088155294]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -205.0
+offset_top = -178.0
+offset_right = 947.0
+offset_bottom = 470.0
+
+[node name="gameName" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1433904293]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 390.0
+offset_right = 1145.0
+offset_bottom = 582.0
+bbcode_enabled = true
+text = "[font_size={64}][outline_size={24}][b][wave]Game Name[/wave][/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node" type="Node" parent="CanvasLayer/Control" unique_id=1527475328]
+
+[node name="Leave" type="TextureButton" parent="CanvasLayer/Control/Node" unique_id=1010648277]
+self_modulate = Color(0.53333336, 0.9372549, 0.63529414, 1)
+offset_left = 29.0
+offset_top = 550.0
+offset_right = 413.0
+offset_bottom = 678.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("6_ccc36")
+texture_pressed = ExtResource("7_wnk55")
+texture_hover = ExtResource("8_81sk0")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Node/Leave" unique_id=165735162]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 128.0
+text = "Leave Game"
+label_settings = SubResource("LabelSettings_5o151")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Thank" type="RichTextLabel" parent="CanvasLayer/Control/Node" unique_id=1386460822]
+offset_left = -205.0
+offset_top = 88.0
+offset_right = 947.0
+offset_bottom = 280.0
+bbcode_enabled = true
+text = "[font_size={64}][outline_size={24}][b][wave]Thank you for playing[/wave][/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bob" type="RichTextLabel" parent="CanvasLayer/Control/Node" unique_id=2052947518]
+offset_left = 372.0
+offset_top = 524.0
+offset_right = 1524.0
+offset_bottom = 716.0
+bbcode_enabled = true
+text = "[font_size={20}][outline_size={24}][b]Remember... Bob is always watching...[/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="CanvasLayer/Control/Node/Leave" to="CanvasLayer" method="_on_play_button_up"]
+[connection signal="pressed" from="CanvasLayer/Control/Node/Leave" to="." method="_on_leave_pressed"]
