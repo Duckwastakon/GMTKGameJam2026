@@ -9,6 +9,13 @@ radius = 0.4404297
 radius = 0.38867188
 height = 1.2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q1cm"]
+albedo_color = Color(0.9999996, 0.1790151, 0.1804358, 1)
+metallic = 1.0
+
+[sub_resource type="TextMesh" id="TextMesh_byw2x"]
+text = "<----"
+
 [node name="moving_character" type="CharacterBody3D" unique_id=943208249]
 script = ExtResource("1_3q1cm")
 
@@ -27,3 +34,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=754257076]
 target_position = Vector3(0, 2, 0)
+
+[node name="arrow" type="MeshInstance3D" parent="." unique_id=31983565]
+transform = Transform3D(-2.1855695e-07, 0, -5, 0, 5, 0, 5, 0, -2.1855695e-07, 0, 0, -1.8119822)
+material_override = SubResource("StandardMaterial3D_3q1cm")
+mesh = SubResource("TextMesh_byw2x")
+
+[node name="LookAtModifier3D" type="LookAtModifier3D" parent="arrow" unique_id=1378639691]
+target_node = NodePath("../..")

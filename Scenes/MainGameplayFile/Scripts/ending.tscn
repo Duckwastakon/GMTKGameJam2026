@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bis4w7qskna3i" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_3.fbx" id="15_io1t0"]
 [ext_resource type="PackedScene" uid="uid://cwqd2e5p2gped" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_2.fbx" id="16_74urv"]
 [ext_resource type="PackedScene" uid="uid://7im28veklmow" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_1.fbx" id="17_5w3mk"]
+[ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="18_meyxk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew20g"]
 sky_top_color = Color(0.33246842, 0.49551493, 0.72834456, 1)
@@ -165,7 +166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039215088, 1.7095795, 0.128
 shape = SubResource("BoxShape3D_kkhv1")
 
 [node name="Camera3D" type="Camera3D" parent="car" unique_id=1140029915]
-transform = Transform3D(-1.0000001, -7.619397e-09, -8.709012e-08, 0, 0.99619484, -0.087155744, 8.7422784e-08, -0.08715574, -0.9961949, 0, 2.795, 3.551)
+transform = Transform3D(1.0000001, 0, 0, 0, 0.98480797, 0.17364822, 0, -0.17364822, 0.98480797, 4.030028e-07, 5.4683647, 9.983788)
 
 [node name="ground" type="StaticBody3D" parent="." unique_id=1282871941]
 
@@ -659,6 +660,18 @@ transform = Transform3D(0.08068591, 0, -0.9967395, 0, 1, 0, 0.9967395, 0, 0.0806
 [node name="CollisionShape3D" type="CollisionShape3D" parent="river" unique_id=1324386137]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82751465, -57.135956)
 shape = SubResource("CylinderShape3D_5w3mk")
+
+[node name="movingBackground" parent="." unique_id=1140760169 instance=ExtResource("18_meyxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 270, -10, 256)
+size = 512
+resolution = 8
+height = 32.0
+
+[node name="movingBackground2" parent="." unique_id=494045620 instance=ExtResource("18_meyxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270, -10, 256)
+size = 512
+resolution = 8
+height = 32.0
 
 [connection signal="body_entered" from="Node3envD/house/1" to="." method="_on__body_entered1"]
 [connection signal="body_entered" from="Node3envD/house/2" to="." method="_on__body_entered2"]

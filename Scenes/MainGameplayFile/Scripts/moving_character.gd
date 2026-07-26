@@ -5,6 +5,8 @@ extends CharacterBody3D
 @onready var crouching: CollisionShape3D = $crouching
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
 
+@export var item: MeshInstance3D
+
 var bob_time = 0.0
 const bob_frequency = 2.0
 const bob_amplitude = 0.12
@@ -29,11 +31,27 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * mouse))
-		head.rotate_x(deg_to_rad(-event.relative.y * mouse))
+		rotate_y(deg_to_rad(-event.relative.x * mouse * (Global.sensitivity / 10) / 5))
+		head.rotate_x(deg_to_rad(-event.relative.y * mouse * (Global.sensitivity / 10) / 5))
 		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
 func _physics_process(delta: float) -> void:
+	if item:
+		pass
+		#$arrow.visible = item.visible
+		#var itemPos: Vector3 = item.global_position
+		#var playerPos = self.global_position
+		#print(self.rotation)
+		#var deltaX = itemPos.x - playerPos.x
+		#var deltaZ = itemPos.z - playerPos.z
+		
+		#var rotationY = atan2(deltaZ, deltaX)
+		#var rotationY = Vector2(playerPos.x, playerPos.z).direction_to(Vector2(itemPos.x, itemPos.z)).angle()
+		#var rotationY = Vector2(playerPos.x, playerPos.z).angle_to(Vector2(itemPos.x, itemPos.z))
+		#$arrow.rotation = Vector3(0, rotationY - self.rotation.y , 0)
+	else:
+		$arrow.visible = false
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	if external_control:  

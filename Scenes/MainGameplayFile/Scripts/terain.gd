@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-const size = 256
+@export var size = 256
 
 var offset: float = 0
 var newRayCast3D: RayCast3D

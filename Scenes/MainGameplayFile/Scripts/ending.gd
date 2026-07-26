@@ -23,8 +23,8 @@ func _ready() -> void:
 	
 	car.position = Vector3(0, 0, Czstart)
 	car.rotation = Vector3(0, 0, 0)
-	camera.position = Vector3(-0.875, 2.795, 4.066)
-	camera.rotation = Vector3(deg_to_rad(5), deg_to_rad(180), 0)
+	#camera.position = Vector3(-0.875, 2.795, 4.066)
+	#camera.rotation = Vector3(deg_to_rad(5), deg_to_rad(180), 0)
 	
 	var tween = create_tween()
 	tween.tween_property(car, "position", Vector3(0, 0, Czmid), 4)
@@ -42,6 +42,7 @@ func _ready() -> void:
 	tween2.tween_property(camera, "position", Vector3(1.534, 2.795,-0.593), 1.5625)
 	tween2.tween_property(camera, "position", Vector3(1.534, 2.795, 3.563), 1.5625)
 	tween2.tween_property(camera, "position", Vector3(0, 2.795,3.551), 1.5625)
+	tween2.kill()
 	
 	var tween3 = create_tween()
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(135), 0), 1.5625)
@@ -52,8 +53,10 @@ func _ready() -> void:
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(-90), 0), 1.5625)
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(-135), 0), 1.5625)
 	tween3.tween_property(camera, "rotation", Vector3(deg_to_rad(5), deg_to_rad(-180), 0), 1)
+	tween3.kill()
+	#roll()
 	
-	roll()
+	tween.play()
 	
 	await tween.finished
 	player_camera.current = true

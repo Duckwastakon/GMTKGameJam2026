@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://c2dfmon3jdx3h" path="res://Scenes/MainGameplayFile/Scripts/hit_button.gd" id="5_7al5g"]
 [ext_resource type="Shader" uid="uid://dr1inrh66cgjd" path="res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader" id="7_df86l"]
 [ext_resource type="PackedScene" uid="uid://bdkwq0b8de27c" path="res://Scenes/MainGameplayFile/ChildScenes/cash_display.tscn" id="8_pimvi"]
-[ext_resource type="Script" uid="uid://cytgkdv7yd5kf" path="res://Scenes/MainGameplayFile/stand_button.gd" id="8_vqkqm"]
+[ext_resource type="Script" uid="uid://cytgkdv7yd5kf" path="res://Scenes/MainGameplayFile/Scripts/stand_button.gd" id="8_vqkqm"]
 [ext_resource type="ArrayMesh" uid="uid://mxtomui1cuma" path="res://Models_Art/models/button-floor-round.obj" id="9_ejs6f"]
 [ext_resource type="ArrayMesh" uid="uid://d2qqydjacb0m" path="res://Models_Art/models/table.obj" id="10_rq8od"]
 [ext_resource type="ArrayMesh" uid="uid://mpmp7spnj7tw" path="res://Models_Art/models/button-floor-square.obj" id="11_5cil1"]

@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="1_61d6s"]
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="2_ca4pa"]
-[ext_resource type="Script" uid="uid://bfov6ti3ogjji" path="res://Scenes/MainGameplayFile/ChildScenes/mainMenueController.gd" id="3_2w4oa"]
+[ext_resource type="Script" uid="uid://bfov6ti3ogjji" path="res://Scenes/MainGameplayFile/Scripts/mainMenueController.gd" id="3_2w4oa"]
 [ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="4_ty0lc"]
 [ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="5_iqcnt"]
 [ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="6_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="7_iqcnt"]
-[ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/ChildScenes/sliders.gd" id="8_4jwo1"]
+[ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/Scripts/sliders.gd" id="8_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
 [ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="10_2no2t"]
 
@@ -201,6 +201,8 @@ offset_left = 392.0
 offset_top = 288.0
 offset_right = 624.0
 offset_bottom = 304.0
+min_value = 10.0
+value = 10.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/settings/background/sensitivity" unique_id=426836497]
 layout_mode = 0

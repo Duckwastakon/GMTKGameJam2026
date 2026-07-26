@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cpj5gxpnrttgi" path="res://Models_Art/nature_quaternous/FBX/Mushroom_Common.fbx" id="14_735ui"]
 [ext_resource type="ArrayMesh" uid="uid://cjg0tvojlpbwq" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_2.obj" id="15_735ui"]
 [ext_resource type="ArrayMesh" uid="uid://c5r1ftgatkail" path="res://Models_Art/nature_quaternous/OBJ/Rock_Medium_3.obj" id="16_xtnxb"]
+[ext_resource type="Texture2D" uid="uid://cxlwfe3ptjcsv" path="res://Models_Art/models/arrowDown.png" id="18_q888p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7uw4k"]
 sky_top_color = Color(0.08375933, 0.24538207, 0.2902046, 1)
@@ -220,7 +221,8 @@ shape = SubResource("BoxShape3D_iif4s")
 [node name="Build_9" parent="env/assets" unique_id=1224984946 instance=ExtResource("5_0b6bn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -2.861, 0, 15.347)
 
-[node name="moving_character" parent="." unique_id=943208249 instance=ExtResource("3_2h1u0")]
+[node name="moving_character" parent="." unique_id=943208249 node_paths=PackedStringArray("item") instance=ExtResource("3_2h1u0")]
+item = NodePath("../here")
 
 [node name="ground" type="StaticBody3D" parent="." unique_id=481861379]
 
@@ -404,10 +406,19 @@ shape = SubResource("BoxShape3D_q888p")
 
 [node name="arrow" type="Area3D" parent="." unique_id=1401587483]
 
-[node name="CollisionShape3D" type="MeshInstance3D" parent="arrow" unique_id=971224550]
+[node name="arrow" type="MeshInstance3D" parent="arrow" unique_id=971224550]
 transform = Transform3D(-1.1813929, 4.8584266, -2.123686e-07, 7.7647026e-22, -2.1855696e-07, -5, -4.8584266, -1.1813929, 5.164033e-08, -10.911641, 0.1931709, -6.978159)
 material_override = SubResource("StandardMaterial3D_6rcx3")
 mesh = SubResource("TextMesh_ef62o")
+
+[node name="indicatorArrow" type="CanvasLayer" parent="." unique_id=1405086589]
+
+[node name="TextureRect" type="TextureRect" parent="indicatorArrow" unique_id=1659602788]
+offset_left = 512.0
+offset_top = 128.0
+offset_right = 640.0
+offset_bottom = 256.0
+texture = ExtResource("18_q888p")
 
 [connection signal="body_entered" from="interact_area_ticket" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="interact_area_ticket" to="." method="_on_body_exited"]

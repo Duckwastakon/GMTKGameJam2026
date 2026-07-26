@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cdtrg26rry30l"]
 
 [ext_resource type="Shader" uid="uid://bmnsrh8k35pgw" path="res://Scenes/MainGameplayFile/ChildScenes/transitionShader.gdshader" id="1_42f6b"]
-[ext_resource type="Script" uid="uid://dy4x820dguubs" path="res://Scenes/MainGameplayFile/ChildScenes/transition_controller.gd" id="1_q642t"]
+[ext_resource type="Script" uid="uid://dy4x820dguubs" path="res://Scenes/MainGameplayFile/Scripts/transition_controller.gd" id="1_q642t"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_42f6b"]
 
