@@ -445,6 +445,7 @@ func _on_reach_end_signal() -> void:
 	Global.addCash(-debt)
 	debt = 0
 	if debt <= 0 and Global.cash > 5:
+		Global.round = +1
 		Bob.talk("hmmm, good job")
 		await Bob.finishedTalking
 		get_tree().change_scene_to_file("res://Scenes/MainGameplayFile/1_st_shop.tscn")

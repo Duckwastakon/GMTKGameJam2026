@@ -60,6 +60,7 @@ func _physics_process(delta: float) -> void:
 
 	var base_head_y = 1.8
 	if Input.is_action_pressed("shift"):
+		$sounds/walk.pitch_scale = 0.5
 		currant_speed = crouching_speed
 		base_head_y = 1.8 + croach_depth
 		crouching.disabled = false ; standing.disabled = true
@@ -67,11 +68,15 @@ func _physics_process(delta: float) -> void:
 		crouching.disabled = true ; standing.disabled = false
 		base_head_y = 1.8
 		if Input.is_action_pressed('sprint'):
+			$sounds/walk.pitch_scale = 2.0
 			currant_speed = sprint_speed
 		else:
 			currant_speed = walking_speed
+			$sounds/walk.pitch_scale = 1.3
+			
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		$sounds/jump.play(0.3)
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * lerp_speed)
 	if direction:
@@ -82,6 +87,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, currant_speed)
 	var is_moving = is_on_floor() and Vector2(velocity.x, velocity.z).length() > 0.5
 	if is_moving:
+		if not $sounds/walk.playing:
+			$sounds/walk.play()
 		var speed_ratio = currant_speed / walking_speed
 		bob_time += delta * bob_frequency * speed_ratio
 		var bob_offset_y = sin(bob_time * TAU) * bob_amplitude
@@ -89,6 +96,7 @@ func _physics_process(delta: float) -> void:
 		head.position.y = lerp(head.position.y, base_head_y + bob_offset_y, delta * lerp_speed)
 		head.position.x = lerp(head.position.x, bob_offset_x, delta * lerp_speed)
 	else:
+		$sounds/walk.stop()
 		bob_time = 0.0
 		head.position.y = lerp(head.position.y, base_head_y, delta * lerp_speed)
 		head.position.x = lerp(head.position.x, 0.0, delta * lerp_speed)

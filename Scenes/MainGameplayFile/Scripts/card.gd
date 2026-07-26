@@ -131,7 +131,7 @@ func _on_mouse_entered() -> void:
 		currentCard.material_overlay = savedOutline
 
 func setCheatHover():
-	if get_tree().current_scene.canDraw == false and get_tree().current_scene.gameActive: return
+	#if get_tree().current_scene.canDraw == false and get_tree().current_scene.gameActive: return
 	savedMaterial.albedo_color = Color(1, 0, 0, 0.2)
 	currentCard.material_overlay = savedOutline
 

@@ -22,6 +22,7 @@ func swing(btn: TextureButton):
 
 func _on_play_button_up() -> void:
 	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/desert.tscn")
+	Global.round = 0
 
 func _on_close_button_up() -> void:
 	var newTween = create_tween()

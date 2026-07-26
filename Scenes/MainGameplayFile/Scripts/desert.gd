@@ -10,8 +10,9 @@ extends Node3D
 @onready var car: Area3D = $Area3D
 @onready var bobnpc: CharacterBody3D = $CharacterBody3D
 @onready var info: CanvasLayer = $Info
-
-
+@onready var ticket: MeshInstance3D = $env/assets/ticket/MeshInstance3D
+@onready var arrow: StaticBody3D = $moving_character/Arrow
+@onready var wheell: Node3D = $wheel
 
 var player_in_range = false
 var marker_time = 0.0
@@ -24,7 +25,7 @@ var ticket_time = true
 var spin_time = false
 
 func _ready() -> void:
-	
+	arrow.visible =false
 	bobnpc.visible = false
 	marker.position.x =  -14 ; marker.position.y = 3.129 ; marker.position.z = -7.055
 	car.position.x =  -9.573 ; car.position.y = 0.073 ; car.position.z = -55.447
@@ -45,13 +46,21 @@ func _ready() -> void:
 	dialog_text.text = "Its getting late..I hope the busses still run. I have to get home"
 	digital_box.visible = true
 	marker.visible = true
+	arrow.visible = true
 	await get_tree().create_timer(4.5).timeout
 	digital_box.visible = false
 	prompt.visible = false
 	prompt.text = "Press E to interact"
 	digital_box.visible = false
 
+
+
 func _process(delta):
+	if not spin_time:
+		arrow.look_at(ticket.position, Vector3.UP)
+	else:
+		arrow.look_at(wheell.global_position, Vector3.UP)
+	
 	marker_time += delta
 	marker.position.y = marker_base_y + sin(marker_time * 2.0) * 0.3
 	marker.rotate_y(delta * 1.0)
@@ -62,6 +71,7 @@ func _process(delta):
 			prompt.visible = false
 			dialog_text.text = "Shoot.. I'm missing 10 bucks.. maybe I should look around"
 			digital_box.visible = true
+			$sounds/coin.play()
 			await get_tree().create_timer(3.0).timeout
 			digital_box.visible = false
 			used_ticket = true
@@ -72,11 +82,15 @@ func _process(delta):
 		if Input.is_action_just_pressed('interract'):
 			marker.visible = false
 			wheel.visible = false
+			arrow.visible = false
 			dialog_text.text = "Wait..Damn it, it ate my coins!"
+			$sounds/coin.play()
 			digital_box.visible = true
 			await get_tree().create_timer(2.5).timeout
 			dialog_text.text = "Shoot! How the hell am i to get home now?"
-			await get_tree().create_timer(3.0).timeout
+			await get_tree().create_timer(1.5).timeout
+			$sounds/car.play()
+			await get_tree().create_timer(1.5).timeout
 			digital_box.visible = false
 			used_wheel = true
 			bob()
@@ -111,6 +125,7 @@ func bob():
 	await get_tree().create_timer(2).timeout
 	bobnpc.visible = true
 	var tween2 = create_tween()
+	$sounds/beep.play()
 	tween2.tween_property(bobnpc, "position", Vector3( -6.225,0.175, 8.364), 1)
 	who.text = "???"
 	dialog_text.text = "Why hello there. You looking for some coin?"

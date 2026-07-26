@@ -6,6 +6,7 @@ var nextCashBuff: float = 1.0
 var permanentCashBuff: float = 1.0
 var cash: int = 500
 const maxItems: int = 3
+var round = 0
 
 var volume = 50
 var screenShake = 50
