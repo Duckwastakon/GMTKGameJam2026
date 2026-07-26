@@ -71,6 +71,3 @@ func _ready() -> void:
 		updateMesh()
 		await get_tree().create_timer(0.01).timeout
 		offset -= 1.0 * speed
-
-func _on_play_button_up() -> void:
-	pass # Replace with function body.

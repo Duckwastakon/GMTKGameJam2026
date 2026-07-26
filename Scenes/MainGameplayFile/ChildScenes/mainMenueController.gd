@@ -19,3 +19,6 @@ func swing(btn: TextureButton):
 	newTween.play()
 	await newTween.finished
 	btn.disabled = false
+
+func _on_play_button_up() -> void:
+	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/desert.tscn")
