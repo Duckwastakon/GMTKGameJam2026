@@ -291,6 +291,8 @@ func _ready() -> void:
 	if Global.round == 0:
 		tutorial()
 		await finishTutorial
+	else:
+		finishTutorial.emit()
 	while(!reachedEnd):
 		while(!gameActive):
 			await startGame
