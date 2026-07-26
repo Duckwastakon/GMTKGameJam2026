@@ -47,17 +47,6 @@ offset_top = -178.0
 offset_right = 947.0
 offset_bottom = 470.0
 
-[node name="gameName" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1433904293]
-layout_mode = 0
-offset_left = -7.0
-offset_top = 390.0
-offset_right = 1145.0
-offset_bottom = 582.0
-bbcode_enabled = true
-text = "[font_size={64}][outline_size={24}][b][wave]Game Name[/wave][/b]"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Node" type="Node" parent="CanvasLayer/Control" unique_id=1527475328]
 
 [node name="Leave" type="TextureButton" parent="CanvasLayer/Control/Node" unique_id=1010648277]
@@ -97,6 +86,30 @@ offset_right = 1524.0
 offset_bottom = 716.0
 bbcode_enabled = true
 text = "[font_size={20}][outline_size={24}][b]Remember... Bob is always watching...[/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gameName" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=668293926]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 394.0
+offset_right = 1149.0
+offset_bottom = 586.0
+theme_override_colors/default_color = Color(0.28694728, 0.59859526, 0.37931705, 1)
+bbcode_enabled = true
+text = "[font_size={64}][outline_size={24}][b][wave]Cashless drive[/wave][/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gameName2" type="RichTextLabel" parent="CanvasLayer/Control/gameName" unique_id=132744174]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 60.0
+offset_right = 1249.0
+offset_bottom = 252.0
+bbcode_enabled = true
+text = "[font_size={30
+}][outline_size={24}][b][wave]Cash out or check out[/wave][/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
