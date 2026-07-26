@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/Scripts/sliders.gd" id="8_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
 [ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="10_2no2t"]
-[ext_resource type="Script" uid="uid://c2kmx2x7adsty" path="res://Scenes/MainGameplayFile/Scripts/credits.gd" id="11_oxuiv"]
 [ext_resource type="AudioStream" uid="uid://b3wxlvpa2vvcu" path="res://sounds/menu.mp3" id="11_oxuiv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
@@ -30,6 +29,11 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_wukyj"]
 font_size = 24
 outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oxuiv"]
+font_size = 18
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="mainMenue" type="Node3D" unique_id=41581377]
@@ -57,7 +61,19 @@ layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 192.0
 bbcode_enabled = true
-text = "[font_size={64}][outline_size={24}][b][wave]Game Name[/wave][/b]"
+text = "[font_size={64}][outline_size={24}][b][wave]Cashless drive[/wave][/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gameName2" type="RichTextLabel" parent="CanvasLayer/Control/gameName" unique_id=64709006]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 60.0
+offset_right = 1249.0
+offset_bottom = 252.0
+bbcode_enabled = true
+text = "[font_size={30
+}][outline_size={24}][b][wave]Cash out or check out[/wave][/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -242,9 +258,8 @@ layout_mode = 0
 offset_left = 344.0
 offset_top = 688.0
 offset_right = 808.0
-offset_bottom = 1152.0
+offset_bottom = 1201.0
 texture = ExtResource("7_iqcnt")
-script = ExtResource("11_oxuiv")
 
 [node name="title" type="Label" parent="CanvasLayer/Control/Credits" unique_id=368110654]
 layout_mode = 0
@@ -257,14 +272,35 @@ vertical_alignment = 1
 
 [node name="title2" type="Label" parent="CanvasLayer/Control/Credits" unique_id=472365732]
 layout_mode = 0
-offset_top = 96.0
-offset_right = 464.0
-offset_bottom = 464.0
+offset_left = 3.0
+offset_top = -60.0
+offset_right = 467.0
+offset_bottom = 308.0
 text = "Made by a two people team
 for the gmtk 2026 game jam!"
 label_settings = SubResource("LabelSettings_wukyj")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="credits" type="Label" parent="CanvasLayer/Control/Credits" unique_id=467424814]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 159.0
+offset_right = 446.0
+offset_bottom = 409.0
+text = "---------------------------------------------------------------------
+\"Modular Wood Structures\" by loafbrr
+\"WoodStuff\" by loafbrr
+\"Coin-tiles\" by Mroker
+\"Stylized Nature\" by quaternious
+\"Car kit\" by Kenney (Assets)
+\"City Kit (commercial) \"by Kenney (Assets)
+
+Dobbo npc animation & character from Mixamo
+Music and sfx from pixabayyyyy"
+label_settings = SubResource("LabelSettings_oxuiv")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="closeCredits" type="TextureButton" parent="CanvasLayer/Control/Credits" unique_id=39031017]
 modulate = Color(1, 0.4, 0.32941177, 1)

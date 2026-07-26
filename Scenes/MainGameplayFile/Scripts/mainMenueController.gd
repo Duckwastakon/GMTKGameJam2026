@@ -59,5 +59,5 @@ func _on_credits_button_up() -> void:
 		b.disabled = true
 	
 	var newTween = create_tween()
-	newTween.tween_property($Control/Credits, "position", Vector2(344, 152), 0.2)
+	newTween.tween_property($Control/Credits, "position", Vector2(344, 140), 0.2)
 	newTween.play()
