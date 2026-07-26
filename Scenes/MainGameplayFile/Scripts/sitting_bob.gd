@@ -69,26 +69,39 @@ func _on_change_idle_timeout() -> void:
 	$changeIdle.wait_time = randi_range(8, 36)
 	$changeIdle.start()
 
+signal clickNextString
+var clickToTalk = false
+
+var regSpeed = 0.025
+var speed = 0.025
+
 func talk(str: String):
 	if textQueue.size() == 0:
 		textQueue.append(str)
 		
 		while(textQueue.size()>0):
+			speed = regSpeed
 			var word = textQueue[0]
 			var stringLength = 0
 			while(stringLength != word.length()):
 				stringLength += 1
 				talkingLabel.text = word.substr(0, stringLength)
-				await get_tree().create_timer(0.025).timeout
-			await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(speed).timeout
+			if clickToTalk:
+				await clickNextString
+			else:
+				await get_tree().create_timer(3).timeout
 			while talkingLabel.text != "":
 				talkingLabel.text = talkingLabel.text.substr(0, talkingLabel.text.length() - 1)
-				await get_tree().create_timer(0.01).timeout
+				await get_tree().create_timer(0.001).timeout
 			
 			textQueue.pop_front()
 		
 		finishedTalking.emit()
 	else:
-		if textQueue.size() >= 3:
-			textQueue.pop_back()
 		textQueue.append(str)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("E") and clickToTalk:
+		clickNextString.emit()
+		speed = regSpeed / 3

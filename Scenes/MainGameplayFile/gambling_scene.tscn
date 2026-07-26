@@ -210,6 +210,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_5cil1")
 surface_material_override/2 = SubResource("StandardMaterial3D_rq8od")
 
 [node name="cashDisplay" parent="." unique_id=101834038 instance=ExtResource("8_pimvi")]
+follow_viewport_enabled = false
 
 [node name="Table" type="MeshInstance3D" parent="." unique_id=105328506]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.8, 0, -0.4)
@@ -518,6 +519,8 @@ visible = false
 [node name="indicatorArrow" parent="." unique_id=27110688 instance=ExtResource("75_8olwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3381251, 1.0872273, -0.18154418)
 visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=435326984]
 
 [connection signal="reachEndSignal" from="." to="." method="_on_reach_end_signal"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]

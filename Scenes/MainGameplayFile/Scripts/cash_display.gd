@@ -22,14 +22,15 @@ func updateText(amt: int):
 	
 	var newText = clonable.duplicate()
 	add_child(newText)
-	newText.position = Vector2.ZERO
+	newText.global_position = $Label.global_position
 	newText.text = str(amt)
 	newText.visible = true
 	newText.modulate = clr
 	var newTween = create_tween()
 	var transparencyTween = create_tween()
 	transparencyTween.tween_property(newText, "modulate", clr * Color(1,1,0,0), 1.5)
-	newTween.tween_property(newText, "position", Vector2(0, -50), 1.5)
+	newTween.tween_property(newText, "global_position", newText.global_position + Vector2(randi_range(-20, 20), 
+	randi_range(-100, -50)), 0.75)
 	newTween.play()
 	transparencyTween.play()
 	
@@ -37,3 +38,6 @@ func updateText(amt: int):
 	
 	newTween.kill()
 	newText.queue_free()
+
+func setEVisible(val:bool):
+	$pressEIndicator.visible = val

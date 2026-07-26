@@ -41,6 +41,10 @@ signal finishTutorial
 var canDraw = false
 var gameActive = false
 
+var inTut = false
+
+var distractVal = false
+
 const cardScene = preload("res://Scenes/MainGameplayFile/ChildScenes/card.tscn")
 
 @onready var allCards = $allPossibleCards.get_children()
@@ -154,6 +158,9 @@ func countSum(arr):
 @onready var indArrow = $indicatorArrow
 
 func tutorial():
+	$cashDisplay.setEVisible(true)
+	inTut = true
+	Bob.clickToTalk = true
 	indArrow.visible = true
 	indArrow.rotation_degrees = Vector3(0, -15, 0)
 	indArrow.global_position = $importantDataDisplay.global_position + Vector3(0, 0.2, 0)
@@ -185,6 +192,7 @@ func tutorial():
 	else:
 		Bob.talk("Here I would win")
 	
+	Bob.talk("I will now turn to look away")
 	Bob.talk("do NOT try to cheat when I am looking")
 	await Bob.finishedTalking
 	Bob.startTut()
@@ -206,6 +214,10 @@ func tutorial():
 	Bob.talk("Then click play to start the hand")
 	await Bob.finishedTalking
 	finishTutorial.emit()
+	Bob.clickToTalk = false
+	Bob.clickNextString.emit()
+	inTut = false
+	$cashDisplay.setEVisible(false)
 
 func drawCard(arr: Array[int], cont, hidden = false):
 	if(deck.size()<1):
@@ -213,7 +225,7 @@ func drawCard(arr: Array[int], cont, hidden = false):
 	
 	print(hidden)
 	var newCard = cardScene.instantiate()
-	newCard.setCard(deck[0].duplicate(), hidden)
+	newCard.setCard(deck[0].duplicate(), hidden, distractVal)
 	cont.add_child(newCard)
 	newCard.global_position = deckNode.global_position
 	var cardName: String = deck[0].name
@@ -314,9 +326,8 @@ func betAdded(amount: int):
 
 signal nextLine
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("E"):
-		nextLine.emit()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("E"):
 		#await drawCard(playersCards, playerCardContainer)
 		#if(countSum(playersCards) >= 21):
 			#playerDone.emit()
@@ -446,7 +457,9 @@ func bobTalk(str: String):
 func _on_distraction_timer_timeout() -> void:
 	if gameActive:
 		distracted.emit(true)
+		distractVal = true
 		await Bob.distract()
 		distracted.emit(false)
+		distractVal = false
 	$distractionTimer.wait_time = randi_range(8, 26)
 	$distractionTimer.start()

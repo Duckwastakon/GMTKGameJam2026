@@ -15,22 +15,27 @@ func _ready() -> void:
 	
 	var check = get_tree().current_scene.addBet || null
 	if check != null:
-		for btn: Button in betButtons:
-			print("connected")
-			btn.connect("button_down", increaseBet.bind(int(btn.get_child(1).text)))
+		for btn: TextureButton in betButtons:
+			btn.connect("button_down", increaseBet.bind(int(btn.get_child(0).text)))
 
 func _on_play_button_button_down() -> void:
 	var check = get_tree().current_scene.startGame || null
 	if check != null:
-		if $playButton.flat == true:
-			get_tree().current_scene.bobTalk("You cant just bet nothing")
+		if get_tree().current_scene.inTut == true or currentBet == 0: return
 		get_tree().current_scene.startGame.emit()
+		$playButton.self_modulate = Color(0.0, 0.835, 0.835, 1.0)
+		$playButton/Label.text = "Game in progress"
 
 func updateCounter(amt: int, show: bool = false, message: String = ""):
 	if amt > 0:
-		$playButton.flat = true
+		$playButton.self_modulate = Color(0.426, 0.889, 0.419, 1.0)
+	else:
+		$playButton.self_modulate = Color(0.384, 0.384, 0.384, 1.0)
+	
+	$playButton/Label.text = "Play"
 	
 	if message != "":
 		$Label.text = message
 		await get_tree().create_timer(2).timeout
 	$Label.text = "$" + str(amt)
+	currentBet = amt

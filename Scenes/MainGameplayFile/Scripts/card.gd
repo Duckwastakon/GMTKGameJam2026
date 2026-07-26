@@ -41,7 +41,7 @@ func setDistracted(val: bool):
 	
 	updateText("", false)
 
-func setCard(card: MeshInstance3D, hid: bool):
+func setCard(card: MeshInstance3D, hid: bool, distr: bool = false):
 	add_child(card)
 	card.position = Vector3.ZERO
 	var newShaderMaterial = ShaderMaterial.new()
@@ -72,6 +72,7 @@ func setCard(card: MeshInstance3D, hid: bool):
 		var newTween = create_tween()
 		newTween.tween_property(self, "rotation_degrees", Vector3(-45,0,0), 0.5)
 		newTween.play()
+	setDistracted(distr)
 
 func clickedCard(event):
 	if !distracted: return

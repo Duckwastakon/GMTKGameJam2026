@@ -18,11 +18,17 @@ var lastPayment: int
 
 func _ready() -> void:
 	if mainController:
-		await mainController.finishTutorial
 		var finishTween = create_tween()
 		finishTween.tween_property($background/fillIn, "scale", Vector2(1,1), fullRideTime)
 		finishTween.play()
-	
+		
+		await mainController.finishTutorial
+		finishTween.stop()
+		
+		$background/fillIn.scale = Vector2(0, 1)
+		finishTween = create_tween()
+		finishTween.tween_property($background/fillIn, "scale", Vector2(1,1), fullRideTime)
+		finishTween.play()
 		$cashPaymentTimer.start()
 		var nextPaymentTime = 30 + randi_range(-3, 3)
 		var nextPaymentAmount = int(basePaymentAmount * randf_range(0.9, 1.1))
