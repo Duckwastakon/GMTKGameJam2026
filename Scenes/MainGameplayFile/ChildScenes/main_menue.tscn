@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/Scripts/sliders.gd" id="8_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
 [ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="10_2no2t"]
+[ext_resource type="Script" uid="uid://c2kmx2x7adsty" path="res://Scenes/MainGameplayFile/Scripts/credits.gd" id="11_oxuiv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
 font_size = 48
@@ -23,6 +24,11 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_iqcnt"]
 outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wukyj"]
+font_size = 24
+outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [node name="mainMenue" type="Node3D" unique_id=41581377]
@@ -229,14 +235,58 @@ stretch_mode = 0
 transform = Transform3D(0.22475205, 0, 0.10948294, 0, 0.25, 0, -0.10948294, 0, 0.22475205, -0.7647475, -0.32552978, 0.106476486)
 mesh = ExtResource("10_2no2t")
 
+[node name="Credits" type="TextureRect" parent="CanvasLayer/Control" unique_id=1830350400]
+z_index = 1
+layout_mode = 0
+offset_left = 344.0
+offset_top = 688.0
+offset_right = 808.0
+offset_bottom = 1152.0
+texture = ExtResource("7_iqcnt")
+script = ExtResource("11_oxuiv")
+
+[node name="title" type="Label" parent="CanvasLayer/Control/Credits" unique_id=368110654]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 104.0
+text = "Credits"
+label_settings = SubResource("LabelSettings_a25g6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="title2" type="Label" parent="CanvasLayer/Control/Credits" unique_id=472365732]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 464.0
+offset_bottom = 464.0
+text = "Made by a two people team
+for the gmtk 2026 game jam!"
+label_settings = SubResource("LabelSettings_wukyj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="closeCredits" type="TextureButton" parent="CanvasLayer/Control/Credits" unique_id=39031017]
+modulate = Color(1, 0.4, 0.32941177, 1)
+layout_mode = 0
+offset_left = 384.0
+offset_top = 32.0
+offset_right = 432.0
+offset_bottom = 80.0
+texture_normal = ExtResource("9_a25g6")
+stretch_mode = 0
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=749743516]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/play" to="CanvasLayer" method="_on_play_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/settings" to="CanvasLayer" method="_on_settings_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Node/credits" to="CanvasLayer" method="_on_credits_button_up"]
 [connection signal="value_changed" from="CanvasLayer/Control/settings/background/screenShake/SS" to="CanvasLayer/Control/settings/background" method="_on_ss_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Control/settings/background/volume/V" to="CanvasLayer/Control/settings/background" method="_on_v_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Control/settings/background/sensitivity/S" to="CanvasLayer/Control/settings/background" method="_on_s_value_changed"]
 [connection signal="button_up" from="CanvasLayer/Control/settings/background/close" to="CanvasLayer" method="_on_close_button_up"]
 [connection signal="mouse_entered" from="CanvasLayer/Control/settings/background/close" to="CanvasLayer/Control/settings/background" method="_on_close_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Control/settings/background/close" to="CanvasLayer/Control/settings/background" method="_on_close_mouse_exited"]
+[connection signal="button_up" from="CanvasLayer/Control/Credits/closeCredits" to="CanvasLayer" method="_on_close_credits_button_up"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/Credits/closeCredits" to="CanvasLayer/Control/Credits" method="_on_close_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Control/Credits/closeCredits" to="CanvasLayer/Control/Credits" method="_on_close_mouse_exited"]

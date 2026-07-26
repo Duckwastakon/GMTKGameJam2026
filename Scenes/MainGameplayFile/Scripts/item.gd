@@ -10,13 +10,15 @@ var savedMaterial: StandardMaterial3D
 var savedOutline: ShaderMaterial
 
 var item_Abilities_Models = {
-	"Scissors" = {
+	"Sword" = {
 		"power": "destroy",
-		"meshLoad": null,
-		"itemScale": 0.1
+		"meshLoad": load("res://Models_Art/models/sword.mesh"),
+		"itemScale": Vector3(0.65, 0.65, 0.65)
 	},
 	"Gun" = {
-		
+		"power": "forcePickup",
+		"meshLoad": load("res://Models_Art/models/gun.mesh"),
+		"itemScale": Vector3(0.4, 0.4, 0.4),
 	},
 	"Magic wand" = {
 		"power": "upgrade",
@@ -26,8 +28,19 @@ var item_Abilities_Models = {
 	"Soda" = {
 		"power": "upgrade",
 		"meshLoad": load("res://Models_Art/models/soda.mesh"),
-		"itemScale": Vector3(0.02, 0.1, 0.02),
+		"itemScale": Vector3(0.35, 0.35, 0.35),
+	},
+	"Collectors coin" = {
+		"power": "skipNextLoss",
+		"meshLoad": load("res://Models_Art/models/coin.mesh"),
+		"itemScale": Vector3(0.4, 0.4, 0.4)
+	},
+	"Magnifying glass" = {
+		"power": "checkOppCard",
+		"meshLoad": load("res://Models_Art/models/coin.mesh"),
+		"itemScale": Vector3(0.4, 0.4, 0.4)
 	}
+	
 }
 
 var hoverShader = load("res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader")

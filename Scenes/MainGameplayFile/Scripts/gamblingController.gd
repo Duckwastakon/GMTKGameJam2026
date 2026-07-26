@@ -202,6 +202,8 @@ func tutorial():
 	but don't go over wins")
 	var playerSum = countSum(playersCards)
 	var opponentsSum = countSum(opponentsCards)
+	
+	print(opponentsCards)
 	Bob.talk("you have " + str(playerSum) + " points
 	I have " + str(opponentsSum) + " points")
 	
@@ -217,6 +219,7 @@ func tutorial():
 	Bob.startTut()
 	distracted.emit(true)
 	await cardDrawn
+	print(opponentsCards)
 	if not inTut: return # for skip tut
 	Bob.StoppedDistract.emit()
 	distracted.emit(false)
@@ -280,6 +283,7 @@ func discardCards() -> void:
 	opponentsCards.clear()
 
 func _ready() -> void:
+	screenShake(100000)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	connect("addBet", betAdded)
 	shuffleDeck()
@@ -463,6 +467,7 @@ func getCard(card: StaticBody3D, num: int):
 
 func looseGame():
 	Bob.talk("well you have lost")
+	Bob.talk("GET OFF")
 	reachedEnd = true
 	await Bob.finishedTalking
 	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/ChildScenes/main_menue.tscn")
@@ -501,3 +506,26 @@ func _on_distraction_timer_timeout() -> void:
 		distractVal = false
 	$distractionTimer.wait_time = randi_range(8, 26)
 	$distractionTimer.start()
+
+var screenShakeAmount = 0
+
+func screenShake(amt: int):
+	if screenShakeAmount == 0:
+		screenShakeAmount += amt
+		var shakeH
+		var shakeV
+		while(screenShakeAmount):
+			shakeH = randf_range(-0.6, 0.6) * (Global.screenShake/100)
+			shakeV = randf_range(-0.6, 0.6) * (Global.screenShake/100)
+			
+			for i in 5:
+				$gamblingCam.h_offset = lerpf($gamblingCam.h_offset, shakeH, 0.1)
+				$gamblingCam.v_offset = lerpf($gamblingCam.v_offset, shakeV, 0.1)
+				await get_tree().create_timer(0.02).timeout
+				
+			screenShakeAmount -= 1
+		
+		$gamblingCam.h_offset = 0
+		$gamblingCam.v_offset = 0
+	else:
+		screenShakeAmount += amt

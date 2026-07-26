@@ -76,6 +76,7 @@
 [ext_resource type="PackedScene" uid="uid://xtd3v83if61p" path="res://Scenes/MainGameplayFile/ChildScenes/flying_card_particle.tscn" id="71_xw0sv"]
 [ext_resource type="PackedScene" uid="uid://cnxpdm08hdra5" path="res://Scenes/MainGameplayFile/ChildScenes/indicator_arrow.tscn" id="75_8olwl"]
 [ext_resource type="PackedScene" uid="uid://ccth3ackscydl" path="res://Models_Art/models/wand.glb" id="76_eqwvt"]
+[ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="77_0duhh"]
 [ext_resource type="AudioStream" uid="uid://37wpwvejipng" path="res://sounds/card.mp3" id="77_hyb6d"]
 [ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="78_hyb6d"]
 [ext_resource type="AudioStream" uid="uid://c6hqn3ngi870q" path="res://sounds/poof.mp3" id="79_76e26"]
@@ -150,8 +151,7 @@ size = Vector2(0.75, 0.75)
 background_mode = 1
 background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
 ambient_light_color = Color(1, 1, 1, 1)
-fog_light_color = Color(1, 1, 1, 1)
-fog_density = 0.02
+fog_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
 
@@ -468,7 +468,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6264612, 0.70317036, 0.3032
 script = ExtResource("65_f18wc")
 
 [node name="Item" parent="item" unique_id=767929299 instance=ExtResource("65_k3xgq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11269534, 0.030329645, -0.013708055)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19551432, 0.030329645, -0.013708055)
 visible = false
 
 [node name="Item2" parent="item" unique_id=280384621 instance=ExtResource("65_k3xgq")]
@@ -549,6 +549,7 @@ offset_bottom = 47.0
 text = "Skip tutorial"
 
 [node name="sounds" type="Node3D" parent="." unique_id=1806701215]
+script = ExtResource("77_0duhh")
 
 [node name="card" type="AudioStreamPlayer" parent="sounds" unique_id=1666857776]
 stream = ExtResource("77_hyb6d")

@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 	if neededSignal != null:
 		get_tree().current_scene.connect("betChanged", updateCounter)
+		get_tree().current_scene.connect("reachEndSignal", disableButtons)
 	
 	var check = get_tree().current_scene.addBet || null
 	if check != null:
@@ -39,3 +40,8 @@ func updateCounter(amt: int, show: bool = false, message: String = ""):
 		await get_tree().create_timer(2).timeout
 	$Label.text = "$" + str(amt)
 	currentBet = amt
+
+func disableButtons():
+	$playButton.disabled = true
+	for btn in $betIncreaseButtons:
+		btn.disabled = true
