@@ -43,5 +43,5 @@ func updateCounter(amt: int, show: bool = false, message: String = ""):
 
 func disableButtons():
 	$playButton.disabled = true
-	for btn in $betIncreaseButtons:
+	for btn in $betIncreaseButtons.get_children():
 		btn.disabled = true
