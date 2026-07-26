@@ -244,8 +244,8 @@ func tutorial():
 	$cashDisplay.setEVisible(false)
 
 
-
 func drawCard(arr: Array[int], cont, hidden = false):
+	$sounds/card.play()
 	if(deck.size()<1):
 		shuffleDeck()
 	
@@ -313,6 +313,7 @@ func _ready() -> void:
 			wonCash -= debt
 			debt = 0
 			Global.addCash(wonCash)
+			$sounds/Getmney.play()
 			betChanged.emit(0)
 		else:
 			betChanged.emit(0, true, "lost")
@@ -365,6 +366,7 @@ signal nextLine
 func _on_hit_button_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton and canDraw:
 		if event.pressed:
+			$sounds/button.play(0.3)
 			await drawCard(playersCards, playerCardContainer)
 			if(countSum(playersCards) >= 21):
 				playerDone.emit()
@@ -373,6 +375,7 @@ func _on_hit_button_input_event(camera: Node, event: InputEvent, event_position:
 func _on_stand_button_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton and canDraw:
 		if event.pressed:
+			$sounds/button.play(0.3)
 			playerDone.emit()
 
 func destroyCard(card: StaticBody3D, arr: Array, pos: int, cont):

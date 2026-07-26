@@ -76,6 +76,13 @@
 [ext_resource type="PackedScene" uid="uid://xtd3v83if61p" path="res://Scenes/MainGameplayFile/ChildScenes/flying_card_particle.tscn" id="71_xw0sv"]
 [ext_resource type="PackedScene" uid="uid://cnxpdm08hdra5" path="res://Scenes/MainGameplayFile/ChildScenes/indicator_arrow.tscn" id="75_8olwl"]
 [ext_resource type="PackedScene" uid="uid://ccth3ackscydl" path="res://Models_Art/models/wand.glb" id="76_eqwvt"]
+[ext_resource type="AudioStream" uid="uid://37wpwvejipng" path="res://sounds/card.mp3" id="77_hyb6d"]
+[ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="78_hyb6d"]
+[ext_resource type="AudioStream" uid="uid://c6hqn3ngi870q" path="res://sounds/poof.mp3" id="79_76e26"]
+[ext_resource type="AudioStream" uid="uid://euwfag0qlak2" path="res://sounds/button.mp3" id="80_d4lw2"]
+[ext_resource type="AudioStream" uid="uid://go0blr6b5had" path="res://sounds/buttonBeep.mp3" id="81_kk64j"]
+[ext_resource type="AudioStream" uid="uid://54pfj0e0ac85" path="res://sounds/alien.mp3" id="82_0duhh"]
+[ext_resource type="AudioStream" uid="uid://cvh8bmbgqjci4" path="res://sounds/getmney.mp3" id="83_kk64j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fj2yj"]
 size = Vector3(0.1, 0.025, 0.1)
@@ -540,6 +547,29 @@ offset_top = 16.0
 offset_right = 122.0
 offset_bottom = 47.0
 text = "Skip tutorial"
+
+[node name="sounds" type="Node3D" parent="." unique_id=1806701215]
+
+[node name="card" type="AudioStreamPlayer" parent="sounds" unique_id=1666857776]
+stream = ExtResource("77_hyb6d")
+
+[node name="coin" type="AudioStreamPlayer" parent="sounds" unique_id=996904588]
+stream = ExtResource("78_hyb6d")
+
+[node name="poof" type="AudioStreamPlayer" parent="sounds" unique_id=546532753]
+stream = ExtResource("79_76e26")
+
+[node name="button" type="AudioStreamPlayer" parent="sounds" unique_id=1014097261]
+stream = ExtResource("80_d4lw2")
+
+[node name="buttonscreen" type="AudioStreamPlayer" parent="sounds" unique_id=313978297]
+stream = ExtResource("81_kk64j")
+
+[node name="Alien-temporary" type="AudioStreamPlayer" parent="sounds" unique_id=556093580]
+stream = ExtResource("82_0duhh")
+
+[node name="Getmney" type="AudioStreamPlayer" parent="sounds" unique_id=338365917]
+stream = ExtResource("83_kk64j")
 
 [connection signal="reachEndSignal" from="." to="." method="_on_reach_end_signal"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]

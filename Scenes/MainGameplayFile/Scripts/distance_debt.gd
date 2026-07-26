@@ -50,12 +50,14 @@ func _ready() -> void:
 					nextPaymentAmount -= Global.cash
 					Global.addCash(-Global.cash)
 					addDebt(nextPaymentAmount)
+					$"../../../sounds/coin".play() #money lost sounds - Niko
 				else:
 					Global.addCash(-nextPaymentAmount)
 					$blinkingTimer.text = "-$" + str(nextPaymentAmount)
 					$blinkingTimer.visible = true
 					$background.visible = false
 					$paymentInfo.visible = false
+					$"../../../sounds/coin".play() #money lost sounds - Niko
 				
 				nextPaymentTime = 10 + randi_range(-3, 3)
 				basePaymentAmount = int(basePaymentAmount * 1.1)
@@ -94,19 +96,20 @@ func addDebt(amt: int):
 
 func _on_cash_payment_timer_timeout() -> void:
 	fullRideTime -= 1
-	
 	if fullRideTime <= 0:
 		$cashPaymentTimer.stop()
 		if Global.cash<lastPayment:
 			lastPayment -= Global.cash
 			Global.addCash(-Global.cash)
 			addDebt(lastPayment)
+			$"../../../sounds/coin".play() #money lost sounds - Niko
 		else:
 			Global.addCash(-lastPayment)
 			$blinkingTimer.text = "-$" + str(lastPayment)
 			$blinkingTimer.visible = true
 			$background.visible = false
 			$paymentInfo.visible = false
+			$"../../../sounds/coin".play() #money lost sounds - Niko
 		await get_tree().create_timer(0.5).timeout
 		while(mainController.debt > 0):
 			await get_tree().create_timer(1).timeout
@@ -123,4 +126,3 @@ func _on_cash_payment_timer_timeout() -> void:
 	else:
 		$background.visible = true
 		$paymentInfo.visible = true
-	
