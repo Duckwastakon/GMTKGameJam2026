@@ -3,10 +3,12 @@ extends CanvasLayer
 var time_remaining: float = 60.0  # starting time in seconds
 var counting_down = true
 signal countdownFinished
+signal countdownStarted
 
 func _ready():
 	countdown_label.visible = false
 	await get_tree().create_timer(13.0).timeout
+	countdownStarted.emit() 
 	countdown_label.visible = true
 	counting_down = true
 

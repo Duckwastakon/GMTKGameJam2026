@@ -21,6 +21,7 @@ var ONE = false; var TWO = false; var THREE = false; var FOUR = false; var FIVE 
 func _ready() -> void:
 	bob.visible = false ; $UI.visible = false; $Info.visible = false
 	countdown_timer.countdownFinished.connect(_on_countdown_finished)
+	countdown_timer.countdownStarted.connect(_on_countdown_started)
 	ONE = false; TWO = false; THREE = false; FOUR = false; FIVE = false; SIX = false; 
 	one.visible = false;two.visible = false;three.visible = false;four.visible = false;five.visible = false;six.visible = false;
 	camera.current = true ; car.freeze = true ; character.set_physics_process(false)
@@ -76,6 +77,9 @@ func _on_countdown_finished():
 	$UI.visible = true
 	await get_tree().create_timer(1.5).timeout
 	TransitionController.ChangeScene("res://finnish.tscn")
+	
+func _on_countdown_started():
+	$Node3D/heart.play()
 
 
 func _process(delta: float) -> void:

@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="18_meyxk"]
 [ext_resource type="Script" uid="uid://cjur83q7w43qh" path="res://Scenes/MainGameplayFile/Scripts/countdown.gd" id="19_wo0bo"]
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="20_02nf2"]
+[ext_resource type="AudioStream" uid="uid://d143wb2dgm8lv" path="res://sounds/heart.mp3" id="21_ahjow"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew20g"]
 sky_top_color = Color(0.33246842, 0.49551493, 0.72834456, 1)
@@ -732,7 +733,7 @@ theme_override_font_sizes/font_size = 50
 
 [node name="info" type="Panel" parent="Info" unique_id=1846930763]
 anchors_preset = -1
-anchor_top = -0.012345679
+anchor_top = -0.030864198
 anchor_right = 1.0
 anchor_bottom = -0.030864198
 offset_top = 27.0
@@ -748,6 +749,12 @@ offset_right = 1127.0
 offset_bottom = 39.0
 theme_override_font_sizes/font_size = 16
 autowrap_mode = 2
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1947259601]
+
+[node name="heart" type="AudioStreamPlayer" parent="Node3D" unique_id=1948814417]
+stream = ExtResource("21_ahjow")
+volume_db = 4.086
 
 [connection signal="body_entered" from="Node3envD/house/1" to="." method="_on__body_entered1"]
 [connection signal="body_entered" from="Node3envD/house/2" to="." method="_on__body_entered2"]

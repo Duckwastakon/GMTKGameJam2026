@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/Scripts/sliders.gd" id="8_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
 [ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="10_2no2t"]
+[ext_resource type="AudioStream" uid="uid://b3wxlvpa2vvcu" path="res://sounds/menu.mp3" id="11_oxuiv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
 font_size = 48
@@ -231,6 +232,11 @@ mesh = ExtResource("10_2no2t")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=749743516]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
+
+[node name="sound" type="Node3D" parent="." unique_id=87030743]
+
+[node name="Menu" type="AudioStreamPlayer" parent="sound" unique_id=714102865]
+stream = ExtResource("11_oxuiv")
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/play" to="CanvasLayer" method="_on_play_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/settings" to="CanvasLayer" method="_on_settings_button_up"]
