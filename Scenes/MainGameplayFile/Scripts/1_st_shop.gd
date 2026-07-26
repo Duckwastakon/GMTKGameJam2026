@@ -74,19 +74,31 @@ func set_interior_collision(interior_node: Node, disabled: bool):
 			child.disabled = disabled
 		set_interior_collision(child, disabled)
 
+var priceIncrease = 5
+
 func update_shop_ui(item_list: Array[Dictionary]):
 	if item_list.size() > 0:
 		$shopUi/First/LabelFirst.text = item_list[0]["name"]
 		$shopUi/First/Description.text = item_list[0]["description"]
-		$shopUi/First/LabelFirst/Price.text = str(item_list[0]["price"])
+		
+		var minPrice = item_list[0]["price"] * pow(priceIncrease, Global.round - 1)
+		if Global.cash >= minPrice * 7:
+			minPrice = Global.cash / (6 * (80 - item_list[2]["price"]))
+		$shopUi/First/LabelFirst/Price.text = str(int(minPrice * randf_range(0.7, 1.3)))
 	if item_list.size() > 1:
 		$shopUi/Second/LabelSecond.text = item_list[1]["name"]
 		$shopUi/Second/Description.text = item_list[1]["description"]
-		$shopUi/Second/LabelSecond/Price.text = str(item_list[1]["price"])
+		var minPrice = item_list[1]["price"] * pow(priceIncrease, Global.round - 1)
+		if Global.cash >= minPrice * 7:
+			minPrice = Global.cash / (6 * (80 - item_list[1]["price"]))
+		$shopUi/Second/LabelSecond/Price.text = str(int(minPrice * randf_range(0.7, 1.3)))
 	if item_list.size() > 2:
 		$shopUi/Thrid/LabelThird.text = item_list[2]["name"]
 		$shopUi/Thrid/Description.text = item_list[2]["description"]
-		$shopUi/Thrid/LabelThird/Price.text = str(item_list[2]["price"])
+		var minPrice = item_list[2]["price"] * pow(priceIncrease, Global.round - 1)
+		if Global.cash >= minPrice * 7:
+			minPrice = Global.cash / (6 * (80 - item_list[2]["price"]))
+		$shopUi/Thrid/LabelThird/Price.text = str(int(minPrice * randf_range(0.7, 1.3)))
 
 func _process(delta: float) -> void:
 	
@@ -123,7 +135,7 @@ func _process(delta: float) -> void:
 			waiting_for_choice = false
 			await typewriter_text(dialog_text, "then lets go, friend!")
 			await get_tree().create_timer(1.5).timeout
-			get_tree().quit()
+			TransitionController.ChangeScene("res://Scenes/MainGameplayFile/gambling_scene.tscn")
 		elif Input.is_action_just_pressed('No'):
 			waiting_for_choice = false
 			await typewriter_text(dialog_text, "Then go back in, geez..")

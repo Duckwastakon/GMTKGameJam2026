@@ -205,7 +205,7 @@ func tutorial():
 	Bob.talk("you have " + str(playerSum) + " points
 	I have " + str(opponentsSum) + " points")
 	
-	if playerSum>opponentsSum:
+	if playerSum>=opponentsSum:
 		Bob.talk("Here you would win")
 	else:
 		Bob.talk("Here I would win")
@@ -272,6 +272,7 @@ func discardCards() -> void:
 	cards.append_array(opponentCardContainer.get_children())
 	cards.append_array(playerCardContainer.get_children())
 	for card in cards:
+		$sounds/card.play()
 		card.reparent(usedPile)
 		await get_tree().create_timer(0.5).timeout
 	
@@ -279,12 +280,13 @@ func discardCards() -> void:
 	opponentsCards.clear()
 
 func _ready() -> void:
-	tutorial()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	connect("addBet", betAdded)
 	shuffleDeck()
 	
-	await finishTutorial
+	if Global.round == 0:
+		tutorial()
+		await finishTutorial
 	while(!reachedEnd):
 		while(!gameActive):
 			await startGame
@@ -382,6 +384,7 @@ func destroyCard(card: StaticBody3D, arr: Array, pos: int, cont):
 	card.reparent(usedPile)
 	arr.remove_at(pos)
 	
+	$sounds/card.play()
 	drawCard(arr, cont, false)
 
 func specialPower(power: String):
@@ -461,6 +464,8 @@ func getCard(card: StaticBody3D, num: int):
 func looseGame():
 	Bob.talk("well you have lost")
 	reachedEnd = true
+	await Bob.finishedTalking
+	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/ChildScenes/main_menue.tscn")
 
 func _on_reach_end_signal() -> void:
 	reachedEnd = true
@@ -477,7 +482,10 @@ func _on_reach_end_signal() -> void:
 		Global.round = +1
 		Bob.talk("hmmm, good job")
 		await Bob.finishedTalking
-		TransitionController.ChangeScene("res://Scenes/MainGameplayFile/1_st_shop.tscn")
+		if Global.round < 4:
+			TransitionController.ChangeScene("res://Scenes/MainGameplayFile/1_st_shop.tscn")
+		else:
+			TransitionController.ChangeScene("res://Scenes/MainGameplayFile/Scripts/ending.tscn")
 	else:
 		looseGame()
 

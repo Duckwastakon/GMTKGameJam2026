@@ -22,6 +22,11 @@ var item_Abilities_Models = {
 		"power": "upgrade",
 		"meshLoad": load("res://Models_Art/models/Wand.mesh"),
 		"itemScale": Vector3(0.02, 0.1, 0.02),
+	},
+	"Soda" = {
+		"power": "upgrade",
+		"meshLoad": load("res://Models_Art/models/soda.mesh"),
+		"itemScale": Vector3(0.02, 0.1, 0.02),
 	}
 }
 

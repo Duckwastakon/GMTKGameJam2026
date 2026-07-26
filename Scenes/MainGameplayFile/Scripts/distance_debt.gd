@@ -2,7 +2,7 @@ extends Control
 
 @export var mainController: Node3D
 var timeBeforePayment: int = 0
-var basePaymentAmount: int = int(Global.cash / 7)
+var basePaymentAmount: int = int(Global.cash / 6)
 
 var startRideTime = 150
 var fullRideTime = 150
@@ -31,7 +31,12 @@ func _ready() -> void:
 		finishTween.play()
 		$cashPaymentTimer.start()
 		var nextPaymentTime = 30 + randi_range(-3, 3)
-		var nextPaymentAmount = int(basePaymentAmount * randf_range(0.9, 1.1))
+		var nextPaymentAmount
+		
+		if basePaymentAmount < 50 * pow(5, Global.round - 1):
+			nextPaymentAmount = int(50 * pow(5, Global.round - 1) * randf_range(0.9, 1.1))
+		else:
+			nextPaymentAmount = int(basePaymentAmount * randf_range(0.9, 1.1))
 		
 		$paymentInfo.text = "next payment: " + str(nextPaymentAmount) + "$"
 		setNextPayoutBar(nextPaymentTime)
@@ -60,8 +65,7 @@ func _ready() -> void:
 					$"../../../sounds/coin".play() #money lost sounds - Niko
 				
 				nextPaymentTime = 10 + randi_range(-3, 3)
-				basePaymentAmount = int(basePaymentAmount * 1.1)
-				nextPaymentAmount = int(basePaymentAmount * randf_range(0.9, 1.1))
+				basePaymentAmount = int(basePaymentAmount * randf_range(0.9, 1.1))
 				$paymentInfo.text = "next payment: " + str(nextPaymentAmount) + "$"
 				setNextPayoutBar(nextPaymentTime)
 		await $cashPaymentTimer.timeout
