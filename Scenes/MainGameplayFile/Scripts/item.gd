@@ -9,6 +9,22 @@ var itemName: String = "Scissors"
 var savedMaterial: StandardMaterial3D
 var savedOutline: ShaderMaterial
 
+var item_Abilities_Models = {
+	"Scissors" = {
+		"power": "destroy",
+		"meshLoad": null,
+		"itemScale": 0.1
+	},
+	"Gun" = {
+		
+	},
+	"Magic wand" = {
+		"power": "upgrade",
+		"meshLoad": load("res://Models_Art/models/Wand.mesh"),
+		"itemScale": Vector3(0.02, 0.1, 0.02),
+	}
+}
+
 var hoverShader = load("res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader")
 
 
@@ -16,10 +32,15 @@ func _ready() -> void:
 	if get_tree().current_scene.name == "gamblingScene":
 		get_tree().current_scene.connect("useItem", destroy_item)
 
-func setItem(gottenName: String, newUses: int, abilityName: String):
-	item = abilityName
-	uses = newUses
+func setItem(gottenName: String):
+	visible = true
+	var itemStats = item_Abilities_Models[gottenName]
+	item = itemStats.power
+	uses = 3
 	itemName = gottenName
+	
+	$MeshInstance3D.mesh = itemStats.meshLoad
+	$MeshInstance3D.scale = itemStats.itemScale
 	$Label3D.text = "use " + gottenName
 	
 	var newShaderMaterial = ShaderMaterial.new()
@@ -34,7 +55,7 @@ func setItem(gottenName: String, newUses: int, abilityName: String):
 	savedMaterial = newMaterial
 	savedOutline = newShaderMaterial
 	
-	$MeshInstance3D.mesh = newShaderMaterial
+	#$MeshInstance3D.mesh = newShaderMaterial
 
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
@@ -80,7 +101,11 @@ func destroy_item() -> void:
 
 func _on_mouse_entered() -> void:
 	$Label3D.visible = true
+	
+	$MeshInstance3D.material_overlay = savedOutline
 
 
 func _on_mouse_exited() -> void:
 	$Label3D.visible = false
+	
+	$MeshInstance3D.material_overlay = null

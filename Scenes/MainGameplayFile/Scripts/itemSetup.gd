@@ -9,22 +9,9 @@ var items: Array[Dictionary] = [
 	{"name": "Magnifying glass", "description": "Lets you see Bobs hidden card.", "price": 25},
 ]
 
-var item_Abilities_Models = {
-	"Scissors" = {
-		"power": "destroy",
-		"meshName": null,
-		"meshScale": 0.1
-	},
-	"Gun" = {
-		
-	}
-}
-
 func _ready() -> void:
+	var i = 0
 	for item in Global.boughtItems:
-		print(item)
-		
-		var itemStats = item_Abilities_Models[item]
-		if itemStats == null:
-			return
-		
+		print(i)
+		get_child(i).setItem(item)
+		i+=1
