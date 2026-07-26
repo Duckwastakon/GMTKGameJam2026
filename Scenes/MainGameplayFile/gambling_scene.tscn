@@ -527,6 +527,20 @@ visible = false
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0.66381866, 0.8302209, -0.068167925)
 visible = false
 
+[node name="tutorial-skip" type="Control" parent="." unique_id=1785620668]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="skip" type="Button" parent="tutorial-skip" unique_id=1258427033]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = 122.0
+offset_bottom = 47.0
+text = "Skip tutorial"
+
 [connection signal="reachEndSignal" from="." to="." method="_on_reach_end_signal"]
 [connection signal="input_event" from="hitButton" to="." method="_on_hit_button_input_event"]
 [connection signal="mouse_entered" from="hitButton" to="hitButton" method="_on_mouse_entered"]
@@ -536,3 +550,4 @@ visible = false
 [connection signal="mouse_exited" from="standButton" to="standButton" method="_on_mouse_exited"]
 [connection signal="input_event" from="betConsole/StaticBody3D" to="betConsole/StaticBody3D" method="_on_input_event"]
 [connection signal="timeout" from="distractionTimer" to="." method="_on_distraction_timer_timeout"]
+[connection signal="pressed" from="tutorial-skip/skip" to="." method="_on_skip_pressed"]

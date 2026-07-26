@@ -157,7 +157,20 @@ func countSum(arr):
 
 @onready var indArrow = $indicatorArrow
 
+
+func _on_skip_pressed() -> void: # when skip tutorial button pressed - Niko
+	inTut = false
+	discardCards()
+	indArrow.visible = false  
+	finishTutorial.emit()
+	Bob.clickToTalk = false
+	Bob.clickNextString.emit()
+	$cashDisplay.setEVisible(false)
+	$"tutorial-skip".visible = false #skiptutorial button dissappears - Niko
+	
+
 func tutorial():
+	$"tutorial-skip".visible = true #skiptutorial button appears - Niko
 	$cashDisplay.setEVisible(true)
 	inTut = true
 	Bob.clickToTalk = true
@@ -167,18 +180,23 @@ func tutorial():
 	Bob.talk("here you can see how
 	far we are")
 	await Bob.finishedTalking
+	if not inTut: return # for skip tut
 	var newTween = create_tween()
 	newTween.tween_property(indArrow, "global_position", opponentCardContainer.global_position + Vector3(0, 0.3, 0), 1)
 	newTween.play()
 	indArrow.rotation = opponentCardContainer.rotation
 	await newTween.finished
+	if not inTut: return # for skip tut
 	Bob.talk("The simple game of 21")
 	drawCard(opponentsCards, opponentCardContainer)
 	await get_tree().create_timer(0.5).timeout
+	if not inTut: return # for skip tut
 	drawCard(playersCards, playerCardContainer)
 	await get_tree().create_timer(0.5).timeout
+	if not inTut: return # for skip tut
 	drawCard(opponentsCards, opponentCardContainer)
 	await get_tree().create_timer(0.5).timeout
+	if not inTut: return # for skip tut
 	drawCard(playersCards, playerCardContainer)
 	Bob.talk("the person whos cards add up closest to 21
 	but don't go over wins")
@@ -195,14 +213,17 @@ func tutorial():
 	Bob.talk("I will now turn to look away")
 	Bob.talk("do NOT try to cheat when I am looking")
 	await Bob.finishedTalking
+	if not inTut: return # for skip tut
 	Bob.startTut()
 	distracted.emit(true)
 	await cardDrawn
+	if not inTut: return # for skip tut
 	Bob.StoppedDistract.emit()
 	distracted.emit(false)
 	Bob.talk("Hmm something changed")
 	Bob.talk("whatever")
 	await Bob.finishedTalking
+	if not inTut: return # for skip tut
 	
 	discardCards()
 	newTween = create_tween()
@@ -210,14 +231,19 @@ func tutorial():
 	newTween.play()
 	indArrow.rotation_degrees = Vector3(0, 15, 0)
 	await newTween.finished
+	if not inTut: return # for skip tut
 	Bob.talk("Here click the buttons to change your bet amount")
 	Bob.talk("Then click play to start the hand")
 	await Bob.finishedTalking
+	if not inTut: return # for skip tut
 	finishTutorial.emit()
 	Bob.clickToTalk = false
 	Bob.clickNextString.emit()
 	inTut = false
+	$"tutorial-skip".visible = false #skiptutorial button dissappears - Niko
 	$cashDisplay.setEVisible(false)
+
+
 
 func drawCard(arr: Array[int], cont, hidden = false):
 	if(deck.size()<1):
@@ -448,7 +474,7 @@ func _on_reach_end_signal() -> void:
 		Global.round = +1
 		Bob.talk("hmmm, good job")
 		await Bob.finishedTalking
-		get_tree().change_scene_to_file("res://Scenes/MainGameplayFile/1_st_shop.tscn")
+		TransitionController.ChangeScene("res://Scenes/MainGameplayFile/1_st_shop.tscn")
 	else:
 		looseGame()
 
