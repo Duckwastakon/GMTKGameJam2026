@@ -10,14 +10,14 @@ noise = SubResource("FastNoiseLite_42f6b")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q642t"]
 shader = ExtResource("1_42f6b")
-shader_parameter/dissolvedAmount = 0.999999977648
+shader_parameter/dissolvedAmount = 0.0
 shader_parameter/dissolveNoise = SubResource("NoiseTexture2D_q642t")
 
 [sub_resource type="Animation" id="Animation_42f6b"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("ColorRect:material:shader_parameter/dissolvedAmount")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -27,12 +27,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.999999977648]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 656)]
+}
 
 [sub_resource type="Animation" id="Animation_q642t"]
 resource_name = "transitionIn"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("ColorRect:material:shader_parameter/dissolvedAmount")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -42,12 +55,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.999999977648, 0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 656), Vector2(0, -16)]
+}
 
 [sub_resource type="Animation" id="Animation_mxak1"]
 resource_name = "transitionOut"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("ColorRect:material:shader_parameter/dissolvedAmount")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -56,6 +82,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -16), Vector2(0, -696)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_678ca"]
@@ -71,8 +109,9 @@ script = ExtResource("1_q642t")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1661386611]
 material = SubResource("ShaderMaterial_q642t")
+offset_top = 656.0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 1344.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 

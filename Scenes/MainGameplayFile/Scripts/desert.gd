@@ -121,4 +121,4 @@ func bob():
 	who.text = "Bob"
 	dialog_text.text = "I'm Bob, by the way"
 	await get_tree().create_timer(1.5).timeout
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Scenes/MainGameplayFile/gambling_scene.tscn")

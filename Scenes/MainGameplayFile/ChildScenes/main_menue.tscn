@@ -6,10 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="4_ty0lc"]
 [ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="5_iqcnt"]
 [ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="6_4jwo1"]
+[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="7_iqcnt"]
+[ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/ChildScenes/sliders.gd" id="8_4jwo1"]
+[ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
+[ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="10_2no2t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
 font_size = 48
 outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a25g6"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iqcnt"]
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="mainMenue" type="Node3D" unique_id=41581377]
@@ -103,7 +116,125 @@ label_settings = SubResource("LabelSettings_ty0lc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="settings" type="Node" parent="CanvasLayer/Control" unique_id=148601573]
+
+[node name="background" type="TextureRect" parent="CanvasLayer/Control/settings" unique_id=1436459331]
+offset_left = 344.0
+offset_top = 688.0
+offset_right = 808.0
+offset_bottom = 1152.0
+texture = ExtResource("7_iqcnt")
+script = ExtResource("8_4jwo1")
+
+[node name="title" type="Label" parent="CanvasLayer/Control/settings/background" unique_id=138647872]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 104.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_a25g6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="screenShake" type="Control" parent="CanvasLayer/Control/settings/background" unique_id=1054777143]
+anchors_preset = 0
+offset_left = -344.0
+offset_top = -128.0
+offset_right = -344.0
+offset_bottom = -128.0
+
+[node name="SS" type="HSlider" parent="CanvasLayer/Control/settings/background/screenShake" unique_id=19856436]
+modulate = Color(4.813075e-06, 0.9773657, 0.9788262, 1)
+layout_mode = 0
+offset_left = 392.0
+offset_top = 288.0
+offset_right = 624.0
+offset_bottom = 304.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/settings/background/screenShake" unique_id=1150239093]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 280.0
+offset_right = 776.0
+offset_bottom = 312.0
+text = "screen shake"
+label_settings = SubResource("LabelSettings_iqcnt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volume" type="Control" parent="CanvasLayer/Control/settings/background" unique_id=1915132345]
+anchors_preset = 0
+offset_left = -344.0
+offset_top = -40.0
+offset_right = -344.0
+offset_bottom = -40.0
+
+[node name="V" type="HSlider" parent="CanvasLayer/Control/settings/background/volume" unique_id=561924719]
+modulate = Color(4.813075e-06, 0.9773657, 0.9788262, 1)
+layout_mode = 0
+offset_left = 392.0
+offset_top = 288.0
+offset_right = 624.0
+offset_bottom = 304.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/settings/background/volume" unique_id=289479098]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 280.0
+offset_right = 776.0
+offset_bottom = 312.0
+text = "volume"
+label_settings = SubResource("LabelSettings_iqcnt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sensitivity" type="Control" parent="CanvasLayer/Control/settings/background" unique_id=767902249]
+anchors_preset = 0
+offset_left = -344.0
+offset_top = 48.0
+offset_right = -344.0
+offset_bottom = 48.0
+
+[node name="S" type="HSlider" parent="CanvasLayer/Control/settings/background/sensitivity" unique_id=2095113725]
+modulate = Color(4.813075e-06, 0.9773657, 0.9788262, 1)
+layout_mode = 0
+offset_left = 392.0
+offset_top = 288.0
+offset_right = 624.0
+offset_bottom = 304.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/settings/background/sensitivity" unique_id=426836497]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 280.0
+offset_right = 776.0
+offset_bottom = 312.0
+text = "sensitivity"
+label_settings = SubResource("LabelSettings_iqcnt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="TextureButton" parent="CanvasLayer/Control/settings/background" unique_id=1108261856]
+modulate = Color(1, 0.4, 0.32941177, 1)
+layout_mode = 0
+offset_left = 384.0
+offset_top = 32.0
+offset_right = 432.0
+offset_bottom = 80.0
+texture_normal = ExtResource("9_a25g6")
+stretch_mode = 0
+
+[node name="SedanSports" type="MeshInstance3D" parent="CanvasLayer/Control/settings/background" unique_id=249046501]
+transform = Transform3D(0.22475205, 0, 0.10948294, 0, 0.25, 0, -0.10948294, 0, 0.22475205, -0.7647475, -0.32552978, 0.106476486)
+mesh = ExtResource("10_2no2t")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=749743516]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/play" to="CanvasLayer" method="_on_play_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Node/settings" to="CanvasLayer" method="_on_settings_button_up"]
+[connection signal="value_changed" from="CanvasLayer/Control/settings/background/screenShake/SS" to="CanvasLayer/Control/settings/background" method="_on_ss_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/settings/background/volume/V" to="CanvasLayer/Control/settings/background" method="_on_v_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/settings/background/sensitivity/S" to="CanvasLayer/Control/settings/background" method="_on_s_value_changed"]
+[connection signal="button_up" from="CanvasLayer/Control/settings/background/close" to="CanvasLayer" method="_on_close_button_up"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/settings/background/close" to="CanvasLayer/Control/settings/background" method="_on_close_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Control/settings/background/close" to="CanvasLayer/Control/settings/background" method="_on_close_mouse_exited"]

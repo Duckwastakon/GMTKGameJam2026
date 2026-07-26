@@ -22,3 +22,21 @@ func swing(btn: TextureButton):
 
 func _on_play_button_up() -> void:
 	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/desert.tscn")
+
+func _on_close_button_up() -> void:
+	var newTween = create_tween()
+	newTween.tween_property($Control/settings/background, "position", Vector2(344, 700), 0.2)
+	newTween.play()
+	
+	await newTween.finished
+	
+	for b in $Control/Node.get_children():
+		b.disabled = false
+
+func _on_settings_button_up() -> void:
+	for b in $Control/Node.get_children():
+		b.disabled = true
+	
+	var newTween = create_tween()
+	newTween.tween_property($Control/settings/background, "position", Vector2(344, 152), 0.2)
+	newTween.play()

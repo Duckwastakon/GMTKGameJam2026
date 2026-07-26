@@ -7,6 +7,10 @@ var permanentCashBuff: float = 1.0
 var cash: int = 500
 const maxItems: int = 3
 
+var volume = 50
+var screenShake = 50
+var sensitivity = 50
+
 var boughtItems: Array[String]
 
 var items: Array[Dictionary] = [
