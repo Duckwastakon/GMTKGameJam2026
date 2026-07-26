@@ -26,6 +26,7 @@ var back = false; var waiting_for_choice = false
 var ready_complete = false
 
 func _ready() -> void:
+	$sounds/Desert.play()
 	ui.visible = false
 	$"interiors/1".visible = false; $"interiors/2".visible = false; $"interiors/3".visible = false
 	set_interior_collision($"interiors/1", true)
@@ -112,12 +113,16 @@ func _process(delta: float) -> void:
 				info.visible = false; inside = true; has_entered = true
 				await fade_to_black()
 				character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
+				$sounds/Desert.stop()
 				await fade_from_black()
+				$sounds/Shop.play()
 				
 	if back == true and inside == true:
 		info.visible = true
 		$Info/info/InfoText.text = 'Press E to leave'
 		if Input.is_action_just_pressed('interract'):
+			$sounds/Shop.stop()
+			$sounds/Desert.play()
 			info.visible = false; inside = false; has_entered = false
 			await fade_to_black()
 			character.position.x = 0.3; character.position.y = 0.5; character.position.z = 5.3
@@ -141,7 +146,9 @@ func _process(delta: float) -> void:
 			await typewriter_text(dialog_text, "Then go back in, geez..")
 			await get_tree().create_timer(1.0).timeout
 			await fade_to_black()
+			$sounds/Desert.stop()
 			character.position.x = 0.3; character.position.y = 0.65; character.position.z = 3.4
+			$sounds/Shop.play()
 			await fade_from_black()
 			character.set_physics_process(true)
 			choice.visible = false; ui.visible = false; inside = true ; has_entered = true

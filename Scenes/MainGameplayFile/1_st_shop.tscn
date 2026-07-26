@@ -20,10 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://cihhhpthjyti5" path="res://Models_Art/nature_quaternous/FBX/CommonTree_1.fbx" id="11_l3jff"]
 [ext_resource type="PackedScene" uid="uid://cwqd2e5p2gped" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_2.fbx" id="12_0qlwv"]
 [ext_resource type="PackedScene" uid="uid://f2v8gqhmkoyj" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/book_shelf_a.tscn" id="12_q6iku"]
-[ext_resource type="PackedScene" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
+[ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="13_6f8ka"]
 [ext_resource type="Texture2D" uid="uid://iebu7bdpkg0w" path="res://Models_Art/Coin_tiles.png" id="14_q6iku"]
 [ext_resource type="PackedScene" uid="uid://bis4w7qskna3i" path="res://Models_Art/nature_quaternous/FBX/Rock_Medium_3.fbx" id="23_4wm6e"]
-[ext_resource type="PackedScene" path="res://Scenes/MainGameplayFile/ChildScenes/sitting.tscn" id="24_4wm6e"]
+[ext_resource type="PackedScene" uid="uid://bp8h3qrbkjmy1" path="res://Scenes/MainGameplayFile/ChildScenes/sitting.tscn" id="24_4wm6e"]
 [ext_resource type="PackedScene" uid="uid://vd3nlgff7cba" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/barrel_a.tscn" id="25_6d6t2"]
 [ext_resource type="PackedScene" uid="uid://eqpcw73h1p47" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/chair_b.tscn" id="26_l3jff"]
 [ext_resource type="PackedScene" uid="uid://d2i0bgju0r4w5" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/cabinet_b_grp.tscn" id="27_1oscj"]
@@ -49,8 +49,8 @@
 [ext_resource type="PackedScene" uid="uid://qlx78w7ljub" path="res://Models_Art/LoafbrrAssets/WoodStuff/Scenes/WoodObjects/axe.tscn" id="47_wju7d"]
 [ext_resource type="PackedScene" uid="uid://byiaynulgfu6o" path="res://Models_Art/nature_quaternous/FBX/DeadTree_2.fbx" id="48_c2mg3"]
 [ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="49_bwb5q"]
-[ext_resource type="AudioStream" uid="uid://ux6dl48xioby" path="res://sounds/car-stop.mp3" id="50_s5eus"]
-[ext_resource type="AudioStream" uid="uid://cvdenuuxbeg66" path="res://sounds/beep.mp3" id="51_0wys3"]
+[ext_resource type="AudioStream" uid="uid://dt3iem8pavv4a" path="res://sounds/desert.mp3" id="50_34hyv"]
+[ext_resource type="AudioStream" uid="uid://ctcb21dqyb1fe" path="res://sounds/shop.mp3" id="51_bwb5q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwl5t"]
 sky_top_color = Color(0.2709, 0.528255, 0.63, 1)
@@ -91,7 +91,7 @@ size = Vector2(70, 4)
 size = Vector3(70, 1, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhdht"]
-size = Vector3(70, 1, 40)
+size = Vector3(85.2605, 1, 82.12964)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwl5t"]
 radius = 3.05
@@ -165,6 +165,12 @@ size = Vector3(1.6040039, 3.2947998, 2.3012695)
 [sub_resource type="SphereShape3D" id="SphereShape3D_6f8ka"]
 radius = 2.180115
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5eus"]
+size = Vector3(70, 70, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwb5q"]
+size = Vector3(0, 70, 70)
+
 [node name="1stShop" type="Node3D" unique_id=1418819911]
 script = ExtResource("1_xhdht")
 
@@ -198,7 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.41379505, 9.634997)
 shape = SubResource("BoxShape3D_dwl5t")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ground" unique_id=1814595527]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5926962, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0565186, -0.5926962, 1.5245361)
 shape = SubResource("BoxShape3D_xhdht")
 
 [node name="Grass_Common_Tall" parent="ground" unique_id=1700672907 instance=ExtResource("5_kxqrn")]
@@ -214,22 +220,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50475746, -0.08489814, 6.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.837571, -0.035698507, 4.7919226)
 
 [node name="CommonTree_3" parent="ground" unique_id=2092780835 instance=ExtResource("9_hrwc4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.385396, 0.15007652, 2.6072693)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.385396, 0.15007605, 2.6072693)
 
 [node name="CommonTree_5" parent="ground" unique_id=1606863369 instance=ExtResource("10_6d6t2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.113284, -0.103495926, 13.040022)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.113284, 0.15007606, 13.040022)
 
 [node name="CommonTree_1" parent="ground" unique_id=1181683554 instance=ExtResource("11_l3jff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.019708, 0.15007608, 5.9349785)
 
 [node name="Rock_Medium_2" parent="ground" unique_id=1019581276 instance=ExtResource("12_0qlwv")]
-transform = Transform3D(1.6842165, 0, 0, 0, 1.7372508, 0, 0, 0, 1.3124851, -15.287453, -0.04185624, 15.309433)
+transform = Transform3D(1.6842165, 0, 0, 0, 1.7372508, 0, 0, 0, 1.3124851, -15.287453, -0.0043711364, 15.309433)
 
 [node name="Rock_Medium_3" parent="ground" unique_id=685982538 instance=ExtResource("23_4wm6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.580193, -0.23930278, 1.861248)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.580193, 0.22294834, 1.861248)
 
 [node name="Rock_Medium_4" parent="ground" unique_id=1098138878 instance=ExtResource("23_4wm6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.687251, -0.030762106, 13.316374)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.687251, 0.2229484, 13.316374)
 
 [node name="car" type="Area3D" parent="." unique_id=955493457]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 8.764929, 0.073, 8.87312)
@@ -823,11 +829,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.060073, 0.9833572, 24.699
 [node name="coin" type="AudioStreamPlayer" parent="sounds" unique_id=541274013]
 stream = ExtResource("49_bwb5q")
 
-[node name="car" type="AudioStreamPlayer" parent="sounds" unique_id=66197762]
-stream = ExtResource("50_s5eus")
+[node name="Desert" type="AudioStreamPlayer" parent="sounds" unique_id=1998125767]
+stream = ExtResource("50_34hyv")
+parameters/looping = true
 
-[node name="beep" type="AudioStreamPlayer" parent="sounds" unique_id=1957506254]
-stream = ExtResource("51_0wys3")
+[node name="Shop" type="AudioStreamPlayer" parent="sounds" unique_id=374713369]
+stream = ExtResource("51_bwb5q")
+
+[node name="Coin" type="AudioStreamPlayer" parent="sounds" unique_id=879888936]
+stream = ExtResource("49_bwb5q")
+
+[node name="walls" type="StaticBody3D" parent="." unique_id=381188993]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls" unique_id=322647725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35)
+shape = SubResource("BoxShape3D_s5eus")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="walls" unique_id=1309974126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.105072)
+shape = SubResource("BoxShape3D_s5eus")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="walls" unique_id=511270084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 0)
+shape = SubResource("BoxShape3D_bwb5q")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="walls" unique_id=990064719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.45627, 0, 0)
+shape = SubResource("BoxShape3D_bwb5q")
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="body_exited" from="Door" to="." method="_on_door_body_exited"]

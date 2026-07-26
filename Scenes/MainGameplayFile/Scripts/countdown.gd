@@ -1,12 +1,18 @@
 extends CanvasLayer
 @onready var countdown_label: Label = $CountdownLabel
+@onready var ending: Node3D = $".."
+
 var time_remaining: float = 60.0  # starting time in seconds
 var counting_down = true
 signal countdownFinished
+signal countdownStarted
 
 func _ready():
+	time_remaining = 60
+	ending.stopTimer.connect(_on_stopTimer)
 	countdown_label.visible = false
 	await get_tree().create_timer(13.0).timeout
+	countdownStarted.emit() 
 	countdown_label.visible = true
 	counting_down = true
 
@@ -26,3 +32,6 @@ func update_display():
 
 func on_countdown_finished():
 	countdownFinished.emit() 
+
+func _on_stopTimer():
+	time_remaining =  1200

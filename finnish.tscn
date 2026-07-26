@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="6_ccc36"]
 [ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="7_wnk55"]
 [ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="8_81sk0"]
+[ext_resource type="AudioStream" uid="uid://dtjdbkni6bmmg" path="res://sounds/finish.mp3" id="9_0qba1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5o151"]
 font_size = 48
@@ -98,6 +99,12 @@ bbcode_enabled = true
 text = "[font_size={20}][outline_size={24}][b]Remember... Bob is always watching...[/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="sound" type="Node3D" parent="." unique_id=1976110984]
+
+[node name="Finish" type="AudioStreamPlayer" parent="sound" unique_id=85188147]
+stream = ExtResource("9_0qba1")
+parameters/looping = true
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/Leave" to="CanvasLayer" method="_on_play_button_up"]
 [connection signal="pressed" from="CanvasLayer/Control/Node/Leave" to="." method="_on_leave_pressed"]

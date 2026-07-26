@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 func _ready() -> void:
+	$"../sound/Menu".play()
 	for i: TextureButton in $Control/Node.get_children():
 		i.connect("button_down", swing.bind(i))
 
