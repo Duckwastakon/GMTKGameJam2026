@@ -19,7 +19,8 @@ config/icon="res://Models_Art/icon.svg"
 
 Global="*uid://cbyvd75s6uotj"
 TransitionController="*uid://cdtrg26rry30l"
-AudioController="*uid://c0yqr6phhilmj"
+AudioSystem="*uid://cfy3hyrjm62v4"
+CardCalculator="*uid://31akaskorojw"
 
 [display]
 
@@ -28,7 +29,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [input]
 

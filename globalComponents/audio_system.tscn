@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cfy3hyrjm62v4"]
+
+[ext_resource type="Script" uid="uid://0re7lkb3p2rj" path="res://globalComponents/audio_system.gd" id="1_bxqjd"]
+
+[node name="audioSystem" type="Node2D" unique_id=1483367886]
+script = ExtResource("1_bxqjd")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=159895663]
+current = true

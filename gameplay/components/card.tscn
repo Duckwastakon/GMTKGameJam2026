@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://lvll7lvyidny"]
+
+[ext_resource type="Script" uid="uid://ds6qy6ewjoc1m" path="res://gameplay/components/card.gd" id="1_my24f"]
+[ext_resource type="Script" uid="uid://bj8wa01sx3j50" path="res://gameplay/components/activated_particles.gd" id="2_1onno"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8gks"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_881x3"]
+albedo_color = Color(0.10980392, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_881x3"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="Curve" id="Curve_1onno"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8949772, 0.7494408), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Node3D" type="StaticBody3D" unique_id=1331914720]
+script = ExtResource("1_my24f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1684872130]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_k8gks")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=660313121]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
+pixel_size = 0.004
+billboard = 1
+no_depth_test = true
+text = "Select card"
+font_size = 64
+
+[node name="activatedParticles" type="CPUParticles3D" parent="." unique_id=867741295]
+material_override = SubResource("StandardMaterial3D_881x3")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+mesh = SubResource("SphereMesh_881x3")
+emission_shape = 3
+emission_box_extents = Vector3(0.02, 0.02, 0.02)
+spread = 180.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 1.5
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+damping_max = 1.0
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_1onno")
+script = ExtResource("2_1onno")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="finished" from="activatedParticles" to="activatedParticles" method="_on_finished"]

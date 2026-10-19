@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dqks8kr6mfpuk"]
+
+[ext_resource type="ArrayMesh" uid="uid://qjrx7mxhy5uf" path="res://Models_Art/models/cards/obj/card_base.obj" id="1_6rtgs"]
+
+[node name="deck" type="Node3D" unique_id=1157055849]
+
+[node name="CardBase" type="MeshInstance3D" parent="." unique_id=1265295097]
+transform = Transform3D(0.025, 0, 0, 0, -1.0927848e-09, -0.5, 0, 0.025, -2.1855694e-08, 0.001255691, 0, -0.0010262132)
+mesh = ExtResource("1_6rtgs")
+
+[node name="CardBase2" type="MeshInstance3D" parent="." unique_id=1905627943]
+transform = Transform3D(0.024510996, 0.0049204733, -2.1508073e-10, 0, -1.0927848e-09, -0.025, -0.0049204733, 0.024510996, -1.0714097e-09, 0.001255691, 0.0089346245, -0.0010262132)
+mesh = ExtResource("1_6rtgs")
+
+[node name="CardBase3" type="MeshInstance3D" parent="." unique_id=2134865283]
+transform = Transform3D(0.022880852, -0.01007306, 4.4030754e-10, 3.925117e-17, -1.0927848e-09, -0.024999999, 0.01007306, 0.022880852, -1.000154e-09, 0.001255691, 0.0038616583, -0.0010262132)
+mesh = ExtResource("1_6rtgs")
+
+[node name="CardBase4" type="MeshInstance3D" parent="." unique_id=1560021493]
+transform = Transform3D(0.013377614, 0.021119649, -9.231693e-10, -3.718009e-17, -1.0927849e-09, -0.024999999, -0.021119649, 0.013377614, -5.847542e-10, 0.001255691, -0.017109655, -0.0010262132)
+mesh = ExtResource("1_6rtgs")

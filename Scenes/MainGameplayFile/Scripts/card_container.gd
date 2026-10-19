@@ -3,7 +3,7 @@ extends Node3D
 const cardGap = Vector3(0.05, 0, 0)
 const cardSize = Vector3(0.1, 0, 0)
 
-const cardScene = preload("res://Scenes/MainGameplayFile/ChildScenes/card.tscn")
+const cardScene = preload("res://gameplay/components/card.tscn")
 
 func _process(delta: float) -> void:
 	var cards = get_children()

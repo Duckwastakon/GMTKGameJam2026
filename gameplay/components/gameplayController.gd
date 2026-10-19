@@ -1,0 +1,245 @@
+extends Node3D
+
+@export var Bob: Node3D
+
+@export var cardContainer: Node3D
+@export var deckNode: Node3D
+@export var gainedCash: Label3D
+
+var cardsOnField = []
+var selectedCards = []
+var deck = []
+
+var cash = 0
+var handsLeft = 3
+
+signal levelStarted
+signal levelEnded
+
+signal playHand
+signal selectCard
+signal unselectCard
+signal endHand
+
+signal startTutorial
+signal endTutorial
+
+const cardScene = preload("res://gameplay/components/card.tscn")
+
+@onready var allCards = $allPossibleCards.get_children()
+
+var drawDelay = 0.1
+
+var cardTypes = {
+	"Two": 2,
+	"Three": 3,
+	"Four": 4,
+	"Five": 5,
+	"Six": 6,
+	"Seven": 7,
+	"Eight": 8,
+	"Nine": 9,
+	"Ten": 10,
+	"Jack": 11,
+	"Queen": 12,
+	"King": 13,
+	"Ace": 14,
+}
+
+var symbolTypes = {
+	"Hearts": 0,
+	"Diamonds": 1,
+	"Clubs": 2,
+	"Spades": 3
+}
+
+func sortCards(newCard, val):
+	var cardAdded = false
+	var newList = []
+	for i in cardsOnField:
+		var cardsVals = i.values
+		if cardTypes[val[1]] <= cardTypes[cardsVals[1]] and !cardAdded:
+			if cardTypes[val[1]] == cardTypes[cardsVals[1]]:
+				if symbolTypes[val[0]] < symbolTypes[cardsVals[0]]:
+					newList.append(newCard)
+					cardAdded = true
+			else:
+				newList.append(newCard)
+				cardAdded = true
+		newList.append(i)
+	
+	if (!cardAdded):
+		newList.append(newCard)
+	
+	cardsOnField = newList
+	var sizePerCard = 0.08
+	
+	var cardAmount = cardsOnField.size()
+	
+	for i in cardsOnField.size():
+		var card = cardsOnField[i]
+		card.setPos(Vector3(-(sizePerCard/2)*cardAmount + (sizePerCard) * i, 0, 0.001 * i))
+
+func generateFullField():
+	while(cardsOnField.size() < 8):
+		spawnCard()
+		await get_tree().create_timer(drawDelay).timeout
+
+func spawnCard():
+	AudioSystem.playSFX("cardSwoosh")
+	if(deck.size()<1):
+		fillDeck()
+	
+	var nextCard = deck.pop_back()
+	
+	var newCard = cardScene.instantiate()
+	cardContainer.add_child(newCard)
+	newCard.global_position = deckNode.global_position
+	var cardName: String = nextCard.name
+	var cardValues = cardName.split("_")
+	
+	newCard.setCard(nextCard, cardValues)
+	sortCards(newCard, cardValues)
+	playHand.connect(newCard.disableCards)
+	endHand.connect(newCard.activateCards)
+	return newCard
+
+func fillDeck():
+	deck.clear()
+	
+	for x in 4:
+		for card in allCards:
+			deck.append(card)
+	
+	for i in 256:
+		var temp
+		var rand1 = randi_range(0, deck.size() - 1)
+		var rand2 = randi_range(0, deck.size() - 1)
+		
+		temp = deck[rand1]
+		deck[rand1] = deck[rand2]
+		deck[rand2] = temp
+
+func startLevel():
+	generateFullField()
+	cash = 0
+	levelStarted.emit()
+
+func endLevel():
+	print(cash)
+
+func _on_play_hand() -> void:
+	var sizePerCard = 0.15
+	var cardAmount = selectedCards.size()
+	
+	for i in selectedCards.size():
+		var card = selectedCards[i]
+		card.setPos(Vector3(-(sizePerCard/2)*cardAmount + (sizePerCard) * i, 0.1, 0.001 * i))
+		await get_tree().create_timer(0.2).timeout
+	
+	await get_tree().create_timer(0.25).timeout
+	
+	var gottenAmount = await CardCalculator.calculateAmount(selectedCards)
+	cash += gottenAmount
+	handsLeft -= 1
+	
+	GottenAmountText(gottenAmount)
+	
+	if handsLeft <= 0:
+		for card in cardsOnField:
+			discardCard(card)
+			await get_tree().create_timer(drawDelay).timeout
+		cardsOnField = []
+		selectedCards = []
+		
+		endLevel()
+	else:
+		for card in selectedCards:
+			cardsOnField.remove_at(cardsOnField.find(card))
+			discardCard(card)
+			await get_tree().create_timer(drawDelay).timeout
+		selectedCards = []
+		
+		await generateFullField()
+		
+		endHand.emit()
+
+func GottenAmountText(gottenAmount):
+	var newText = gainedCash.duplicate()
+	cardContainer.add_child(newText)
+	newText.position = Vector3(0,0,0.1)
+	newText.text = str(gottenAmount) + "$"
+	
+	var endSize = 1
+	var i = 1
+	while(gottenAmount > pow(10, i)):
+		i+=1
+	
+	endSize += 0.1 * i
+	
+	var ScaleTween = create_tween()
+	ScaleTween.tween_property(newText, "scale", Vector3(endSize,endSize,endSize), 0.1)
+	ScaleTween.play()
+	
+	var PosTween = create_tween()
+	PosTween.tween_property(newText, "position", Vector3(0,0.15,0.15), 1.5)
+	PosTween.play()
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	ScaleTween = create_tween()
+	ScaleTween.tween_property(newText, "scale", Vector3.ZERO, 0.1)
+	ScaleTween.play()
+	
+	await ScaleTween.finished
+	
+	newText.queue_free()
+
+func selectCardFunc(selectedCard, cardModel):
+	selectedCards.append(cardModel)
+	selectCard.emit()
+	print(selectedCards)
+	print(selectedCard)
+
+func unselectCardFunc(unselectedCard, cardModel):
+	selectedCards.remove_at(selectedCards.find(cardModel))
+	unselectCard.emit()
+	print(selectedCards)
+	print(unselectedCard)
+
+func discardCard(discardedCard):
+	var posTween = create_tween()
+	posTween.tween_property(discardedCard, "global_position", deckNode.global_position, 0.1)
+	var rotationTween = create_tween()
+	rotationTween.tween_property(discardedCard, "rotation_degrees", Vector3(90,0,0), 0.1)
+	
+	rotationTween.play()
+	posTween.play()
+	await posTween.finished
+	
+	discardedCard.queue_free()
+
+func screenShake(amt: int):
+	#if screenShakeAmount == 0:
+	#	screenShakeAmount += amt
+	#	var shakeH
+	#	var shakeV
+	#	while(screenShakeAmount):
+	#		shakeH = randf_range(-0.6, 0.6) * (Global.screenShake/100)
+	#		shakeV = randf_range(-0.6, 0.6) * (Global.screenShake/100)
+	#		
+	#		for i in 5:
+	#			$gamblingCam.h_offset = lerpf($gamblingCam.h_offset, shakeH, 0.1)
+	#			$gamblingCam.v_offset = lerpf($gamblingCam.v_offset, shakeV, 0.1)
+	#			await get_tree().create_timer(0.02).timeout
+	#			
+	#		screenShakeAmount -= 1
+	#	
+	#	$gamblingCam.h_offset = 0
+	#	$gamblingCam.v_offset = 0
+	#else:
+	#	screenShakeAmount += amt
+	pass
+
+func _ready() -> void:
+	startLevel()
