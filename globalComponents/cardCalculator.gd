@@ -17,7 +17,7 @@ signal setLevel
 
 var cardPowers = {
 	"Two": {
-		"addAmount": 0,
+		"addAmount": 1,
 		"addMultiplier": 2,
 		},
 	"Three": {
@@ -189,19 +189,34 @@ func calculateAmount(selectedCards):
 
 func addAmount(val, card):
 	amount += val
-	card.cardUsed([str(val), Color(0.0, 0.788, 0.886, 1.0)], 1)
+	var shortened = shortenAmount(val)
+	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.0, 0.788, 0.886, 1.0)], 1)
 	updateAmount.emit(amount)
 
 func addMultiplier(val, card):
 	multiplier += val
-	card.cardUsed([str(val), Color(0.959, 0.552, 0.547, 1.0)], 1)
+	var shortened = shortenAmount(val)
+	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.959, 0.552, 0.547, 1.0)], 1)
 	updateMultiplier.emit(multiplier)
 
 func multiplyMultiplier(val, card):
 	multiplier *= val
-	card.cardUsed([str(val), Color(0.959, 0.552, 0.547, 1.0)], 1)
+	var shortened = shortenAmount(val)
+	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.959, 0.552, 0.547, 1.0)], 1)
 	updateMultiplier.emit(multiplier)
 
 func countSum(val):
-	
 	call(val[1][0], val[1][1], val[1][2])
+
+var shorter = ["", "K", "M", "B", "T", "Qa", "Qi"]
+
+func shortenAmount(amount):
+	var i = 0
+	amount = float(amount)
+	while(amount / 1000 > 1):
+		amount /= 1000
+		i+=1
+	var newAmount = (round(amount * pow(10.0, 2)) / pow(10.0, 2))
+	if (int(newAmount) == newAmount):
+		newAmount = roundi(newAmount)
+	return [newAmount, shorter[clampi(i, 0, 6)]]

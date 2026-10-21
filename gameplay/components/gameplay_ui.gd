@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var shorter = ["", "K", "M", "B", "T", "Qa", "Qi"]
+
 var cash = 0
 func _ready() -> void:
 	CardCalculator.updateCash.connect(UpdateCashText)
@@ -86,44 +88,42 @@ func textIndicator(obj, txt, col, outlineCol):
 
 var lastAmount = 0
 func updateAmount(amount):
-	$earningDisplay/amountText.text = str(amount)
+	var result = shortenAmount(amount)
+	
+	$earningDisplay/amountText.text = str(result[0]) + result[1]
 	
 	bopText($earningDisplay/amountText)
 	var dif = amount - lastAmount
 	if (dif > 0):
-		textIndicator($earningDisplay/amountText, "+" + str(dif), Color(0.995, 1.0, 0.693, 1.0), Color(0.993, 0.798, 0.568, 1.0))
+		var newDif = shortenAmount(dif)
+		textIndicator($earningDisplay/amountText, "+" + str(newDif[0]) + newDif[1], Color(0.995, 1.0, 0.693, 1.0), Color(0.993, 0.798, 0.568, 1.0))
 	lastAmount = amount
 
 var lastMultiplier = 0
 func updateMultiplier(amount):
-	$earningDisplay/multiplierText.text = str(amount)
+	var result = shortenAmount(amount)
+	
+	$earningDisplay/multiplierText.text = str(result[0]) + result[1]
 	
 	bopText($earningDisplay/multiplierText)
 	
 	var dif = amount - lastMultiplier
 	if (dif > 0):
-		textIndicator($earningDisplay/multiplierText, "+" + str(dif), Color(0.849, 0.815, 1.0, 1.0), Color(0.0, 0.949, 0.99, 1.0))
+		var newDif = shortenAmount(dif)
+		textIndicator($earningDisplay/multiplierText, "+" + str(newDif[0]) + newDif[1], Color(0.849, 0.815, 1.0, 1.0), Color(0.0, 0.949, 0.99, 1.0))
 	lastMultiplier = amount
 
 func UpdateCashText(amount):
-	$levelInfo/currentCash.text = "score: " + str(amount)
+	var result = shortenAmount(amount)
+	
+	$levelInfo/currentCash.text = "score: " + str(result[0]) + result[1]
 	var difference = amount - cash
 	cash = amount
 	
-	if(difference > 0):
-		var newLabel: Label = $levelInfo/currentCash.duplicate()
-		add_child(newLabel)
-		newLabel.text = str(difference) + "$"
-		newLabel.global_position = $levelInfo/currentCash.global_position
-		newLabel.modulate = Color(0.628, 1.0, 0.598, 1.0)
-		var scaleTween = newLabel.create_tween()
-		scaleTween.tween_property(newLabel, "modulate", Color(1,1,1,0), 1)
-		var posTween = newLabel.create_tween()
-		posTween.tween_property(newLabel, "global_position", newLabel.global_position - Vector2(0, 32), 1)
-		posTween.play()
-		scaleTween.play()
-		await posTween.finished
-		newLabel.queue_free()
+	if difference > 0:
+		bopText($levelInfo/currentCash)
+		var newDif = shortenAmount(difference)
+		textIndicator($levelInfo/currentCash, "+" + str(newDif[0]) + newDif[1], Color(0.628, 1.0, 0.598, 1.0), Color(0.0, 0.887, 0.684, 1.0))
 
 var boughtUpgrades = []
 
@@ -131,6 +131,8 @@ func activateShopControlls():
 	$handControlls.visible = false
 	$earningDisplay.visible = false
 	$ShopControlls.visible = true
+	
+	bopText($levelInfo/neededCash)
 	
 	$levelInfo/neededCash.text = "level passed"
 
@@ -166,6 +168,7 @@ func _on_start_round_button_up() -> void:
 	$earningDisplay.visible = false
 	$ShopControlls.visible = false
 	$handControlls/selectedCardAmount.text = "Select some cards"
+	bopText($handControlls/selectedCardAmount)
 	$handControlls/handLeftAmount.text = "Hands left: 3"
 	$handControlls/playHand.self_modulate = Color(0.675, 0.663, 0.624)
 	$handControlls/playHand.disabled = true
@@ -178,12 +181,32 @@ func _on_reroll_hand_button_up() -> void:
 
 func updateTokens(amount):
 	$levelInfo/shopCredits.text = str(amount) + "$"
+	
+	bopText($levelInfo/shopCredits, 1.5)
 
 func updateRerollPrice(amount):
-	$ShopControlls/price.text = "Reroll for: " + str(amount) + "$"
+	var result = shortenAmount(amount)
+	
+	bopText($ShopControlls/price)
+	$ShopControlls/price.text = "Reroll for: " + str(result[0]) + result[1] + "$"
 
 func updateNeededScore(amount):
-	$levelInfo/neededCash.text = "Needed score: " + str(amount)
+	var result = shortenAmount(amount)
+	bopText($levelInfo/neededCash, 1.5)
+	
+	$levelInfo/neededCash.text = "Needed score: " + str(result[0]) + result[1]
 
 func updateLevel(amount):
+	bopText($levelInfo/levelDisplay)
 	$levelInfo/levelDisplay.text = "Round: " + str(amount)
+
+func shortenAmount(amount):
+	var i = 0
+	amount = float(amount)
+	while(amount / 1000 > 1):
+		amount /= 1000
+		i+=1
+	var newAmount = (round(amount * pow(10.0, 2)) / pow(10.0, 2))
+	if (int(newAmount) == newAmount):
+		newAmount = roundi(newAmount)
+	return [newAmount, shorter[clampi(i, 0, 6)]]

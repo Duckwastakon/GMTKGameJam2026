@@ -278,44 +278,44 @@ mouse_filter = 2
 [node name="bg" type="Panel" parent="earningDisplay" unique_id=1531972868]
 layout_mode = 0
 offset_left = 80.0
-offset_top = 8.0
+offset_top = 16.0
 offset_right = 176.0
-offset_bottom = 24.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bw62j")
 
 [node name="bg2" type="Panel" parent="earningDisplay" unique_id=1905415516]
 layout_mode = 0
 offset_left = 80.0
-offset_top = 168.0
+offset_top = 176.0
 offset_right = 176.0
-offset_bottom = 184.0
+offset_bottom = 192.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bw62j")
 
 [node name="bg3" type="Panel" parent="earningDisplay" unique_id=1433006257]
 layout_mode = 0
 offset_left = 72.0
-offset_top = 104.0
+offset_top = 112.0
 offset_right = 184.0
-offset_bottom = 152.0
+offset_bottom = 160.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bw62j")
 
 [node name="bg4" type="Panel" parent="earningDisplay" unique_id=1864008984]
 layout_mode = 0
 offset_left = 72.0
-offset_top = 42.0
+offset_top = 50.0
 offset_right = 184.0
-offset_bottom = 88.0
+offset_bottom = 96.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bw62j")
 
 [node name="amountText" type="Label" parent="earningDisplay" unique_id=714477005]
 layout_mode = 0
-offset_top = 32.0
+offset_top = 40.0
 offset_right = 256.0
-offset_bottom = 96.0
+offset_bottom = 104.0
 pivot_offset = Vector2(128, 32)
 text = "0"
 label_settings = SubResource("LabelSettings_fsdf0")
@@ -324,8 +324,9 @@ vertical_alignment = 1
 
 [node name="baseAmount" type="Label" parent="earningDisplay" unique_id=311367127]
 layout_mode = 0
+offset_top = 8.0
 offset_right = 256.0
-offset_bottom = 34.0
+offset_bottom = 42.0
 pivot_offset = Vector2(128, 32)
 text = "Base amount"
 label_settings = SubResource("LabelSettings_sr2xc")
@@ -334,9 +335,9 @@ vertical_alignment = 1
 
 [node name="multiplier" type="Label" parent="earningDisplay" unique_id=449263386]
 layout_mode = 0
-offset_top = 160.0
+offset_top = 168.0
 offset_right = 256.0
-offset_bottom = 194.0
+offset_bottom = 202.0
 pivot_offset = Vector2(128, 32)
 text = "Multiplier"
 label_settings = SubResource("LabelSettings_sr2xc")
@@ -345,9 +346,9 @@ vertical_alignment = 1
 
 [node name="x" type="Label" parent="earningDisplay" unique_id=184929309]
 layout_mode = 0
-offset_top = 80.0
+offset_top = 88.0
 offset_right = 256.0
-offset_bottom = 114.0
+offset_bottom = 120.0
 pivot_offset = Vector2(128, 32)
 text = "x"
 label_settings = SubResource("LabelSettings_sr2xc")
@@ -356,9 +357,9 @@ vertical_alignment = 1
 
 [node name="multiplierText" type="Label" parent="earningDisplay" unique_id=989028441]
 layout_mode = 0
-offset_top = 96.0
+offset_top = 104.0
 offset_right = 256.0
-offset_bottom = 160.0
+offset_bottom = 168.0
 pivot_offset = Vector2(128, 32)
 text = "1"
 label_settings = SubResource("LabelSettings_fsdf0")
@@ -406,6 +407,7 @@ offset_left = 96.0
 offset_top = 56.0
 offset_right = 360.0
 offset_bottom = 96.0
+pivot_offset = Vector2(132, 20)
 text = "score: 0"
 label_settings = SubResource("LabelSettings_7c31x")
 horizontal_alignment = 1
@@ -425,6 +427,7 @@ layout_mode = 0
 offset_top = 16.0
 offset_right = 448.0
 offset_bottom = 48.0
+pivot_offset = Vector2(224, 16)
 text = "level 1"
 label_settings = SubResource("LabelSettings_f58je")
 horizontal_alignment = 1
@@ -436,6 +439,7 @@ offset_left = 96.0
 offset_top = 96.0
 offset_right = 360.0
 offset_bottom = 136.0
+pivot_offset = Vector2(132, 20)
 text = "waiting for level"
 label_settings = SubResource("LabelSettings_ch38m")
 horizontal_alignment = 1
@@ -446,6 +450,7 @@ layout_mode = 0
 offset_top = 128.0
 offset_right = 448.0
 offset_bottom = 192.0
+pivot_offset = Vector2(224, 32)
 text = "0$"
 label_settings = SubResource("LabelSettings_bw62j")
 horizontal_alignment = 1
