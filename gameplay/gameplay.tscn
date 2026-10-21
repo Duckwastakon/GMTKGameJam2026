@@ -373,21 +373,6 @@ visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=435326984]
 
-[node name="tutorial-skip" type="Control" parent="." unique_id=1785620668]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="skip" type="Button" parent="tutorial-skip" unique_id=1258427033]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 16.0
-offset_right = 122.0
-offset_bottom = 47.0
-text = "Skip tutorial"
-
 [node name="sounds" type="Node3D" parent="." unique_id=1806701215]
 script = ExtResource("67_3mdvu")
 
@@ -415,4 +400,3 @@ stream = ExtResource("74_765n4")
 [node name="gameplayUI" parent="." unique_id=1104659080 instance=ExtResource("74_8wj4m")]
 
 [connection signal="playHand" from="." to="." method="_on_play_hand"]
-[connection signal="pressed" from="tutorial-skip/skip" to="." method="_on_skip_pressed"]

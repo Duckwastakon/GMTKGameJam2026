@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://dsc3d3ql0cbps"]
+
+[ext_resource type="Script" uid="uid://csfw6l3w7hog6" path="res://storyAndMenu/submit_leaderboard.gd" id="1_3d8ww"]
+[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="1_hi4h7"]
+[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="2_7n1h0"]
+[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="3_3d8ww"]
+[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="4_4e7b7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qrxhh"]
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hi4h7"]
+font_size = 12
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2qtca"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3d8ww"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="submitLeaderboard" type="CanvasLayer" unique_id=1231365096]
+script = ExtResource("1_3d8ww")
+
+[node name="Control" type="Control" parent="." unique_id=590046898]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="background" type="TextureRect" parent="Control" unique_id=850624126]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 704.0
+offset_bottom = 488.0
+texture = ExtResource("1_hi4h7")
+
+[node name="title" type="Label" parent="Control/background" unique_id=1389541169]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 64.0
+text = "submit your round to the leaderboard?"
+label_settings = SubResource("LabelSettings_qrxhh")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="title2" type="Label" parent="Control/background" unique_id=936908466]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 248.0
+offset_bottom = 81.0
+text = "Round: 0"
+label_settings = SubResource("LabelSettings_hi4h7")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="submit" type="TextureButton" parent="Control/background" unique_id=1861205485]
+self_modulate = Color(0.53333336, 0.9372549, 0.63529414, 1)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 136.0
+offset_right = 416.0
+offset_bottom = 264.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_7n1h0")
+texture_pressed = ExtResource("3_3d8ww")
+texture_hover = ExtResource("4_4e7b7")
+
+[node name="Label" type="Label" parent="Control/background/submit" unique_id=637291515]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 128.0
+text = "submit score"
+label_settings = SubResource("LabelSettings_2qtca")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="TextureButton" parent="Control/background" unique_id=1426159884]
+self_modulate = Color(1, 0.4627451, 0.34117648, 1)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 208.0
+offset_right = 416.0
+offset_bottom = 336.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_7n1h0")
+texture_pressed = ExtResource("3_3d8ww")
+texture_hover = ExtResource("4_4e7b7")
+
+[node name="Label" type="Label" parent="Control/background/close" unique_id=1135704623]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 128.0
+text = "close"
+label_settings = SubResource("LabelSettings_2qtca")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="username" type="LineEdit" parent="Control/background" unique_id=1025161515]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 88.0
+offset_right = 224.0
+offset_bottom = 128.0
+placeholder_text = "Username"
+alignment = 1
+
+[node name="leaderboardSend" type="HTTPRequest" parent="Control/background" unique_id=248553255]
+
+[node name="outcome" type="Label" parent="Control/background" unique_id=811975621]
+visible = false
+layout_mode = 0
+offset_left = -64.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 192.0
+text = "Success"
+label_settings = SubResource("LabelSettings_3d8ww")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="Control/background/submit" to="." method="_on_submit_button_up"]
+[connection signal="button_up" from="Control/background/close" to="." method="_on_close_button_up"]
+[connection signal="request_completed" from="Control/background/leaderboardSend" to="." method="_on_leaderboard_send_request_completed"]

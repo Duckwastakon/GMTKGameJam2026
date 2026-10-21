@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dkhsoh8bddyf"]
 
-[ext_resource type="Script" uid="uid://cr24ca6petkql" path="res://Scenes/MainGameplayFile/Scripts/desert.gd" id="1_0b6bn"]
+[ext_resource type="Script" uid="uid://cr24ca6petkql" path="res://storyAndMenu/desert.gd" id="1_0b6bn"]
 [ext_resource type="Texture2D" uid="uid://dgakmrjijukw0" path="res://Models_Art/nature_quaternous/Textures/Bark_DeadTree.png" id="1_tnh1l"]
 [ext_resource type="ArrayMesh" uid="uid://c3nqbtikhrjj4" path="res://Models_Art/nature_quaternous/OBJ/DeadTree_1.obj" id="2_2h1u0"]
 [ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="3_2h1u0"]

@@ -2,15 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="1_61d6s"]
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="2_ca4pa"]
-[ext_resource type="Script" uid="uid://bfov6ti3ogjji" path="res://Scenes/MainGameplayFile/Scripts/mainMenueController.gd" id="3_2w4oa"]
+[ext_resource type="Script" uid="uid://bfov6ti3ogjji" path="res://storyAndMenu/mainMenueController.gd" id="3_2w4oa"]
 [ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="4_ty0lc"]
 [ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="5_iqcnt"]
 [ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="6_4jwo1"]
+[ext_resource type="PackedScene" uid="uid://b5tey4630ns32" path="res://storyAndMenu/leader_board.tscn" id="7_e17ta"]
 [ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="7_iqcnt"]
 [ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/Scripts/sliders.gd" id="8_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
 [ext_resource type="AudioStream" uid="uid://b3wxlvpa2vvcu" path="res://sounds/menu.mp3" id="11_oxuiv"]
 [ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="11_wukyj"]
+[ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="13_kujs3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
 font_size = 48
@@ -34,7 +36,7 @@ resource_name = "colormap"
 vertex_color_is_srgb = true
 albedo_texture = SubResource("CompressedTexture2D_5a3u0")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_kbaty"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ye454"]
 _surfaces = [{
 "aabb": AABB(-0.6000002, 0, -0.96, 0.3500002, 0.6, 0.59999996),
 "format": 34359742465,
@@ -183,7 +185,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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AACAvnsUDj/D9Sg/AACAvvFROD3D9Sg/AACAvgvbCz8P2zk/AACAvopVBT+amUk/AACAvn4goj2amUk/AACAvuEe9T2zHlc/AACAvkjh2j5/fmE/AACAvtejMD5/fmE/AACAvjVkuz7/A2g/AACAvpqZmT5xPWo/mpkZv5qZmT4pXM8+mpkZv9ejMD4K2uA+mpkZv0jh2j4K2uA+mpkZv34goj3sUQg/mpkZv+zoWz11EBg/mpkZv+zoWz0P2zk/mpkZv34goj2amUk/mpkZv9ejMD5/fmE/mpkZv0jh2j5/fmE/mpkZvwOebz7/A2g/mpkZv5qZmT5xPWo/mpkZv3vr9T6zHlc/mpkZv4pVBT+amUk/mpkZv3sUDj/D9Sg/mpkZvwvbCz91EBg/mpkZv4pVBT/sUQg/zswMv4NJxj5p8i4/zswMv1eqwT6ghjQ/zswMv1eqwT7kZB0/zswMv1e7sD4h/jw/zswMvzJQuj52mhg/zswMv1e7sD5i7RQ/zswMv5qZmT5/F0A/zswMv0mgjT62TT8/zswMv+qSpT7OnRI/zswMv993gj4h/jw/zswMv0mgjT7OnRI/zswMvwLGcT4NUTk/zswMv993gj5i7RQ/zswMv7kRYz6ghjQ/zswMvwLGcT52mhg/zswMv2DTWT5p8i4/zswMv7kRYz7kZB0/zswMv+qSpT7OnRI/zswMv0mgjT7OnRI/zswMv993gj5i7RQ/zswMv1e7sD5i7RQ/zswMvwLGcT52mhg/zswMvzJQuj52mhg/zswMv7kRYz7kZB0/zswMv1eqwT7kZB0/zswMv0OsVj7D9Sg/zswMvxLdxz7D9Sg/zswMv2DTWT5p8i4/zswMv4NJxj5p8i4/zswMv7kRYz6ghjQ/zswMv1eqwT6ghjQ/zswMvwLGcT4NUTk/zswMvzJQuj4NUTk/zswMv993gj4h/jw/zswMv0mgjT62TT8/zswMv+qSpT62TT8/zswMv5qZmT5/F0A/cs/lHv///7/HE2Qi////v4ww5R7///+/jDAZ4f///79GWLkn////v2SiN2z///8/ml3Syf///z8ZYXJP////P5pdx5P///8/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78eVjHt////v03IYu////+/4Kkx7f///78stprd////vzfsmt3///+/HZFKxv///z/lnoyw////P5Uo4O7///+/xxOa3f///7///7Pp////v2nXHhH///+/S0YeEf///7/gqc0S////v82S4Sn///8/ZKIsNv///z/hbrQ5////Px2RaVf///8/MW3saP///z8xbRKX////P0qW/3////8/////f////7////9/////v////3////+/////f////7////9/////v////3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////7/hTx4w////v6pDMyr///+/4Sw8Jv///79QOCsn////v+FPHjD///+/4Sw8Jv///7+DICsn////vwAA/3////+/IRIzKv///7/MVVQ8////P8xVVDz///8/01ivR////z/DWR1T////P9NYfF////8/4U//f////z/MVd1t////P+FP/3////8/zFUhkv///z/MVarD////P9NYgqD///8/w1nhrP///z/TWE+4////P8xVqsP///8/4U/gz////7/hT+DP////v6pDy9X///+/UDjT2P///7/hLMLZ////vwAA/3////+/AAD/f////78AAP9/////vyESMyr///+/AADgz////78hEsvV////v4Mg09j///+/S0bg7v///7+zueDu////v3LPGeH///+/9MJH4P///79p1+Du////v8HcR+D///+/sTdi7////7/r6DHt////v///Rdj///+/Cj1H4P///7/SSZrd////vz0jR+D///+/RlhF2P///78TFzHt////vzfsZCL///+/AACz6f///78AAEXY////v+vozRL///+/wdy3H////78TF80S////vz0jtx////+/lSgeEf///79NyJwQ////v7E3nBD///+/Cj23H////7/SSWQi////v7O5HhH///+/9MK3H////78eVs0S////vyy2ZCL///+/tGlLFv///7+aXSw2////P0qWSxb///+/uKe5J////78xbeEp////P0dg9UL///8/HZG0Of///z+3n/VC////P2NvTUj///8/m5BNSP///z/lnnJP////P7efwVz///8/4W5pV////z9HYMFc////P82S7Gj///8/ml03bP///z+4p/9/////P2Six5P///8/tGn/f////z9GWP9/////P82SEpf///8/t589o////z9HYD2j////Px2Rlaj///8/4W6VqP///z8ZYYyw////P5uQsbf///8/t58Jvf///z9jb7G3////P2Si0sn///8/4W5Kxv///z9HYAm9////P82SHdb///8/uKdF2P///78xbR3W////P0qWs+n///+/tGmz6f///7////9/////v////3////+/////f////7////9/////v////3////+/////f////7////9/////v////3////+/////f////7////9/////v////3////+/////f////7////9/////v////3////+/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v6pDMyr///+/UDgrJ////7/TWK9H////P4MgKyf///+/w1kdU////z/TWHxf////PwAA4M////+/IRLL1f///7/MVd1t////P4Mg09j///+/zFUhkv///z/hLMLZ////v9NYgqD///8/UDjT2P///7/DWeGs////P6pDy9X///+/01hPuP///z8AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_kbaty")
+shadow_mesh = SubResource("ArrayMesh_ye454")
 
 [sub_resource type="LabelSettings" id="LabelSettings_wukyj"]
 font_size = 24
@@ -194,6 +196,24 @@ outline_color = Color(0, 0, 0, 1)
 font_size = 18
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_twe2c"]
+panorama = ExtResource("13_kujs3")
+
+[sub_resource type="Sky" id="Sky_fglxu"]
+sky_material = SubResource("PanoramaSkyMaterial_twe2c")
+
+[sub_resource type="Environment" id="Environment_en2cd"]
+background_mode = 2
+background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
+sky = SubResource("Sky_fglxu")
+ambient_light_color = Color(1, 1, 1, 1)
+fog_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_sky_affect = 0.2
+volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_m6p6x"]
 
 [node name="mainMenue" type="Node3D" unique_id=41581377]
 
@@ -224,36 +244,44 @@ text = "[font_size={64}][outline_size={24}][b][wave]Cashless drive[/wave][/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="gameName2" type="RichTextLabel" parent="CanvasLayer/Control/gameName" unique_id=64709006]
-layout_mode = 0
-offset_left = 97.0
-offset_top = 60.0
-offset_right = 1249.0
-offset_bottom = 252.0
-bbcode_enabled = true
-text = "[font_size={30
-}][outline_size={24}][b][wave]Cash out or check out[/wave][/b]"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Node" type="Node" parent="CanvasLayer/Control" unique_id=996574218]
 
-[node name="play" type="TextureButton" parent="CanvasLayer/Control/Node" unique_id=1081590700]
+[node name="storyMode" type="TextureButton" parent="CanvasLayer/Control/Node" unique_id=1081590700]
 self_modulate = Color(0.53333336, 0.9372549, 0.63529414, 1)
 offset_left = 480.0
-offset_top = 224.0
+offset_top = 216.0
 offset_right = 864.0
-offset_bottom = 352.0
+offset_bottom = 344.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("4_ty0lc")
 texture_pressed = ExtResource("6_4jwo1")
 texture_hover = ExtResource("5_iqcnt")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/Node/play" unique_id=96229262]
+[node name="Label" type="Label" parent="CanvasLayer/Control/Node/storyMode" unique_id=96229262]
 layout_mode = 0
 offset_right = 384.0
 offset_bottom = 128.0
-text = "Play"
+text = "Story mode"
+label_settings = SubResource("LabelSettings_ty0lc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="infiniteMode" type="TextureButton" parent="CanvasLayer/Control/Node" unique_id=537894950]
+self_modulate = Color(0.53333336, 0.9372549, 0.63529414, 1)
+offset_left = 480.0
+offset_top = 304.0
+offset_right = 864.0
+offset_bottom = 432.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_ty0lc")
+texture_pressed = ExtResource("6_4jwo1")
+texture_hover = ExtResource("5_iqcnt")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Node/infiniteMode" unique_id=2019682517]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 128.0
+text = "Infinite mode"
 label_settings = SubResource("LabelSettings_ty0lc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -261,9 +289,9 @@ vertical_alignment = 1
 [node name="settings" type="TextureButton" parent="CanvasLayer/Control/Node" unique_id=619567687]
 self_modulate = Color(0.3705547, 0.88862026, 0.99999994, 1)
 offset_left = 480.0
-offset_top = 352.0
+offset_top = 392.0
 offset_right = 864.0
-offset_bottom = 480.0
+offset_bottom = 520.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("4_ty0lc")
 texture_pressed = ExtResource("6_4jwo1")
@@ -472,6 +500,12 @@ offset_bottom = 80.0
 texture_normal = ExtResource("9_a25g6")
 stretch_mode = 0
 
+[node name="leaderBoard" parent="CanvasLayer" unique_id=431487149 instance=ExtResource("7_e17ta")]
+offset_left = 40.0
+offset_top = 176.0
+offset_right = 40.0
+offset_bottom = 176.0
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=749743516]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
 
@@ -482,7 +516,10 @@ script = ExtResource("11_wukyj")
 stream = ExtResource("11_oxuiv")
 parameters/looping = true
 
-[connection signal="button_up" from="CanvasLayer/Control/Node/play" to="CanvasLayer" method="_on_play_button_up"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1807616710]
+environment = SubResource("Environment_en2cd")
+camera_attributes = SubResource("CameraAttributesPractical_m6p6x")
+
 [connection signal="button_up" from="CanvasLayer/Control/Node/settings" to="CanvasLayer" method="_on_settings_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/credits" to="CanvasLayer" method="_on_credits_button_up"]
 [connection signal="value_changed" from="CanvasLayer/Control/settings/background/screenShake/SS" to="CanvasLayer/Control/settings/background" method="_on_ss_value_changed"]

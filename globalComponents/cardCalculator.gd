@@ -127,7 +127,6 @@ func addPowerUp(id, card):
 				if(extraFunctions[1].has(type)):
 					var newVars = powerUps[type]["vars"].duplicate(true)
 					newVars[1].append(card)
-					print(newVars)
 					extraFunctions[1][type].append(newVars)
 				else:
 					var newVars = powerUps[type]["vars"].duplicate(true)
@@ -180,7 +179,6 @@ func calculateAmount(selectedCards):
 						delayTime /= 2
 						delayTimes = 0
 	
-	print(extraFunctions)
 	for funcName in extraFunctions[1]:
 		for val in extraFunctions[1][funcName]:
 			call(funcName, val)

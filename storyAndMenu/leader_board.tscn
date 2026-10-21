@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://b5tey4630ns32"]
+
+[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="1_87pir"]
+[ext_resource type="Script" uid="uid://ddr53c10gjhij" path="res://storyAndMenu/leader_board.gd" id="1_chfxp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_weyrg"]
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87pir"]
+bg_color = Color(0, 0, 0, 0.19607843)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_chfxp"]
+font_size = 12
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_87pir"]
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="leaderBoard" type="Control" unique_id=431487149]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_chfxp")
+
+[node name="background" type="TextureRect" parent="." unique_id=1503513615]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 280.0
+offset_bottom = 382.0
+texture = ExtResource("1_87pir")
+
+[node name="title" type="Label" parent="." unique_id=1806855095]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 280.0
+offset_bottom = 80.0
+text = "Loading leaderboard
+(can take up to a minute)"
+label_settings = SubResource("LabelSettings_weyrg")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="currentTopPlayers" type="Control" parent="." unique_id=903555247]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = 384.0
+
+[node name="oneValue" type="Control" parent="." unique_id=2009753471]
+visible = false
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 88.0
+offset_right = 272.0
+offset_bottom = 114.0
+
+[node name="Panel" type="Panel" parent="oneValue" unique_id=1743840569]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 240.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_87pir")
+
+[node name="nr" type="Label" parent="oneValue" unique_id=2006706707]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 32.0
+offset_bottom = 16.0
+text = "10."
+label_settings = SubResource("LabelSettings_chfxp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="username" type="Label" parent="oneValue" unique_id=1242985289]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -8.0
+offset_right = 200.0
+offset_bottom = 16.0
+text = "Ducky"
+label_settings = SubResource("LabelSettings_87pir")
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="round" type="Label" parent="oneValue" unique_id=416464038]
+layout_mode = 0
+offset_left = 200.0
+offset_top = -8.0
+offset_right = 240.0
+offset_bottom = 16.0
+text = "100"
+label_settings = SubResource("LabelSettings_87pir")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="leaderboardRequest" type="HTTPRequest" parent="." unique_id=1963063462]
+
+[connection signal="request_completed" from="leaderboardRequest" to="." method="_on_leaderboard_request_request_completed"]

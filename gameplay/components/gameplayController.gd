@@ -142,6 +142,8 @@ func startLevel():
 	neededAmount = roundi(50*round*sqrt(round))
 	CardCalculator.setNeededScore.emit(neededAmount)
 	
+	Bob.talk("This round get " + str(neededAmount) + " score", true)
+	
 	levelStarted.emit()
 
 func endLevel():
@@ -257,13 +259,24 @@ func discardCard(discardedCard):
 	discardedCard.queue_free()
 
 func _ready() -> void:
-	startLevel()
+	gameStart()
 
 var offeredCards = 3
 var upgradeCardPrefab = preload("res://gameplay/components/upgrade_card.tscn")
 var upgradeCards = []
 
+var shopOpened = false
 func openShop():
+	if(!shopOpened):
+		shopOpened = true
+		Bob.talk("Congrats on beating a round", true)
+		await get_tree().create_timer(introWaitTime).timeout
+		Bob.talk("Now I have given you some shop credits", true)
+		await get_tree().create_timer(introWaitTime).timeout
+		Bob.talk("buy some upgrades, you will need them", true)
+	else:
+		Bob.talk("Good job")
+	
 	for i in offeredCards:
 		AudioSystem.playSFX("cardSwoosh")
 		
@@ -313,3 +326,19 @@ func rerollShop():
 		await get_tree().create_timer(0.1).timeout
 	
 	openShop()
+
+var introWaitTime = 1.1
+
+func gameStart():
+	Bob.talk("The game is quite simple", true)
+	await get_tree().create_timer(introWaitTime).timeout
+	Bob.talk("Choose cards and reach the needed score", true)
+	await get_tree().create_timer(introWaitTime).timeout
+	Bob.talk("Most cards just give their value", true)
+	await get_tree().create_timer(introWaitTime).timeout
+	Bob.talk("As long as you get enough score you can be on my car", true)
+	await get_tree().create_timer(introWaitTime).timeout
+	Bob.talk("Otherwise I might have to throw you off", true)
+	await get_tree().create_timer(introWaitTime).timeout
+	
+	startLevel()

@@ -12,27 +12,6 @@ var textQueue: Array[String]
 signal finishedTalking
 signal StoppedDistract
 
-var distr = false
-
-func startTut():
-	Infdistract()
-	await StoppedDistract
-	distr = false
-
-func Infdistract():
-	distr = true
-	while(distr):
-		Anims.stop()
-		var randDistraction = randi_range(0, distractionAnims.size() - 1)
-		Anims.play(distractionAnims[randDistraction])
-		await Anims.animation_finished or Anims.animation_changed
-
-func distract():
-	Anims.stop()
-	var randDistraction = randi_range(0, distractionAnims.size() - 1)
-	Anims.play(distractionAnims[randDistraction])
-	await Anims.animation_finished or Anims.animation_changed
-
 func win():
 	Anims.stop()
 	Anims.play("win")
@@ -52,8 +31,7 @@ func changeIdleAnimation():
 	print("changed to " + idleAnims[randIdle])
 
 func playIdle(currentAnim):
-	if currentAnim != currentIdleAnim and distr != true:
-		Anims.play(currentIdleAnim)
+	Anims.play(currentIdleAnim)
 
 func _ready() -> void:
 	Anims.play("sitDown")
@@ -74,8 +52,36 @@ var clickToTalk = false
 
 var regSpeed = 0.025
 var speed = 0.025
+@onready var labelPrefab = $Label3D
 
-func talk(str: String):
+var nextz = 0
+func talk(str: String, forcedY = false):
+	print("talked")
+	var newLabel: Label3D = labelPrefab.duplicate()
+	
+	newLabel.text = str
+	if forcedY:
+		newLabel.position = Vector3(randf_range(-0.1, 0.1), 0.1, 0.000001*nextz)
+	else:
+		newLabel.position = Vector3(randf_range(-0.1, 0.1), randf_range(0.1, 0.15), 0.000001*nextz)
+	nextz += 1
+	newLabel.visible = true
+	newLabel.scale = Vector3.ZERO
+	add_child(newLabel)
+	
+	var newPosTween = create_tween()
+	newPosTween.tween_property(newLabel, "position", newLabel.position + Vector3(0, 0.1, 0), 3)
+	var newScaleTween = create_tween()
+	newScaleTween.tween_property(newLabel, "scale", Vector3(0.1,0.1,0.1), 0.1)
+	newScaleTween.play()
+	newPosTween.play()
+	await newPosTween.finished
+	newScaleTween = create_tween()
+	newScaleTween.tween_property(newLabel, "scale", Vector3.ZERO, 0.1)
+	await newScaleTween.finished
+	newLabel.queue_free()
+
+func oldTextSet(str: String):
 	if textQueue.size() == 0:
 		textQueue.append(str)
 		
@@ -90,7 +96,7 @@ func talk(str: String):
 			if clickToTalk:
 				await clickNextString
 			else:
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(1).timeout
 			while talkingLabel.text != "":
 				talkingLabel.text = talkingLabel.text.substr(0, talkingLabel.text.length() - 1)
 				await get_tree().create_timer(0.001).timeout

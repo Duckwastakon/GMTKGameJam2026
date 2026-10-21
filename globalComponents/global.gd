@@ -1,5 +1,7 @@
 extends Node
 
+var storyMode = false
+
 var powerId = {
 	0: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_03.png",

@@ -22,8 +22,6 @@ func swing(btn: TextureButton):
 	btn.disabled = false
 
 func _on_play_button_up() -> void:
-	Global.round = 0
-	Global.cash = 500
 	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/desert.tscn")
 
 func _on_close_button_up() -> void:
