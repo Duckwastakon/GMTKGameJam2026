@@ -84,13 +84,13 @@ shader_parameter/outline_width = 1.0
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_87678"]
 panorama = ExtResource("63_8wj4m")
 
-[sub_resource type="Sky" id="Sky_fglxu"]
+[sub_resource type="Sky" id="Sky_8wj4m"]
 sky_material = SubResource("PanoramaSkyMaterial_87678")
 
 [sub_resource type="Environment" id="Environment_wbj74"]
 background_mode = 2
 background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
-sky = SubResource("Sky_fglxu")
+sky = SubResource("Sky_8wj4m")
 ambient_light_color = Color(1, 1, 1, 1)
 fog_enabled = true
 fog_light_color = Color(1, 1, 1, 1)

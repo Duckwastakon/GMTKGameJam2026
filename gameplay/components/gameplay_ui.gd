@@ -27,13 +27,19 @@ func _on_play_hand_button_up() -> void:
 func updateSelectedText(amount):
 	if(amount > 0):
 		$handControlls/selectedCardAmount.text = str(amount) + "/" + str(get_parent().maxEquipCards) + " cards"
+		$handControlls/playHand.self_modulate = Color(0.533, 0.937, 0.635)
+		$handControlls/playHand.disabled = false
 	else:
 		$handControlls/selectedCardAmount.text = "select some cards"
+		$handControlls/playHand.self_modulate = Color(0.675, 0.663, 0.624)
+		$handControlls/playHand.disabled = true
 	
 	bopText($handControlls/selectedCardAmount, 1.2)
 
 func endHand():
 	$handControlls/selectedCardAmount.text = "Select some cards"
+	$handControlls/playHand.self_modulate = Color(0.675, 0.663, 0.624)
+	$handControlls/playHand.disabled = true
 	$handControlls.visible = true
 	$earningDisplay.visible = false
 	$handControlls/handLeftAmount.text = "Hands left: " + str(get_parent().handsLeft)
@@ -160,7 +166,9 @@ func _on_start_round_button_up() -> void:
 	$earningDisplay.visible = false
 	$ShopControlls.visible = false
 	$handControlls/selectedCardAmount.text = "Select some cards"
-	$handControlls/selectedCardAmount.text = "Hands left: 3"
+	$handControlls/handLeftAmount.text = "Hands left: 3"
+	$handControlls/playHand.self_modulate = Color(0.675, 0.663, 0.624)
+	$handControlls/playHand.disabled = true
 
 func _on_reroll_hand_button_up() -> void:
 	get_parent().rerollShop()
