@@ -10,15 +10,17 @@ var cardsOnField = []
 var selectedCards = []
 var deck = []
 
+var maxEquipCards = 3
 var cash = 0
-var handsLeft = 3
+var handsLeft = 1
+var neededAmount = 0
+var shopTokens = 0
+var round = 0
 
 signal levelStarted
 signal levelEnded
 
 signal playHand
-signal selectCard
-signal unselectCard
 signal endHand
 
 signal startTutorial
@@ -72,13 +74,13 @@ func sortCards(newCard, val):
 		newList.append(newCard)
 	
 	cardsOnField = newList
-	var sizePerCard = 0.08
+	var sizePerCard = 0.1
 	
 	var cardAmount = cardsOnField.size()
 	
 	for i in cardsOnField.size():
 		var card = cardsOnField[i]
-		card.setPos(Vector3(-(sizePerCard/2)*cardAmount + (sizePerCard) * i, 0, 0.001 * i))
+		card.setPos(Vector3(-(sizePerCard/2)*(cardAmount-1) + (sizePerCard) * i, 0, 0.001 * i))
 
 func generateFullField():
 	while(cardsOnField.size() < 8):
@@ -107,7 +109,7 @@ func spawnCard():
 func fillDeck():
 	deck.clear()
 	
-	for x in 4:
+	for x in 1:
 		for card in allCards:
 			deck.append(card)
 	
@@ -121,12 +123,46 @@ func fillDeck():
 		deck[rand2] = temp
 
 func startLevel():
+	round += 1
+	CardCalculator.setLevel.emit(round)
+	rerollPrice = 3
+	CardCalculator.setRerollPrice.emit(rerollPrice)
+	
+	if upgradeCards.size() > 0:
+		for i in upgradeCards.size():
+			var card = upgradeCards.pop_front()
+			discardCard(card)
+			await get_tree().create_timer(0.1).timeout
+	
 	generateFullField()
+	handsLeft = 3
 	cash = 0
+	CardCalculator.updateCash.emit(cash)
+	
+	neededAmount = roundi(50*round*sqrt(round))
+	CardCalculator.setNeededScore.emit(neededAmount)
+	
 	levelStarted.emit()
 
 func endLevel():
-	print(cash)
+	if(cash > neededAmount):
+		shopTokens += roundi(ceil(sqrt(round) * 3))
+		shopTokens += handsLeft
+		CardCalculator.updateTokens.emit(shopTokens)
+		var difference = cash - neededAmount
+		var i = 1
+		while(difference >= pow(10, i)):
+			i+=1
+			shopTokens+=1
+			CardCalculator.updateTokens.emit(shopTokens)
+		
+		levelEnded.emit()
+		openShop()
+	else:
+		looseGame()
+
+func looseGame():
+	TransitionController.ChangeScene("res://gameplay/gameplay.tscn")
 
 func _on_play_hand() -> void:
 	var sizePerCard = 0.15
@@ -134,7 +170,7 @@ func _on_play_hand() -> void:
 	
 	for i in selectedCards.size():
 		var card = selectedCards[i]
-		card.setPos(Vector3(-(sizePerCard/2)*cardAmount + (sizePerCard) * i, 0.1, 0.001 * i))
+		card.setPos(Vector3(-(sizePerCard/2)*(cardAmount-1) + (sizePerCard) * i, 0.1, 0.001 * i))
 		await get_tree().create_timer(0.2).timeout
 	
 	await get_tree().create_timer(0.25).timeout
@@ -142,10 +178,13 @@ func _on_play_hand() -> void:
 	var gottenAmount = await CardCalculator.calculateAmount(selectedCards)
 	cash += gottenAmount
 	handsLeft -= 1
+	CardCalculator.updateCash.emit(cash)
 	
 	GottenAmountText(gottenAmount)
 	
-	if handsLeft <= 0:
+	await get_tree().create_timer(1.5).timeout
+	
+	if handsLeft <= 0 or cash >= neededAmount:
 		for card in cardsOnField:
 			discardCard(card)
 			await get_tree().create_timer(drawDelay).timeout
@@ -196,16 +235,14 @@ func GottenAmountText(gottenAmount):
 	newText.queue_free()
 
 func selectCardFunc(selectedCard, cardModel):
+	if selectedCards.size() >= maxEquipCards: return false
 	selectedCards.append(cardModel)
-	selectCard.emit()
-	print(selectedCards)
-	print(selectedCard)
+	CardCalculator.selectCard.emit(selectedCards.size())
+	return true
 
 func unselectCardFunc(unselectedCard, cardModel):
 	selectedCards.remove_at(selectedCards.find(cardModel))
-	unselectCard.emit()
-	print(selectedCards)
-	print(unselectedCard)
+	CardCalculator.selectCard.emit(selectedCards.size())
 
 func discardCard(discardedCard):
 	var posTween = create_tween()
@@ -219,27 +256,60 @@ func discardCard(discardedCard):
 	
 	discardedCard.queue_free()
 
-func screenShake(amt: int):
-	#if screenShakeAmount == 0:
-	#	screenShakeAmount += amt
-	#	var shakeH
-	#	var shakeV
-	#	while(screenShakeAmount):
-	#		shakeH = randf_range(-0.6, 0.6) * (Global.screenShake/100)
-	#		shakeV = randf_range(-0.6, 0.6) * (Global.screenShake/100)
-	#		
-	#		for i in 5:
-	#			$gamblingCam.h_offset = lerpf($gamblingCam.h_offset, shakeH, 0.1)
-	#			$gamblingCam.v_offset = lerpf($gamblingCam.v_offset, shakeV, 0.1)
-	#			await get_tree().create_timer(0.02).timeout
-	#			
-	#		screenShakeAmount -= 1
-	#	
-	#	$gamblingCam.h_offset = 0
-	#	$gamblingCam.v_offset = 0
-	#else:
-	#	screenShakeAmount += amt
-	pass
-
 func _ready() -> void:
 	startLevel()
+
+var offeredCards = 3
+var upgradeCardPrefab = preload("res://gameplay/components/upgrade_card.tscn")
+var upgradeCards = []
+
+func openShop():
+	for i in offeredCards:
+		AudioSystem.playSFX("cardSwoosh")
+		
+		var nextCardId = randi_range(0, Global.powerId.size()-1)
+		
+		var newUpgradeCard = upgradeCardPrefab.instantiate()
+		cardContainer.add_child(newUpgradeCard)
+		newUpgradeCard.global_position = deckNode.global_position
+		
+		newUpgradeCard.setCard(nextCardId)
+		sortUpgradeCards(newUpgradeCard)
+		await get_tree().create_timer(0.1).timeout
+
+func sortUpgradeCards(newCard):
+	upgradeCards.append(newCard)
+	
+	var sizePerCard = 0.15
+	var cardAmount = upgradeCards.size()
+	
+	for i in upgradeCards.size():
+		var card = upgradeCards[i]
+		card.setPos(Vector3(-(sizePerCard/2)*(cardAmount-1) + (sizePerCard) * i, 0.1, 0.001 * i))
+
+func buyCard(amount, card, id):
+	if(shopTokens >= amount):
+		shopTokens-=amount
+		CardCalculator.updateTokens.emit(shopTokens)
+		upgradeCards.remove_at(upgradeCards.find(card))
+		CardCalculator.buyCard.emit(id)
+		return true
+	else:
+		return false
+
+var rerollPrice = 3
+
+func rerollShop():
+	if shopTokens < rerollPrice: return false
+	
+	shopTokens-=rerollPrice
+	rerollPrice = roundi(rerollPrice * sqrt(rerollPrice))
+	CardCalculator.setRerollPrice.emit(rerollPrice)
+	
+	CardCalculator.updateTokens.emit(shopTokens)
+	for i in upgradeCards.size():
+		var card = upgradeCards.pop_front()
+		discardCard(card)
+		await get_tree().create_timer(0.1).timeout
+	
+	openShop()

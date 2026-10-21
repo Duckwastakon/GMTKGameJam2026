@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://deaywkbxsb0g3"]
 
 [ext_resource type="Texture2D" uid="uid://qowbxwhdauwu" path="res://Models_Art/models/bob_Material Base Color.png" id="1_bbm8l"]
-[ext_resource type="Script" uid="uid://b6hfkmirlgu24" path="res://Scenes/MainGameplayFile/Scripts/sitting_bob.gd" id="1_gf7vm"]
+[ext_resource type="Script" uid="uid://b6hfkmirlgu24" path="res://gameplay/components/sitting_bob.gd" id="1_gf7vm"]
 [ext_resource type="Shader" uid="uid://dr1inrh66cgjd" path="res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader" id="2_7xlli"]
 [ext_resource type="Animation" uid="uid://ba31pq2d2jtht" path="res://Models_Art/models/bobAnimations/sitting2.anim" id="2_fiyu2"]
 [ext_resource type="Animation" uid="uid://ddj3givu11weu" path="res://Models_Art/models/bobAnimations/sitting3.anim" id="3_gf7vm"]

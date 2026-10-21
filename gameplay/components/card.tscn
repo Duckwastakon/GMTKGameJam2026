@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bj8wa01sx3j50" path="res://gameplay/components/activated_particles.gd" id="2_1onno"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8gks"]
+size = Vector3(0.1, 0.15, 0.01)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_881x3"]
 albedo_color = Color(0.10980392, 1, 1, 1)
@@ -20,7 +21,6 @@ point_count = 3
 script = ExtResource("1_my24f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1684872130]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("BoxShape3D_k8gks")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=660313121]

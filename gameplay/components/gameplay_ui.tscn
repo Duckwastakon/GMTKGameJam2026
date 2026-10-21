@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ckptgo0n1bo78"]
 
 [ext_resource type="Script" uid="uid://cv0irwmld7qfw" path="res://gameplay/components/gameplay_ui.gd" id="1_yk2df"]
+[ext_resource type="Texture2D" uid="uid://b43lmihgbamnq" path="res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_02.png" id="2_7c31x"]
+[ext_resource type="Script" uid="uid://b70b7imya24gj" path="res://gameplay/components/upgradeDisplay.gd" id="3_rqjvg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yk2df"]
 outline_size = 8
@@ -17,12 +19,20 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qj2lx"]
-font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sr2xc"]
+font_size = 12
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7c31x"]
 font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f58je"]
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
@@ -39,6 +49,11 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_78qbg"]
 font_size = 12
 outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8nplw"]
+font_size = 8
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="gameplayUI" type="CanvasLayer" unique_id=1104659080]
@@ -80,6 +95,7 @@ layout_mode = 0
 offset_top = 32.0
 offset_right = 256.0
 offset_bottom = 64.0
+pivot_offset = Vector2(128, 17)
 text = "select some cards"
 label_settings = SubResource("LabelSettings_fsdf0")
 horizontal_alignment = 1
@@ -90,12 +106,13 @@ layout_mode = 0
 offset_top = 128.0
 offset_right = 256.0
 offset_bottom = 160.0
-text = "hands left: 5"
+pivot_offset = Vector2(128, 17)
+text = "hands left: 3"
 label_settings = SubResource("LabelSettings_rqjvg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="handInfo" type="Control" parent="." unique_id=1719336889]
+[node name="ShopControlls" type="Control" parent="." unique_id=1537121022]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -105,33 +122,110 @@ offset_right = 704.0
 offset_bottom = 648.0
 mouse_filter = 2
 
-[node name="number" type="Label" parent="handInfo" unique_id=164961161]
+[node name="rerollHand" type="Button" parent="ShopControlls" unique_id=465160188]
 layout_mode = 0
-offset_top = 48.0
+offset_top = 80.0
 offset_right = 256.0
-offset_bottom = 80.0
-text = "1"
+offset_bottom = 128.0
+
+[node name="buttonText" type="Label" parent="ShopControlls/rerollHand" unique_id=853963263]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 40.0
+text = "reroll upgrades"
+label_settings = SubResource("LabelSettings_yk2df")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="startRound" type="Button" parent="ShopControlls" unique_id=544797785]
+layout_mode = 0
+offset_top = 136.0
+offset_right = 256.0
+offset_bottom = 184.0
+
+[node name="buttonText" type="Label" parent="ShopControlls/startRound" unique_id=1527498883]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 40.0
+text = "start next round"
+label_settings = SubResource("LabelSettings_yk2df")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shop" type="Label" parent="ShopControlls" unique_id=1861842403]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 42.0
+pivot_offset = Vector2(128, 17)
+text = "Shop"
 label_settings = SubResource("LabelSettings_fsdf0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="multiplier" type="Label" parent="handInfo" unique_id=296745713]
+[node name="price" type="Label" parent="ShopControlls" unique_id=414437998]
 layout_mode = 0
-offset_top = 112.0
+offset_top = 48.0
 offset_right = 256.0
-offset_bottom = 144.0
-text = "1"
-label_settings = SubResource("LabelSettings_rqjvg")
+offset_bottom = 82.0
+pivot_offset = Vector2(128, 17)
+text = "reroll price: 3$"
+label_settings = SubResource("LabelSettings_qj2lx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="extra" type="Label" parent="handInfo" unique_id=2124436198]
+[node name="earningDisplay" type="Control" parent="." unique_id=1829010435]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 448.0
+offset_top = 448.0
+offset_right = 704.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="amountText" type="Label" parent="earningDisplay" unique_id=714477005]
 layout_mode = 0
-offset_top = 80.0
+offset_top = 32.0
 offset_right = 256.0
-offset_bottom = 112.0
-text = "x"
-label_settings = SubResource("LabelSettings_qj2lx")
+offset_bottom = 96.0
+pivot_offset = Vector2(128, 32)
+text = "0"
+label_settings = SubResource("LabelSettings_fsdf0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="baseAmount" type="Label" parent="earningDisplay" unique_id=311367127]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 34.0
+pivot_offset = Vector2(128, 32)
+text = "Base amount"
+label_settings = SubResource("LabelSettings_sr2xc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="multiplier" type="Label" parent="earningDisplay" unique_id=449263386]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 256.0
+offset_bottom = 194.0
+pivot_offset = Vector2(128, 32)
+text = "Multiplier"
+label_settings = SubResource("LabelSettings_sr2xc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="multiplierText" type="Label" parent="earningDisplay" unique_id=989028441]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
+pivot_offset = Vector2(128, 32)
+text = "1"
+label_settings = SubResource("LabelSettings_fsdf0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -141,14 +235,24 @@ anchors_preset = 0
 offset_top = 448.0
 offset_right = 448.0
 offset_bottom = 648.0
+mouse_filter = 2
 
 [node name="currentCash" type="Label" parent="levelInfo" unique_id=809035193]
 layout_mode = 0
 offset_top = 32.0
 offset_right = 448.0
 offset_bottom = 72.0
-text = "$100"
+text = "score: 0"
 label_settings = SubResource("LabelSettings_7c31x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="levelDisplay" type="Label" parent="levelInfo" unique_id=1087224223]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 32.0
+text = "level 1"
+label_settings = SubResource("LabelSettings_f58je")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -157,7 +261,7 @@ layout_mode = 0
 offset_top = 72.0
 offset_right = 448.0
 offset_bottom = 120.0
-text = "needed amount: xxx"
+text = "needed score: xxx"
 label_settings = SubResource("LabelSettings_ch38m")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -167,7 +271,7 @@ layout_mode = 0
 offset_top = 120.0
 offset_right = 448.0
 offset_bottom = 168.0
-text = "shop credits: 0"
+text = "0$"
 label_settings = SubResource("LabelSettings_bw62j")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -187,8 +291,9 @@ offset_left = 32.0
 offset_top = 48.0
 offset_right = 416.0
 offset_bottom = 144.0
+pivot_offset = Vector2(192, 48)
 
-[node name="selectedCardAmount" type="Label" parent="cardInfo" unique_id=502197176]
+[node name="containerHeader" type="Label" parent="cardInfo" unique_id=502197176]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 16.0
@@ -199,11 +304,37 @@ label_settings = SubResource("LabelSettings_78qbg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="shopInfo" type="Control" parent="." unique_id=819582373]
+[node name="upgrade" type="Control" parent="." unique_id=1205398014]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_top = 448.0
-offset_right = 128.0
-offset_bottom = 648.0
+offset_left = 1040.0
+offset_top = 504.0
+offset_right = 1104.0
+offset_bottom = 584.0
+pivot_offset = Vector2(32, 40)
+script = ExtResource("3_rqjvg")
+
+[node name="upgrade" type="Sprite2D" parent="upgrade" unique_id=1418704559]
+position = Vector2(32, 40)
+scale = Vector2(1.2499995, 1.2500006)
+texture = ExtResource("2_7c31x")
+
+[node name="infoText" type="Label" parent="upgrade" unique_id=912423086]
+visible = false
+layout_mode = 0
+offset_left = -16.0
+offset_top = 88.0
+offset_right = 80.0
+offset_bottom = 135.0
+text = "double your multiplier if the card sum is 10"
+label_settings = SubResource("LabelSettings_8nplw")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="button_up" from="handControlls/playHand" to="." method="_on_play_hand_button_up"]
+[connection signal="button_up" from="ShopControlls/rerollHand" to="." method="_on_reroll_hand_button_up"]
+[connection signal="button_up" from="ShopControlls/startRound" to="." method="_on_start_round_button_up"]
+[connection signal="mouse_entered" from="upgrade" to="upgrade" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="upgrade" to="upgrade" method="_on_mouse_exited"]

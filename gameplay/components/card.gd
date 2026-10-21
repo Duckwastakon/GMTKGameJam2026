@@ -81,10 +81,10 @@ func _on_mouse_entered() -> void:
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event.is_pressed():
 		if(!selected):
-			selected = true
-			changePos(goalPosition + Vector3(0, 0.05, 0.01))
-			$Label3D.text = "Unselect card"
-			get_parent().get_parent().selectCardFunc(values, self)
+			if(get_parent().get_parent().selectCardFunc(values, self)):
+				selected = true
+				changePos(goalPosition + Vector3(0, 0.05, 0.01))
+				$Label3D.text = "Unselect card"
 		else:
 			selected = false
 			changePos(goalPosition - Vector3(0, 0.05, 0.01))
@@ -112,17 +112,21 @@ func popUpText(textVariables):
 	add_child(newPopUpLabel)
 	newPopUpLabel.modulate = textVariables[1]
 	newPopUpLabel.text = textVariables[0]
+	newPopUpLabel.scale = Vector3.ZERO
 	newPopUpLabel.visible = true
 	var posTween = create_tween()
-	var endPos = Vector3(randf_range(-0.5, 0.5), randf_range(0.1, 0.5), 0)
-	var textLifeTime = randf_range(0.5, 1)
+	var endPos = Vector3(randf_range(-0.1, 0.1), randf_range(0.05, 0.15), 0)
+	var textLifeTime = randf_range(1, 2)
+	var scaleTween = create_tween()
+	scaleTween.tween_property(newPopUpLabel, "scale", Vector3(0.1,0.1,0.1), 0.1)
+	scaleTween.play()
 	posTween.tween_property(newPopUpLabel, "position", endPos, textLifeTime)
 	posTween.play()
-	await get_tree().create_timer(textLifeTime/3*2)
-	var disapearTween = create_tween()
-	disapearTween.tween_property(newPopUpLabel, "modulate", textVariables[1] * Color(1,1,1,0), textLifeTime/3)
-	disapearTween.play()
-	await disapearTween.finished
+	await get_tree().create_timer(textLifeTime - 0.1).timeout
+	scaleTween = create_tween()
+	scaleTween.tween_property(newPopUpLabel, "scale", Vector3.ZERO, 0.1)
+	scaleTween.play()
+	await scaleTween.finished
 	newPopUpLabel.queue_free()
 
 var returningToPos = false

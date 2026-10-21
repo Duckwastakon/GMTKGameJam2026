@@ -58,8 +58,9 @@
 [ext_resource type="ArrayMesh" uid="uid://cp0olkc42g3er" path="res://Models_Art/models/cards/obj/card_spades_three.obj" id="58_wsdew"]
 [ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://Models_Art/models/cards/obj/card_spades_two.obj" id="59_5v7ja"]
 [ext_resource type="PackedScene" uid="uid://dqks8kr6mfpuk" path="res://gameplay/components/deck.tscn" id="60_ku3ik"]
-[ext_resource type="PackedScene" uid="uid://deaywkbxsb0g3" path="res://Scenes/MainGameplayFile/ChildScenes/sitting_bob.tscn" id="61_adjfg"]
+[ext_resource type="PackedScene" uid="uid://deaywkbxsb0g3" path="res://gameplay/components/sitting_bob.tscn" id="61_adjfg"]
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="62_vf0yn"]
+[ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="63_8wj4m"]
 [ext_resource type="PackedScene" uid="uid://c1tdnkaa0g74i" path="res://Scenes/MainGameplayFile/ChildScenes/speedParticles.tscn" id="63_t7f4c"]
 [ext_resource type="ArrayMesh" uid="uid://wilvvu1kv02t" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="64_l2vpq"]
 [ext_resource type="PackedScene" uid="uid://xtd3v83if61p" path="res://Scenes/MainGameplayFile/ChildScenes/flying_card_particle.tscn" id="65_1b40a"]
@@ -80,12 +81,20 @@ shader = ExtResource("6_2xv8x")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 1.0
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_87678"]
+panorama = ExtResource("63_8wj4m")
+
+[sub_resource type="Sky" id="Sky_fglxu"]
+sky_material = SubResource("PanoramaSkyMaterial_87678")
+
 [sub_resource type="Environment" id="Environment_wbj74"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
+sky = SubResource("Sky_fglxu")
 ambient_light_color = Color(1, 1, 1, 1)
 fog_enabled = true
-volumetric_fog_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_sky_affect = 0.2
 volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_wbj74"]
@@ -98,7 +107,7 @@ deckNode = NodePath("deck")
 gainedCash = NodePath("cards/gainedCash")
 
 [node name="gamblingCam" type="Camera3D" parent="." unique_id=106288471]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.7)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1, 0.7)
 script = ExtResource("2_87678")
 
 [node name="cards" type="Node3D" parent="." unique_id=1233592042]
@@ -344,6 +353,7 @@ resolution = 8
 
 [node name="GPUParticles3D" parent="." unique_id=1085363938 instance=ExtResource("63_t7f4c")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0299916, 0.42468894, -1.3393459)
+visible = false
 
 [node name="SedanSports" type="MeshInstance3D" parent="." unique_id=575463983]
 transform = Transform3D(-1.09278474e-07, 0, -2.5, 0, 2.5, 0, 2.5, 0, -1.09278474e-07, -0.52762985, -2.6392424, 0)
@@ -364,6 +374,7 @@ visible = false
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=435326984]
 
 [node name="tutorial-skip" type="Control" parent="." unique_id=1785620668]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -404,6 +415,4 @@ stream = ExtResource("74_765n4")
 [node name="gameplayUI" parent="." unique_id=1104659080 instance=ExtResource("74_8wj4m")]
 
 [connection signal="playHand" from="." to="." method="_on_play_hand"]
-[connection signal="selectCard" from="." to="." method="_on_select_card"]
-[connection signal="unselectCard" from="." to="." method="_on_unselect_card"]
 [connection signal="pressed" from="tutorial-skip/skip" to="." method="_on_skip_pressed"]

@@ -1,0 +1,160 @@
+[gd_scene format=4 uid="uid://byvev6ilr56e0"]
+
+[ext_resource type="Script" uid="uid://jt5ud82tfyk" path="res://gameplay/components/upgrade_card.gd" id="1_lx2d0"]
+[ext_resource type="Script" uid="uid://bj8wa01sx3j50" path="res://gameplay/components/activated_particles.gd" id="2_phgma"]
+[ext_resource type="Texture2D" uid="uid://cpmfuhc42qm8e" path="res://Models_Art/models/cards/obj/clubs_ace.png" id="3_fvghq"]
+[ext_resource type="Texture2D" uid="uid://sjf7oxa5g0fo" path="res://Models_Art/models/cards/obj/cardback_A.png" id="4_4lrov"]
+[ext_resource type="Texture2D" uid="uid://b1tymwah7cgau" path="res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_03.png" id="5_cftvx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8gks"]
+size = Vector3(0.1, 0.15, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_881x3"]
+albedo_color = Color(0.10980392, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_881x3"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="Curve" id="Curve_1onno"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8949772, 0.7494408), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdr10"]
+resource_name = "card_clubs_ace"
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("3_fvghq")
+metallic = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jii6q"]
+resource_name = "card_cardback_A"
+albedo_color = Color(0.8, 0.8, 0.8, 1)
+albedo_texture = ExtResource("4_4lrov")
+metallic = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vhxno"]
+_surfaces = [{
+"aabb": AABB(-2.15731, -3.000011, -0.025, 4.31462, 6.000022, 0.05),
+"format": 34359742465,
+"index_count": 162,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAgABAAQAGAADAAIAGAAHAAMAAQAZAAQABgAZAAEABAAaAAIABAAZABoABgAbABkAGQAbABoADgAbAAYAAgAcABgAAgAaABwADgANABsAGwANABoADwANAA4ADwAQAA0AHQAHABgAHAAdABgAHQAIAAcADQAQABEADQARABoAEQAQAB4AHgAQABIAGgARAB8AHwARAB4AGgAfABwAHgASACAAIAAfAB4AIAASABMAIAATABYAFgAfACAAFgATABcAFwAVABYAFAAfABYAFgAVABQAIQAfABQAHAAfACEAFAAVACIAIQAUACIAIgAVAAwAIgAMACMAIQAiACMAIwAMAAsAHAAhAAUAHAAFAB0ABQAIAB0ABQAhAAkACQAIAAUACQAhACMAIwALAAkACgAIAAkACQALAAoA"),
+"lods": [0.045926325, PackedByteArray("AAABAAIAAgADAAAAAgABAAQABQADAAIAAgAEAAUABgAEAAEABQAHAAMABQAIAAcACQAIAAUACgAIAAkACQALAAoACQAMAAsABgANAAQADgANAAYADwANAA4ADwAQAA0ADQARAAQADQAQABEABAARAAUABQARAAkAEQAQABIAEQASABMAFAAMAAkACQARABQAFAAVAAwAEQATABYAFAARABYAFgAVABQAFgATABcAFwAVABYA")],
+"name": "card_clubs_ace",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("KLbyPy4AQMDNzMy8KLbyvy4AQMDNzMy8KLbyPy4AQMDNzMw8ObYBQAHDPcDNzMy8KLbyvy4AQMDNzMw8XhEKQOBJL8DNzMw8ObYBwAHDPcDNzMy8MNQHQAmlN8DNzMy8XhEKQOBJL8DNzMy8XhEKQOBJL0DNzMw8XhEKQOBJL0DNzMy8MNQHQAmlN0DNzMy8ObYBQAHDPUDNzMy8XhEKwOBJL8DNzMw8MNQHwAmlN8DNzMy8XhEKwOBJL8DNzMy8XhEKwOBJL0DNzMy8XhEKwOBJL0DNzMw8MNQHwAmlN0DNzMy8ObYBwAHDPUDNzMy8KLbyPy4AQEDNzMw8KLbyPy4AQEDNzMy8KLbyvy4AQEDNzMw8KLbyvy4AQEDNzMy8ObYBQAHDPcDNzMw8ObYBwAHDPcDNzMw8KLbyv+BJL8DNzMw8MNQHwAmlN8DNzMw8KLbyP+BJL8DNzMw8MNQHQAmlN8DNzMw8MNQHwAmlN0DNzMw8KLbyv+BJL0DNzMw8ObYBwAHDPUDNzMw8ILbyP+BJL0DNzMw8ObYBQAHDPUDNzMw8MNQHQAmlN0DNzMw8")
+}, {
+"aabb": AABB(-2.15731, -3.000011, -0.025, 4.31462, 6.000022, 1e-05),
+"format": 34896613377,
+"index_count": 66,
+"index_data": PackedByteArray("CQAQAAoACgAQAAsAAQAQAAkAEAAMAAsAEQAQAAEAEQABAAMAEAASAAwAEQASABAAEQADAAIADAASAA0AAAARAAIADQASAA4ADgASAA8AEgAIAA8AEwASABEAEwAIABIAAAATABEABwAIABMABAATAAAABgAHABMABAAFABMABQAGABMA"),
+"lods": [8.257682e-05, PackedByteArray("AAABAAIAAQADAAIAAAAEAAEABQAGAAQABgAHAAQABwAIAAQABAAIAAEAAQAIAAkACgAJAAsACQAMAAsACQAIAAwADAAIAA0ADQAIAA4ADgAIAA8A")],
+"name": "card_cardback_A",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AADa9AAAAAB+D///AAAAABMCbPoAAAAAvweA/gAAAAAAACQLAAAAABMCkgUAAAAAvwd+AQAAAAB+DwAAAAAAAIDwAAAAAAAAgPD//wAAAAA/+ID+AAAAAOv9bPoAAAAA///a9AAAAAD//yQLAAAAAOv9kgUAAAAAP/h+AQAAAACA8Nr0AAAAAH4P2vQAAAAAgPAkCwAAAAB+DyQLAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5cbsg"]
+_surfaces = [{
+"aabb": AABB(-2.15731, -3.000011, -0.025, 4.31462, 6.000022, 0.05),
+"attribute_data": PackedByteArray("AAB8Px1acD8AAHw/HVpwPwAAfD8dWnA/AAB8P0/qbz8AAHw/HVpwPwAAfD+SkmY/AAB8P0/qbz8AAHw/T3ZrPwAAfD+SkmY/AAB8P5KSZj8AAHw/T3ZrPwAAfD+SkmY/AAB8P25ryz0AAHw/bmvLPQAAfD+HTaQ9AAB8P4qtgD0AAHw/NV56PQAAfD81Xno9AAB8PzVeej0AAHw/NV56PQAAfD+KrYA9AAB8P25ryz0AAHw/h02kPQAAfD9ua8s97Z3ROxRdcz/tndE7wy5KPYF2hz3EXH4/xFx+PxRdcz8wEW8/xFx+P8Rcfj/DLko9MBFvP+2d0TuBdoc97Z3ROwAAfD9P6m8/AAB8P0/qbz8AAHw/T3ZrPwAAfD9Pdms/AAB8P4dNpD0AAHw/h02kPQAAfD+KrYA9AAB8P4qtgD0wEW8/wy5KPTdQfD+AYuQ8Ard2P2AdRzwwEW8/FF1zPzdQfD/s3Hg/gXaHPcMuSj0Ct3Y/iuN8P+aQFD1gHUc8XvZrPIBi5DyBdoc9FF1zP172azzs3Hg/5pAUPYrjfD8="),
+"format": 34359742487,
+"index_count": 162,
+"index_data": PackedByteArray("AAABAAIAAgADAAAAAgABAAQAIAADAAIAAQAhAAQAIAAHAAMABgAhAAEAIgAHACAABgAjACEAIgAIAAcACgAjAAYABQAIACIACgAJACMAFQAIAAUACwAJAAoAFwAIABUACwAMAAkAFQAWABcACQAMAA0AJAAWABUADQAMACUAJAAUABYAJQAMAA4AJgAUACQAJQAOACcAJgASABQAJwAOAA8AEwASACYAJwAPABAAEAASABMAEAAPABEAEQASABAAHQAoACkAKAAqACkAGwAoAB0AKAAeACoAKwAoABsAKwAbACwAKAAtAB4AKwAtACgAKwAsAC4AHgAtAB8AHAArAC4AHwAtAC8ALwAtADAALQAZADAAMQAtACsAMQAZAC0AHAAxACsAGAAZADEAGgAxABwAMgAYADEAGgAzADEAMwAyADEA"),
+"lods": [0.045926325, PackedByteArray("AAABAAIAAgADAAAAAgABAAQABQADAAIABgAEAAEABQAHAAMABQAIAAcABgAJAAQACgAJAAYACwAJAAoACwAMAAkACQAMAA0ADQAMAA4ADQAOAA8ADQAPABAAEAAPABEAEQASABAAEAASABMAEwASABQAEwAUABUAFQAUABYAFQAWABcAFwAIABUAFQAIAAUAGAAZABoAGgAZABsAHAAaABsAGwAZAB0AHQAZAB4AHgAZAB8A")],
+"material": SubResource("StandardMaterial3D_bdr10"),
+"name": "card_clubs_ace",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 52,
+"vertex_data": PackedByteArray("KLbyPy4AQMDNzMy8KLbyvy4AQMDNzMy8KLbyPy4AQMDNzMw8ObYBQAHDPcDNzMy8KLbyvy4AQMDNzMw8XhEKQOBJL8DNzMw8ObYBwAHDPcDNzMy8MNQHQAmlN8DNzMy8XhEKQOBJL8DNzMy8XhEKwOBJL8DNzMw8MNQHwAmlN8DNzMy8XhEKwOBJL8DNzMy8XhEKwOBJL0DNzMy8XhEKwOBJL0DNzMw8MNQHwAmlN0DNzMy8ObYBwAHDPUDNzMy8KLbyvy4AQEDNzMw8KLbyvy4AQEDNzMy8KLbyPy4AQEDNzMy8KLbyPy4AQEDNzMw8ObYBQAHDPUDNzMy8XhEKQOBJL0DNzMw8MNQHQAmlN0DNzMy8XhEKQOBJL0DNzMy8XhEKwOBJL8DNzMw8XhEKwOBJL0DNzMw8KLbyvy4AQMDNzMw8XhEKQOBJL8DNzMw8KLbyPy4AQMDNzMw8XhEKQOBJL0DNzMw8KLbyPy4AQEDNzMw8KLbyvy4AQEDNzMw8ObYBQAHDPcDNzMw8ObYBwAHDPcDNzMw8MNQHQAmlN8DNzMw8MNQHwAmlN8DNzMw8MNQHQAmlN0DNzMw8MNQHwAmlN0DNzMw8ObYBQAHDPUDNzMw8ObYBwAHDPUDNzMw8ILbyP+BJL0DNzMw8MNQHQAmlN0DNzMw8ObYBQAHDPUDNzMw8KLbyP+BJL8DNzMw8MNQHQAmlN8DNzMw8KLbyv+BJL0DNzMw8ObYBQAHDPcDNzMw8ObYBwAHDPUDNzMw8MNQHwAmlN0DNzMw8KLbyv+BJL8DNzMw8MNQHwAmlN8DNzMw8ObYBwAHDPcDNzMw8447jDv///78bceMO////v+OO4w7///+/2a7ZLv///78bceMO////vxvxG3H///+/JVHZLv///78l0SVR////vxvxG3H///+/4w4bcf///7/ZLiVR////v+MOG3H///+/4w7jjv///7/jDuOO////v9ku2a7///+/JVEl0f///78bcRvx////vxtxG/H///+/444b8f///7/jjhvx////v9muJdH///+/G/Hjjv///78l0dmu////vxvx447///+//3//f////7//f/9/////v/9//3/+//+//3//f////7//f/9//v//v/9//3////+//3//f////7//f/9/////v9mu2S7///+/JVHZLv///78l0SVR////v9kuJVH///+/JdHZrv///7/ZLtmu////v9muJdH///+/JVEl0f///7//f/9//v//v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+//3//f/7//7//f/9//v//v/9//3/+//+//3//f/7//78=")
+}, {
+"aabb": AABB(-2.15731, -3.000011, -0.025, 4.31462, 6.000022, 1e-05),
+"attribute_data": PackedByteArray("W/6iDBDvowFP/CMHtvYcA1v+XPNP/Nv4tvbi/BDvW/7uEFv+7hCjAUgJHAOvAyMHowGiDKMBXPOvA9v4SAni/O4QogwQ76IM7hBc8xDvXPM="),
+"format": 34896613399,
+"index_count": 66,
+"index_data": PackedByteArray("CQAQAAoACgAQAAsAAQAQAAkAEAAMAAsAEQAQAAEAEQABAAMAEAASAAwAEQASABAAEQADAAIADAASAA0AAAARAAIADQASAA4ADgASAA8AEgAIAA8AEwASABEAEwAIABIAAAATABEABwAIABMABAATAAAABgAHABMABAAFABMABQAGABMA"),
+"lods": [8.257682e-05, PackedByteArray("AAABAAIAAQADAAIAAAAEAAEABQAGAAQABgAHAAQABwAIAAQABAAIAAEAAQAIAAkACgAJAAsACQAMAAsACQAIAAwADAAIAA0ADQAIAA4ADgAIAA8A")],
+"material": SubResource("StandardMaterial3D_jii6q"),
+"name": "card_cardback_A",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AADa9AAA//9+D///AAD//xMCbPoAAP//vweA/gAA//8AACQLAAD//xMCkgUAAP//vwd+AQAA//9+DwAAAAD//4DwAAAAAP//gPD//wAA//8/+ID+AAD//+v9bPoAAP/////a9AAA/////yQLAAD//+v9kgUAAP//P/h+AQAA//+A8Nr0AAD//34P2vQAAP//gPAkCwAA//9+DyQLAAD///9/////f////3/+//9//v//f////3/+//9//v//f/7//3/+//9/////f/7//3/+//9/////f////3/+//9//v//f/7//3/+//9//v//f/7/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vhxno")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0jbi"]
+transparency = 1
+albedo_texture = ExtResource("5_cftvx")
+
+[node name="upgradeCard" type="StaticBody3D" unique_id=1331914720]
+script = ExtResource("1_lx2d0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1684872130]
+shape = SubResource("BoxShape3D_k8gks")
+
+[node name="activatedParticles" type="CPUParticles3D" parent="." unique_id=867741295]
+material_override = SubResource("StandardMaterial3D_881x3")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+mesh = SubResource("SphereMesh_881x3")
+emission_shape = 3
+emission_box_extents = Vector3(0.02, 0.02, 0.02)
+spread = 180.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 1.5
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+damping_max = 1.0
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_1onno")
+script = ExtResource("2_phgma")
+
+[node name="cardMesh" type="MeshInstance3D" parent="." unique_id=1791561546]
+transform = Transform3D(0.03, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+mesh = SubResource("ArrayMesh_5cbsg")
+surface_material_override/0 = SubResource("StandardMaterial3D_i0jbi")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=660313121]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0.01)
+visible = false
+pixel_size = 0.004
+billboard = 1
+no_depth_test = true
+render_priority = 1
+outline_render_priority = 0
+text = "Buy card"
+font_size = 64
+
+[node name="cardInfo" type="Label3D" parent="." unique_id=1040684357]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.15, 0)
+visible = false
+billboard = 1
+text = "3x your multiplier if the card sum is 10"
+autowrap_mode = 2
+
+[node name="cardPrice" type="Label3D" parent="." unique_id=65655876]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.1, 0)
+visible = false
+billboard = 1
+modulate = Color(0.9999985, 0.9972616, 0.4877314, 1)
+outline_modulate = Color(0.99053115, 0.4877339, 9.62615e-07, 1)
+text = "$1"
+autowrap_mode = 2
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="finished" from="activatedParticles" to="activatedParticles" method="_on_finished"]
