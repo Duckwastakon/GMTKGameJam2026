@@ -100,7 +100,7 @@ func activateCards():
 func cardUsed(textVariables, pulseIntensity):
 	if(textVariables != null):
 		popUpText(textVariables)
-	
+	get_parent().get_parent().screenShake.shake()
 	pulse(pulseIntensity)
 	
 	glow()

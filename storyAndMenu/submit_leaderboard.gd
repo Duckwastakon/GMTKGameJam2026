@@ -3,6 +3,10 @@ extends CanvasLayer
 @onready var httpRequest = $Control/background/leaderboardSend
 @onready var usernameInput = $Control/background/username
 
+func activ(score):
+	self.visible = true
+	$Control/background/title2.text = "Round: " + str(score)
+
 func submitScore():
 	$Control/background/close.disabled = true
 	$Control/background/submit.disabled = true

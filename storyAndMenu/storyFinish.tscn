@@ -1,20 +1,19 @@
 [gd_scene format=3 uid="uid://cbcfshx7i52r3"]
 
 [ext_resource type="Script" uid="uid://tyqf770n2c4y" path="res://storyAndMenu/ending.gd" id="1_yxhk3"]
-[ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://Scenes/MainGameplayFile/ChildScenes/moving_character.tscn" id="2_qr5bv"]
-[ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="3_xxcet"]
+[ext_resource type="PackedScene" uid="uid://bin338476275n" path="res://storyAndMenu/moving_character.tscn" id="2_qr5bv"]
+[ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://gameplay/components/bob.tscn" id="3_xxcet"]
 [ext_resource type="PackedScene" uid="uid://4nlr35me3dl5" path="res://3dModels/cars/truck.fbx" id="4_usjol"]
 [ext_resource type="PackedScene" uid="uid://dsliktt068nf0" path="res://3dModels/houses/path-stones-messy.fbx" id="13_ammra"]
 [ext_resource type="PackedScene" uid="uid://dacutqc7l42s3" path="res://3dModels/houses/building-type-a.fbx" id="14_owwym"]
 [ext_resource type="PackedScene" uid="uid://ss1h063365h3" path="res://3dModels/houses/path-long.fbx" id="15_0uget"]
 [ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="16_gv0no"]
 [ext_resource type="PackedScene" uid="uid://bavkoj6ih0ejn" path="res://3dModels/houses/tree-small.fbx" id="17_slyj8"]
-[ext_resource type="Script" uid="uid://cjur83q7w43qh" path="res://Scenes/MainGameplayFile/Scripts/countdown.gd" id="20_f8wi7"]
-[ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="21_tj30g"]
-[ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="22_whpu3"]
-[ext_resource type="AudioStream" uid="uid://d143wb2dgm8lv" path="res://sounds/heart.mp3" id="23_mo0mj"]
-[ext_resource type="AudioStream" uid="uid://l5t1i21qyely" path="res://sounds/dramaticbob.mp3" id="24_2fwk5"]
-[ext_resource type="AudioStream" uid="uid://dfkxmlw6r6bjy" path="res://sounds/dramatic.mp3" id="25_64e4u"]
+[ext_resource type="Script" uid="uid://cjur83q7w43qh" path="res://storyAndMenu/countdown.gd" id="20_f8wi7"]
+[ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sfx/coin.mp3" id="22_whpu3"]
+[ext_resource type="AudioStream" uid="uid://d143wb2dgm8lv" path="res://sfx/heart.mp3" id="23_mo0mj"]
+[ext_resource type="AudioStream" uid="uid://l5t1i21qyely" path="res://sfx/dramaticbob.mp3" id="24_2fwk5"]
+[ext_resource type="AudioStream" uid="uid://dfkxmlw6r6bjy" path="res://sfx/dramatic.mp3" id="25_64e4u"]
 [ext_resource type="PackedScene" uid="uid://cl0u4218cbtiu" path="res://3dModels/houses/driveway-long.fbx" id="25_yxhk3"]
 [ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="26_qr5bv"]
 
@@ -56,6 +55,16 @@ font_size = 24
 font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_yklrg"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for s: AudioStreamPlayer in get_children():
+		s.volume_db = (-4 + (8 * (Global.volume / 100))) * 3
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_owwym"]
 size = Vector3(1, 100, 40)
@@ -221,7 +230,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1947259601]
-script = ExtResource("21_tj30g")
+script = SubResource("GDScript_yklrg")
 
 [node name="Coin" type="AudioStreamPlayer" parent="Node3D" unique_id=1982282781]
 stream = ExtResource("22_whpu3")

@@ -1,88 +1,124 @@
 [gd_scene format=3 uid="uid://desey5ovs1yx8"]
 
 [ext_resource type="Script" uid="uid://cy35agtwsoljq" path="res://gameplay/components/gameplayController.gd" id="1_8wj4m"]
-[ext_resource type="Script" uid="uid://k4ag0761ryry" path="res://Scenes/MainGameplayFile/Scripts/gambling_cam.gd" id="2_87678"]
-[ext_resource type="ArrayMesh" uid="uid://dgx7rufmqry17" path="res://Models_Art/models/cards/obj/card_clubs_ace.obj" id="8_r2vmg"]
-[ext_resource type="ArrayMesh" uid="uid://nqmre7h7j0dp" path="res://Models_Art/models/cards/obj/card_clubs_eight.obj" id="9_runsr"]
-[ext_resource type="ArrayMesh" uid="uid://b6ns6taqlk17v" path="res://Models_Art/models/cards/obj/card_clubs_five.obj" id="10_awlh0"]
-[ext_resource type="ArrayMesh" uid="uid://b4xrpxjkelpiy" path="res://Models_Art/models/cards/obj/card_clubs_four.obj" id="11_aluud"]
-[ext_resource type="ArrayMesh" uid="uid://jnaqgsgdkxeg" path="res://Models_Art/models/cards/obj/card_clubs_jack.obj" id="12_60nb3"]
-[ext_resource type="ArrayMesh" uid="uid://bytx7gjvspjfh" path="res://Models_Art/models/cards/obj/card_clubs_king.obj" id="13_g6efw"]
-[ext_resource type="ArrayMesh" uid="uid://bg42in06t6yyi" path="res://Models_Art/models/cards/obj/card_clubs_nine.obj" id="14_y4yos"]
-[ext_resource type="ArrayMesh" uid="uid://b750qa8qtcm4q" path="res://Models_Art/models/cards/obj/card_clubs_queen.obj" id="15_pkq6a"]
-[ext_resource type="ArrayMesh" uid="uid://dj6e10xfho8hd" path="res://Models_Art/models/cards/obj/card_clubs_seven.obj" id="16_d88f0"]
-[ext_resource type="ArrayMesh" uid="uid://bifoeb1rwt42k" path="res://Models_Art/models/cards/obj/card_clubs_six.obj" id="17_u807e"]
-[ext_resource type="ArrayMesh" uid="uid://r2a841bsqbmv" path="res://Models_Art/models/cards/obj/card_clubs_ten.obj" id="18_wiymy"]
-[ext_resource type="ArrayMesh" uid="uid://g3e74qawm2yl" path="res://Models_Art/models/cards/obj/card_clubs_three.obj" id="19_cjwnp"]
-[ext_resource type="ArrayMesh" uid="uid://jncdba42wbab" path="res://Models_Art/models/cards/obj/card_clubs_two.obj" id="20_kdjbs"]
-[ext_resource type="ArrayMesh" uid="uid://c306jogawfrm6" path="res://Models_Art/models/cards/obj/card_diamonds_ace.obj" id="21_vxqar"]
-[ext_resource type="ArrayMesh" uid="uid://m627tk1cne8" path="res://Models_Art/models/cards/obj/card_diamonds_eight.obj" id="22_pt1oo"]
-[ext_resource type="ArrayMesh" uid="uid://cgqse0fv33two" path="res://Models_Art/models/cards/obj/card_diamonds_five.obj" id="23_xoqpg"]
-[ext_resource type="ArrayMesh" uid="uid://dqvll3pp3nved" path="res://Models_Art/models/cards/obj/card_diamonds_four.obj" id="24_v60gl"]
-[ext_resource type="ArrayMesh" uid="uid://cmntf81bl21tt" path="res://Models_Art/models/cards/obj/card_diamonds_jack.obj" id="25_w41xa"]
-[ext_resource type="ArrayMesh" uid="uid://tlg1uiqtg3gg" path="res://Models_Art/models/cards/obj/card_diamonds_king.obj" id="26_syhvi"]
-[ext_resource type="ArrayMesh" uid="uid://wgn2w6mk7u76" path="res://Models_Art/models/cards/obj/card_diamonds_nine.obj" id="27_lgvv2"]
-[ext_resource type="ArrayMesh" uid="uid://b1y5tlqpxu3gy" path="res://Models_Art/models/cards/obj/card_diamonds_queen.obj" id="28_ixo6i"]
-[ext_resource type="ArrayMesh" uid="uid://mqfa8difs8rk" path="res://Models_Art/models/cards/obj/card_diamonds_seven.obj" id="29_t3o6u"]
-[ext_resource type="ArrayMesh" uid="uid://ciabgqu55a5aq" path="res://Models_Art/models/cards/obj/card_diamonds_six.obj" id="30_j5pc0"]
-[ext_resource type="ArrayMesh" uid="uid://cafyuixfcp5k2" path="res://Models_Art/models/cards/obj/card_diamonds_ten.obj" id="31_ao1d5"]
-[ext_resource type="ArrayMesh" uid="uid://bo23aj3yws85d" path="res://Models_Art/models/cards/obj/card_diamonds_three.obj" id="32_esxqc"]
-[ext_resource type="ArrayMesh" uid="uid://dno322buwu17m" path="res://Models_Art/models/cards/obj/card_diamonds_two.obj" id="33_igy7l"]
-[ext_resource type="ArrayMesh" uid="uid://b5gvg4t1ta8it" path="res://Models_Art/models/cards/obj/card_hearts_ace.obj" id="34_cbn1g"]
-[ext_resource type="ArrayMesh" uid="uid://0gbfuy0jgkcd" path="res://Models_Art/models/cards/obj/card_hearts_eight.obj" id="35_exn4g"]
-[ext_resource type="ArrayMesh" uid="uid://dutnst52dihrq" path="res://Models_Art/models/cards/obj/card_hearts_five.obj" id="36_yanjf"]
-[ext_resource type="ArrayMesh" uid="uid://cnsciqq7lddyl" path="res://Models_Art/models/cards/obj/card_hearts_four.obj" id="37_cyai6"]
-[ext_resource type="ArrayMesh" uid="uid://d772y0yyq5wr" path="res://Models_Art/models/cards/obj/card_hearts_jack.obj" id="38_7ufp2"]
-[ext_resource type="ArrayMesh" uid="uid://b2s2fv88bv3a7" path="res://Models_Art/models/cards/obj/card_hearts_king.obj" id="39_asn4u"]
-[ext_resource type="ArrayMesh" uid="uid://wuwqcspesbbf" path="res://Models_Art/models/cards/obj/card_hearts_nine.obj" id="40_5mu0s"]
-[ext_resource type="ArrayMesh" uid="uid://djvihumxs2sqk" path="res://Models_Art/models/cards/obj/card_hearts_queen.obj" id="41_pfmn0"]
-[ext_resource type="ArrayMesh" uid="uid://da37krxb53pmm" path="res://Models_Art/models/cards/obj/card_hearts_seven.obj" id="42_xn3ba"]
-[ext_resource type="ArrayMesh" uid="uid://b1ui6f84nrfip" path="res://Models_Art/models/cards/obj/card_hearts_six.obj" id="43_fc5ei"]
-[ext_resource type="ArrayMesh" uid="uid://doqcfq8c2w1ir" path="res://Models_Art/models/cards/obj/card_hearts_ten.obj" id="44_6h08i"]
-[ext_resource type="ArrayMesh" uid="uid://8sva0dn520s2" path="res://Models_Art/models/cards/obj/card_hearts_three.obj" id="45_n41na"]
-[ext_resource type="ArrayMesh" uid="uid://cxylajwit43xe" path="res://Models_Art/models/cards/obj/card_hearts_two.obj" id="46_r51wo"]
-[ext_resource type="ArrayMesh" uid="uid://bq2se5jdv8k8y" path="res://Models_Art/models/cards/obj/card_spades_ace.obj" id="47_078a7"]
-[ext_resource type="ArrayMesh" uid="uid://dmv0pmdd1uven" path="res://Models_Art/models/cards/obj/card_spades_eight.obj" id="48_rj1s2"]
-[ext_resource type="ArrayMesh" uid="uid://b56fah5j3sg54" path="res://Models_Art/models/cards/obj/card_spades_five.obj" id="49_3pmdw"]
-[ext_resource type="ArrayMesh" uid="uid://et13ecunak0q" path="res://Models_Art/models/cards/obj/card_spades_four.obj" id="50_moe5l"]
-[ext_resource type="ArrayMesh" uid="uid://fjhjakxm0kc7" path="res://Models_Art/models/cards/obj/card_spades_jack.obj" id="51_sjvre"]
-[ext_resource type="ArrayMesh" uid="uid://dvousc1fo44gm" path="res://Models_Art/models/cards/obj/card_spades_king.obj" id="52_ci1en"]
-[ext_resource type="ArrayMesh" uid="uid://b4vuq2rtsjoeh" path="res://Models_Art/models/cards/obj/card_spades_nine.obj" id="53_p7vn1"]
-[ext_resource type="ArrayMesh" uid="uid://rmisws4imsbu" path="res://Models_Art/models/cards/obj/card_spades_queen.obj" id="54_5c0ru"]
-[ext_resource type="ArrayMesh" uid="uid://dhe2njq2udqim" path="res://Models_Art/models/cards/obj/card_spades_seven.obj" id="55_pytvv"]
-[ext_resource type="ArrayMesh" uid="uid://do84267nkqj4w" path="res://Models_Art/models/cards/obj/card_spades_six.obj" id="56_0txue"]
-[ext_resource type="ArrayMesh" uid="uid://d2ghkoxcirt3l" path="res://Models_Art/models/cards/obj/card_spades_ten.obj" id="57_jhlnx"]
-[ext_resource type="ArrayMesh" uid="uid://cp0olkc42g3er" path="res://Models_Art/models/cards/obj/card_spades_three.obj" id="58_wsdew"]
-[ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://Models_Art/models/cards/obj/card_spades_two.obj" id="59_5v7ja"]
+[ext_resource type="Script" uid="uid://k4ag0761ryry" path="res://gameplay/components/gambling_cam.gd" id="2_87678"]
+[ext_resource type="Script" uid="uid://bmct8d7n4xggm" path="res://gameplay/components/screenShake.gd" id="2_ota8k"]
+[ext_resource type="ArrayMesh" uid="uid://dgx7rufmqry17" path="res://3dModels/models/cards/obj/card_clubs_ace.obj" id="8_r2vmg"]
+[ext_resource type="ArrayMesh" uid="uid://nqmre7h7j0dp" path="res://3dModels/models/cards/obj/card_clubs_eight.obj" id="9_runsr"]
+[ext_resource type="ArrayMesh" uid="uid://b6ns6taqlk17v" path="res://3dModels/models/cards/obj/card_clubs_five.obj" id="10_awlh0"]
+[ext_resource type="ArrayMesh" uid="uid://b4xrpxjkelpiy" path="res://3dModels/models/cards/obj/card_clubs_four.obj" id="11_aluud"]
+[ext_resource type="ArrayMesh" uid="uid://jnaqgsgdkxeg" path="res://3dModels/models/cards/obj/card_clubs_jack.obj" id="12_60nb3"]
+[ext_resource type="ArrayMesh" uid="uid://bytx7gjvspjfh" path="res://3dModels/models/cards/obj/card_clubs_king.obj" id="13_g6efw"]
+[ext_resource type="ArrayMesh" uid="uid://bg42in06t6yyi" path="res://3dModels/models/cards/obj/card_clubs_nine.obj" id="14_y4yos"]
+[ext_resource type="ArrayMesh" uid="uid://b750qa8qtcm4q" path="res://3dModels/models/cards/obj/card_clubs_queen.obj" id="15_pkq6a"]
+[ext_resource type="ArrayMesh" uid="uid://dj6e10xfho8hd" path="res://3dModels/models/cards/obj/card_clubs_seven.obj" id="16_d88f0"]
+[ext_resource type="ArrayMesh" uid="uid://bifoeb1rwt42k" path="res://3dModels/models/cards/obj/card_clubs_six.obj" id="17_u807e"]
+[ext_resource type="ArrayMesh" uid="uid://r2a841bsqbmv" path="res://3dModels/models/cards/obj/card_clubs_ten.obj" id="18_wiymy"]
+[ext_resource type="ArrayMesh" uid="uid://g3e74qawm2yl" path="res://3dModels/models/cards/obj/card_clubs_three.obj" id="19_cjwnp"]
+[ext_resource type="ArrayMesh" uid="uid://jncdba42wbab" path="res://3dModels/models/cards/obj/card_clubs_two.obj" id="20_kdjbs"]
+[ext_resource type="ArrayMesh" uid="uid://c306jogawfrm6" path="res://3dModels/models/cards/obj/card_diamonds_ace.obj" id="21_vxqar"]
+[ext_resource type="ArrayMesh" uid="uid://m627tk1cne8" path="res://3dModels/models/cards/obj/card_diamonds_eight.obj" id="22_pt1oo"]
+[ext_resource type="ArrayMesh" uid="uid://cgqse0fv33two" path="res://3dModels/models/cards/obj/card_diamonds_five.obj" id="23_xoqpg"]
+[ext_resource type="ArrayMesh" uid="uid://dqvll3pp3nved" path="res://3dModels/models/cards/obj/card_diamonds_four.obj" id="24_v60gl"]
+[ext_resource type="ArrayMesh" uid="uid://cmntf81bl21tt" path="res://3dModels/models/cards/obj/card_diamonds_jack.obj" id="25_w41xa"]
+[ext_resource type="ArrayMesh" uid="uid://tlg1uiqtg3gg" path="res://3dModels/models/cards/obj/card_diamonds_king.obj" id="26_syhvi"]
+[ext_resource type="ArrayMesh" uid="uid://wgn2w6mk7u76" path="res://3dModels/models/cards/obj/card_diamonds_nine.obj" id="27_lgvv2"]
+[ext_resource type="ArrayMesh" uid="uid://b1y5tlqpxu3gy" path="res://3dModels/models/cards/obj/card_diamonds_queen.obj" id="28_ixo6i"]
+[ext_resource type="ArrayMesh" uid="uid://mqfa8difs8rk" path="res://3dModels/models/cards/obj/card_diamonds_seven.obj" id="29_t3o6u"]
+[ext_resource type="ArrayMesh" uid="uid://ciabgqu55a5aq" path="res://3dModels/models/cards/obj/card_diamonds_six.obj" id="30_j5pc0"]
+[ext_resource type="ArrayMesh" uid="uid://cafyuixfcp5k2" path="res://3dModels/models/cards/obj/card_diamonds_ten.obj" id="31_ao1d5"]
+[ext_resource type="ArrayMesh" uid="uid://bo23aj3yws85d" path="res://3dModels/models/cards/obj/card_diamonds_three.obj" id="32_esxqc"]
+[ext_resource type="ArrayMesh" uid="uid://dno322buwu17m" path="res://3dModels/models/cards/obj/card_diamonds_two.obj" id="33_igy7l"]
+[ext_resource type="ArrayMesh" uid="uid://b5gvg4t1ta8it" path="res://3dModels/models/cards/obj/card_hearts_ace.obj" id="34_cbn1g"]
+[ext_resource type="ArrayMesh" uid="uid://0gbfuy0jgkcd" path="res://3dModels/models/cards/obj/card_hearts_eight.obj" id="35_exn4g"]
+[ext_resource type="ArrayMesh" uid="uid://dutnst52dihrq" path="res://3dModels/models/cards/obj/card_hearts_five.obj" id="36_yanjf"]
+[ext_resource type="ArrayMesh" uid="uid://cnsciqq7lddyl" path="res://3dModels/models/cards/obj/card_hearts_four.obj" id="37_cyai6"]
+[ext_resource type="ArrayMesh" uid="uid://d772y0yyq5wr" path="res://3dModels/models/cards/obj/card_hearts_jack.obj" id="38_7ufp2"]
+[ext_resource type="ArrayMesh" uid="uid://b2s2fv88bv3a7" path="res://3dModels/models/cards/obj/card_hearts_king.obj" id="39_asn4u"]
+[ext_resource type="ArrayMesh" uid="uid://wuwqcspesbbf" path="res://3dModels/models/cards/obj/card_hearts_nine.obj" id="40_5mu0s"]
+[ext_resource type="ArrayMesh" uid="uid://djvihumxs2sqk" path="res://3dModels/models/cards/obj/card_hearts_queen.obj" id="41_pfmn0"]
+[ext_resource type="ArrayMesh" uid="uid://da37krxb53pmm" path="res://3dModels/models/cards/obj/card_hearts_seven.obj" id="42_xn3ba"]
+[ext_resource type="ArrayMesh" uid="uid://b1ui6f84nrfip" path="res://3dModels/models/cards/obj/card_hearts_six.obj" id="43_fc5ei"]
+[ext_resource type="ArrayMesh" uid="uid://doqcfq8c2w1ir" path="res://3dModels/models/cards/obj/card_hearts_ten.obj" id="44_6h08i"]
+[ext_resource type="ArrayMesh" uid="uid://8sva0dn520s2" path="res://3dModels/models/cards/obj/card_hearts_three.obj" id="45_n41na"]
+[ext_resource type="ArrayMesh" uid="uid://cxylajwit43xe" path="res://3dModels/models/cards/obj/card_hearts_two.obj" id="46_r51wo"]
+[ext_resource type="ArrayMesh" uid="uid://bq2se5jdv8k8y" path="res://3dModels/models/cards/obj/card_spades_ace.obj" id="47_078a7"]
+[ext_resource type="ArrayMesh" uid="uid://dmv0pmdd1uven" path="res://3dModels/models/cards/obj/card_spades_eight.obj" id="48_rj1s2"]
+[ext_resource type="ArrayMesh" uid="uid://b56fah5j3sg54" path="res://3dModels/models/cards/obj/card_spades_five.obj" id="49_3pmdw"]
+[ext_resource type="ArrayMesh" uid="uid://et13ecunak0q" path="res://3dModels/models/cards/obj/card_spades_four.obj" id="50_moe5l"]
+[ext_resource type="ArrayMesh" uid="uid://fjhjakxm0kc7" path="res://3dModels/models/cards/obj/card_spades_jack.obj" id="51_sjvre"]
+[ext_resource type="ArrayMesh" uid="uid://dvousc1fo44gm" path="res://3dModels/models/cards/obj/card_spades_king.obj" id="52_ci1en"]
+[ext_resource type="ArrayMesh" uid="uid://b4vuq2rtsjoeh" path="res://3dModels/models/cards/obj/card_spades_nine.obj" id="53_p7vn1"]
+[ext_resource type="ArrayMesh" uid="uid://rmisws4imsbu" path="res://3dModels/models/cards/obj/card_spades_queen.obj" id="54_5c0ru"]
+[ext_resource type="ArrayMesh" uid="uid://dhe2njq2udqim" path="res://3dModels/models/cards/obj/card_spades_seven.obj" id="55_pytvv"]
+[ext_resource type="ArrayMesh" uid="uid://do84267nkqj4w" path="res://3dModels/models/cards/obj/card_spades_six.obj" id="56_0txue"]
+[ext_resource type="ArrayMesh" uid="uid://d2ghkoxcirt3l" path="res://3dModels/models/cards/obj/card_spades_ten.obj" id="57_jhlnx"]
+[ext_resource type="ArrayMesh" uid="uid://cp0olkc42g3er" path="res://3dModels/models/cards/obj/card_spades_three.obj" id="58_wsdew"]
+[ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://3dModels/models/cards/obj/card_spades_two.obj" id="59_5v7ja"]
 [ext_resource type="PackedScene" uid="uid://dqks8kr6mfpuk" path="res://gameplay/components/deck.tscn" id="60_ku3ik"]
 [ext_resource type="PackedScene" uid="uid://deaywkbxsb0g3" path="res://gameplay/components/sitting_bob.tscn" id="61_adjfg"]
-[ext_resource type="PackedScene" uid="uid://c1tdnkaa0g74i" path="res://Scenes/MainGameplayFile/ChildScenes/speedParticles.tscn" id="63_t7f4c"]
-[ext_resource type="PackedScene" uid="uid://xtd3v83if61p" path="res://Scenes/MainGameplayFile/ChildScenes/flying_card_particle.tscn" id="65_1b40a"]
-[ext_resource type="PackedScene" uid="uid://cnxpdm08hdra5" path="res://Scenes/MainGameplayFile/ChildScenes/indicator_arrow.tscn" id="66_ithos"]
-[ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="67_3mdvu"]
-[ext_resource type="AudioStream" uid="uid://37wpwvejipng" path="res://sounds/card.mp3" id="68_mi2v0"]
-[ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="69_ydk83"]
+[ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="63_8wj4m"]
+[ext_resource type="PackedScene" uid="uid://c1tdnkaa0g74i" path="res://gameplay/components/speedParticles.tscn" id="63_t7f4c"]
+[ext_resource type="AudioStream" uid="uid://37wpwvejipng" path="res://sfx/card.mp3" id="68_mi2v0"]
+[ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sfx/coin.mp3" id="69_ydk83"]
 [ext_resource type="PackedScene" uid="uid://e4563tduxog" path="res://gameplay/components/road.tscn" id="70_6xr2a"]
-[ext_resource type="AudioStream" uid="uid://c6hqn3ngi870q" path="res://sounds/poof.mp3" id="70_fkc0p"]
+[ext_resource type="AudioStream" uid="uid://c6hqn3ngi870q" path="res://sfx/poof.mp3" id="70_fkc0p"]
 [ext_resource type="Script" uid="uid://bcty46jt3oonc" path="res://gameplay/components/background_controller.gd" id="70_yklrg"]
-[ext_resource type="AudioStream" uid="uid://euwfag0qlak2" path="res://sounds/button.mp3" id="71_sduiq"]
+[ext_resource type="AudioStream" uid="uid://euwfag0qlak2" path="res://sfx/button.mp3" id="71_sduiq"]
 [ext_resource type="PackedScene" uid="uid://dsc3d3ql0cbps" path="res://storyAndMenu/submit_leaderboard.tscn" id="72_aok6h"]
-[ext_resource type="AudioStream" uid="uid://go0blr6b5had" path="res://sounds/buttonBeep.mp3" id="72_riqq2"]
-[ext_resource type="AudioStream" uid="uid://54pfj0e0ac85" path="res://sounds/alien.mp3" id="73_ji152"]
+[ext_resource type="AudioStream" uid="uid://go0blr6b5had" path="res://sfx/buttonBeep.mp3" id="72_riqq2"]
+[ext_resource type="AudioStream" uid="uid://54pfj0e0ac85" path="res://sfx/alien.mp3" id="73_ji152"]
 [ext_resource type="PackedScene" uid="uid://bk2rdkr2s27ui" path="res://3dModels/boats/structure.fbx" id="73_ota8k"]
 [ext_resource type="PackedScene" uid="uid://ckptgo0n1bo78" path="res://gameplay/components/gameplay_ui.tscn" id="74_8wj4m"]
-[ext_resource type="AudioStream" uid="uid://cvh8bmbgqjci4" path="res://sounds/getmney.mp3" id="74_765n4"]
+[ext_resource type="AudioStream" uid="uid://cvh8bmbgqjci4" path="res://sfx/getmney.mp3" id="74_765n4"]
 
-[node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("Bob", "cardContainer", "deckNode", "gainedCash", "SurroundingController")]
+[sub_resource type="GDScript" id="GDScript_yklrg"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for s: AudioStreamPlayer in get_children():
+		s.volume_db = (-4 + (8 * (Global.volume / 100))) * 3
+"
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ota8k"]
+panorama = ExtResource("63_8wj4m")
+
+[sub_resource type="Sky" id="Sky_ota8k"]
+sky_material = SubResource("PanoramaSkyMaterial_ota8k")
+
+[sub_resource type="Environment" id="Environment_8wj4m"]
+background_mode = 2
+background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
+sky = SubResource("Sky_ota8k")
+ambient_light_color = Color(1, 1, 1, 1)
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.1
+fog_sky_affect = 0.6
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0.11119685, 0.11119684, 0.11119684, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_87678"]
+
+[node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("Bob", "cardContainer", "deckNode", "gainedCash", "screenShake", "SurroundingController")]
 script = ExtResource("1_8wj4m")
 Bob = NodePath("sittingBob")
 cardContainer = NodePath("cards")
 deckNode = NodePath("deck")
 gainedCash = NodePath("cards/gainedCash")
+screenShake = NodePath("screenShake")
 SurroundingController = NodePath("backgroundController")
 
-[node name="gamblingCam" type="Camera3D" parent="." unique_id=106288471]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1, 0.7)
+[node name="screenShake" type="Node3D" parent="." unique_id=994445988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.7)
+script = ExtResource("2_ota8k")
+
+[node name="gamblingCam" type="Camera3D" parent="screenShake" unique_id=106288471]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0, 0)
 script = ExtResource("2_87678")
 
 [node name="cards" type="Node3D" parent="." unique_id=1233592042]
@@ -317,18 +353,10 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0.008, 0.05091071, -0.8874945
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0299916, 0.42468894, -1.3393459)
 visible = false
 
-[node name="flyingCardParticle" parent="." unique_id=1183306964 instance=ExtResource("65_1b40a")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.0598421, 0, -0.48116493)
-visible = false
-
-[node name="indicatorArrow" parent="." unique_id=27110688 instance=ExtResource("66_ithos")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.65006, 1.9789423, -1.9827777)
-visible = false
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=435326984]
 
 [node name="sounds" type="Node3D" parent="." unique_id=1806701215]
-script = ExtResource("67_3mdvu")
+script = SubResource("GDScript_yklrg")
 
 [node name="card" type="AudioStreamPlayer" parent="sounds" unique_id=1666857776]
 stream = ExtResource("68_mi2v0")
@@ -364,4 +392,14 @@ script = ExtResource("70_yklrg")
 [node name="submitLeaderboard" parent="." unique_id=1231365096 instance=ExtResource("72_aok6h")]
 visible = false
 
+[node name="BobTalking" type="Timer" parent="." unique_id=1220429234]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2145794483]
+environment = SubResource("Environment_8wj4m")
+camera_attributes = SubResource("CameraAttributesPractical_87678")
+
 [connection signal="playHand" from="." to="." method="_on_play_hand"]
+[connection signal="timeout" from="BobTalking" to="." method="_on_bob_talking_timeout"]

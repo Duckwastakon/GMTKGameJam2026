@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://ctptxqsodx2qy"]
 
 [ext_resource type="Script" uid="uid://cmuxxwdw3g7iq" path="res://storyAndMenu/finnish.gd" id="1_3rh1e"]
-[ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="1_6uj6w"]
-[ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="2_x86ya"]
-[ext_resource type="ArrayMesh" uid="uid://wilvvu1kv02t" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_x86ya"]
-[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="6_ccc36"]
-[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="7_wnk55"]
-[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="8_81sk0"]
-[ext_resource type="AudioStream" uid="uid://dtjdbkni6bmmg" path="res://sounds/finish.mp3" id="9_0qba1"]
+[ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://gameplay/components/bob.tscn" id="2_x86ya"]
+[ext_resource type="ArrayMesh" uid="uid://wilvvu1kv02t" path="res://3dModels/Models_cars/OBJ format/sedan-sports.obj" id="3_x86ya"]
+[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://3dModels/models/buttonDefault.png" id="6_ccc36"]
+[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://3dModels/models/buttonClick.png" id="7_wnk55"]
+[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://3dModels/models/buttonHover.png" id="8_81sk0"]
+[ext_resource type="AudioStream" uid="uid://dtjdbkni6bmmg" path="res://sfx/finish.mp3" id="9_0qba1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5o151"]
 font_size = 48
@@ -20,7 +19,7 @@ script = ExtResource("1_3rh1e")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=137331777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1800753, 0.48934972)
 
-[node name="movingBackground" parent="." unique_id=1140760169 instance=ExtResource("1_6uj6w")]
+[node name="movingBackground" parent="." unique_id=1140760169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24, -128)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1314306463]

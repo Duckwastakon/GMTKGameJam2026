@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cv0irwmld7qfw" path="res://gameplay/components/gameplay_ui.gd" id="1_yk2df"]
 [ext_resource type="Texture2D" uid="uid://b43lmihgbamnq" path="res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_02.png" id="2_7c31x"]
-[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="2_bw62j"]
-[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="3_qj2lx"]
+[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://3dModels/models/buttonDefault.png" id="2_bw62j"]
+[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://3dModels/models/buttonClick.png" id="3_qj2lx"]
 [ext_resource type="Script" uid="uid://b70b7imya24gj" path="res://gameplay/components/upgradeDisplay.gd" id="3_rqjvg"]
-[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="4_sr2xc"]
+[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://3dModels/models/buttonHover.png" id="4_sr2xc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqjvg"]
 bg_color = Color(0.05490196, 0.07450981, 0.12156863, 0.78431374)

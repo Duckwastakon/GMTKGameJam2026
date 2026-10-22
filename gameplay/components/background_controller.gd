@@ -24,3 +24,9 @@ func newBackground(val = true):
 		var newChild = load(randBackground).instantiate()
 		add_child(newChild)
 		newChild.position = Vector3.ZERO
+		
+		await get_tree().create_timer(1)
+		if(curretBackground == 1):
+			get_parent().Bob.talk("How far is your house?")
+		else:
+			get_parent().Bob.talk("We are close to home")

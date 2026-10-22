@@ -39,6 +39,7 @@ func _on_mouse_exited() -> void:
 	$infoText.visible = false
 
 func cardUsed(txt, col):
+	get_parent().get_parent().get_parent().get_parent().screenShake.shake()
 	bopCard(self, 2)
 
 func bopCard(editedLabel, intensity = 1):

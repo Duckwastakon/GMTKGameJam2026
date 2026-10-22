@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqks8kr6mfpuk"]
 
-[ext_resource type="ArrayMesh" uid="uid://qjrx7mxhy5uf" path="res://Models_Art/models/cards/obj/card_base.obj" id="1_6rtgs"]
+[ext_resource type="ArrayMesh" uid="uid://qjrx7mxhy5uf" path="res://3dModels/models/cards/obj/card_base.obj" id="1_6rtgs"]
 
 [node name="deck" type="Node3D" unique_id=1157055849]
 

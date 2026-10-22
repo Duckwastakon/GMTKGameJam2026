@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://da37krxb53pmm"
+path="res://.godot/imported/card_hearts_seven.obj-301a5b8c6fd96ea31643e4f284a58acd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/card_hearts_seven.obj-301a5b8c6fd96ea31643e4f284a58acd.mesh"]
+
+source_file="res://3dModels/models/cards/obj/card_hearts_seven.obj"
+dest_files=["res://.godot/imported/card_hearts_seven.obj-301a5b8c6fd96ea31643e4f284a58acd.mesh", "res://.godot/imported/card_hearts_seven.obj-301a5b8c6fd96ea31643e4f284a58acd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

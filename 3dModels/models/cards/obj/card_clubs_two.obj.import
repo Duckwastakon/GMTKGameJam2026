@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://jncdba42wbab"
+path="res://.godot/imported/card_clubs_two.obj-f058e30f799a7a79232abdf433b2357f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/card_clubs_two.obj-f058e30f799a7a79232abdf433b2357f.mesh"]
+
+source_file="res://3dModels/models/cards/obj/card_clubs_two.obj"
+dest_files=["res://.godot/imported/card_clubs_two.obj-f058e30f799a7a79232abdf433b2357f.mesh", "res://.godot/imported/card_clubs_two.obj-f058e30f799a7a79232abdf433b2357f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

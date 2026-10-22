@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://jt5ud82tfyk" path="res://gameplay/components/upgrade_card.gd" id="1_lx2d0"]
 [ext_resource type="Script" uid="uid://bj8wa01sx3j50" path="res://gameplay/components/activated_particles.gd" id="2_phgma"]
-[ext_resource type="Texture2D" uid="uid://cpmfuhc42qm8e" path="res://Models_Art/models/cards/obj/clubs_ace.png" id="3_fvghq"]
-[ext_resource type="Texture2D" uid="uid://sjf7oxa5g0fo" path="res://Models_Art/models/cards/obj/cardback_A.png" id="4_4lrov"]
+[ext_resource type="Texture2D" uid="uid://cpmfuhc42qm8e" path="res://3dModels/models/cards/obj/clubs_ace.png" id="3_fvghq"]
+[ext_resource type="Texture2D" uid="uid://sjf7oxa5g0fo" path="res://3dModels/models/cards/obj/cardback_A.png" id="4_4lrov"]
 [ext_resource type="Texture2D" uid="uid://b1tymwah7cgau" path="res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_03.png" id="5_cftvx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8gks"]

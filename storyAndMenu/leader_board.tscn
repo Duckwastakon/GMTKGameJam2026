@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b5tey4630ns32"]
 
-[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="1_87pir"]
+[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://3dModels/models/guiBgr.png" id="1_87pir"]
 [ext_resource type="Script" uid="uid://ddr53c10gjhij" path="res://storyAndMenu/leader_board.gd" id="1_chfxp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_weyrg"]

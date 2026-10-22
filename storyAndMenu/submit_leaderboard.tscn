@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dsc3d3ql0cbps"]
 
 [ext_resource type="Script" uid="uid://csfw6l3w7hog6" path="res://storyAndMenu/submit_leaderboard.gd" id="1_3d8ww"]
-[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="1_hi4h7"]
-[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="2_7n1h0"]
-[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="3_3d8ww"]
-[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="4_4e7b7"]
+[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://3dModels/models/guiBgr.png" id="1_hi4h7"]
+[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://3dModels/models/buttonDefault.png" id="2_7n1h0"]
+[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://3dModels/models/buttonClick.png" id="3_3d8ww"]
+[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://3dModels/models/buttonHover.png" id="4_4e7b7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qrxhh"]
 outline_size = 12

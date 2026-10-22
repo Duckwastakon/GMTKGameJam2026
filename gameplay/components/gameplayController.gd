@@ -6,6 +6,8 @@ extends Node3D
 @export var deckNode: Node3D
 @export var gainedCash: Label3D
 
+@export var screenShake: Node3D
+
 var cardsOnField = []
 var selectedCards = []
 var deck = []
@@ -140,6 +142,7 @@ func startLevel():
 		Bob.talk("We are about to arrive")
 		await get_tree().create_timer(2).timeout
 		TransitionController.ChangeScene("res://storyAndMenu/storyFinish.tscn")
+		return
 	
 	if ((round-1)%3==0 and round > 1):
 		await TransitionController.animationIn()
@@ -158,8 +161,7 @@ func startLevel():
 	neededAmount = roundi(50*round*sqrt(round))
 	CardCalculator.setNeededScore.emit(neededAmount)
 	
-	Bob.talk("This round get " + str(neededAmount) + " score", true)
-	
+	Bob.talk("Get " + str(neededAmount) + " score", true)
 	levelStarted.emit()
 
 func endLevel():
@@ -173,6 +175,7 @@ func endLevel():
 			i+=1
 			shopTokens+=1
 			CardCalculator.updateTokens.emit(shopTokens)
+			Bob.talk("Here are some shop tokens")
 		
 		levelEnded.emit()
 		openShop()
@@ -184,10 +187,11 @@ func looseGame():
 	if(Global.storyMode):
 		finishedSaving()
 	else:
-		$submitLeaderboard.visible = true
+		$submitLeaderboard.activ(round)
 
 func finishedSaving():
 	await Bob.shootPlayer()
+	screenShake.shake()
 	TransitionController.ChangeScene("res://gameplay/gameplay.tscn")
 
 func _on_play_hand() -> void:
@@ -207,6 +211,7 @@ func _on_play_hand() -> void:
 	CardCalculator.updateCash.emit(cash)
 	
 	GottenAmountText(gottenAmount)
+	screenShake.shake()
 	
 	await get_tree().create_timer(1.5).timeout
 	
@@ -314,7 +319,7 @@ func openShop():
 		await get_tree().create_timer(introWaitTime).timeout
 		Bob.talk("buy some upgrades, you will need them", true)
 	else:
-		Bob.talk("Good job")
+		Bob.talk("Buy some upgrades")
 
 func sortUpgradeCards(newCard):
 	upgradeCards.append(newCard)
@@ -332,6 +337,14 @@ func buyCard(amount, card, id):
 		CardCalculator.updateTokens.emit(shopTokens)
 		upgradeCards.remove_at(upgradeCards.find(card))
 		CardCalculator.buyCard.emit(id)
+		screenShake.shake()
+		var rand = randi_range(0, 2)
+		if rand == 0:
+			Bob.talk("Good choice")
+		elif rand == 1:
+			Bob.talk("I wouldn't buy that")
+		else:
+			Bob.talk("That is not gonna save you")
 		return true
 	else:
 		return false
@@ -340,6 +353,8 @@ var rerollPrice = 3
 
 func rerollShop():
 	if shopTokens < rerollPrice: return false
+	screenShake.shake()
+	Bob.talk("You don't like the upgrades?")
 	
 	shopTokens-=rerollPrice
 	rerollPrice = roundi(rerollPrice * sqrt(rerollPrice))
@@ -368,3 +383,9 @@ func gameStart():
 	await get_tree().create_timer(introWaitTime).timeout
 	
 	startLevel()
+
+const bobQuotes = ["How far are we?", "I am getting hungry", 
+"The higest cards are not always the best", "I like 3 cards", "Stardance is cool"]
+func _on_bob_talking_timeout() -> void:
+	Bob.talk("How far is your house?")
+	$BobTalking.start(randi_range(20, 50))

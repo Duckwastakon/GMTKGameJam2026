@@ -1,17 +1,18 @@
 [gd_scene format=4 uid="uid://c7ahvp8b5xqdd"]
 
-[ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="2_ca4pa"]
+[ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://gameplay/components/bob.tscn" id="2_ca4pa"]
 [ext_resource type="Script" uid="uid://bfov6ti3ogjji" path="res://storyAndMenu/mainMenueController.gd" id="3_2w4oa"]
-[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="4_ty0lc"]
-[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="5_iqcnt"]
-[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="6_4jwo1"]
+[ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://3dModels/models/buttonDefault.png" id="4_ty0lc"]
+[ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://3dModels/models/buttonHover.png" id="5_iqcnt"]
+[ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://3dModels/models/buttonClick.png" id="6_4jwo1"]
 [ext_resource type="PackedScene" uid="uid://b5tey4630ns32" path="res://storyAndMenu/leader_board.tscn" id="7_e17ta"]
-[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://Models_Art/models/guiBgr.png" id="7_iqcnt"]
-[ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://Scenes/MainGameplayFile/Scripts/sliders.gd" id="8_4jwo1"]
-[ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://Models_Art/models/icon_cross.png" id="9_a25g6"]
-[ext_resource type="AudioStream" uid="uid://b3wxlvpa2vvcu" path="res://sounds/menu.mp3" id="11_oxuiv"]
-[ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="11_wukyj"]
+[ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://3dModels/models/guiBgr.png" id="7_iqcnt"]
+[ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://storyAndMenu/sliders.gd" id="8_4jwo1"]
+[ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://3dModels/models/icon_cross.png" id="9_a25g6"]
+[ext_resource type="AudioStream" uid="uid://b3wxlvpa2vvcu" path="res://sfx/menu.mp3" id="11_oxuiv"]
 [ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="13_kujs3"]
+[ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="13_twe2c"]
+[ext_resource type="PackedScene" uid="uid://bavkoj6ih0ejn" path="res://3dModels/houses/tree-small.fbx" id="14_en2cd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
 font_size = 48
@@ -196,23 +197,42 @@ font_size = 18
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_twe2c"]
+[sub_resource type="GDScript" id="GDScript_yklrg"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for s: AudioStreamPlayer in get_children():
+		s.volume_db = (-4 + (8 * (Global.volume / 100))) * 3
+"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e17ta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kujs3"]
+albedo_color = Color(5.1499906e-06, 0.74889576, 0.29629102, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_e17ta"]
 panorama = ExtResource("13_kujs3")
 
-[sub_resource type="Sky" id="Sky_fglxu"]
-sky_material = SubResource("PanoramaSkyMaterial_twe2c")
+[sub_resource type="Sky" id="Sky_8wj4m"]
+sky_material = SubResource("PanoramaSkyMaterial_e17ta")
 
-[sub_resource type="Environment" id="Environment_en2cd"]
+[sub_resource type="Environment" id="Environment_kujs3"]
 background_mode = 2
 background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
-sky = SubResource("Sky_fglxu")
+sky = SubResource("Sky_8wj4m")
 ambient_light_color = Color(1, 1, 1, 1)
 fog_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
-fog_sky_affect = 0.2
-volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.1
+fog_sky_affect = 0.6
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.9
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0.11119685, 0.11119684, 0.11119684, 1)
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_m6p6x"]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_twe2c"]
 
 [node name="mainMenue" type="Node3D" unique_id=41581377]
 
@@ -506,15 +526,125 @@ offset_bottom = 176.0
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
 
 [node name="sound" type="Node3D" parent="." unique_id=87030743]
-script = ExtResource("11_wukyj")
+script = SubResource("GDScript_yklrg")
 
 [node name="Menu" type="AudioStreamPlayer" parent="sound" unique_id=714102865]
 stream = ExtResource("11_oxuiv")
 parameters/looping = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1807616710]
-environment = SubResource("Environment_en2cd")
-camera_attributes = SubResource("CameraAttributesPractical_m6p6x")
+[node name="floor" type="MeshInstance3D" parent="." unique_id=589868836]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.33379686, 0)
+mesh = SubResource("PlaneMesh_e17ta")
+surface_material_override/0 = SubResource("StandardMaterial3D_kujs3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=62687889]
+environment = SubResource("Environment_kujs3")
+camera_attributes = SubResource("CameraAttributesPractical_twe2c")
+
+[node name="tree-large" parent="." unique_id=1683705362 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48532575, -0.35438615, 0.035628855)
+
+[node name="tree-large2" parent="." unique_id=2056240573 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5708862, -0.35438615, 0.097602725)
+
+[node name="tree-large3" parent="." unique_id=1669368309 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.66002494, -0.35438615, -0.6026048)
+
+[node name="tree-large4" parent="." unique_id=1412603440 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42931432, -0.35438615, -0.5682339)
+
+[node name="tree-small" parent="." unique_id=1828065148 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.077980876, -0.3603784, 0.33127597)
+
+[node name="tree-small2" parent="." unique_id=2047944529 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090860724, -0.35438603, -0.18011233)
+
+[node name="tree-large14" parent="." unique_id=255011352 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3863156, -0.35438615, 0.035628855)
+
+[node name="tree-large15" parent="." unique_id=1263993758 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3301036, -0.35438615, 0.097602725)
+
+[node name="tree-large16" parent="." unique_id=1548186518 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5610147, -0.35438615, -0.6026048)
+
+[node name="tree-large17" parent="." unique_id=1471760694 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4716754, -0.35438615, -0.5682339)
+
+[node name="tree-small17" parent="." unique_id=1996781214 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8230089, -0.3603784, 0.33127597)
+
+[node name="tree-small18" parent="." unique_id=216204024 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.810129, -0.35438603, -0.18011233)
+
+[node name="tree-small3" parent="." unique_id=1206108682 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4414966, -0.35438615, -0.31074873)
+
+[node name="tree-small4" parent="." unique_id=796983294 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1646119, -0.35438603, 0.47791186)
+
+[node name="tree-large5" parent="." unique_id=1511367627 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5708862, -0.35438615, -1.1065005)
+
+[node name="tree-large6" parent="." unique_id=389879040 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.66002494, -0.35438615, -1.8067081)
+
+[node name="tree-large7" parent="." unique_id=310269910 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42931432, -0.35438615, -1.7723372)
+
+[node name="tree-small5" parent="." unique_id=551519043 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.077980876, -0.3603784, -0.8728273)
+
+[node name="tree-small6" parent="." unique_id=1984070218 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090860724, -0.35438603, -1.3842156)
+
+[node name="tree-small7" parent="." unique_id=453095792 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4414966, -0.35438615, -1.5148519)
+
+[node name="tree-small8" parent="." unique_id=1019204255 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1646119, -0.35438603, -0.7261914)
+
+[node name="tree-large8" parent="." unique_id=495983900 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.745573, -0.35438615, -0.076108575)
+
+[node name="tree-large9" parent="." unique_id=2035048896 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.514662, -0.35438615, -0.77631617)
+
+[node name="tree-large10" parent="." unique_id=977261590 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6040013, -0.35438615, -0.74194527)
+
+[node name="tree-small9" parent="." unique_id=215003896 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.252668, -0.3603784, 0.15756464)
+
+[node name="tree-small10" parent="." unique_id=1898988243 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2655478, -0.35438603, -0.35382366)
+
+[node name="tree-small11" parent="." unique_id=30322015 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7331903, -0.35438615, -0.48446)
+
+[node name="tree-small12" parent="." unique_id=675677581 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.010075, -0.35438603, 0.30420053)
+
+[node name="tree-large11" parent="." unique_id=231292630 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.745573, -0.35438615, -1.4594625)
+
+[node name="tree-large12" parent="." unique_id=1539374715 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.514662, -0.35438615, -2.15967)
+
+[node name="tree-large13" parent="." unique_id=1067030570 instance=ExtResource("13_twe2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6040013, -0.35438615, -2.1252992)
+
+[node name="tree-small13" parent="." unique_id=871723784 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.252668, -0.3603784, -1.2257893)
+
+[node name="tree-small14" parent="." unique_id=1978513922 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2655478, -0.35438603, -1.7371776)
+
+[node name="tree-small15" parent="." unique_id=2135466448 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7331903, -0.35438615, -1.867814)
+
+[node name="tree-small16" parent="." unique_id=1270001418 instance=ExtResource("14_en2cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.010075, -0.35438603, -1.0791534)
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/storyMode" to="CanvasLayer" method="_on_story_mode_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/infiniteMode" to="CanvasLayer" method="_on_infinite_mode_button_up"]

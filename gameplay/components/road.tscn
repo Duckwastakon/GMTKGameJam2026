@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://e4563tduxog"]
 
 [ext_resource type="Script" uid="uid://dmecnhgd1628f" path="res://gameplay/components/road.gd" id="1_cdg12"]
-[ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="1_vwf7d"]
 [ext_resource type="PackedScene" uid="uid://4nlr35me3dl5" path="res://3dModels/cars/truck.fbx" id="2_3kt2g"]
 [ext_resource type="PackedScene" uid="uid://cl0u4218cbtiu" path="res://3dModels/houses/driveway-long.fbx" id="3_jb015"]
 [ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="4_a3enm"]
@@ -11,28 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cvrsj5508n2hn" path="res://3dModels/cars/firetruck.fbx" id="9_3d4kj"]
 [ext_resource type="PackedScene" uid="uid://b73udv1r04kab" path="res://3dModels/cars/sedan.fbx" id="10_fq433"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w8tx5"]
-panorama = ExtResource("1_vwf7d")
-
-[sub_resource type="Sky" id="Sky_8wj4m"]
-sky_material = SubResource("PanoramaSkyMaterial_w8tx5")
-
-[sub_resource type="Environment" id="Environment_4s6n4"]
-background_mode = 2
-background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
-sky = SubResource("Sky_8wj4m")
-ambient_light_color = Color(1, 1, 1, 1)
-fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.1
-fog_sky_affect = 0.6
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.1
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_emission = Color(0.11119685, 0.11119684, 0.11119684, 1)
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_2xv8x"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_fq433"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo42g"]
@@ -40,10 +17,6 @@ albedo_color = Color(5.1499906e-06, 0.74889576, 0.29629102, 1)
 
 [node name="road" type="Node3D" unique_id=1188387914]
 script = ExtResource("1_cdg12")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=24433532]
-environment = SubResource("Environment_4s6n4")
-camera_attributes = SubResource("CameraAttributesPractical_2xv8x")
 
 [node name="truck" parent="." unique_id=945972173 instance=ExtResource("2_3kt2g")]
 transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, -1.0169076, -1.9693117)
