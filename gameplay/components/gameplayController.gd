@@ -259,6 +259,7 @@ func discardCard(discardedCard):
 	discardedCard.queue_free()
 
 func _ready() -> void:
+	await get_tree().create_timer(1).timeout
 	gameStart()
 
 var offeredCards = 3

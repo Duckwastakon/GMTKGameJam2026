@@ -8,7 +8,7 @@ signal countdownFinished
 signal countdownStarted
 
 func _ready():
-	time_remaining = 60
+	time_remaining = 44
 	ending.stopTimer.connect(_on_stopTimer)
 	countdown_label.visible = false
 	await get_tree().create_timer(13.0).timeout

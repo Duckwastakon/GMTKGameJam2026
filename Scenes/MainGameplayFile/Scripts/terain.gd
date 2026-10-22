@@ -69,5 +69,5 @@ func _ready() -> void:
 	#newRayCast3D.target_position = Vector3(0, -2, 0)
 	while true:
 		updateMesh()
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.1).timeout
 		offset -= 1.0 * speed

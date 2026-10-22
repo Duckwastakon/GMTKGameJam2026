@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://d1rli0ws2nukl"]
+
+[ext_resource type="Script" uid="uid://dk7t3m2wolf0u" path="res://gameplay/components/train.gd" id="1_q3mp2"]
+[ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="1_ue6dr"]
+[ext_resource type="PackedScene" uid="uid://120m3db55a1a" path="res://3dModels/trains/train-carriage-flatbed.fbx" id="2_a0ego"]
+[ext_resource type="PackedScene" uid="uid://di6fsi2wsenqu" path="res://3dModels/trains/train-diesel-box-c.fbx" id="3_tm5eq"]
+[ext_resource type="PackedScene" uid="uid://bseoj72tcim3a" path="res://3dModels/trains/train-carriage-lumber.fbx" id="4_q3mp2"]
+[ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="6_wd6ts"]
+[ext_resource type="PackedScene" uid="uid://dtpduyl5xg3dm" path="res://3dModels/boats/rocks-c.fbx" id="7_mswxt"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_87678"]
+panorama = ExtResource("1_ue6dr")
+
+[sub_resource type="Sky" id="Sky_8wj4m"]
+sky_material = SubResource("PanoramaSkyMaterial_87678")
+
+[sub_resource type="Environment" id="Environment_fglxu"]
+background_mode = 2
+background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
+sky = SubResource("Sky_8wj4m")
+ambient_light_color = Color(1, 1, 1, 1)
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.1
+fog_sky_affect = 0.6
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0.11119685, 0.11119684, 0.11119684, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_w8tx5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8wj4m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wj4m"]
+albedo_color = Color(5.1499906e-06, 0.74889576, 0.29629102, 1)
+
+[node name="train" type="Node3D" unique_id=766127183]
+script = ExtResource("1_q3mp2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1740686892]
+environment = SubResource("Environment_fglxu")
+camera_attributes = SubResource("CameraAttributesPractical_w8tx5")
+
+[node name="train-carriage-flatbed" parent="." unique_id=504396619 instance=ExtResource("2_a0ego")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -1, 0.023229659)
+
+[node name="train-diesel-box-c" parent="." unique_id=1473677321 instance=ExtResource("3_tm5eq")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -1, -13.674375)
+
+[node name="train-carriage-lumber" parent="." unique_id=1691087581 instance=ExtResource("4_q3mp2")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -1, -6.687779)
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=1826445999]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 30, 0, -1, -25)
+mesh = SubResource("PlaneMesh_8wj4m")
+surface_material_override/0 = SubResource("StandardMaterial3D_8wj4m")
+
+[node name="tree-large2" parent="." unique_id=1683705362 instance=ExtResource("6_wd6ts")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.979442, -1.6114664, 7.88168)
+
+[node name="rocks-c" parent="." unique_id=1305157666 instance=ExtResource("7_mswxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.029509, 0, 8.021924)
+
+[node name="obstacle" type="Timer" parent="." unique_id=549146386]
+wait_time = 0.05
+autostart = true
+
+[node name="rock" type="Timer" parent="." unique_id=1621662836]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="obstacle" to="." method="_on_obstacle_timeout"]
+[connection signal="timeout" from="rock" to="." method="_on_rock_timeout"]

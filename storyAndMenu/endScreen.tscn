@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://ctptxqsodx2qy"]
 
-[ext_resource type="Script" uid="uid://cmuxxwdw3g7iq" path="res://finnish.gd" id="1_3rh1e"]
+[ext_resource type="Script" uid="uid://cmuxxwdw3g7iq" path="res://storyAndMenu/finnish.gd" id="1_3rh1e"]
 [ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="1_6uj6w"]
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="2_x86ya"]
-[ext_resource type="ArrayMesh" uid="uid://dub3n2gf8xxv0" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_x86ya"]
-[ext_resource type="PackedScene" uid="uid://scfywkn17jx" path="res://Scenes/MainGameplayFile/ChildScenes/idleDobbo.tscn" id="4_f7l6h"]
+[ext_resource type="ArrayMesh" uid="uid://wilvvu1kv02t" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="3_x86ya"]
 [ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="6_ccc36"]
 [ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://Models_Art/models/buttonClick.png" id="7_wnk55"]
 [ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://Models_Art/models/buttonHover.png" id="8_81sk0"]
@@ -34,9 +33,6 @@ transform = Transform3D(4.4874854, 0, -2.2051017, 0, 4.9999995, 0, 2.2051017, 0,
 transform = Transform3D(-0.11417356, 0, 0.22240593, 0, 0.25, 0, -0.22240593, 0, -0.11417356, 0.005320832, 0, -0.17320645)
 mesh = ExtResource("3_x86ya")
 
-[node name="Idle" parent="." unique_id=92532687 instance=ExtResource("4_f7l6h")]
-transform = Transform3D(0.14976875, 0, -0.008326175, 0, 0.15000002, 0, 0.008326175, 0, 0.14976875, -0.25132596, 0, 0.0783366)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1263251491]
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=1088155294]
@@ -64,7 +60,7 @@ texture_hover = ExtResource("8_81sk0")
 layout_mode = 0
 offset_right = 384.0
 offset_bottom = 128.0
-text = "Leave Game"
+text = "main menu"
 label_settings = SubResource("LabelSettings_5o151")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -98,18 +94,6 @@ offset_bottom = 586.0
 theme_override_colors/default_color = Color(0.28694728, 0.59859526, 0.37931705, 1)
 bbcode_enabled = true
 text = "[font_size={64}][outline_size={24}][b][wave]Cashless drive[/wave][/b]"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="gameName2" type="RichTextLabel" parent="CanvasLayer/Control/gameName" unique_id=132744174]
-layout_mode = 0
-offset_left = 97.0
-offset_top = 60.0
-offset_right = 1249.0
-offset_bottom = 252.0
-bbcode_enabled = true
-text = "[font_size={30
-}][outline_size={24}][b][wave]Cash out or check out[/wave][/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
 

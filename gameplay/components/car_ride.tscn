@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bcyw7pu81eqxh"]
+
+[ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="1_t5ht5"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_uf21f"]
+panorama = ExtResource("1_t5ht5")
+
+[sub_resource type="Sky" id="Sky_8wj4m"]
+sky_material = SubResource("PanoramaSkyMaterial_uf21f")
+
+[sub_resource type="Environment" id="Environment_dmgfj"]
+background_mode = 2
+background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
+sky = SubResource("Sky_8wj4m")
+ambient_light_color = Color(1, 1, 1, 1)
+fog_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_sky_affect = 0.2
+volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_va7ld"]
+
+[node name="carRide" type="Node3D" unique_id=891058825]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2123087942]
+environment = SubResource("Environment_dmgfj")
+camera_attributes = SubResource("CameraAttributesPractical_va7ld")

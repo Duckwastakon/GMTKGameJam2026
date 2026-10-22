@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cy35agtwsoljq" path="res://gameplay/components/gameplayController.gd" id="1_8wj4m"]
 [ext_resource type="Script" uid="uid://k4ag0761ryry" path="res://Scenes/MainGameplayFile/Scripts/gambling_cam.gd" id="2_87678"]
-[ext_resource type="PackedScene" uid="uid://b1vnmsbbh5h26" path="res://Scenes/MainGameplayFile/ChildScenes/used_pile.tscn" id="4_w8tx5"]
-[ext_resource type="Shader" uid="uid://dr1inrh66cgjd" path="res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader" id="6_2xv8x"]
-[ext_resource type="ArrayMesh" uid="uid://d2qqydjacb0m" path="res://Models_Art/models/table.obj" id="7_7qppb"]
 [ext_resource type="ArrayMesh" uid="uid://dgx7rufmqry17" path="res://Models_Art/models/cards/obj/card_clubs_ace.obj" id="8_r2vmg"]
 [ext_resource type="ArrayMesh" uid="uid://nqmre7h7j0dp" path="res://Models_Art/models/cards/obj/card_clubs_eight.obj" id="9_runsr"]
 [ext_resource type="ArrayMesh" uid="uid://b6ns6taqlk17v" path="res://Models_Art/models/cards/obj/card_clubs_five.obj" id="10_awlh0"]
@@ -59,45 +56,21 @@
 [ext_resource type="ArrayMesh" uid="uid://br1fck2665go7" path="res://Models_Art/models/cards/obj/card_spades_two.obj" id="59_5v7ja"]
 [ext_resource type="PackedScene" uid="uid://dqks8kr6mfpuk" path="res://gameplay/components/deck.tscn" id="60_ku3ik"]
 [ext_resource type="PackedScene" uid="uid://deaywkbxsb0g3" path="res://gameplay/components/sitting_bob.tscn" id="61_adjfg"]
-[ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="62_vf0yn"]
-[ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="63_8wj4m"]
 [ext_resource type="PackedScene" uid="uid://c1tdnkaa0g74i" path="res://Scenes/MainGameplayFile/ChildScenes/speedParticles.tscn" id="63_t7f4c"]
-[ext_resource type="ArrayMesh" uid="uid://wilvvu1kv02t" path="res://Models_Art/Models_cars/OBJ format/sedan-sports.obj" id="64_l2vpq"]
 [ext_resource type="PackedScene" uid="uid://xtd3v83if61p" path="res://Scenes/MainGameplayFile/ChildScenes/flying_card_particle.tscn" id="65_1b40a"]
 [ext_resource type="PackedScene" uid="uid://cnxpdm08hdra5" path="res://Scenes/MainGameplayFile/ChildScenes/indicator_arrow.tscn" id="66_ithos"]
 [ext_resource type="Script" uid="uid://n0is42v4sg2l" path="res://Scenes/MainGameplayFile/sounds.gd" id="67_3mdvu"]
 [ext_resource type="AudioStream" uid="uid://37wpwvejipng" path="res://sounds/card.mp3" id="68_mi2v0"]
 [ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="69_ydk83"]
+[ext_resource type="PackedScene" uid="uid://e4563tduxog" path="res://gameplay/components/road.tscn" id="70_6xr2a"]
 [ext_resource type="AudioStream" uid="uid://c6hqn3ngi870q" path="res://sounds/poof.mp3" id="70_fkc0p"]
+[ext_resource type="Script" uid="uid://bcty46jt3oonc" path="res://gameplay/background_controller.gd" id="70_yklrg"]
 [ext_resource type="AudioStream" uid="uid://euwfag0qlak2" path="res://sounds/button.mp3" id="71_sduiq"]
 [ext_resource type="AudioStream" uid="uid://go0blr6b5had" path="res://sounds/buttonBeep.mp3" id="72_riqq2"]
 [ext_resource type="AudioStream" uid="uid://54pfj0e0ac85" path="res://sounds/alien.mp3" id="73_ji152"]
+[ext_resource type="PackedScene" uid="uid://bk2rdkr2s27ui" path="res://3dModels/boats/structure.fbx" id="73_ota8k"]
 [ext_resource type="PackedScene" uid="uid://ckptgo0n1bo78" path="res://gameplay/components/gameplay_ui.tscn" id="74_8wj4m"]
 [ext_resource type="AudioStream" uid="uid://cvh8bmbgqjci4" path="res://sounds/getmney.mp3" id="74_765n4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7al5g"]
-render_priority = 0
-shader = ExtResource("6_2xv8x")
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/outline_width = 1.0
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_87678"]
-panorama = ExtResource("63_8wj4m")
-
-[sub_resource type="Sky" id="Sky_8wj4m"]
-sky_material = SubResource("PanoramaSkyMaterial_87678")
-
-[sub_resource type="Environment" id="Environment_wbj74"]
-background_mode = 2
-background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
-sky = SubResource("Sky_8wj4m")
-ambient_light_color = Color(1, 1, 1, 1)
-fog_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
-fog_sky_affect = 0.2
-volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_wbj74"]
 
 [node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("Bob", "cardContainer", "deckNode", "gainedCash")]
 script = ExtResource("1_8wj4m")
@@ -119,14 +92,6 @@ pixel_size = 0.0005
 billboard = 1
 text = "100$"
 font_size = 64
-
-[node name="usedPile" parent="." unique_id=1032281384 instance=ExtResource("4_w8tx5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.55, 0)
-
-[node name="Table" type="MeshInstance3D" parent="." unique_id=105328506]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.8, 0, -0.4)
-material_overlay = SubResource("ShaderMaterial_7al5g")
-mesh = ExtResource("7_7qppb")
 
 [node name="allPossibleCards" type="Node3D" parent="." unique_id=609216465]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0022731, 0)
@@ -346,22 +311,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.671, 0.1)
 [node name="sittingBob" parent="." unique_id=2132038647 instance=ExtResource("61_adjfg")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0.008, 0.05091071, -0.88749456)
 
-[node name="movingBackground" parent="." unique_id=1140760169 instance=ExtResource("62_vf0yn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, -134)
-speed = 1
-resolution = 8
-
 [node name="GPUParticles3D" parent="." unique_id=1085363938 instance=ExtResource("63_t7f4c")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0299916, 0.42468894, -1.3393459)
 visible = false
-
-[node name="SedanSports" type="MeshInstance3D" parent="." unique_id=575463983]
-transform = Transform3D(-1.09278474e-07, 0, -2.5, 0, 2.5, 0, 2.5, 0, -1.09278474e-07, -0.52762985, -2.6392424, 0)
-mesh = ExtResource("64_l2vpq")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=877686541]
-environment = SubResource("Environment_wbj74")
-camera_attributes = SubResource("CameraAttributesPractical_wbj74")
 
 [node name="flyingCardParticle" parent="." unique_id=1183306964 instance=ExtResource("65_1b40a")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.0598421, 0, -0.48116493)
@@ -398,5 +350,13 @@ stream = ExtResource("73_ji152")
 stream = ExtResource("74_765n4")
 
 [node name="gameplayUI" parent="." unique_id=1104659080 instance=ExtResource("74_8wj4m")]
+
+[node name="structure" parent="." unique_id=1861073765 instance=ExtResource("73_ota8k")]
+transform = Transform3D(0.7, 0, 0, 0, 0.3, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="backgroundController" type="Node3D" parent="." unique_id=1154756340]
+script = ExtResource("70_yklrg")
+
+[node name="road" parent="backgroundController" unique_id=1188387914 instance=ExtResource("70_6xr2a")]
 
 [connection signal="playHand" from="." to="." method="_on_play_hand"]
