@@ -41,7 +41,7 @@ func _on_countdown_finished():
 	$UI/DigitalBox/DialogText.text = "If you dont want to go home, lets play"
 	$UI.visible = true
 	await get_tree().create_timer(2).timeout
-	TransitionController.ChangeScene("res://finnish.tscn")
+	TransitionController.ChangeScene("res://storyAndMenu/endScreen.tscn")
 	
 func _on_countdown_started():
 	$Node3D/heart.play()
@@ -96,10 +96,9 @@ func launch_to_target(start_pos: Vector3, target_pos: Vector3, arc_height: float
 
 func finnish():
 	$enterHouse/CollisionShape3D.disabled = true
-	stopTimer.emit()
 	$Node3D/Coin.play()
-	await get_tree().create_timer(0.89).timeout
-	TransitionController.ChangeScene("res://finnish.tscn")
+	await get_tree().create_timer(0.8).timeout
+	TransitionController.ChangeScene("res://storyAndMenu/endScreen.tscn")
 
 
 func _on_enter_house_area_entered(area: Area3D) -> void:

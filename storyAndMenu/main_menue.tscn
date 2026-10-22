@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://c7ahvp8b5xqdd"]
 
-[ext_resource type="PackedScene" uid="uid://bg1c4gpeobe0m" path="res://Scenes/MainGameplayFile/ChildScenes/moving_background.tscn" id="1_61d6s"]
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://Scenes/MainGameplayFile/ChildScenes/bob.tscn" id="2_ca4pa"]
 [ext_resource type="Script" uid="uid://bfov6ti3ogjji" path="res://storyAndMenu/mainMenueController.gd" id="3_2w4oa"]
 [ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://Models_Art/models/buttonDefault.png" id="4_ty0lc"]
@@ -219,9 +218,6 @@ volumetric_fog_albedo = Color(0.9259287, 0.743048, 0.62114936, 1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=929129102]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-
-[node name="movingBackground" parent="." unique_id=1140760169 instance=ExtResource("1_61d6s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24, -128)
 
 [node name="Bob" parent="." unique_id=1942641608 instance=ExtResource("2_ca4pa")]
 transform = Transform3D(0.7095584, 0, -0.7046466, 0, 1, 0, 0.7046466, 0, 0.7095584, 0.25673938, -0.22773153, 0.7314727)
@@ -520,6 +516,8 @@ parameters/looping = true
 environment = SubResource("Environment_en2cd")
 camera_attributes = SubResource("CameraAttributesPractical_m6p6x")
 
+[connection signal="button_up" from="CanvasLayer/Control/Node/storyMode" to="CanvasLayer" method="_on_story_mode_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Node/infiniteMode" to="CanvasLayer" method="_on_infinite_mode_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/settings" to="CanvasLayer" method="_on_settings_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/credits" to="CanvasLayer" method="_on_credits_button_up"]
 [connection signal="value_changed" from="CanvasLayer/Control/settings/background/screenShake/SS" to="CanvasLayer/Control/settings/background" method="_on_ss_value_changed"]

@@ -21,9 +21,6 @@ func swing(btn: TextureButton):
 	await newTween.finished
 	btn.disabled = false
 
-func _on_play_button_up() -> void:
-	TransitionController.ChangeScene("res://Scenes/MainGameplayFile/desert.tscn")
-
 func _on_close_button_up() -> void:
 	var newTween = create_tween()
 	newTween.tween_property($Control/settings/background, "position", Vector2(344, 700), 0.2)
@@ -60,3 +57,11 @@ func _on_credits_button_up() -> void:
 	var newTween = create_tween()
 	newTween.tween_property($Control/Credits, "position", Vector2(344, 140), 0.2)
 	newTween.play()
+
+func _on_story_mode_button_up() -> void:
+	Global.storyMode = true
+	TransitionController.ChangeScene("res://storyAndMenu/storyStart.tscn")
+
+func _on_infinite_mode_button_up() -> void:
+	Global.storyMode = false
+	TransitionController.ChangeScene("res://gameplay/gameplay.tscn")

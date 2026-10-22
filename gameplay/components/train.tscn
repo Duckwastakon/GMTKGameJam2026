@@ -11,13 +11,13 @@
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_87678"]
 panorama = ExtResource("1_ue6dr")
 
-[sub_resource type="Sky" id="Sky_8wj4m"]
+[sub_resource type="Sky" id="Sky_q3mp2"]
 sky_material = SubResource("PanoramaSkyMaterial_87678")
 
 [sub_resource type="Environment" id="Environment_fglxu"]
 background_mode = 2
 background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
-sky = SubResource("Sky_8wj4m")
+sky = SubResource("Sky_q3mp2")
 ambient_light_color = Color(1, 1, 1, 1)
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
@@ -63,11 +63,11 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.979442, -1.6114664, 7.88168
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.029509, 0, 8.021924)
 
 [node name="obstacle" type="Timer" parent="." unique_id=549146386]
-wait_time = 0.05
+wait_time = 0.030000000000000002
 autostart = true
 
 [node name="rock" type="Timer" parent="." unique_id=1621662836]
-wait_time = 0.5
+wait_time = 0.3
 autostart = true
 
 [connection signal="timeout" from="obstacle" to="." method="_on_obstacle_timeout"]

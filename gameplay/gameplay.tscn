@@ -64,20 +64,22 @@
 [ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sounds/coin.mp3" id="69_ydk83"]
 [ext_resource type="PackedScene" uid="uid://e4563tduxog" path="res://gameplay/components/road.tscn" id="70_6xr2a"]
 [ext_resource type="AudioStream" uid="uid://c6hqn3ngi870q" path="res://sounds/poof.mp3" id="70_fkc0p"]
-[ext_resource type="Script" uid="uid://bcty46jt3oonc" path="res://gameplay/background_controller.gd" id="70_yklrg"]
+[ext_resource type="Script" uid="uid://bcty46jt3oonc" path="res://gameplay/components/background_controller.gd" id="70_yklrg"]
 [ext_resource type="AudioStream" uid="uid://euwfag0qlak2" path="res://sounds/button.mp3" id="71_sduiq"]
+[ext_resource type="PackedScene" uid="uid://dsc3d3ql0cbps" path="res://storyAndMenu/submit_leaderboard.tscn" id="72_aok6h"]
 [ext_resource type="AudioStream" uid="uid://go0blr6b5had" path="res://sounds/buttonBeep.mp3" id="72_riqq2"]
 [ext_resource type="AudioStream" uid="uid://54pfj0e0ac85" path="res://sounds/alien.mp3" id="73_ji152"]
 [ext_resource type="PackedScene" uid="uid://bk2rdkr2s27ui" path="res://3dModels/boats/structure.fbx" id="73_ota8k"]
 [ext_resource type="PackedScene" uid="uid://ckptgo0n1bo78" path="res://gameplay/components/gameplay_ui.tscn" id="74_8wj4m"]
 [ext_resource type="AudioStream" uid="uid://cvh8bmbgqjci4" path="res://sounds/getmney.mp3" id="74_765n4"]
 
-[node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("Bob", "cardContainer", "deckNode", "gainedCash")]
+[node name="gamblingScene" type="Node3D" unique_id=70054297 node_paths=PackedStringArray("Bob", "cardContainer", "deckNode", "gainedCash", "SurroundingController")]
 script = ExtResource("1_8wj4m")
 Bob = NodePath("sittingBob")
 cardContainer = NodePath("cards")
 deckNode = NodePath("deck")
 gainedCash = NodePath("cards/gainedCash")
+SurroundingController = NodePath("backgroundController")
 
 [node name="gamblingCam" type="Camera3D" parent="." unique_id=106288471]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1, 0.7)
@@ -358,5 +360,8 @@ transform = Transform3D(0.7, 0, 0, 0, 0.3, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("70_yklrg")
 
 [node name="road" parent="backgroundController" unique_id=1188387914 instance=ExtResource("70_6xr2a")]
+
+[node name="submitLeaderboard" parent="." unique_id=1231365096 instance=ExtResource("72_aok6h")]
+visible = false
 
 [connection signal="playHand" from="." to="." method="_on_play_hand"]

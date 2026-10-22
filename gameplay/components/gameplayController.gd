@@ -122,6 +122,8 @@ func fillDeck():
 		deck[rand1] = deck[rand2]
 		deck[rand2] = temp
 
+@export var SurroundingController: Node3D
+
 func startLevel():
 	round += 1
 	CardCalculator.setLevel.emit(round)
@@ -133,6 +135,20 @@ func startLevel():
 			var card = upgradeCards.pop_front()
 			discardCard(card)
 			await get_tree().create_timer(0.1).timeout
+	
+	if(round==11 and Global.storyMode):
+		Bob.talk("We are about to arrive")
+		await get_tree().create_timer(2).timeout
+		TransitionController.ChangeScene("res://storyAndMenu/storyFinish.tscn")
+	
+	if ((round-1)%3==0 and round > 1):
+		await TransitionController.animationIn()
+		if(Global.storyMode):
+			await SurroundingController.newBackground(false)
+		else:
+			await SurroundingController.newBackground()
+		
+		TransitionController.animationOut()
 	
 	generateFullField()
 	handsLeft = 3
@@ -164,6 +180,14 @@ func endLevel():
 		looseGame()
 
 func looseGame():
+	Bob.talk("You had one job")
+	if(Global.storyMode):
+		finishedSaving()
+	else:
+		$submitLeaderboard.visible = true
+
+func finishedSaving():
+	await Bob.shootPlayer()
 	TransitionController.ChangeScene("res://gameplay/gameplay.tscn")
 
 func _on_play_hand() -> void:
@@ -259,6 +283,7 @@ func discardCard(discardedCard):
 	discardedCard.queue_free()
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	await get_tree().create_timer(1).timeout
 	gameStart()
 
@@ -268,16 +293,6 @@ var upgradeCards = []
 
 var shopOpened = false
 func openShop():
-	if(!shopOpened):
-		shopOpened = true
-		Bob.talk("Congrats on beating a round", true)
-		await get_tree().create_timer(introWaitTime).timeout
-		Bob.talk("Now I have given you some shop credits", true)
-		await get_tree().create_timer(introWaitTime).timeout
-		Bob.talk("buy some upgrades, you will need them", true)
-	else:
-		Bob.talk("Good job")
-	
 	for i in offeredCards:
 		AudioSystem.playSFX("cardSwoosh")
 		
@@ -290,6 +305,16 @@ func openShop():
 		newUpgradeCard.setCard(nextCardId)
 		sortUpgradeCards(newUpgradeCard)
 		await get_tree().create_timer(0.1).timeout
+	
+	if(!shopOpened):
+		shopOpened = true
+		Bob.talk("Congrats on beating a round", true)
+		await get_tree().create_timer(introWaitTime).timeout
+		Bob.talk("Now I have given you some shop credits", true)
+		await get_tree().create_timer(introWaitTime).timeout
+		Bob.talk("buy some upgrades, you will need them", true)
+	else:
+		Bob.talk("Good job")
 
 func sortUpgradeCards(newCard):
 	upgradeCards.append(newCard)

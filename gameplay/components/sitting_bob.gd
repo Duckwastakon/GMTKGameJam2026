@@ -107,7 +107,9 @@ func oldTextSet(str: String):
 	else:
 		textQueue.append(str)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("E") and clickToTalk:
-		clickNextString.emit()
-		speed = regSpeed / 3
+func shootPlayer():
+	$changeIdle.stop()
+	
+	Anims.play("win")
+	await get_tree().create_timer(2.25).timeout
+	$"blaster-b/OmniLight3D".visible = true
