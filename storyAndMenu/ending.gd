@@ -37,7 +37,7 @@ func _on_countdown_finished():
 	bob.visible = true
 	$Node3D/Dramatic.stop()
 	$Node3D/Dramaticbob.play()
-	$UI/DigitalBox/ColorRect/Who.text = "Bob"
+	$UI/DigitalBox/DigitalBox2/Who.text = "Bob"
 	$UI/DigitalBox/DialogText.text = "If you dont want to go home, lets play"
 	$UI.visible = true
 	await get_tree().create_timer(2).timeout

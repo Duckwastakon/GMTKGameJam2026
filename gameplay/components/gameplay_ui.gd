@@ -18,6 +18,7 @@ func _ready() -> void:
 
 func _on_play_hand_button_up() -> void:
 	get_parent().playHand.emit()
+	AudioSystem.playSFX("res://sfx/click.ogg")
 	
 	$handControlls.visible = false
 	$earningDisplay/amountText.text = "0"
@@ -163,6 +164,7 @@ func sortBoughtUpgrades():
 
 func _on_start_round_button_up() -> void:
 	get_parent().startLevel()
+	AudioSystem.playSFX("res://sfx/click.ogg")
 	
 	$handControlls.visible = true
 	$earningDisplay.visible = false
@@ -175,6 +177,8 @@ func _on_start_round_button_up() -> void:
 
 func _on_reroll_hand_button_up() -> void:
 	get_parent().rerollShop()
+	AudioSystem.playSFX("res://sfx/click.ogg")
+	
 	$ShopControlls/rerollHand.disabled = true
 	await get_tree().create_timer(1).timeout
 	$ShopControlls/rerollHand.disabled = false

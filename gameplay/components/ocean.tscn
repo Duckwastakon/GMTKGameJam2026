@@ -4,7 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://c20spcggmvwcf" path="res://3dModels/boats/boat-row-small.fbx" id="2_ei0i0"]
 [ext_resource type="PackedScene" uid="uid://cq3136h22365j" path="res://3dModels/boats/ship-wreck.fbx" id="3_5bdwa"]
 [ext_resource type="PackedScene" uid="uid://b8knsyxjkmxxg" path="res://gameplay/components/water.tscn" id="5_jy81u"]
+[ext_resource type="AudioStream" uid="uid://25knsc34i6t" path="res://sfx/waterSfx.mp3" id="6_5bdwa"]
 [ext_resource type="PackedScene" uid="uid://dtpduyl5xg3dm" path="res://3dModels/boats/rocks-c.fbx" id="6_ei0i0"]
+[ext_resource type="Script" uid="uid://bjptb077htgvm" path="res://gameplay/components/setAudioOnStart.gd" id="7_yu0s7"]
 
 [node name="ocean" type="Node3D" unique_id=1995857875]
 script = ExtResource("1_6dhut")
@@ -28,6 +30,12 @@ autostart = true
 
 [node name="rocks-c" parent="." unique_id=1305157666 instance=ExtResource("6_ei0i0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.024741173, 15.943872)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1163732042]
+stream = ExtResource("6_5bdwa")
+autoplay = true
+script = ExtResource("7_yu0s7")
+base = -8
 
 [connection signal="timeout" from="boatTimer" to="." method="_on_boat_timer_timeout"]
 [connection signal="timeout" from="rockTimer" to="." method="_on_rock_timer_timeout"]

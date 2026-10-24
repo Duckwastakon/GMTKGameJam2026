@@ -52,6 +52,8 @@ func _on_car_timer_timeout() -> void:
 	var newMoveTween = create_tween()
 	newMoveTween.tween_property(newObj, "position", pos * Vector3(1, 1, -0.2), tweenTime)
 	newMoveTween.play()
+	await get_tree().create_timer(0.5).timeout
+	AudioSystem.playSFX("res://sfx/carDriveBy.mp3")
 	await newMoveTween.finished
 	newObj.queue_free()
 	$carTimer.start(randf_range(3, 5))

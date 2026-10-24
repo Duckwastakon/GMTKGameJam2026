@@ -9,10 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://dtdsi5p5545ro" path="res://3dModels/models/guiBgr.png" id="7_iqcnt"]
 [ext_resource type="Script" uid="uid://dfnk2k7xpbmrg" path="res://storyAndMenu/sliders.gd" id="8_4jwo1"]
 [ext_resource type="Texture2D" uid="uid://0lo750yhedrd" path="res://3dModels/models/icon_cross.png" id="9_a25g6"]
-[ext_resource type="AudioStream" uid="uid://b3wxlvpa2vvcu" path="res://sfx/menu.mp3" id="11_oxuiv"]
+[ext_resource type="AudioStream" uid="uid://dfcecne80sxcx" path="res://Music/mainMenu.ogg" id="13_en2cd"]
 [ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="13_kujs3"]
 [ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="13_twe2c"]
 [ext_resource type="PackedScene" uid="uid://bavkoj6ih0ejn" path="res://3dModels/houses/tree-small.fbx" id="14_en2cd"]
+[ext_resource type="Script" uid="uid://bjptb077htgvm" path="res://gameplay/components/setAudioOnStart.gd" id="14_m6p6x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ty0lc"]
 font_size = 48
@@ -197,16 +198,6 @@ font_size = 18
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="GDScript" id="GDScript_yklrg"]
-script/source = "extends Node3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	for s: AudioStreamPlayer in get_children():
-		s.volume_db = (-4 + (8 * (Global.volume / 100))) * 3
-"
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_e17ta"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kujs3"]
@@ -344,14 +335,13 @@ vertical_alignment = 1
 
 [node name="settings" type="Node" parent="CanvasLayer/Control" unique_id=148601573]
 
-[node name="background" type="TextureRect" parent="CanvasLayer/Control/settings" unique_id=1436459331 node_paths=PackedStringArray("music")]
+[node name="background" type="TextureRect" parent="CanvasLayer/Control/settings" unique_id=1436459331]
 offset_left = 344.0
 offset_top = 688.0
 offset_right = 808.0
 offset_bottom = 1152.0
 texture = ExtResource("7_iqcnt")
 script = ExtResource("8_4jwo1")
-music = NodePath("../../../../sound/Menu")
 
 [node name="title" type="Label" parent="CanvasLayer/Control/settings/background" unique_id=138647872]
 layout_mode = 0
@@ -477,11 +467,12 @@ vertical_alignment = 1
 [node name="title2" type="Label" parent="CanvasLayer/Control/Credits" unique_id=472365732]
 layout_mode = 0
 offset_left = 3.0
-offset_top = -60.0
+offset_top = -40.0
 offset_right = 467.0
-offset_bottom = 308.0
-text = "Made by a two people team
-for the gmtk 2026 game jam!"
+offset_bottom = 328.0
+text = "Originaly made for the GMTK game
+jam by a team of 2, then polished
+after the game jam."
 label_settings = SubResource("LabelSettings_wukyj")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -489,21 +480,15 @@ vertical_alignment = 1
 [node name="credits" type="Label" parent="CanvasLayer/Control/Credits" unique_id=467424814]
 layout_mode = 0
 offset_left = 19.0
-offset_top = 159.0
+offset_top = 192.0
 offset_right = 446.0
-offset_bottom = 409.0
-text = "---------------------------------------------------------------------
-\"Modular Wood Structures\" by loafbrr
-\"WoodStuff\" by loafbrr
-\"Coin-tiles\" by Mroker
-\"Stylized Nature\" by quaternious
-\"Car kit\" by Kenney (Assets)
-\"City Kit (commercial) \"by Kenney (Assets)
-
-Dobbo npc animation & character from Mixamo
-Music and sfx from pixabayyyyy"
+offset_bottom = 479.0
+text = "
+Thanks to \"Kenney\" for game assets
+Thanks to EvanKing"
 label_settings = SubResource("LabelSettings_oxuiv")
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="closeCredits" type="TextureButton" parent="CanvasLayer/Control/Credits" unique_id=39031017]
@@ -524,13 +509,6 @@ offset_bottom = 176.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=749743516]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
-
-[node name="sound" type="Node3D" parent="." unique_id=87030743]
-script = SubResource("GDScript_yklrg")
-
-[node name="Menu" type="AudioStreamPlayer" parent="sound" unique_id=714102865]
-stream = ExtResource("11_oxuiv")
-parameters/looping = true
 
 [node name="floor" type="MeshInstance3D" parent="." unique_id=589868836]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.33379686, 0)
@@ -645,6 +623,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7331903, -0.35438615, -1.86
 
 [node name="tree-small16" parent="." unique_id=1270001418 instance=ExtResource("14_en2cd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.010075, -0.35438603, -1.0791534)
+
+[node name="backgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=1822725173]
+stream = ExtResource("13_en2cd")
+autoplay = true
+script = ExtResource("14_m6p6x")
+base = -12
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/storyMode" to="CanvasLayer" method="_on_story_mode_button_up"]
 [connection signal="button_up" from="CanvasLayer/Control/Node/infiniteMode" to="CanvasLayer" method="_on_infinite_mode_button_up"]

@@ -57,6 +57,8 @@ var symbolTypes = {
 	"Spades": 3
 }
 
+var cardSwoosh = "res://Music/card-place-1.ogg"
+
 func sortCards(newCard, val):
 	var cardAdded = false
 	var newList = []
@@ -90,7 +92,7 @@ func generateFullField():
 		await get_tree().create_timer(drawDelay).timeout
 
 func spawnCard():
-	AudioSystem.playSFX("cardSwoosh")
+	AudioSystem.playSFX(cardSwoosh)
 	if(deck.size()<1):
 		fillDeck()
 	
@@ -158,7 +160,7 @@ func startLevel():
 	cash = 0
 	CardCalculator.updateCash.emit(cash)
 	
-	neededAmount = roundi(50*round*sqrt(round))
+	neededAmount = await calculateRoundAmount()
 	CardCalculator.setNeededScore.emit(neededAmount)
 	
 	Bob.talk("Get " + str(neededAmount) + " score", true)
@@ -174,8 +176,9 @@ func endLevel():
 		while(difference >= pow(10, i)):
 			i+=1
 			shopTokens+=1
-			CardCalculator.updateTokens.emit(shopTokens)
-			Bob.talk("Here are some shop tokens")
+		CardCalculator.updateTokens.emit(shopTokens)
+		Bob.talk("Here are some shop tokens")
+		AudioSystem.playSFX("res://sfx/coin.mp3")
 		
 		levelEnded.emit()
 		openShop()
@@ -183,6 +186,7 @@ func endLevel():
 		looseGame()
 
 func looseGame():
+	AudioSystem.playSFX("res://sfx/fail.ogg")
 	Bob.talk("You had one job")
 	if(Global.storyMode):
 		finishedSaving()
@@ -191,14 +195,16 @@ func looseGame():
 
 func finishedSaving():
 	await Bob.shootPlayer()
+	AudioSystem.playSFX("res://sfx/gunShoot.mp3")
 	screenShake.shake()
-	TransitionController.ChangeScene("res://gameplay/gameplay.tscn")
+	TransitionController.ChangeScene("res://storyAndMenu/main_menue.tscn")
 
 func _on_play_hand() -> void:
 	var sizePerCard = 0.15
 	var cardAmount = selectedCards.size()
 	
 	for i in selectedCards.size():
+		AudioSystem.playSFX(cardSwoosh)
 		var card = selectedCards[i]
 		card.setPos(Vector3(-(sizePerCard/2)*(cardAmount-1) + (sizePerCard) * i, 0.1, 0.001 * i))
 		await get_tree().create_timer(0.2).timeout
@@ -211,6 +217,7 @@ func _on_play_hand() -> void:
 	CardCalculator.updateCash.emit(cash)
 	
 	GottenAmountText(gottenAmount)
+	AudioSystem.playSFX("res://sfx/getScore.wav")
 	screenShake.shake()
 	
 	await get_tree().create_timer(1.5).timeout
@@ -269,10 +276,12 @@ func selectCardFunc(selectedCard, cardModel):
 	if selectedCards.size() >= maxEquipCards: return false
 	selectedCards.append(cardModel)
 	CardCalculator.selectCard.emit(selectedCards.size())
+	AudioSystem.playSFX(cardSwoosh)
 	return true
 
 func unselectCardFunc(unselectedCard, cardModel):
 	selectedCards.remove_at(selectedCards.find(cardModel))
+	AudioSystem.playSFX(cardSwoosh)
 	CardCalculator.selectCard.emit(selectedCards.size())
 
 func discardCard(discardedCard):
@@ -280,6 +289,7 @@ func discardCard(discardedCard):
 	posTween.tween_property(discardedCard, "global_position", deckNode.global_position, 0.1)
 	var rotationTween = create_tween()
 	rotationTween.tween_property(discardedCard, "rotation_degrees", Vector3(90,0,0), 0.1)
+	AudioSystem.playSFX(cardSwoosh)
 	
 	rotationTween.play()
 	posTween.play()
@@ -299,7 +309,7 @@ var upgradeCards = []
 var shopOpened = false
 func openShop():
 	for i in offeredCards:
-		AudioSystem.playSFX("cardSwoosh")
+		AudioSystem.playSFX(cardSwoosh)
 		
 		var nextCardId = randi_range(0, Global.powerId.size()-1)
 		
@@ -338,6 +348,7 @@ func buyCard(amount, card, id):
 		upgradeCards.remove_at(upgradeCards.find(card))
 		CardCalculator.buyCard.emit(id)
 		screenShake.shake()
+		AudioSystem.playSFX("res://sfx/coin.mp3")
 		var rand = randi_range(0, 2)
 		if rand == 0:
 			Bob.talk("Good choice")
@@ -347,13 +358,18 @@ func buyCard(amount, card, id):
 			Bob.talk("That is not gonna save you")
 		return true
 	else:
+		AudioSystem.playSFX("res://sfx/fail.ogg")
 		return false
 
 var rerollPrice = 3
 
 func rerollShop():
-	if shopTokens < rerollPrice: return false
+	if shopTokens < rerollPrice: 
+		AudioSystem.playSFX("res://sfx/fail.ogg")
+		return false
+	
 	screenShake.shake()
+	AudioSystem.playSFX("res://sfx/coin.mp3")
 	Bob.talk("You don't like the upgrades?")
 	
 	shopTokens-=rerollPrice
@@ -389,3 +405,19 @@ const bobQuotes = ["How far are we?", "I am getting hungry",
 func _on_bob_talking_timeout() -> void:
 	Bob.talk("How far is your house?")
 	$BobTalking.start(randi_range(20, 50))
+
+func calculateRoundAmount():
+	var newAmount = 50
+	newAmount *= pow(sqrt(round), sqrt(round))
+	
+	for i in round:
+		if i%2==0 and i>1:
+			newAmount *= 2
+		elif i>1:
+			newAmount *= 1.5
+	
+	if round>=10:
+		newAmount *= 2.5
+		newAmount *= clamp(pow(round - 10, round - 10), 2, INF)
+	
+	return roundi(newAmount)

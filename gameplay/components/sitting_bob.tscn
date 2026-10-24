@@ -11,6 +11,8 @@
 [ext_resource type="Animation" uid="uid://b32ldjapwgyqr" path="res://3dModels/models/bobAnimations/sitting1.anim" id="7_cy42x"]
 [ext_resource type="Animation" uid="uid://56qyqvtdmtij" path="res://3dModels/models/bobAnimations/win.anim" id="8_4fpdy"]
 [ext_resource type="PackedScene" uid="uid://eaahacy0eunv" path="res://3dModels/blaster/blaster-b.fbx" id="11_mdi0i"]
+[ext_resource type="AudioStream" uid="uid://2vls5ox5lp4y" path="res://sfx/talkSFX.mp3" id="12_fvayr"]
+[ext_resource type="Script" uid="uid://g2b810ijscfl" path="res://gameplay/components/audio_stream_player_2d.gd" id="13_g5bok"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1gf4d"]
 render_priority = 0
@@ -701,4 +703,10 @@ visible = false
 transform = Transform3D(9.999999, 0, -5.684342e-14, 0, 9.999997, 0, -5.684342e-14, 0, 9.999997, -2.9802322e-08, 0, -0.27820694)
 visible = false
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=151214405]
+stream = ExtResource("12_fvayr")
+pitch_scale = 0.3
+script = ExtResource("13_g5bok")
+
 [connection signal="timeout" from="changeIdle" to="." method="_on_change_idle_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

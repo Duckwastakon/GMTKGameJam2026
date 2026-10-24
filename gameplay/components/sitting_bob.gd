@@ -54,9 +54,15 @@ var regSpeed = 0.025
 var speed = 0.025
 @onready var labelPrefab = $Label3D
 
+@onready var audioPrefab = $AudioStreamPlayer2D
+
 var nextz = 0
 func talk(str: String, forcedY = false):
-	print("talked")
+	var newAudio: AudioStreamPlayer2D = audioPrefab.duplicate()
+	add_child(newAudio)
+	newAudio.volume_db = 8 + (8 * (Global.volume - 50) / 50)
+	newAudio.pitch_scale = randf_range(0.3, 0.5)
+	newAudio.play()
 	var newLabel: Label3D = labelPrefab.duplicate()
 	
 	newLabel.text = str
@@ -113,3 +119,7 @@ func shootPlayer():
 	Anims.play("win")
 	await get_tree().create_timer(2.25).timeout
 	$"blaster-b/OmniLight3D".visible = true
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	pass # Replace with function body.

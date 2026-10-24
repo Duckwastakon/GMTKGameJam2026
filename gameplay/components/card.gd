@@ -3,7 +3,7 @@ extends StaticBody3D
 var savedMaterial: StandardMaterial3D
 var savedOutline: ShaderMaterial
 
-var hoverShader = load("res://Scenes/MainGameplayFile/ChildScenes/outlineShader.gdshader")
+var hoverShader = load("res://shaders/outlineShader.gdshader")
 
 var currentCard
 

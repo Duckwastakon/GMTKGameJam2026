@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://8hc518o2323l" path="res://3dModels/cars/van.fbx" id="8_uo42g"]
 [ext_resource type="PackedScene" uid="uid://cvrsj5508n2hn" path="res://3dModels/cars/firetruck.fbx" id="9_3d4kj"]
 [ext_resource type="PackedScene" uid="uid://b73udv1r04kab" path="res://3dModels/cars/sedan.fbx" id="10_fq433"]
+[ext_resource type="AudioStream" uid="uid://dbbogk4ehuta7" path="res://sfx/carAmbience.mp3" id="10_uo42g"]
+[ext_resource type="Script" uid="uid://bjptb077htgvm" path="res://gameplay/components/setAudioOnStart.gd" id="11_3d4kj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fq433"]
 
@@ -64,6 +66,12 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.5, -1, 14.531952)
 
 [node name="sedan" parent="cars" unique_id=1609141322 instance=ExtResource("10_fq433")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=768758507]
+stream = ExtResource("10_uo42g")
+autoplay = true
+script = ExtResource("11_3d4kj")
+base = 16
 
 [connection signal="timeout" from="obstacle" to="." method="_on_obstacle_timeout"]
 [connection signal="timeout" from="rock" to="." method="_on_rock_timeout"]

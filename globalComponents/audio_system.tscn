@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://cfy3hyrjm62v4"]
 
 [ext_resource type="Script" uid="uid://0re7lkb3p2rj" path="res://globalComponents/audio_system.gd" id="1_bxqjd"]
+[ext_resource type="AudioStream" uid="uid://du1r3b20ha1p0" path="res://sfx/keyboardClick.mp3" id="2_144mx"]
 
 [node name="audioSystem" type="Node2D" unique_id=1483367886]
 script = ExtResource("1_bxqjd")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=159895663]
 current = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1364903160]
+stream = ExtResource("2_144mx")

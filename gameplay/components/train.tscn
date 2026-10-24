@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bseoj72tcim3a" path="res://3dModels/trains/train-carriage-lumber.fbx" id="4_q3mp2"]
 [ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="6_wd6ts"]
 [ext_resource type="PackedScene" uid="uid://dtpduyl5xg3dm" path="res://3dModels/boats/rocks-c.fbx" id="7_mswxt"]
+[ext_resource type="AudioStream" uid="uid://cvqyv2lg7jfkk" path="res://sfx/train.mp3" id="7_wd6ts"]
+[ext_resource type="Script" uid="uid://bjptb077htgvm" path="res://gameplay/components/setAudioOnStart.gd" id="8_mswxt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8wj4m"]
 
@@ -42,6 +44,12 @@ autostart = true
 [node name="rock" type="Timer" parent="." unique_id=1621662836]
 wait_time = 0.3
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1531166129]
+stream = ExtResource("7_wd6ts")
+autoplay = true
+script = ExtResource("8_mswxt")
+base = 12
 
 [connection signal="timeout" from="obstacle" to="." method="_on_obstacle_timeout"]
 [connection signal="timeout" from="rock" to="." method="_on_rock_timeout"]

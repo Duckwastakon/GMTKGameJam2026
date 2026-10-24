@@ -43,4 +43,4 @@ func bob():
 	who.text = "Bob"
 	dialog_text.text = "I'm Bob, by the way"
 	await get_tree().create_timer(3).timeout
-	get_tree().change_scene_to_file("res://gameplay/gameplay.tscn")
+	TransitionController.ChangeScene("res://gameplay/gameplay.tscn")

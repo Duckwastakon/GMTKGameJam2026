@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://diwlln00qr4e0" path="res://3dModels/wheel.glb" id="8_52mfs"]
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://gameplay/components/bob.tscn" id="11_78duq"]
 [ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="11_mgd25"]
+[ext_resource type="AudioStream" uid="uid://cdfrpn013alcn" path="res://Music/mainMenuBG.mp3" id="12_yw1lx"]
+[ext_resource type="Script" uid="uid://bjptb077htgvm" path="res://gameplay/components/setAudioOnStart.gd" id="13_22ww0"]
 [ext_resource type="AudioStream" uid="uid://ik363x4bfe2r" path="res://sfx/coin.mp3" id="18_q888p"]
 [ext_resource type="AudioStream" uid="uid://ux6dl48xioby" path="res://sfx/car-stop.mp3" id="19_5a3u0"]
 [ext_resource type="AudioStream" uid="uid://cvdenuuxbeg66" path="res://sfx/beep.mp3" id="20_6rcx3"]
@@ -402,3 +404,9 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -6.2600107, -0.06464481, 7
 transform = Transform3D(100, 0, 0, 0, 2.5, 0, 0, 0, 75, 0, 0.07761383, 5.444889)
 mesh = SubResource("PlaneMesh_mgd25")
 surface_material_override/0 = SubResource("StandardMaterial3D_78duq")
+
+[node name="backgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=2118510843]
+stream = ExtResource("12_yw1lx")
+autoplay = true
+playback_type = 1
+script = ExtResource("13_22ww0")
