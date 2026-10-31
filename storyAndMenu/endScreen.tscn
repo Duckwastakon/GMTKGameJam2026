@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cqpax2o5jt0wn" path="res://gameplay/components/bob.tscn" id="2_x86ya"]
 [ext_resource type="Texture2D" uid="uid://b7kt7qrthhkao" path="res://3dModels/models/buttonDefault.png" id="6_ccc36"]
 [ext_resource type="Texture2D" uid="uid://dak2qex8lpcke" path="res://gameplay/artAssestsAndModels/skybox-day.png" id="7_15pj2"]
-[ext_resource type="AudioStream" uid="uid://dfcecne80sxcx" path="res://Music/mainMenu.ogg" id="7_k4dvx"]
 [ext_resource type="Texture2D" uid="uid://cwvykjxv0achc" path="res://3dModels/models/buttonClick.png" id="7_wnk55"]
+[ext_resource type="AudioStream" uid="uid://l75te17linda" path="res://Music/menuMusic.mp3" id="8_15pj2"]
 [ext_resource type="Texture2D" uid="uid://b6l0e0v4x5qrn" path="res://3dModels/models/buttonHover.png" id="8_81sk0"]
 [ext_resource type="PackedScene" uid="uid://d3t6a2ung0l1n" path="res://3dModels/houses/tree-large.fbx" id="8_n6plh"]
 [ext_resource type="Script" uid="uid://bjptb077htgvm" path="res://gameplay/components/setAudioOnStart.gd" id="8_ny2fx"]
@@ -22,36 +22,30 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k872f"]
 albedo_color = Color(5.1499906e-06, 0.74889576, 0.29629102, 1)
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l2dm1"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_15pj2"]
 panorama = ExtResource("7_15pj2")
 
-[sub_resource type="Sky" id="Sky_8wj4m"]
-sky_material = SubResource("PanoramaSkyMaterial_l2dm1")
+[sub_resource type="Sky" id="Sky_2o5d7"]
+sky_material = SubResource("PanoramaSkyMaterial_15pj2")
 
-[sub_resource type="Environment" id="Environment_xbr00"]
+[sub_resource type="Environment" id="Environment_n6plh"]
 background_mode = 2
 background_color = Color(0.81783056, 0.9999998, 0.9994071, 1)
-sky = SubResource("Sky_8wj4m")
-ambient_light_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_2o5d7")
+glow_enabled = true
+glow_bloom = 0.5
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.1
-fog_sky_affect = 0.6
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.9
+fog_density = 1.0
+volumetric_fog_density = 0.2
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_emission = Color(0.11119685, 0.11119684, 0.11119684, 1)
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_pnknr"]
 
 [node name="finnish" type="Node3D" unique_id=303695204]
 script = ExtResource("1_3rh1e")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=137331777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1800753, 0.48934972)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1314306463]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.8422189, 0.9074379)
 
 [node name="Bob" parent="." unique_id=1942641608 instance=ExtResource("2_x86ya")]
 transform = Transform3D(4.4874854, 0, -2.2051017, 0, 4.9999995, 0, 2.2051017, 0, 4.4874854, 0.2374241, -0.94821125, 0.15837306)
@@ -124,10 +118,6 @@ vertical_alignment = 1
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.14263403, -0.33412588)
 mesh = SubResource("PlaneMesh_tuk6g")
 surface_material_override/0 = SubResource("StandardMaterial3D_k872f")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1114307321]
-environment = SubResource("Environment_xbr00")
-camera_attributes = SubResource("CameraAttributesPractical_pnknr")
 
 [node name="tree-large" parent="." unique_id=1683705362 instance=ExtResource("8_n6plh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48532575, -0.16322333, -0.29849702)
@@ -229,13 +219,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7331903, -0.16322333, -2.20
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.010075, -0.1632232, -1.4132793)
 
 [node name="backgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=935257428]
-stream = ExtResource("7_k4dvx")
+stream = ExtResource("8_15pj2")
 autoplay = true
 script = ExtResource("8_ny2fx")
 base = -12
 
 [node name="truck" parent="." unique_id=945972173 instance=ExtResource("11_15pj2")]
 transform = Transform3D(-0.10000002, 0, 0.17320508, 0, 0.2, 0, -0.17320508, 0, -0.10000002, -0.05314228, -0.1, -0.15928933)
+
+[node name="env" type="Node3D" parent="." unique_id=462848353]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=154519933]
+transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 4.295168, 6.7515783)
+light_energy = 0.2
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=2052480216]
+environment = SubResource("Environment_n6plh")
 
 [connection signal="button_up" from="CanvasLayer/Control/Node/Leave" to="CanvasLayer" method="_on_play_button_up"]
 [connection signal="pressed" from="CanvasLayer/Control/Node/Leave" to="." method="_on_leave_pressed"]

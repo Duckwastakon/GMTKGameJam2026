@@ -154,6 +154,7 @@ var multiplier = 1
 var repeatedTimes = 1
 var currentCards = []
 var delayTimes = 0
+var delayTime = 0.5
 
 func calculateAmount(selectedCards):
 	amount = 0
@@ -161,19 +162,14 @@ func calculateAmount(selectedCards):
 	repeatedTimes = 1
 	currentCards = selectedCards
 	
-	var delayTime = 0.5
+	delayTime = 0.5
 	delayTimes = 0
 	
 	var afterFunctions = {}
 	
 	for funcName in extraFunctions[0]:
 		for val in extraFunctions[0][funcName]:
-			call(funcName, val)
-			
-			await get_tree().create_timer(delayTime).timeout
-			delayTimes += 1
-			if delayTimes%10==0:
-				delayTime /= 2
+			await call(funcName, val)
 	
 	for x in repeatedTimes:
 		for card in selectedCards:
@@ -182,68 +178,63 @@ func calculateAmount(selectedCards):
 			for possibleAddition in cardPowers[cardValues[1]]:
 				var functionAmount = cardPowers[cardValues[1]][possibleAddition]
 				if functionAmount != 0:
-					call(possibleAddition, functionAmount, card)
-				
-					await get_tree().create_timer(delayTime).timeout
-				
-					delayTimes += 1
-					if delayTimes%10==0:
-						delayTime /= 2
+					await call(possibleAddition, functionAmount, card)
 			for possibleAddition in symbolPowers[cardValues[0]]:
 				var functionAmount = symbolPowers[cardValues[0]][possibleAddition]
 				if functionAmount != 0:
-					call(possibleAddition, functionAmount, card)
-				
-					await get_tree().create_timer(delayTime).timeout
-				
-					delayTimes += 1
-					if delayTimes%10==0:
-						delayTime /= 2
+					await call(possibleAddition, functionAmount, card)
 	
 	for funcName in extraFunctions[1]:
 		for val in extraFunctions[1][funcName]:
-			call(funcName, val)
-			
-			await get_tree().create_timer(delayTime).timeout
-			delayTimes += 1
-			if delayTimes%10==0:
-				delayTime /= 2
+			await call(funcName, val)
 	
 	return amount * multiplier
+
+func delay():
+	await get_tree().create_timer(delayTime).timeout
+	
+	delayTimes += 1
+	
+	delayTime = clampf(delayTime - 0.02, 0.1, 0.5)
 
 func addAmount(val, card):
 	amount += val
 	var shortened = shortenAmount(val)
-	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.0, 0.788, 0.886, 1.0)], 1)
+	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.995, 1.0, 0.693, 1.0), Color(0.993, 0.798, 0.568, 1.0)], 1)
 	AudioSystem.playSFX(chipAudio, 1 + sqrt(delayTimes)/3, 16)
 	updateAmount.emit(amount)
+	await delay()
 
 func multiplyAmount(val, card):
 	amount *= val
 	var shortened = shortenAmount(val)
-	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.0, 0.788, 0.886, 1.0)], 1)
+	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.995, 1.0, 0.693, 1.0), Color(0.993, 0.798, 0.568, 1.0)], 1)
 	AudioSystem.playSFX(chipAudio)
-	updateMultiplier.emit(multiplier)
+	updateAmount.emit(amount)
+	await delay()
 
 func addMultiplier(val, card):
 	multiplier += val
 	var shortened = shortenAmount(val)
-	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.959, 0.552, 0.547, 1.0)], 1)
+	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.849, 0.815, 1.0, 1.0), Color(0.0, 0.949, 0.99, 1.0)], 1)
 	AudioSystem.playSFX(chipAudio, 1 + sqrt(delayTimes)/3, 16)
 	updateMultiplier.emit(multiplier)
+	await delay()
 
 func multiplyMultiplier(val, card):
 	multiplier *= val
 	var shortened = shortenAmount(val)
-	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.959, 0.552, 0.547, 1.0)], 1)
+	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.849, 0.815, 1.0, 1.0), Color(0.0, 0.949, 0.99, 1.0)], 1)
 	AudioSystem.playSFX(chipAudio)
 	updateMultiplier.emit(multiplier)
+	await delay()
 
 func addRepeated(val, card):
 	repeatedTimes += val
 	var shortened = shortenAmount(val)
 	card.cardUsed([str(shortened[0]) + shortened[1], Color(0.959, 0.552, 0.547, 1.0)], 1)
 	AudioSystem.playSFX(chipAudio)
+	await delay()
 
 func switchValues(val, card):
 	var savedVal = amount
@@ -261,7 +252,7 @@ func countSum(val):
 		sum += stringToInt[card.values[1]]
 	
 	if sum == val[0]:
-		call(val[1][0], val[1][1], val[1][2])
+		await call(val[1][0], val[1][1], val[1][2])
 
 func compareSumUnder(val):
 	var sum = 0
@@ -269,7 +260,7 @@ func compareSumUnder(val):
 		sum += stringToInt[card.values[1]]
 	
 	if sum < val[0]:
-		call(val[1][0], val[1][1], val[1][2])
+		await call(val[1][0], val[1][1], val[1][2])
 
 func compareSumOver(val):
 	var sum = 0
@@ -277,22 +268,22 @@ func compareSumOver(val):
 		sum += stringToInt[card.values[1]]
 	
 	if sum > val[0]:
-		call(val[1][0], val[1][1], val[1][2])
+		await call(val[1][0], val[1][1], val[1][2])
 
 func countCardAmount(val):
 	if(currentCards.size() == val[0]):
-		call(val[1][0], val[1][1], val[1][2])
+		await call(val[1][0], val[1][1], val[1][2])
 
 func checkCardType(val):
 	for card in currentCards:
 		if card.values[0] == val[0]:
-			call(val[1][0], val[1][1], val[1][2])
+			await call(val[1][0], val[1][1], val[1][2])
 			return
 
 func checkCardNumber(val):
 	for card in currentCards:
 		if  card.values[1] == val[0]:
-			call(val[1][0], val[1][1], val[1][2])
+			await call(val[1][0], val[1][1], val[1][2])
 			return
 
 func checkAllNumberBelow(val):
@@ -300,17 +291,17 @@ func checkAllNumberBelow(val):
 		if stringToInt[card.values[1]] >= val[0]:
 			return
 	
-	call(val[1][0], val[1][1], val[1][2])
+	await call(val[1][0], val[1][1], val[1][2])
 
 func checkAllNumberAbove(val):
 	for card in currentCards:
 		if stringToInt[card.values[1]] <= val[0]:
 			return
 	
-	call(val[1][0], val[1][1], val[1][2])
+	await call(val[1][0], val[1][1], val[1][2])
 
 func doFunction(val):
-	call(val[1][0], val[1][1], val[1][2])
+	await call(val[1][0], val[1][1], val[1][2])
 
 func checkCardTypesEqual(val):
 	var currentType = null
@@ -321,7 +312,7 @@ func checkCardTypesEqual(val):
 			if card.values[0] != currentType:
 				return
 	
-	call(val[1][0], val[1][1], val[1][2])
+	await call(val[1][0], val[1][1], val[1][2])
 
 var shorter = ["", "K", "M", "B", "T", "Qa", "Qi"]
 

@@ -36,7 +36,7 @@ func _ready() -> void:
 func _on_countdown_finished():
 	bob.visible = true
 	$Node3D/Dramatic.stop()
-	$Node3D/Dramaticbob.play()
+	$Dramaticbob.play()
 	$UI/DigitalBox/DigitalBox2/Who.text = "Bob"
 	$UI/DigitalBox/DialogText.text = "If you dont want to go home, lets play"
 	$UI.visible = true
@@ -49,17 +49,15 @@ func _on_countdown_started():
 func beginnigSpeak():
 	$UI/DigitalBox/DigitalBox2/Who.text = "BOB"
 	$UI/DigitalBox/DialogText.text = "OK, ok, fine, we are almost there... time to let you go"
-	$Info/info/InfoText.text = "Bob is about to drop you off, but who says he wont try to find you"
+	$Info/info/InfoText.text = "Bob is about to drop you off, but he does not seem to want to let you go"
 	$UI.visible = true
 	await get_tree().create_timer(2.5).timeout
 	$Info.visible = true
 	$UI.visible = false
 	await get_tree().create_timer(2.6).timeout
-	$Info/info/InfoText.text = "When Bob drops you off, you'll only have a few seconds to find your home"
-	await get_tree().create_timer(2.6).timeout
-	$Info/info/InfoText.text = "Either you find your home or Bob finds you"
+	$Info/info/InfoText.text = "When Bob drops you off, you'll have to run into your home"
 	await get_tree().create_timer(2.0).timeout
-	$Info/info/InfoText.text = "Run by pressing Shift and find the yellow indicator"
+	$Info/info/InfoText.text = "Who knows what he might do, run by pressing Shift"
 	await get_tree().create_timer(3.0).timeout
 	$Info.visible = false
 

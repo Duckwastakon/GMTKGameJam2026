@@ -146,7 +146,7 @@ func startLevel():
 		TransitionController.ChangeScene("res://storyAndMenu/storyFinish.tscn")
 		return
 	
-	if ((round-1)%3==0 and round > 1):
+	if ((round-1)%3==0 and round > 1 and round%10 != 0):
 		await TransitionController.animationIn()
 		if(Global.storyMode):
 			await SurroundingController.newBackground(false)
@@ -167,7 +167,7 @@ func startLevel():
 	levelStarted.emit()
 
 func endLevel():
-	if(cash > neededAmount):
+	if(cash >= neededAmount):
 		shopTokens += roundi(ceil(sqrt(round) * 3))
 		shopTokens += handsLeft
 		CardCalculator.updateTokens.emit(shopTokens)
@@ -401,9 +401,9 @@ func gameStart():
 	startLevel()
 
 const bobQuotes = ["How far are we?", "I am getting hungry", 
-"The higest cards are not always the best", "I like 3 cards", "Stardance is cool"]
+"The higest cards are not always the best", "I like hackclub", "Stardance is awesome"]
 func _on_bob_talking_timeout() -> void:
-	Bob.talk("How far is your house?")
+	Bob.talk(bobQuotes[randi_range(0, bobQuotes.size()-1)])
 	$BobTalking.start(randi_range(20, 50))
 
 func calculateRoundAmount():
@@ -418,6 +418,6 @@ func calculateRoundAmount():
 	
 	if round>=10:
 		newAmount *= 2.5
-		newAmount *= clamp(pow(round - 10, round - 10), 2, INF)
+		newAmount *= pow(round - 10, round - 10)
 	
 	return roundi(newAmount)

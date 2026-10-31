@@ -151,3 +151,7 @@ func setNormals():
 		
 	}
 }
+
+
+func _on_v_value_changed(value: float) -> void:
+	pass # Replace with function body.

@@ -111,6 +111,7 @@ func popUpText(textVariables):
 	var newPopUpLabel: Label3D = $Label3D.duplicate()
 	add_child(newPopUpLabel)
 	newPopUpLabel.modulate = textVariables[1]
+	newPopUpLabel.outline_modulate = textVariables[2]
 	newPopUpLabel.text = textVariables[0]
 	newPopUpLabel.scale = Vector3.ZERO
 	newPopUpLabel.visible = true

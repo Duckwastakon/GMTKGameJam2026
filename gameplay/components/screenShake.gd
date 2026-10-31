@@ -1,6 +1,7 @@
 extends Node3D
 
 func shake(intensity = 0.025):
+	intensity *= Global.screenShake / 50
 	if(rotation == Vector3.ZERO):
 		for i in 4:
 			rotation += Vector3(randf_range(-intensity, intensity), randf_range(-intensity, intensity), randf_range(-intensity, intensity))

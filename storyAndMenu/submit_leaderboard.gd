@@ -12,9 +12,10 @@ func submitScore():
 	$Control/background/submit.disabled = true
 	$Control/background/submit.modulate = Color(0.224, 0.224, 0.224, 1.0)
 	$Control/background/close.modulate = Color(0.224, 0.224, 0.224, 1.0)
-	
+	$Control/background/outcome.visible = true
+	$Control/background/outcome.text = "sending, please wait"
 	var username = usernameInput.text
-	var round = randi_range(4, 10)#get_parent().round
+	var round = get_parent().round
 	
 	var body = JSON.stringify({"Username": username, "Round": round})
 	

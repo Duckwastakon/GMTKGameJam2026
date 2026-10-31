@@ -16,22 +16,31 @@ var powerId = {
 	},
 	1: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_02.png",
-		"txt": "all 2 cards give +1 multiplier",
-		"price": 1,
+		"txt": "all 2-5 number cards give +2 multiplier",
+		"price": 2,
 		"powers": {
 			"Two": {
+				"addMultiplier": 2,
+			},
+			"Three": {
+				"addMultiplier": 2,
+			},
+			"Four": {
+				"addMultiplier": 2,
+			},
+			"Five": {
 				"addMultiplier": 1,
 			},
 		}
 	},
 	2: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_03.png",
-		"txt": "get +2 multiplier if you use 3 cards in your hand",
+		"txt": "get +3 multiplier if you use 3 cards in your hand",
 		"price": 3,
 		"powers": {
 			"countCardAmount": {
-				"vars": [3, ["addMultiplier", 2]],
-				"before": false
+				"vars": [3, ["addMultiplier", 3]],
+				"before": true
 			},
 		}
 	},
@@ -47,17 +56,9 @@ var powerId = {
 	},
 	4: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_05.png",
-		"txt": "all card types below 6 gain +3 amount and +1 multiplier",
-		"price": 3,
+		"txt": "all card 4, 5, 6 cards give +3 amount and +1 multiplier",
+		"price": 2,
 		"powers": {
-			"Two": {
-				"addMultiplier": 1,
-				"addAmount": 3,
-			},
-			"Three": {
-				"addMultiplier": 1,
-				"addAmount": 3,
-			},
 			"Four": {
 				"addMultiplier": 1,
 				"addAmount": 3,
@@ -66,15 +67,19 @@ var powerId = {
 				"addMultiplier": 1,
 				"addAmount": 3,
 			},
+			"Six": {
+				"addMultiplier": 1,
+				"addAmount": 3,
+			},
 		}
 	},
 	5: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_06.png",
-		"txt": "2x multiplier if all card values are under 6",
-		"price": 2,
+		"txt": "3x multiplier if all card values are under 6",
+		"price": 3,
 		"powers": {
 			"checkAllNumberBelow": {
-				"vars": [6, ["multiplyMultiplier", 2]],
+				"vars": [6, ["multiplyMultiplier", 3]],
 				"before": false
 			}
 		}
@@ -109,7 +114,7 @@ var powerId = {
 	8: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_09.png",
 		"txt": "Get +9 multiplier every round",
-		"price": 9,
+		"price": 6,
 		"powers": {
 			"doFunction": {
 				"vars": ["", ["addMultiplier", 9]],
@@ -120,18 +125,18 @@ var powerId = {
 	9: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_10.png",
 		"txt": "5x multiplier if the card sum is 10",
-		"price": 5,
+		"price": 3,
 		"powers": {
 			"countSum": {
 				"vars": [10, ["multiplyMultiplier", 5]],
-				"before": true
+				"before": false
 			}
 		}
 	},
 	10: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_A.png",
 		"txt": "all aces give +20 amount",
-		"price": 4,
+		"price": 3,
 		"powers": {
 			"Ace": {
 				"addAmount": 20,
@@ -145,16 +150,22 @@ var powerId = {
 		"powers": {
 			"checkAllNumberAbove": {
 				"vars": [9, ["multiplyMultiplier", 2]],
-				"before": true
+				"before": false
 			}
 		}
 	},
 	12: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_clubs_K.png",
-		"txt": "all kings give +2 multiplier",
+		"txt": "all king, queen and jack cards give +2 multiplier",
 		"price": 2,
 		"powers": {
 			"King": {
+				"addMultiplier": 2,
+			},
+			"Queen": {
+				"addMultiplier": 2,
+			},
+			"Jack": {
 				"addMultiplier": 2,
 			},
 		}
@@ -181,7 +192,7 @@ var powerId = {
 	14: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_02.png",
 		"txt": "+2 multiplier every round",
-		"price": 3,
+		"price": 2,
 		"powers": {
 			"doFunction": {
 				"vars": ["", ["addMultiplier", 2]],
@@ -192,7 +203,7 @@ var powerId = {
 	15: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_03.png",
 		"txt": "all 3 cards give +3 multiplier",
-		"price": 2,
+		"price": 1,
 		"powers": {
 			"Three": {
 				"addMultiplier": 3
@@ -202,7 +213,7 @@ var powerId = {
 	16: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_04.png",
 		"txt": "2x multiplier if you play a 4 card",
-		"price": 4,
+		"price": 3,
 		"powers": {
 			"checkCardNumber": {
 				"vars": ["Four", ["multiplyMultiplier", 2]],
@@ -213,7 +224,7 @@ var powerId = {
 	17: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_05.png",
 		"txt": "5x multiplier if all card values are below 5",
-		"price": 5,
+		"price": 7,
 		"powers": {
 			"checkAllNumberBelow": {
 				"vars": [5, ["multiplyMultiplier", 5]],
@@ -228,17 +239,17 @@ var powerId = {
 		"powers": {
 			"doFunction": {
 				"vars": [5, ["addAmount", 20]],
-				"before": false
+				"before": true
 			}
 		}
 	},
 	19: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_07.png",
-		"txt": "all diamond cards give +1 multiplier",
-		"price": 2,
+		"txt": "all diamond cards give +3 multiplier",
+		"price": 4,
 		"powers": {
 			"Diamonds": {
-				"addMultiplier": 1,
+				"addMultiplier": 3,
 			}
 		}
 	},
@@ -255,7 +266,7 @@ var powerId = {
 	21: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_09.png",
 		"txt": "3x multiplier if all card suits are the same",
-		"price": 4,
+		"price": 3,
 		"powers": {
 			"checkCardTypesEqual": {
 				"vars": ["", ["multiplyMultiplier", 3]],
@@ -266,7 +277,7 @@ var powerId = {
 	22: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_10.png",
 		"txt": "all 10 cards give +10 multiplier",
-		"price": 7,
+		"price": 5,
 		"powers": {
 			"Ten": {
 				"addMultiplier": 10,
@@ -276,7 +287,7 @@ var powerId = {
 	23: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_A.png",
 		"txt": "2x multiplier if you play a diamonds card",
-		"price": 5,
+		"price": 3,
 		"powers": {
 			"checkCardType": {
 				"vars": ["Diamonds", ["multiplyMultiplier", 2]],
@@ -286,8 +297,8 @@ var powerId = {
 	},
 	24: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_diamonds_J.png",
-		"txt": "all number cards give +6 amount",
-		"price": 3,
+		"txt": "all number cards give +6 amount, but face cards give -7 amount",
+		"price": 1,
 		"powers": {
 			"Two": {
 				"addAmount": 6,
@@ -315,6 +326,18 @@ var powerId = {
 			},
 			"Ten": {
 				"addAmount": 6,
+			},
+			"Jack": {
+				"addAmount": -7,
+			},
+			"Queen": {
+				"addAmount": -7,
+			},
+			"King": {
+				"addAmount": -7,
+			},
+			"Ace": {
+				"addAmount": -7,
 			},
 		}
 	},
@@ -401,15 +424,21 @@ var powerId = {
 		"powers": {
 			"countCardAmount": {
 				"vars": [3, ["addAmount", 20]],
-				"before": false
+				"before": true
 			}
 		}
 	},
 	30: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_04.png",
-		"txt": "all 4 cards give +1 multiplier",
+		"txt": "all 2, 3, 4 cards give +1 multiplier",
 		"price": 1,
 		"powers": {
+			"Two": {
+				"addMultiplier": 1,
+			},
+			"Three": {
+				"addMultiplier": 1,
+			},
 			"Four": {
 				"addMultiplier": 1,
 			}
@@ -417,11 +446,11 @@ var powerId = {
 	},
 	31: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_05.png",
-		"txt": "5x multiplier If the card sum is 5 or less",
+		"txt": "8x multiplier If the card sum is 5 or less",
 		"price": 5,
 		"powers": {
 			"compareSumUnder": {
-				"vars": [6, ["multiplyMultiplier", 5]],
+				"vars": [6, ["multiplyMultiplier", 8]],
 				"before": false
 			}
 		}
@@ -485,18 +514,18 @@ var powerId = {
 	},
 	34: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_08.png",
-		"txt": "all 8 cards give +10 amount",
+		"txt": "all 8 cards give +12 amount",
 		"price": 1,
 		"powers": {
 			"Eight": {
-				"addAmount": 10
+				"addAmount": 12
 			}
 		}
 	},
 	35: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_09.png",
 		"txt": "3, 6 and 9 cards give +3 multiplier",
-		"price": 5,
+		"price": 3,
 		"powers": {
 			"Three": {
 				"addMultiplier": 3
@@ -522,7 +551,7 @@ var powerId = {
 	37: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_A.png",
 		"txt": "cards activate 1 more time if you play a hearts card",
-		"price": 7,
+		"price": 5,
 		"powers": {
 			"checkCardType": {
 				"vars": ["Hearts", ["addRepeated", 1]],
@@ -532,11 +561,11 @@ var powerId = {
 	},
 	38: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_J.png",
-		"txt": "jacks give -10 amount, but +3 multiplier",
+		"txt": "jacks give -5 amount, but +3 multiplier",
 		"price": 1,
 		"powers": {
 			"Jack": {
-				"addAmount": -10,
+				"addAmount": -5,
 				"addMultiplier": 3,
 			}
 		}
@@ -544,7 +573,7 @@ var powerId = {
 	39: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_K.png",
 		"txt": "cards activate 1 more time if you play a king",
-		"price": 3,
+		"price": 5,
 		"powers": {
 			"checkCardNumber": {
 				"vars": ["King", ["addRepeated", 1]],
@@ -555,7 +584,7 @@ var powerId = {
 	40: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_hearts_Q.png",
 		"txt": "cards activate 1 more time if you play only cards lower than a 10",
-		"price": 3,
+		"price": 5,
 		"powers": {
 			"checkAllNumberBelow": {
 				"vars": [10, ["addRepeated", 1]],
@@ -588,7 +617,7 @@ var powerId = {
 	43: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_02.png",
 		"txt": "all spade cards give +2 multiplier",
-		"price": 3,
+		"price": 2,
 		"powers": {
 			"Spades": {
 				"addMultiplier": 2,
@@ -597,11 +626,11 @@ var powerId = {
 	},
 	44: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_03.png",
-		"txt": "all spade cards give +3 amount",
+		"txt": "all spade cards give +5 amount",
 		"price": 1,
 		"powers": {
 			"Spades": {
-				"addAmount": 3,
+				"addAmount": 5,
 			}
 		}
 	},
@@ -618,24 +647,24 @@ var powerId = {
 	},
 	46: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_05.png",
-		"txt": "Ace cards give -10 amount, but 5 and 10 cards give +1 multiplier",
+		"txt": "Ace cards give -10 amount, but 5 and 10 cards give +2 multiplier",
 		"price": 1,
 		"powers": {
 			"Ace": {
 				"addAmount": -10,
 			},
 			"Ten": {
-				"addMultiplier": 1,
+				"addMultiplier": 2,
 			},
 			"Five": {
-				"addMultiplier": 1,
+				"addMultiplier": 2,
 			}
 		}
 	},
 	47: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_06.png",
 		"txt": "all 6 cards give +6 multiplier",
-		"price": 6,
+		"price": 4,
 		"powers": {
 			"Six": {
 				"addMultiplier": 6,
@@ -645,7 +674,7 @@ var powerId = {
 	48: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_07.png",
 		"txt": "all 7 cards give +7 multiplier",
-		"price": 7,
+		"price": 5,
 		"powers": {
 			"Seven": {
 				"addMultiplier": 7,
@@ -654,29 +683,29 @@ var powerId = {
 	},
 	49: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_08.png",
-		"txt": "2x multiplier if the card sum is more than 8",
-		"price": 4,
+		"txt": "3x multiplier if the card sum is more than 25",
+		"price": 10,
 		"powers": {
 			"compareSumOver": {
-				"vars": [8, ["multiplyMultiplier", 2]],
+				"vars": [25, ["multiplyMultiplier", 3]],
 				"before": false
 			}
 		}
 	},
 	50: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_09.png",
-		"txt": "All spade cards give +3 multiplier",
-		"price": 5,
+		"txt": "All spade cards give +9 multiplier",
+		"price": 6,
 		"powers": {
 			"Spades": {
-				"addMultiplier": 3,
+				"addMultiplier": 9,
 			}
 		}
 	},
 	51: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_10.png",
 		"txt": "All spade cards give +10 amount",
-		"price": 6,
+		"price": 3,
 		"powers": {
 			"Spades": {
 				"addAmount": 10,
@@ -719,7 +748,7 @@ var powerId = {
 	55: {
 		"img": "res://gameplay/artAssestsAndModels/2dCardArt/card_spades_Q.png",
 		"txt": "queen cards give +5 multiplier",
-		"price": 3,
+		"price": 2,
 		"powers": {
 			"Queen": {
 				"addMultiplier": 5
