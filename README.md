@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://duc-k.itch.io/cashless-drive">
-    <img src="https://img.shields.io/badge/PLAY%20NOW-7C3AED?style=for-the-badge" width="260" alt="Play Cashless Drive now on itch.io">
+    Play Cashless Drive now on itch.io
   </a>
 </p>
 
