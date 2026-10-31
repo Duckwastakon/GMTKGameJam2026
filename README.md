@@ -146,6 +146,8 @@ In the Godot project, open these two scripts and change the address of the HTTP 
  
 And then you have completed setting up the local backend, and connect it to the game.
 
+The backend uses Express and Sequelize for connecting the database and game.
+
 ## Project status
 
 The game is finished for now, as it was intended.
