@@ -12,7 +12,7 @@ func getLeaderboard():
 
 func _on_leaderboard_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	var res = JSON.parse_string(body.get_string_from_utf8())
-	if res.has("err"):
+	if res == null:
 		$title.text = "Failed to load leaderboard"
 	else:
 		$title.text = "Highest rounds"

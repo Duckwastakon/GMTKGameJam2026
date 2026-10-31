@@ -60,10 +60,10 @@ No download or installation is needed.
 
 ## Controls
 
-| Mode | Controls |
-| --- | --- |
-| Infinite mode | Mouse only |
-| Story mode | `W` `A` `S` `D` to move around, `Shift` to sprint during story scenes |
+| Mode          | Controls                                                              |
+| ------------- | --------------------------------------------------------------------- |
+| Infinite mode | Mouse only                                                            |
+| Story mode    | `W` `A` `S` `D` to move around, `Shift` to sprint during story scenes |
 
 ## Features
 
@@ -79,9 +79,9 @@ No download or installation is needed.
 
 Some upgrades use card sums. For those who don't know the value of the face cards:
 
-Jack - 10   
+Jack - 10  
 Queen - 10  
-King - 10   
+King - 10  
 Ace - 11
 
 ## Run it in Godot
@@ -90,13 +90,61 @@ You'll need Godot **4.6 or newer**.
 
 1. Clone this repository:
 
-   ```sh
-   git clone https://github.com/Duckwastakon/GMTKGameJam2026.git
-   ```
+```sh
+git clone https://github.com/Duckwastakon/GMTKGameJam2026.git
+```
 
 2. Open Godot, choose **Import**, and select the project folder (the one that contains `project.godot`).
 3. Wait a moment while Godot imports the assets the first time.
 4. Press `F5` to run the game.
+
+## Run your own leaderboard locally
+ 
+The global leaderboard is powered by a small backend in the `leaderboardBackend` folder. You can run your own copy and point the game at it.
+ 
+### Requirements
+ 
+- Node.js and npm
+- A **PostgreSQL** database, and its connection link. (for example I use a hosted one from [Render](https://render.com/))
+
+### 1. Clone the repository
+ 
+```sh
+git clone https://github.com/Duckwastakon/GMTKGameJam2026.git
+cd leaderboardBackend
+```
+ 
+### 2. Install the dependencies
+ 
+```sh
+npm install
+```
+ 
+### 3. Create a `.env` file
+ 
+In the `leaderboardBackend` folder, create a file named `.env` with these two variables:
+ 
+```env
+URL=your-postgresql-connection-link
+PORT=5000
+```
+ 
+### 4. Start the backend
+ 
+```sh
+npm start
+```
+ 
+You should see a message such as `Listening on port 5000`. if so the localhosted address is http://localhost:5000, if you get a different ending number use that for the link http://localhost:____
+ 
+### 5. Connect the backend to the game
+ 
+In the Godot project, open these two scripts and change the address of the HTTP request in each one:
+ 
+`gameFiles/storyAndMenu/leader_board.gd`: `http://localhost:5000/leaderboard`   
+`gameFiles/storyAndMenu/submit_leaderboard.gd`: `http://localhost:5000/submit` 
+ 
+And then you have completed setting up the local backend, and connect it to the game.
 
 ## Project status
 
