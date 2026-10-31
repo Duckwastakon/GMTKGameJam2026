@@ -430,9 +430,7 @@ offset_left = 19.0
 offset_top = 192.0
 offset_right = 446.0
 offset_bottom = 479.0
-text = "Thanks to \"Kenney\" for game assets
-Thanks to ContextSensitive for music
-Thanks to Pixabay for sound effects"
+text = "Thanks to \"Kenney\" for some 3d game assets and JorisVermeer on Pixabay for background music"
 label_settings = SubResource("LabelSettings_oxuiv")
 horizontal_alignment = 1
 vertical_alignment = 1
