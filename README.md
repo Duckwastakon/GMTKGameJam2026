@@ -6,6 +6,8 @@
   <a href="https://duc-k.itch.io/cashless-drive"> Play Cashless Drive right now! </a>
 </p>
 
+https://github.com/user-attachments/assets/d64658b3-5af6-4745-b365-2ed736ea23a5
+
 <p align="center">
   <img src="https://img.shields.io/badge/engine-Godot%204.6%2B-478CBF?logo=godotengine&logoColor=white" alt="Made with Godot 4.6 or newer">
   <img src="https://img.shields.io/badge/platform-browser-blue" alt="Platform: browser">
